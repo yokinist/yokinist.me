@@ -1,10 +1,11 @@
+import { Post } from '@/types'
 import BLOG from '@/blog.config'
 import { NotionAPI } from 'notion-client'
 import { idToUuid } from 'notion-utils'
 import getAllPageIds from './getAllPageIds'
 import getPageProperties from './getPageProperties'
 
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<Post[]> {
   let id = BLOG.notionPageId
   const authToken = BLOG.notionAccessToken || null
   const api = new NotionAPI({ authToken })
@@ -17,15 +18,33 @@ export async function getAllPosts() {
   const schema = collection?.schema
 
   const rawMetadata = block[id].value
+  const result = await returnGetAllPosts({
+    id,
+    rawMetadata,
+    collectionQuery,
+    block,
+    schema
+  })
+  return result
+}
 
-  // Check Type
-  if (rawMetadata?.type !== 'collection_view_page' && rawMetadata?.type !== 'collection_view') {
+const returnGetAllPosts = async ({
+  id,
+  rawMetadata,
+  collectionQuery,
+  block,
+  schema
+}) => {
+  if (
+    rawMetadata?.type !== 'collection_view_page' &&
+    rawMetadata?.type !== 'collection_view'
+  ) {
     console.log(`pageId "${id}" is not a database`)
     return null
   } else {
     // Construct Data
     const pageIds = getAllPageIds(collectionQuery)
-    const data = []
+    const data: Post[] = []
     for (let i = 0; i < pageIds.length; i++) {
       const id = pageIds[i]
       const properties = (await getPageProperties(id, block, schema)) || null
@@ -53,9 +72,11 @@ export async function getAllPosts() {
       posts.sort((a, b) => {
         const dateA = new Date(a?.date?.start_date || a.createdTime)
         const dateB = new Date(b?.date?.start_date || b.createdTime)
-        return dateB - dateA
+        return dateB.getTime() - dateA.getTime()
       })
     }
     return posts
   }
 }
+
+export type ReturnGetAllPostsParams = Parameters<typeof returnGetAllPosts>[0]

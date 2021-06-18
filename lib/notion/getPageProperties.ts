@@ -1,41 +1,62 @@
 import { getTextContent, getDateValue } from 'notion-utils'
 import { NotionAPI } from 'notion-client'
+import { ReturnGetAllPostsParams } from './getAllPosts'
+import { Post } from '@/types'
+import BLOG from '@/blog.config'
 
-async function getPageProperties(id, block, schema, authToken) {
+async function getPageProperties(
+  id: string,
+  block: ReturnGetAllPostsParams['block'],
+  schema: ReturnGetAllPostsParams['schema'],
+): Promise<Post> {
+  const authToken = BLOG.notionAccessToken || null
   const api = new NotionAPI({ authToken })
-  const rawProperties = Object.entries(block?.[id]?.value?.properties || [])
+  const rawProperties = Object.entries(
+    block?.[id]?.value?.properties || []
+  )
   const excludeProperties = ['date', 'select', 'multi_select', 'person']
-  const properties = {}
+  const properties: Post = {
+    id: undefined,
+    createdTime: undefined,
+    fullWidth: undefined,
+    date: {
+      start_date: undefined
+    }
+  }
   for (let i = 0; i < rawProperties.length; i++) {
     const [key, val] = rawProperties[i]
     properties.id = id
     if (schema[key]?.type && !excludeProperties.includes(schema[key].type)) {
-      properties[schema[key].name] = getTextContent(val)
+      properties[schema[key].name] = getTextContent(val as Parameters<typeof getTextContent>[0])
     } else {
       switch (schema[key]?.type) {
         case 'date': {
-          const dateProperty = getDateValue(val)
+          const dateProperty = getDateValue(
+            val as Parameters<typeof getDateValue>[0]
+          )
           delete dateProperty.type
           properties[schema[key].name] = dateProperty
           break
         }
         case 'select':
         case 'multi_select': {
-          const selects = getTextContent(val)
+          const selects = getTextContent(
+            val as Parameters<typeof getTextContent>[0]
+          )
           if (selects[0]?.length) {
             properties[schema[key].name] = selects.split(',')
           }
           break
         }
+        // NOTE: Not using it?
         case 'person': {
-          const rawUsers = val.flat()
+          const rawUsers = (val as string[][]).flat()
           const users = []
           for (let i = 0; i < rawUsers.length; i++) {
             if (rawUsers[i][0][1]) {
               const userId = rawUsers[i][0]
-              const res = await api.getUsers(userId)
-              const resValue =
-                res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value
+              const res = await api.getUsers([userId])
+              const resValue = res?.results?.[userId[1]]?.value
               const user = {
                 id: resValue?.id,
                 first_name: resValue?.given_name,
@@ -53,7 +74,7 @@ async function getPageProperties(id, block, schema, authToken) {
       }
     }
   }
-  return properties
+  return properties as Post
 }
 
 export { getPageProperties as default }
