@@ -17,6 +17,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "eslint": "eslint --fix",
+    "prepare": "simple-git-hooks",
     "format": "prettier --write",
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
