@@ -11,6 +11,7 @@ module.exports = {
     'standard',
     'prettier'
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -21,9 +22,10 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/prop-types': 'off',
-    'import/no-anonymous-default-export': [2,
+    'import/no-anonymous-default-export': [
+      2,
       {
-        "allowArrowFunction": true
+        allowArrowFunction: true
       }
     ]
   },
