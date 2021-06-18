@@ -27,7 +27,8 @@ module.exports = {
       {
         allowArrowFunction: true
       }
-    ]
+    ],
+    '@typescript-eslint/explicit-module-boundary-types': 'off'
   },
   globals: {
     React: true
