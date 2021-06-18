@@ -17,7 +17,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "eslint": "eslint --fix",
+    "prepare": "simple-git-hooks",
+    "format": "prettier --write",
     "postbuild": "next-sitemap --config next-sitemap.config.js"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
   },
   "dependencies": {
     "feed": "^4.2.2",
@@ -44,9 +50,11 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.23.2",
+    "lint-staged": "^11.0.0",
     "next-sitemap": "^1.6.102",
     "postcss": "^8.2.15",
     "prettier": "^2.3.0",
+    "simple-git-hooks": "^2.4.1",
     "tailwindcss": "^2.1.2"
   },
   "resolutions": {

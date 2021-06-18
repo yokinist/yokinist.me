@@ -6,9 +6,12 @@ const Tags = ({ tags, currentTag }) => {
     <div className="tag-container">
       <ul className="flex max-w-full mt-4 overflow-x-auto">
         {Object.keys(tags).map(key => {
-          const selected = key === currentTag;
+          const selected = key === currentTag
           return (
-            <Link key={key} href={selected ? '/search' : `/tag/${encodeURIComponent(key)}`}>
+            <Link
+              key={key}
+              href={selected ? '/search' : `/tag/${encodeURIComponent(key)}`}
+            >
               <a>
                 <li
                   className={`mr-3 py-2 font-medium border px-4 whitespace-nowrap dark:text-gray-300 ${
@@ -21,7 +24,8 @@ const Tags = ({ tags, currentTag }) => {
                 </li>
               </a>
             </Link>
-        )})}
+          )
+        })}
       </ul>
     </div>
   )
