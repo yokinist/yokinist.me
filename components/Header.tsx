@@ -3,7 +3,7 @@ import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
 
-const NavBar = () => {
+const NavBar: React.VFC = () => {
   const locale = useLocale()
   const links = [
     { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
@@ -32,9 +32,13 @@ const NavBar = () => {
   )
 }
 
-const Header = ({ navBarTitle, fullWidth }) => {
+type HeaderProps = {
+  navBarTitle: string | null
+  fullWidth?: boolean
+}
+const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef(null)
-  const sentinalRef = useRef([])
+  const sentinalRef = useRef(null)
   const handler = ([entry]) => {
     if (navRef && navRef.current) {
       if (!entry.isIntersecting && entry !== undefined) {

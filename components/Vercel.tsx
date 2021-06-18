@@ -1,4 +1,4 @@
-const Vercel = () => {
+const Vercel: React.VFC = () => {
   return (
     <a
       href="https://vercel.com?utm_source=Craigary&utm_campaign=oss"

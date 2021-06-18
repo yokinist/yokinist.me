@@ -2,14 +2,26 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BLOG from '@/blog.config'
 import Head from 'next/head'
-import PropTypes from 'prop-types'
 // import BlogPost from './BlogPost'
 
-const Container = ({ children, layout, fullWidth, ...customMeta }) => {
-  const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link
+type Props = {
+  children: React.ReactNode
+  layout?: 'blog'
+  type?: 'article' | 'website'
+  title?: string
+  description?: string
+  fullWidth?: boolean
+  date?: string
+  slug?: string
+  createdTime: string
+}
+
+const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link
+
+const Container: React.VFC<Props> = ({ children, layout, fullWidth, type = 'website', ...customMeta }) => {
   const meta = {
     title: BLOG.title,
-    type: 'website',
+    type,
     ...customMeta
   }
   return (
@@ -80,10 +92,6 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
       </div>
     </div>
   )
-}
-
-Container.propTypes = {
-  children: PropTypes.node
 }
 
 export default Container

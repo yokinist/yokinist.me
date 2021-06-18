@@ -1,6 +1,13 @@
 import BLOG from '@/blog.config'
 import { useEffect } from 'react'
-const Cusdis = ({ id, url, title }) => {
+
+type Props = {
+  id: string
+  url: string
+  title: string
+}
+
+const Cusdis: React.VFC<Props> = ({ id, url, title }) => {
   useEffect(() => {
     const script = document.createElement('script')
     const anchor = document.getElementById('comments')
@@ -9,13 +16,14 @@ const Cusdis = ({ id, url, title }) => {
       BLOG.comment.cusdisConfig.scriptSrc ||
         'https://cusdis.com/js/cusdis.es.js'
     )
-    script.setAttribute('async', true)
-    script.setAttribute('defer', true)
+    script.setAttribute('async', 'true')
+    script.setAttribute('defer', 'true')
     anchor.appendChild(script)
     return () => {
       anchor.innerHTML = ''
     }
   })
+
   return (
     <div id="comments">
       <div

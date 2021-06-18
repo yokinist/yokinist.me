@@ -1,8 +1,13 @@
 import Link from 'next/link'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
+import { Post } from '@/types'
 
-const BlogPost = ({ post }) => {
+type Props = {
+  post: Post
+}
+
+const BlogPost: React.VFC<Props> = ({ post }) => {
   return (
     <article key={post.id} className="mb-6 md:mb-8">
       <header className="flex flex-col justify-between md:flex-row md:items-baseline">

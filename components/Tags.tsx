@@ -1,6 +1,12 @@
+import { Post } from '@/@types'
 import Link from 'next/link'
 
-const Tags = ({ tags, currentTag }) => {
+type Props = {
+  tags: Post['tags']
+  currentTag: Post['tags'][number]
+}
+
+const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
   if (!tags) return null
   return (
     <div className="tag-container">

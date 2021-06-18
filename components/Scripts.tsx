@@ -1,7 +1,7 @@
 import Script from 'next/script'
 import BLOG from '@/blog.config'
 
-const Scripts = () => (
+const Scripts: React.VFC = () => (
   <>
     {BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
       <Script

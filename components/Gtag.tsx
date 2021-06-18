@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as gtag from '@/lib/gtag'
 
-const Gtag = () => {
+const Gtag: React.VFC = () => {
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = url => {

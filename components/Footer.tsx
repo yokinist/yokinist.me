@@ -1,6 +1,9 @@
 import BLOG from '@/blog.config'
 import Vercel from '@/components/Vercel'
-const Footer = ({ fullWidth }) => {
+
+type Props = { fullWidth?: boolean }
+
+const Footer: React.VFC<Props> = ({ fullWidth }) => {
   const d = new Date()
   const y = d.getFullYear()
   const from = +BLOG.since

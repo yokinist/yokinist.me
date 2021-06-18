@@ -2,7 +2,11 @@ import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
 
-const Pagination = ({ page, showNext }) => {
+type Props = {
+  page: number
+  showNext: boolean
+}
+const Pagination: React.VFC<Props> = ({ page, showNext }) => {
   const locale = useLocale()
   const currentPage = +page
   return (
@@ -14,9 +18,8 @@ const Pagination = ({ page, showNext }) => {
             : `/page/${currentPage - 1}`
         }
       >
-        <a>
+        <a rel="prev">
           <button
-            rel="prev"
             className={`${
               currentPage === 1 ? 'invisible' : 'block'
             } cursor-pointer`}
@@ -26,9 +29,8 @@ const Pagination = ({ page, showNext }) => {
         </a>
       </Link>
       <Link href={`/page/${currentPage + 1}`}>
-        <a>
+        <a rel="next">
           <button
-            rel="next"
             className={`${+showNext ? 'block' : 'invisible'} cursor-pointer`}
           >
             {locale.PAGINATION.NEXT} →
