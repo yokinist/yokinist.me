@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const BLOG = require('./blog.config')
 const { fontFamily } = require('tailwindcss/defaultTheme')
 const CJK = require('./lib/cjk')
