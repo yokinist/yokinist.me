@@ -1,7 +1,6 @@
 import BLOG from '@/blog.config'
-import type { ReactCusdis } from 'react-cusdis'
 
-const cusdisI18n: Parameters<typeof ReactCusdis>[0]['lang'][] = [
+const cusdisI18n = [
   'ca',
   'en',
   'es',
@@ -14,7 +13,7 @@ const cusdisI18n: Parameters<typeof ReactCusdis>[0]['lang'][] = [
   'tr',
   'zh-cn',
   'zh-tw'
-]
+] as const
 
 const loweredLang = BLOG.lang.toLowerCase()
 
