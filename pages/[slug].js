@@ -1,5 +1,4 @@
-import DefaultLayout from '@/layouts/default'
-import FullWidthLayout from '@/layouts/fullwidth'
+import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import { createHash } from 'crypto'
@@ -8,19 +7,12 @@ const BlogPost = ({ post, blockMap, emailHash }) => {
   if (!post) return null
   return (
     <>
-      {post.fullWidth ? (
-        <FullWidthLayout
-          blockMap={blockMap}
-          frontMatter={post}
-          emailHash={emailHash}
-        ></FullWidthLayout>
-      ) : (
-        <DefaultLayout
-          blockMap={blockMap}
-          frontMatter={post}
-          emailHash={emailHash}
-        ></DefaultLayout>
-      )}
+      <Layout
+        blockMap={blockMap}
+        frontMatter={post}
+        emailHash={emailHash}
+        fullWidth={post?.fullWidth ?? false}
+      />
     </>
   )
 }
