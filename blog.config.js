@@ -7,7 +7,7 @@ const BLOG = {
   email: 'yokinist@gmail.com',
   link: 'https://yokinist.me',
   description: '色々なことを雑多に書いていく場所',
-  lang: 'en-US', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP']
+  lang: 'ja-JP', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP']
   appearance: 'dark', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']
   lightBackground: '#ffffff', // use hex value, don't forget '#' e.g #fffefc
@@ -39,7 +39,7 @@ const BLOG = {
   },
   comment: {
     // support provider: gitalk, utterances, cusdis
-    provider: '', // leave it empty if you don't need any comment plugin
+    provider: 'cusdis', // leave it empty if you don't need any comment plugin
     gitalkConfig: {
       repo: 'for-gitalk', // The repository of store comments
       owner: 'yokinist',
@@ -53,7 +53,7 @@ const BLOG = {
       repo: ''
     },
     cusdisConfig: {
-      appId: '', // data-app-id
+      appId: '4c9aa1e3-623a-4773-a9ef-f345f484efe5', // data-app-id'
       host: 'https://cusdis.com', // data-host, change this if you're using self-hosted version
       scriptSrc: 'https://cusdis.com/js/cusdis.es.js' // change this if you're using self-hosted version
     }
