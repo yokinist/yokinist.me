@@ -1,7 +1,10 @@
 /* eslint-disable camelcase */
-export type PostType = "Post" | "Page"
+import type Gitalk from 'gitalk'
+import type { ReactCusdis } from 'react-cusdis'
 
-export type PostStatus = "Idea" | "Published" | "Revise" | "Published"
+export type PostType = 'Post' | 'Page'
+
+export type PostStatus = 'Idea' | 'Published' | 'Revise' | 'Published'
 
 export type Post = {
   id: string
@@ -19,3 +22,50 @@ export type Post = {
 }
 
 export type TagObj = { [key: string]: 1 }
+
+export type BlogConfig = {
+  title: string
+  author: string
+  email: string
+  link: string
+  description: string
+  lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP'
+  appearance: 'auto' | 'dark' | 'light'
+  font: 'sans-serif' | 'serif'
+  lightBackground: `#${string}`
+  darkBackground: `#${string}`
+  path: string
+  since: number
+  postsPerPage: number
+  sortByDate: boolean
+  showAbout: boolean
+  showArchive: boolean
+  autoCollapsedNavBar: boolean
+  socialLink: string
+  seo: {
+    keywords: string[]
+    googleSiteVerification: string
+  }
+  notionPageId: string
+  notionAccessToken: string
+  analytics: {
+    provider: 'ga' | 'ackee'
+    ackeeConfig: {
+      tracker: string
+      dataAckeeServer: string
+      domainId: string
+    }
+    gaConfig: {
+      measurementId: `G-${string}`
+    }
+  }
+  comment: {
+    provider: 'gitalk' | 'utterances' | 'cusdis'
+    gitalkConfig: Gitalk.GitalkOptions
+    utterancesConfig: {
+      repo: string
+    }
+    cusdisConfig: Parameters<typeof ReactCusdis>[0]['attrs']
+  }
+  isProd: 'development' | 'preview' | 'production'
+}

@@ -1,3 +1,6 @@
+/**
+ * @type {import('@/types').BlogConfig}
+ */
 const BLOG = {
   title: 'CRAIGARY',
   author: 'Craig Hart',
