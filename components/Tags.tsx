@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 type Props = {
   tags: TagObj
-  currentTag: keyof TagObj
+  currentTag?: string
 }
 
 const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {

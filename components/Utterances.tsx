@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 type Props = {
   issueTerm?: string
-  layout?: "fullWidth"
+  layout?: 'fullWidth'
 }
 
 const Utterances: React.VFC<Props> = ({ issueTerm, layout }) => {
@@ -20,11 +20,11 @@ const Utterances: React.VFC<Props> = ({ issueTerm, layout }) => {
     script.setAttribute('crossorigin', 'anonymous')
     script.setAttribute('async', 'true')
     script.setAttribute('repo', BLOG.comment.utterancesConfig.repo)
-    script.setAttribute('issue-term', issueTerm)
+    issueTerm && script.setAttribute('issue-term', issueTerm)
     script.setAttribute('theme', theme)
-    anchor.appendChild(script)
+    anchor?.appendChild(script)
     return () => {
-      anchor.innerHTML = ''
+      if (anchor?.innerHTML) anchor.innerHTML = ''
     }
   })
   return (

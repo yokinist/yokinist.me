@@ -7,36 +7,13 @@ import parseSafeNumber from '@/lib/parseSafeNumber'
 import BLOG from '@/blog.config'
 import { Post } from '@/types'
 
-export const getStaticProps: GetStaticProps = async context => {
-  const { page } = context.params // Get Current Page No.
-  const pageNum = parseSafeNumber(page)
-  if (!pageNum) return { notFound: true }
-  let posts = await getAllPosts()
-  posts = posts.filter(
-    post => post.status[0] === 'Published' && post.type[0] === 'Post'
-  )
-  const postsToShow = posts.slice(
-    BLOG.postsPerPage * (pageNum - 1),
-    BLOG.postsPerPage * pageNum
-  )
-  const totalPosts = posts.length
-  const showNext = pageNum * BLOG.postsPerPage < totalPosts
-  return {
-    props: {
-      page, // Current Page
-      postsToShow,
-      showNext
-    },
-    revalidate: 1
-  }
-}
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  let posts = await getAllPosts()
-  posts = posts.filter(
-    post => post.status[0] === 'Published' && post.type[0] === 'Post'
+  const posts = await getAllPosts()
+  if (!posts) return { paths: [], fallback: false }
+  const publishPosts = posts.filter(
+    post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
   )
-  const totalPosts = posts.length
+  const totalPosts = publishPosts.length
   const totalPages = Math.ceil(totalPosts / BLOG.postsPerPage)
   return {
     // remove first page, we 're not gonna handle that.
@@ -44,6 +21,30 @@ export const getStaticPaths: GetStaticPaths = async () => {
       params: { page: '' + (i + 2) }
     })),
     fallback: true
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const pageNum = parseSafeNumber(params?.page) // Get Current Page No.
+  if (!pageNum) return { notFound: true }
+  const posts = await getAllPosts()
+  if (!posts) return { notFound: true }
+  const publishPosts = posts.filter(
+    post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
+  )
+  const postsToShow = publishPosts.slice(
+    BLOG.postsPerPage * (pageNum - 1),
+    BLOG.postsPerPage * pageNum
+  )
+  const totalPosts = publishPosts.length
+  const showNext = pageNum * BLOG.postsPerPage < totalPosts
+  return {
+    props: {
+      page: pageNum, // Current Page
+      postsToShow,
+      showNext
+    },
+    revalidate: 1
   }
 }
 

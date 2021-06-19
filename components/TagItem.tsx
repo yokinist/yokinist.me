@@ -1,8 +1,7 @@
-import { Post } from '@/types'
 import Link from 'next/link'
 
 type Props = {
-  tag: Post['tags'][number]
+  tag: string
 }
 
 const TagItem: React.VFC<Props> = ({ tag }) => (

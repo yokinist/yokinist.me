@@ -197,6 +197,11 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
+"@types/ackee-tracker@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/ackee-tracker/-/ackee-tracker-5.0.0.tgz#ef3f63614d41c191e792950fced5c4ca36d1543c"
+  integrity sha512-a6BYEFRY/br4FntsPbMoKVPTpAWC1DVHfuqMVVys8E7fQ6jmLk9+Lpvtzi6iY2nE+2s1z+a5/Kh9shgI4n2YlQ==
+
 "@types/async-retry@1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@types/async-retry/-/async-retry-1.2.1.tgz#fa9ac165907a8ee78f4924f4e393b656c65b5bb4"
@@ -332,6 +337,13 @@
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
+
+"@types/use-ackee@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/use-ackee/-/use-ackee-2.0.0.tgz#0b29083a18b413215c5add229eb3096866d7e764"
+  integrity sha512-rLKdPEdtXZxfbBfptlRPV1DqJgNSVHYtHotlv8sc3bKmm0LCQ9yNARExGQL4zJ/CF2Wq5sD37LwRRraPiWOewA==
+  dependencies:
+    "@types/ackee-tracker" "*"
 
 "@typescript-eslint/eslint-plugin@^4.27.0":
   version "4.27.0"

@@ -3,18 +3,19 @@ import { getAllPosts, getAllTags } from '@/lib/notion'
 import SearchLayout from '@/layouts/search'
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const currentTag = params.tag
+  const currentTag = params?.tag
   if (typeof currentTag !== 'string') {
     return {
       notFound: true
     }
   }
-  let posts = await getAllPosts()
-  posts = posts.filter(
-    post => post.status[0] === 'Published' && post.type[0] === 'Post'
+  const posts = await getAllPosts()
+  if (!posts) return { notFound: true }
+  const publishPosts = posts.filter(
+    post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
   )
   const tags = await getAllTags()
-  const filteredPosts = posts.filter(
+  const filteredPosts = publishPosts.filter(
     post => post && post.tags && post.tags.includes(currentTag)
   )
   return {

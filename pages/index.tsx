@@ -7,12 +7,13 @@ import BLOG from '@/blog.config'
 import { Post } from '@/types'
 
 export const getStaticProps: GetStaticProps = async () => {
-  let posts = await getAllPosts()
-  posts = posts.filter(
-    post => post.status[0] === 'Published' && post.type[0] === 'Post'
+  const posts = await getAllPosts()
+  if (!posts) return { notFound: true }
+  const publishPosts = posts.filter(
+    post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
   )
-  const postsToShow = posts.slice(0, BLOG.postsPerPage)
-  const totalPosts = posts.length
+  const postsToShow = publishPosts.slice(0, BLOG.postsPerPage)
+  const totalPosts = publishPosts.length
   const showNext = totalPosts > BLOG.postsPerPage
   return {
     props: {

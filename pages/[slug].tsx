@@ -5,22 +5,24 @@ import BLOG from '@/blog.config'
 import { createHash } from 'crypto'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let posts = await getAllPosts()
-  posts = posts.filter(post => post.status[0] === 'Published')
+  const posts = await getAllPosts()
+  if (!posts) return { paths: [], fallback: false }
+  const publishPosts = posts.filter(post => post?.status?.[0] === 'Published')
   return {
-    paths: posts.map(row => `${BLOG.path}/${row.slug}`),
+    paths: publishPosts.map(row => `${BLOG.path}/${row.slug}`),
     fallback: true
   }
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  const { slug } = context.params
-  let posts = await getAllPosts()
-  posts = posts.filter(post => post.status[0] === 'Published')
-  const post = posts.find(t => t.slug === slug)
+  const slug = context.params?.slug
+  const posts = await getAllPosts()
+  if (!posts) return { notFound: true }
+  const publishPosts = posts.filter(post => post?.status?.[0] === 'Published')
+  const post = publishPosts.find(t => t.slug === slug)
+  if (!post?.id) return { notFound: true }
   const blockMap = await getPostBlocks(post.id)
   const emailHash = createHash('md5').update(BLOG.email).digest('hex')
-
   return {
     props: { post, blockMap, emailHash },
     revalidate: 1

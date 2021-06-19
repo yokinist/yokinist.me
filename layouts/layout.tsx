@@ -11,15 +11,14 @@ import formatDate from '@/lib/formatDate'
 import { useLocale } from '@/lib/locale'
 
 import type { ReactCusdis as ReactCusdisType } from 'react-cusdis'
-import type GitalkComponentType from 'gitalk/dist/gitalk-component'
 import { Post } from '@/types'
 
 const GitalkComponent = dynamic(
   () => {
-    return import('gitalk/dist/gitalk-component')
+    return import('@/components/CustomGitalk')
   },
   { ssr: false }
-) as typeof GitalkComponentType
+)
 
 const UtterancesComponent = dynamic(
   () => {
@@ -35,7 +34,7 @@ const CusdisComponent = dynamic(
   { ssr: false }
 ) as typeof ReactCusdisType
 
-const mapPageUrl = id => {
+const mapPageUrl = (id: string) => {
   return 'https://www.notion.so/' + id.replace(/-/g, '')
 }
 
@@ -69,7 +68,7 @@ const Layout: React.VFC<Props> = ({
         <h1 className="font-bold text-3xl text-black dark:text-white">
           {post.title}
         </h1>
-        {post.type[0] !== 'Page' && (
+        {post?.type?.[0] !== 'Page' && (
           <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
             <div className="flex mb-4">
               <a href={BLOG.socialLink || '#'} className="flex">
@@ -118,13 +117,13 @@ const Layout: React.VFC<Props> = ({
           onClick={() => router.push(BLOG.path || '/')}
           className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
         >
-          ← {locale.POST.BACK}
+          ← {locale?.POST.BACK}
         </button>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
         >
-          ↑ {locale.POST.TOP}
+          ↑ {locale?.POST.TOP}
         </button>
       </div>
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
@@ -142,11 +141,11 @@ const Layout: React.VFC<Props> = ({
       {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
         <CusdisComponent
           attrs={{
+            ...BLOG.comment.cusdisConfig,
             pageId: post.id,
             pageTitle: post.title,
             pageUrl: BLOG.link + router.asPath,
-            theme: BLOG.appearance,
-            ...BLOG.comment.cusdisConfig
+            theme: BLOG.appearance
           }}
           lang={cusdisI18n.find(
             i => i.toLowerCase() === BLOG.lang.toLowerCase()

@@ -5,6 +5,7 @@ import { useLocale } from '@/lib/locale'
 
 const NavBar: React.VFC = () => {
   const locale = useLocale()
+  if (!locale) return null
   const links = [
     { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
     { id: 1, name: locale.NAV.ABOUT, to: '/about', show: BLOG.showAbout },
@@ -37,9 +38,9 @@ type HeaderProps = {
   fullWidth?: boolean
 }
 const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
-  const navRef = useRef(null)
-  const sentinalRef = useRef(null)
-  const handler = ([entry]) => {
+  const navRef = useRef<HTMLDivElement>(null)
+  const sentinalRef = useRef<HTMLDivElement>(null)
+  const handler = ([entry]: IntersectionObserverEntry[]) => {
     if (navRef && navRef.current) {
       if (!entry.isIntersecting && entry !== undefined) {
         navRef.current.classList.add('sticky-nav-full')
@@ -50,7 +51,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   }
   useEffect(() => {
     const obvserver = new window.IntersectionObserver(handler)
-    obvserver.observe(sentinalRef.current)
+    if (sentinalRef?.current) obvserver.observe(sentinalRef.current)
     // Don't touch this, I have no idea how it works XD
     // return () => {
     //   if (sentinalRef.current) obvserver.unobserve(sentinalRef.current)

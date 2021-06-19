@@ -20,7 +20,7 @@ export function generateRss(posts: Post[]) {
   })
   posts.forEach(post => {
     feed.addItem({
-      title: post.title,
+      title: post?.title ?? '',
       id: `${BLOG.link}/${post.slug}`,
       link: `${BLOG.link}/${post.slug}`,
       description: post.summary,

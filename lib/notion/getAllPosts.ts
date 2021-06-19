@@ -8,9 +8,9 @@ import { BasePageBlock } from 'notion-types/build/esm/block'
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps'
 import { Collection } from 'notion-types/build/esm/collection'
 
-export async function getAllPosts(): Promise<Post[]> {
+export async function getAllPosts(): Promise<Post[] | null> {
   let id = BLOG.notionPageId
-  const authToken = BLOG.notionAccessToken || null
+  const authToken = BLOG.notionAccessToken
   const api = new NotionAPI({ authToken })
   const response = await api.getPage(id)
 
@@ -30,7 +30,6 @@ export async function getAllPosts(): Promise<Post[]> {
   })
   return result
 }
-
 
 export type ReturnGetAllPostsParams = {
   id: string

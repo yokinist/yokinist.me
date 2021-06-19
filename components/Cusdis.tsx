@@ -18,9 +18,9 @@ const Cusdis: React.VFC<Props> = ({ id, url, title }) => {
     )
     script.setAttribute('async', 'true')
     script.setAttribute('defer', 'true')
-    anchor.appendChild(script)
+    anchor?.appendChild(script)
     return () => {
-      anchor.innerHTML = ''
+      if (anchor?.innerHTML) anchor.innerHTML = ''
     }
   })
 

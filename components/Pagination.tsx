@@ -8,6 +8,7 @@ type Props = {
 }
 const Pagination: React.VFC<Props> = ({ page, showNext }) => {
   const locale = useLocale()
+  if (!locale) return null
   const currentPage = +page
   return (
     <div className="flex justify-between font-medium text-black dark:text-gray-100">
