@@ -1,14 +1,12 @@
-module.exports = {
+/**
+ * @type {import('next/dist/next-server/server/config').NextConfig}
+ **/
+const nextConfig = {
   images: {
     domains: ['gravatar.com']
   },
   eslint: {
-    dirs: [
-      'components',
-      'layouts',
-      'lib',
-      'pages'
-    ]
+    dirs: ['components', 'layouts', 'lib', 'pages']
   },
   async headers() {
     return [
@@ -35,3 +33,5 @@ module.exports = {
     return config
   }
 }
+
+module.exports = nextConfig
