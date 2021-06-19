@@ -81,7 +81,7 @@ const lang = {
       TOP: 'トップに戻る'
     }
   }
-}
+} as const
 
 export const fetchLocaleLang = () => {
   switch (BLOG.lang.toLowerCase()) {

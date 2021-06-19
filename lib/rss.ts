@@ -1,7 +1,8 @@
 import { Feed } from 'feed'
 import BLOG from '@/blog.config'
+import { Post } from '@/@types'
 
-export function generateRss(posts) {
+export function generateRss(posts: Post[]) {
   const year = new Date().getFullYear()
   const feed = new Feed({
     title: BLOG.title,

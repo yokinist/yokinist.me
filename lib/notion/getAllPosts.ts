@@ -4,6 +4,9 @@ import { NotionAPI } from 'notion-client'
 import { idToUuid } from 'notion-utils'
 import getAllPageIds from './getAllPageIds'
 import getPageProperties from './getPageProperties'
+import { BasePageBlock } from 'notion-types/build/esm/block'
+import { ExtendedRecordMap } from 'notion-types/build/esm/maps'
+import { Collection } from 'notion-types/build/esm/collection'
 
 export async function getAllPosts(): Promise<Post[]> {
   let id = BLOG.notionPageId
@@ -17,7 +20,7 @@ export async function getAllPosts(): Promise<Post[]> {
   const block = response.block
   const schema = collection?.schema
 
-  const rawMetadata = block[id].value
+  const rawMetadata = block[id].value as BasePageBlock
   const result = await returnGetAllPosts({
     id,
     rawMetadata,
@@ -28,13 +31,22 @@ export async function getAllPosts(): Promise<Post[]> {
   return result
 }
 
+
+export type ReturnGetAllPostsParams = {
+  id: string
+  rawMetadata: BasePageBlock
+  collectionQuery: ExtendedRecordMap['collection_query']
+  block: ExtendedRecordMap['block']
+  schema: Collection['schema']
+}
+
 const returnGetAllPosts = async ({
   id,
   rawMetadata,
   collectionQuery,
   block,
   schema
-}) => {
+}: ReturnGetAllPostsParams) => {
   if (
     rawMetadata?.type !== 'collection_view_page' &&
     rawMetadata?.type !== 'collection_view'
@@ -53,6 +65,7 @@ const returnGetAllPosts = async ({
       properties.createdTime = new Date(
         block[id].value?.created_time
       ).toString()
+      // @ts-expect-error : No type
       properties.fullWidth = block[id].value?.format?.page_full_width ?? false
 
       data.push(properties)
@@ -78,5 +91,3 @@ const returnGetAllPosts = async ({
     return posts
   }
 }
-
-export type ReturnGetAllPostsParams = Parameters<typeof returnGetAllPosts>[0]
