@@ -2,6 +2,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BLOG from '@/blog.config'
 import Head from 'next/head'
+import classNames from 'classnames'
 // import BlogPost from './BlogPost'
 
 type Props = {
@@ -18,7 +19,13 @@ type Props = {
 
 const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link
 
-const Container: React.VFC<Props> = ({ children, layout, fullWidth, type = 'website', ...customMeta }) => {
+const Container: React.VFC<Props> = ({
+  children,
+  layout,
+  fullWidth,
+  type = 'website',
+  ...customMeta
+}) => {
   const meta = {
     title: BLOG.title,
     type,
@@ -73,18 +80,20 @@ const Container: React.VFC<Props> = ({ children, layout, fullWidth, type = 'webs
         )}
       </Head>
       <div
-        className={`wrapper ${
-          BLOG.font === 'serif' ? 'font-serif' : 'font-sans'
-        }`}
+        className={classNames('wrapper', {
+          'font-serif': BLOG.font === 'serif',
+          'font-sans': BLOG.font !== 'serif'
+        })}
       >
         <Header
           navBarTitle={layout === 'blog' ? meta.title : null}
           fullWidth={fullWidth}
         />
         <main
-          className={`m-auto flex-grow w-full transition-all ${
-            !fullWidth ? 'max-w-2xl px-4' : 'px-4 md:px-24'
-          }`}
+          className={classNames('m-auto flex-grow w-full transition-all', {
+            'px-4 md:px-24': fullWidth,
+            'max-w-2xl px-4': !fullWidth
+          })}
         >
           {children}
         </main>

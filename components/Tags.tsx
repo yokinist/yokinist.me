@@ -1,5 +1,6 @@
 import { TagObj } from '@/types'
 import Link from 'next/link'
+import classNames from 'classnames'
 
 type Props = {
   tags: TagObj
@@ -20,11 +21,15 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
             >
               <a>
                 <li
-                  className={`mr-3 py-2 font-medium border px-4 whitespace-nowrap dark:text-gray-300 ${
-                    selected
-                      ? 'text-white bg-black border-black dark:bg-gray-600 dark:border-gray-600'
-                      : 'bg-gray-100 border-gray-100 text-gray-400 dark:bg-night dark:border-gray-800'
-                  }`}
+                  className={classNames(
+                    'mr-3 py-2 font-medium border px-4 whitespace-nowrap dark:text-gray-300',
+                    {
+                      'text-white bg-black border-black dark:bg-gray-600 dark:border-gray-600':
+                        selected,
+                      'bg-gray-100 border-gray-100 text-gray-400 dark:bg-night dark:border-gray-800':
+                        !selected
+                    }
+                  )}
                 >
                   {`${key} (${tags[key]})`}
                 </li>
