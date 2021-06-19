@@ -32,6 +32,13 @@ type Props = React.ComponentProps<typeof Pagination> & {
 const blog: NextPage<Props> = ({ postsToShow, page, showNext }) => {
   return (
     <Container title={BLOG.title} description={BLOG.description}>
+      <h1 className="font-bold text-3xl text-black dark:text-white">h1 test</h1>
+      <h2 className="text-lg md:text-xl font-medium mb-2 text-black dark:text-gray-100">
+        h2 test
+      </h2>
+      <p className="text-base font-medium mb-2 text-black dark:text-gray-100">
+        text test
+      </p>
       {postsToShow.map(post => (
         <BlogPost key={post.id} post={post} />
       ))}
