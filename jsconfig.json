@@ -8,7 +8,7 @@
       "@/layouts/*": ["layouts/*"],
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
-      "@/types": ["@types/index.ts"]
+      "@/types": ["types/index.ts"]
     }
   }
 }
