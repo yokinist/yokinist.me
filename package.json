@@ -28,6 +28,7 @@
     "pre-push": "yarn tsc"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "feed": "^4.2.2",
     "gitalk": "^1.7.2",
     "next": "^11.0.0",
