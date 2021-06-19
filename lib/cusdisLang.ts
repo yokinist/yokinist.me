@@ -1,6 +1,7 @@
 import BLOG from '@/blog.config'
+import type { ReactCusdis } from 'react-cusdis'
 
-const cusdisI18n = [
+const cusdisI18n: Parameters<typeof ReactCusdis>[0]['lang'][] = [
   'ca',
   'en',
   'es',
@@ -17,7 +18,7 @@ const cusdisI18n = [
 
 const loweredLang = BLOG.lang.toLowerCase()
 
-export const fetchCusdisLocale = (): null | typeof cusdisI18n[number] => {
+export const fetchCusdisLang = (): null | typeof cusdisI18n[number] => {
   if (BLOG.comment.provider !== 'cusdis') return null
   if (loweredLang.startsWith('zh')) {
     return (

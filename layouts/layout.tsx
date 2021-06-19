@@ -10,7 +10,7 @@ import TagItem from '@/components/TagItem'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import { useLocale } from '@/lib/locale'
-import { fetchCusdisLocale } from '@/lib/cusdisLocale'
+import { fetchCusdisLang } from '@/lib/cusdisLang'
 
 import type { ReactCusdis as ReactCusdisType } from 'react-cusdis'
 import { Post } from '@/types'
@@ -156,7 +156,7 @@ const Layout: React.VFC<Props> = ({
             pageUrl: BLOG.link + router.asPath,
             theme: BLOG.appearance
           }}
-          lang={fetchCusdisLocale() ?? 'en'}
+          lang={fetchCusdisLang() ?? 'en'}
         />
       )}
     </Container>
