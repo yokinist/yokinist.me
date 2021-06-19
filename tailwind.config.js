@@ -14,6 +14,7 @@ const fontSerifCJK = !CJK()
  */
 const tailwindConfig = {
   purge: ['./pages/**/*.tsx', './components/**/*.tsx', './layouts/**/*.tsx`'],
+  mode: 'jit',
   darkMode: BLOG.appearance === 'auto' ? 'media' : 'class', // or 'media' or 'class'
   theme: {
     extend: {
