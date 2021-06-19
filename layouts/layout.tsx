@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import classNames from 'classnames'
 import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x'
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps'
 import 'gitalk/dist/gitalk.css'
@@ -115,14 +114,7 @@ const Layout: React.VFC<Props> = ({
           </div>
         )}
       </article>
-      <div
-        className={classNames(
-          'flex justify-between font-medium text-gray-500 dark:text-gray-400',
-          {
-            'mb-4': enableCommentArea
-          }
-        )}
-      >
+      <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
         <button
           onClick={() => router.push(BLOG.path || '/')}
           className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
@@ -136,6 +128,7 @@ const Layout: React.VFC<Props> = ({
           ↑ {locale?.POST.TOP}
         </button>
       </div>
+      {enableCommentArea && <div className="mt-4" />}
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
         <GitalkComponent
           options={{
