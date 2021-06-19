@@ -60,7 +60,7 @@ export type BlogConfig = {
     }
   }
   comment: {
-    provider: 'gitalk' | 'utterances' | 'cusdis'
+    provider: 'gitalk' | 'utterances' | 'cusdis' | ''
     gitalkConfig: Gitalk.GitalkOptions
     utterancesConfig: {
       repo: string
