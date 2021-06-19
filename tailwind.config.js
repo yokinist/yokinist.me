@@ -9,7 +9,10 @@ const fontSerifCJK = !CJK()
   ? []
   : [`"Noto Serif CJK ${CJK()}"`, `"Noto Serif ${CJK()}"`]
 
-module.exports = {
+/**
+ * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
+ */
+const tailwindConfig = {
   purge: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js'],
   darkMode: BLOG.appearance === 'auto' ? 'media' : 'class', // or 'media' or 'class'
   theme: {
@@ -41,3 +44,5 @@ module.exports = {
   },
   plugins: []
 }
+
+module.exports = tailwindConfig
