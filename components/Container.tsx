@@ -13,7 +13,7 @@ type Props = {
   fullWidth?: boolean
   date?: string
   slug?: string
-  createdTime: string
+  createdTime?: string
 }
 
 const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link
