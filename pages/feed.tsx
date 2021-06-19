@@ -1,6 +1,8 @@
+import { GetServerSideProps } from 'next'
 import { getAllPosts } from '@/lib/notion'
 import { generateRss } from '@/lib/rss'
-export async function getServerSideProps({ res }) {
+
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   res.setHeader('Content-Type', 'text/xml')
   let posts = await getAllPosts()
   posts = posts
@@ -13,5 +15,7 @@ export async function getServerSideProps({ res }) {
     props: {}
   }
 }
+
 const feed = () => null
+
 export default feed

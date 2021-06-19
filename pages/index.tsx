@@ -1,10 +1,12 @@
+import { GetStaticProps, NextPage } from 'next'
 import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'
 import Pagination from '@/components/Pagination'
 import { getAllPosts } from '@/lib/notion'
 import BLOG from '@/blog.config'
+import { Post } from '@/types'
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   let posts = await getAllPosts()
   posts = posts.filter(
     post => post.status[0] === 'Published' && post.type[0] === 'Post'
@@ -22,7 +24,11 @@ export async function getStaticProps() {
   }
 }
 
-const blog = ({ postsToShow, page, showNext }) => {
+type Props = React.ComponentProps<typeof Pagination> & {
+  postsToShow: Post[]
+}
+
+const blog: NextPage<Props> = ({ postsToShow, page, showNext }) => {
   return (
     <Container title={BLOG.title} description={BLOG.description}>
       {postsToShow.map(post => (

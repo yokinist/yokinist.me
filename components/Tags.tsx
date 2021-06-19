@@ -1,9 +1,9 @@
-import { Post } from '@/types'
+import { TagObj } from '@/types'
 import Link from 'next/link'
 
 type Props = {
-  tags: Post['tags']
-  currentTag: Post['tags'][number]
+  tags: TagObj
+  currentTag: keyof TagObj
 }
 
 const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {

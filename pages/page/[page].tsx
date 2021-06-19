@@ -1,31 +1,26 @@
+import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'
 import Pagination from '@/components/Pagination'
 import { getAllPosts } from '@/lib/notion'
+import parseSafeNumber from '@/lib/parseSafeNumber'
 import BLOG from '@/blog.config'
+import { Post } from '@/types'
 
-const Page = ({ postsToShow, page, showNext }) => {
-  return (
-    <Container>
-      {postsToShow &&
-        postsToShow.map(post => <BlogPost key={post.id} post={post} />)}
-      <Pagination page={page} showNext={showNext} />
-    </Container>
-  )
-}
-
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async context => {
   const { page } = context.params // Get Current Page No.
+  const pageNum = parseSafeNumber(page)
+  if (!pageNum) return { notFound: true }
   let posts = await getAllPosts()
   posts = posts.filter(
     post => post.status[0] === 'Published' && post.type[0] === 'Post'
   )
   const postsToShow = posts.slice(
-    BLOG.postsPerPage * (page - 1),
-    BLOG.postsPerPage * page
+    BLOG.postsPerPage * (pageNum - 1),
+    BLOG.postsPerPage * pageNum
   )
   const totalPosts = posts.length
-  const showNext = page * BLOG.postsPerPage < totalPosts
+  const showNext = pageNum * BLOG.postsPerPage < totalPosts
   return {
     props: {
       page, // Current Page
@@ -36,7 +31,7 @@ export async function getStaticProps(context) {
   }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   let posts = await getAllPosts()
   posts = posts.filter(
     post => post.status[0] === 'Published' && post.type[0] === 'Post'
@@ -50,6 +45,20 @@ export async function getStaticPaths() {
     })),
     fallback: true
   }
+}
+
+type Props = React.ComponentProps<typeof Pagination> & {
+  postsToShow: Post[]
+}
+
+const Page: NextPage<Props> = ({ postsToShow, page, showNext }) => {
+  return (
+    <Container>
+      {postsToShow &&
+        postsToShow.map(post => <BlogPost key={post.id} post={post} />)}
+      <Pagination page={page} showNext={showNext} />
+    </Container>
+  )
 }
 
 export default Page

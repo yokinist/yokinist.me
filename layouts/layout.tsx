@@ -42,17 +42,15 @@ const mapPageUrl = id => {
 const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
 
 type Props = {
-  children: React.ReactNode
   blockMap: ExtendedRecordMap
-  frontMatter: Post
+  post: Post
   emailHash: string
   fullWidth?: boolean
 }
 
 const Layout: React.VFC<Props> = ({
-  children,
   blockMap,
-  frontMatter,
+  post,
   emailHash,
   fullWidth = false
 }) => {
@@ -61,17 +59,17 @@ const Layout: React.VFC<Props> = ({
   return (
     <Container
       layout="blog"
-      title={frontMatter.title}
-      description={frontMatter.summary}
-      // date={new Date(frontMatter.publishedAt).toISOString()}
+      title={post.title}
+      description={post.summary}
+      // date={new Date(post.publishedAt).toISOString()}
       type="article"
       fullWidth={fullWidth}
     >
       <article>
         <h1 className="font-bold text-3xl text-black dark:text-white">
-          {frontMatter.title}
+          {post.title}
         </h1>
-        {frontMatter.type[0] !== 'Page' && (
+        {post.type[0] !== 'Page' && (
           <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
             <div className="flex mb-4">
               <a href={BLOG.socialLink || '#'} className="flex">
@@ -88,20 +86,19 @@ const Layout: React.VFC<Props> = ({
             </div>
             <div className="mr-2 mb-4 md:ml-0">
               {formatDate(
-                frontMatter?.date?.start_date || frontMatter.createdTime,
+                post?.date?.start_date || post.createdTime,
                 BLOG.lang
               )}
             </div>
-            {frontMatter.tags && (
+            {post.tags && (
               <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
-                {frontMatter.tags.map(tag => (
+                {post.tags.map(tag => (
                   <TagItem key={tag} tag={tag} />
                 ))}
               </div>
             )}
           </nav>
         )}
-        {children}
         {blockMap && (
           <div className="-mt-4">
             <NotionRenderer
@@ -133,20 +130,20 @@ const Layout: React.VFC<Props> = ({
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
         <GitalkComponent
           options={{
-            id: frontMatter.id,
-            title: frontMatter.title,
+            id: post.id,
+            title: post.title,
             ...BLOG.comment.gitalkConfig
           }}
         />
       )}
       {BLOG.comment && BLOG.comment.provider === 'utterances' && (
-        <UtterancesComponent issueTerm={frontMatter.id} />
+        <UtterancesComponent issueTerm={post.id} />
       )}
       {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
         <CusdisComponent
           attrs={{
-            pageId: frontMatter.id,
-            pageTitle: frontMatter.title,
+            pageId: post.id,
+            pageTitle: post.title,
             pageUrl: BLOG.link + router.asPath,
             theme: BLOG.appearance,
             ...BLOG.comment.cusdisConfig

@@ -65,7 +65,9 @@ export type BlogConfig = {
     utterancesConfig: {
       repo: string
     }
-    cusdisConfig: Parameters<typeof ReactCusdis>[0]['attrs']
+    cusdisConfig: Parameters<typeof ReactCusdis>[0]['attrs'] & {
+      scriptSrc: string
+    }
   }
   isProd: 'development' | 'preview' | 'production'
 }

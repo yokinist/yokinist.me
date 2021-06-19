@@ -2,13 +2,14 @@ import { useState, useMemo } from 'react'
 import BlogPost from '@/components/BlogPost'
 import Container from '@/components/Container'
 import Tags from '@/components/Tags'
-import { Post } from '@/@types'
+import { Post, TagObj } from '@/types'
 
 type Props = {
-  tags: Post['tags']
   posts: Post[]
-  currentTag: Post['tags'][number]
+  tags: TagObj
+  currentTag?: keyof TagObj
 }
+
 const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
   const [searchValue, setSearchValue] = useState('')
 
