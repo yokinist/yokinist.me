@@ -14,6 +14,7 @@ const fontSerifCJK = !CJK()
  */
 const tailwindConfig = {
   purge: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js'],
+  mode: 'jit',
   darkMode: BLOG.appearance === 'auto' ? 'media' : 'class', // or 'media' or 'class'
   theme: {
     extend: {
