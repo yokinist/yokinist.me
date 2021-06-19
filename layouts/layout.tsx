@@ -10,6 +10,7 @@ import TagItem from '@/components/TagItem'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import { useLocale } from '@/lib/locale'
+import { fetchCusdisLocale } from '@/lib/cusdisLocale'
 
 import type { ReactCusdis as ReactCusdisType } from 'react-cusdis'
 import { Post } from '@/types'
@@ -40,8 +41,6 @@ const CusdisComponent = dynamic(
 const mapPageUrl = (id: string) => {
   return 'https://www.notion.so/' + id.replace(/-/g, '')
 }
-
-const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
 
 type Props = {
   blockMap: ExtendedRecordMap
@@ -157,9 +156,7 @@ const Layout: React.VFC<Props> = ({
             pageUrl: BLOG.link + router.asPath,
             theme: BLOG.appearance
           }}
-          lang={cusdisI18n.find(
-            i => i.toLowerCase() === BLOG.lang.toLowerCase()
-          )}
+          lang={fetchCusdisLocale() ?? 'en'}
         />
       )}
     </Container>
