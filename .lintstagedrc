@@ -1,4 +1,4 @@
 {
-  "**/*.{js,jsx}": ["yarn format", "yarn eslint"],
+  "**/*.{js,jsx,ts,tsx}": ["yarn format", "yarn eslint"],
   "{*.{json,md,css}}": ["yarn format"]
 }
