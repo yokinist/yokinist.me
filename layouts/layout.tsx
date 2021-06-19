@@ -1,17 +1,20 @@
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import 'gitalk/dist/gitalk.css'
+import { useRouter } from 'next/router'
+import classNames from 'classnames'
 import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x'
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps'
+import 'gitalk/dist/gitalk.css'
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
-import { useRouter } from 'next/router'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import { useLocale } from '@/lib/locale'
 
 import type { ReactCusdis as ReactCusdisType } from 'react-cusdis'
 import { Post } from '@/types'
+
+const enableCommentArea = BLOG.comment.provider !== ''
 
 const GitalkComponent = dynamic(
   () => {
@@ -112,7 +115,14 @@ const Layout: React.VFC<Props> = ({
           </div>
         )}
       </article>
-      <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
+      <div
+        className={classNames(
+          'flex justify-between font-medium text-gray-500 dark:text-gray-400',
+          {
+            'mb-4': enableCommentArea
+          }
+        )}
+      >
         <button
           onClick={() => router.push(BLOG.path || '/')}
           className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"

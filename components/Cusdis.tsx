@@ -33,6 +33,7 @@ const Cusdis: React.VFC<Props> = ({ id, url, title }) => {
         data-page-id={id}
         data-page-url={url}
         data-page-title={title}
+        data-theme={BLOG.appearance}
       ></div>
     </div>
   )
