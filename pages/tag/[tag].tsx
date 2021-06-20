@@ -10,7 +10,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
   const posts = await getAllPosts({ includedPages: false })
-  const tags = await getAllTags()
+  const tags = getAllTags({ posts })
   const filteredPosts = posts.filter(
     post => post && post.tags && post.tags.includes(currentTag)
   )
@@ -25,7 +25,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = await getAllTags()
+  const posts = await getAllPosts({ includedPages: false })
+  const tags = getAllTags({ posts })
   return {
     paths: Object.keys(tags).map(tag => ({ params: { tag } })),
     fallback: true

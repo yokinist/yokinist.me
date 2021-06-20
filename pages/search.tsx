@@ -5,7 +5,7 @@ import SearchLayout from '@/layouts/search'
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getAllPosts({ includedPages: false })
   if (!posts) return { notFound: true }
-  const tags = await getAllTags()
+  const tags = getAllTags({ posts })
   return {
     props: {
       tags,
