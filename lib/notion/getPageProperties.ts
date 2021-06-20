@@ -18,8 +18,12 @@ async function getPageProperties(
   for (let i = 0; i < rawProperties.length; i++) {
     const [key, val] = rawProperties[i]
     properties.id = id
-    const currentPostKey = schema[key].name as keyof Post
-    if (schema[key]?.type && !excludeProperties.includes(schema[key].type)) {
+    const currentPostKey = schema[key]?.name as keyof Post | undefined
+    if (
+      currentPostKey &&
+      schema[key]?.type &&
+      !excludeProperties.includes(schema[key].type)
+    ) {
       properties[currentPostKey] = getTextContent(
         val as Parameters<typeof getTextContent>[0]
       )
@@ -30,7 +34,7 @@ async function getPageProperties(
             val as Parameters<typeof getDateValue>[0]
           )
           const tmpDateProperty: Partial<typeof dateProperty> = dateProperty
-          if (tmpDateProperty) {
+          if (tmpDateProperty && currentPostKey) {
             delete tmpDateProperty.type
             properties[currentPostKey] = tmpDateProperty
           }
@@ -41,7 +45,7 @@ async function getPageProperties(
           const selects = getTextContent(
             val as Parameters<typeof getTextContent>[0]
           )
-          if (selects[0]?.length) {
+          if (selects[0]?.length && currentPostKey) {
             properties[currentPostKey] = selects.split(',')
           }
           break
