@@ -65,8 +65,9 @@ const returnGetAllPosts = async ({
       properties.createdTime = new Date(
         block[id].value?.created_time
       ).toString()
-      // @ts-expect-error : No type
-      properties.fullWidth = block[id].value?.format?.page_full_width ?? false
+      properties.fullWidth =
+        (block[id].value?.format as BasePageBlock['format'])?.page_full_width ??
+        false
 
       data.push(properties)
     }
