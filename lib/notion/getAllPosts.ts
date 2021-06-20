@@ -9,7 +9,11 @@ import { BasePageBlock } from 'notion-types/build/esm/block'
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps'
 import { Collection } from 'notion-types/build/esm/collection'
 
-export async function getAllPosts(): Promise<Post[]> {
+export async function getAllPosts({
+  includedPages = false
+}: {
+  includedPages: boolean
+}): Promise<Post[]> {
   let id = BLOG.notionPageId
   const authToken = BLOG.notionAccessToken
   const api = new NotionAPI({ authToken })
@@ -27,13 +31,15 @@ export async function getAllPosts(): Promise<Post[]> {
     rawMetadata,
     collectionQuery,
     block,
-    schema
+    schema,
+    includedPages
   })
   return result ?? []
 }
 
 export type ReturnGetAllPostsParams = {
   id: string
+  includedPages: boolean
   rawMetadata: BasePageBlock
   collectionQuery: ExtendedRecordMap['collection_query']
   block: ExtendedRecordMap['block']
@@ -42,6 +48,7 @@ export type ReturnGetAllPostsParams = {
 
 const returnGetAllPosts = async ({
   id,
+  includedPages,
   rawMetadata,
   collectionQuery,
   block,
@@ -72,7 +79,10 @@ const returnGetAllPosts = async ({
       data.push(properties)
     }
     // remove all the the items doesn't meet requirements
-    const posts = filterPublishedPosts(data)
+    const posts = filterPublishedPosts({
+      posts: data,
+      includedPages
+    })
 
     // Sort by date
     if (BLOG.sortByDate) {

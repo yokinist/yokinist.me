@@ -7,7 +7,7 @@ import BLOG from '@/blog.config'
 import { Post } from '@/types'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getAllPosts()
+  const posts = await getAllPosts({ includedPages: false })
   const postsToShow = posts.slice(0, BLOG.postsPerPage)
   const totalPosts = posts.length
   const showNext = totalPosts > BLOG.postsPerPage

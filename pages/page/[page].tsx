@@ -8,7 +8,7 @@ import BLOG from '@/blog.config'
 import { Post } from '@/types'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts()
+  const posts = await getAllPosts({ includedPages: false })
   const totalPosts = posts.length
   const totalPages = Math.ceil(totalPosts / BLOG.postsPerPage)
   return {
@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const pageNum = parseSafeNumber(params?.page) // Get Current Page No.
   if (!pageNum) return { notFound: true }
-  const posts = await getAllPosts()
+  const posts = await getAllPosts({ includedPages: false })
   const postsToShow = posts.slice(
     BLOG.postsPerPage * (pageNum - 1),
     BLOG.postsPerPage * pageNum

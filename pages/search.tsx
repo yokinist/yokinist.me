@@ -3,7 +3,7 @@ import { getAllPosts, getAllTags } from '@/lib/notion'
 import SearchLayout from '@/layouts/search'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getAllPosts()
+  const posts = await getAllPosts({ includedPages: false })
   if (!posts) return { notFound: true }
   const tags = await getAllTags()
   return {
