@@ -18,8 +18,7 @@ export const getStaticProps: GetStaticProps = async context => {
   const slug = context.params?.slug
   const posts = await getAllPosts()
   if (!posts) return { notFound: true }
-  const publishPosts = posts.filter(post => post?.status?.[0] === 'Published')
-  const post = publishPosts.find(t => t.slug === slug)
+  const post = posts.find(t => t.slug === slug)
   if (!post?.id) return { notFound: true }
   const blockMap = await getPostBlocks(post.id)
   const emailHash = createHash('md5').update(BLOG.email).digest('hex')

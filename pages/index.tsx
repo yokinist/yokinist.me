@@ -9,11 +9,8 @@ import { Post } from '@/types'
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getAllPosts()
   if (!posts) return { notFound: true }
-  const publishPosts = posts.filter(
-    post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
-  )
-  const postsToShow = publishPosts.slice(0, BLOG.postsPerPage)
-  const totalPosts = publishPosts.length
+  const postsToShow = posts.slice(0, BLOG.postsPerPage)
+  const totalPosts = posts.length
   const showNext = totalPosts > BLOG.postsPerPage
   return {
     props: {

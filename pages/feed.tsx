@@ -6,11 +6,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   res.setHeader('Content-Type', 'text/xml')
   const posts = await getAllPosts()
   if (!posts) return { notFound: true }
-  const recentPublishPosts = posts
-    .filter(
-      post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
-    )
-    .slice(0, 10)
+  const recentPublishPosts = posts.slice(0, 10)
   const xmlFeed = generateRss(recentPublishPosts)
   res.write(xmlFeed)
   res.end()

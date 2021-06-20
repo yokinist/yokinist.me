@@ -4,6 +4,7 @@ import { NotionAPI } from 'notion-client'
 import { idToUuid } from 'notion-utils'
 import getAllPageIds from './getAllPageIds'
 import getPageProperties from './getPageProperties'
+import { filterPublishedPosts } from './filterPublishedPosts'
 import { BasePageBlock } from 'notion-types/build/esm/block'
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps'
 import { Collection } from 'notion-types/build/esm/collection'
@@ -70,17 +71,10 @@ const returnGetAllPosts = async ({
       data.push(properties)
     }
     // remove all the the items doesn't meet requirements
-    const posts = data.filter(post => {
-      return (
-        post.title &&
-        post.slug &&
-        post?.status?.[0] === 'Published' &&
-        (post?.type?.[0] === 'Post' || post?.type?.[0] === 'Page')
-      )
-    })
+    const posts = filterPublishedPosts(data)
 
     // Sort by date
-    if (BLOG.sortByDate) {
+    if (posts && BLOG.sortByDate) {
       posts.sort((a, b) => {
         const dateA = new Date(a?.date?.start_date || a.createdTime)
         const dateB = new Date(b?.date?.start_date || b.createdTime)
