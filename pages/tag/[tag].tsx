@@ -10,12 +10,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
   const posts = await getAllPosts()
-  if (!posts) return { notFound: true }
-  const publishPosts = posts.filter(
-    post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
-  )
   const tags = await getAllTags()
-  const filteredPosts = publishPosts.filter(
+  const filteredPosts = posts.filter(
     post => post && post.tags && post.tags.includes(currentTag)
   )
   return {

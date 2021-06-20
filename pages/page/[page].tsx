@@ -9,11 +9,7 @@ import { Post } from '@/types'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllPosts()
-  if (!posts) return { paths: [], fallback: false }
-  const publishPosts = posts.filter(
-    post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
-  )
-  const totalPosts = publishPosts.length
+  const totalPosts = posts.length
   const totalPages = Math.ceil(totalPosts / BLOG.postsPerPage)
   return {
     // remove first page, we 're not gonna handle that.
@@ -28,15 +24,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const pageNum = parseSafeNumber(params?.page) // Get Current Page No.
   if (!pageNum) return { notFound: true }
   const posts = await getAllPosts()
-  if (!posts) return { notFound: true }
-  const publishPosts = posts.filter(
-    post => post?.status?.[0] === 'Published' && post?.type?.[0] === 'Post'
-  )
-  const postsToShow = publishPosts.slice(
+  const postsToShow = posts.slice(
     BLOG.postsPerPage * (pageNum - 1),
     BLOG.postsPerPage * pageNum
   )
-  const totalPosts = publishPosts.length
+  const totalPosts = posts.length
   const showNext = pageNum * BLOG.postsPerPage < totalPosts
   return {
     props: {

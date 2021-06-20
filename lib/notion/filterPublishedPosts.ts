@@ -3,7 +3,7 @@ import { Post } from '@/types'
 const currentDate = new Date()
 
 export const filterPublishedPosts = (posts: Post[] | null) => {
-  if (!posts || !posts.length) return null
+  if (!posts || !posts.length) return []
   const publishedPosts = posts.filter(post => {
     const postDate = new Date(post?.date?.start_date || post.createdTime)
     return (
@@ -14,5 +14,5 @@ export const filterPublishedPosts = (posts: Post[] | null) => {
       postDate.getTime() < currentDate.getTime()
     )
   })
-  return publishedPosts.length ? publishedPosts : null
+  return publishedPosts
 }

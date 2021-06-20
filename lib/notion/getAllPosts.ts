@@ -9,7 +9,7 @@ import { BasePageBlock } from 'notion-types/build/esm/block'
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps'
 import { Collection } from 'notion-types/build/esm/collection'
 
-export async function getAllPosts(): Promise<Post[] | null> {
+export async function getAllPosts(): Promise<Post[]> {
   let id = BLOG.notionPageId
   const authToken = BLOG.notionAccessToken
   const api = new NotionAPI({ authToken })
@@ -29,7 +29,7 @@ export async function getAllPosts(): Promise<Post[] | null> {
     block,
     schema
   })
-  return result
+  return result ?? []
 }
 
 export type ReturnGetAllPostsParams = {
@@ -74,7 +74,7 @@ const returnGetAllPosts = async ({
     const posts = filterPublishedPosts(data)
 
     // Sort by date
-    if (posts && BLOG.sortByDate) {
+    if (BLOG.sortByDate) {
       posts.sort((a, b) => {
         const dateA = new Date(a?.date?.start_date || a.createdTime)
         const dateB = new Date(b?.date?.start_date || b.createdTime)

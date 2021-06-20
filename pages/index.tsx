@@ -8,7 +8,6 @@ import { Post } from '@/types'
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getAllPosts()
-  if (!posts) return { notFound: true }
   const postsToShow = posts.slice(0, BLOG.postsPerPage)
   const totalPosts = posts.length
   const showNext = totalPosts > BLOG.postsPerPage
