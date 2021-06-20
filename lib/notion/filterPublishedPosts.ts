@@ -12,8 +12,8 @@ export const filterPublishedPosts = ({ posts, includedPages }: Props) => {
   const publishedPosts = posts
     .filter(post =>
       includedPages
-        ? post?.type?.[0] === 'Post'
-        : post?.type?.[0] === 'Post' || post?.type?.[0] === 'Page'
+        ? post?.type?.[0] === 'Post' || post?.type?.[0] === 'Page'
+        : post?.type?.[0] === 'Post'
     )
     .filter(post => {
       const postDate = new Date(
@@ -23,7 +23,6 @@ export const filterPublishedPosts = ({ posts, includedPages }: Props) => {
         post.title &&
         post.slug &&
         post?.status?.[0] === 'Published' &&
-        (post?.type?.[0] === 'Post' || post?.type?.[0] === 'Page') &&
         postDate <= currentDate
       )
     })
