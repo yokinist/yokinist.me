@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
 import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x'
@@ -10,33 +9,10 @@ import TagItem from '@/components/TagItem'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import { useLocale } from '@/lib/locale'
-import { fetchCusdisLang } from '@/lib/cusdisLang'
-
-import type { ReactCusdis as ReactCusdisType } from 'react-cusdis'
+import Comment from '@/components/Comment'
 import { Post } from '@/types'
 
 const enableCommentArea = BLOG.comment.provider !== ''
-
-const GitalkComponent = dynamic(
-  () => {
-    return import('@/components/CustomGitalk')
-  },
-  { ssr: false }
-)
-
-const UtterancesComponent = dynamic(
-  () => {
-    return import('@/components/Utterances')
-  },
-  { ssr: false }
-)
-
-const CusdisComponent = dynamic(
-  () => {
-    return import('react-cusdis').then(m => m.ReactCusdis)
-  },
-  { ssr: false }
-) as typeof ReactCusdisType
 
 const mapPageUrl = (id: string) => {
   return 'https://www.notion.so/' + id.replace(/-/g, '')
@@ -135,30 +111,7 @@ const Layout: React.VFC<Props> = ({
           ↑ {locale?.POST.TOP}
         </button>
       </div>
-      {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
-        <GitalkComponent
-          options={{
-            id: post.id,
-            title: post.title,
-            ...BLOG.comment.gitalkConfig
-          }}
-        />
-      )}
-      {BLOG.comment && BLOG.comment.provider === 'utterances' && (
-        <UtterancesComponent issueTerm={post.id} />
-      )}
-      {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
-        <CusdisComponent
-          attrs={{
-            ...BLOG.comment.cusdisConfig,
-            pageId: post.id,
-            pageTitle: post.title,
-            pageUrl: BLOG.link + router.asPath,
-            theme: BLOG.appearance
-          }}
-          lang={fetchCusdisLang() ?? 'en'}
-        />
-      )}
+      <Comment post={post} />
     </Container>
   )
 }
