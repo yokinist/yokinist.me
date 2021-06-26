@@ -19,7 +19,6 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
         const tagContent = post.tags ? post.tags.join(' ') : ''
         const searchContent =
           post?.title ?? '' + post?.summary ?? '' + tagContent
-        console.debug({ searchContent })
         return searchContent.toLowerCase().includes(searchValue.toLowerCase())
       })
     }
