@@ -70,3 +70,6 @@ pre[class*='language-'] {
 .notion-collection-row {
   @apply hidden;
 }
+.notion-link {
+  @apply underline
+}
