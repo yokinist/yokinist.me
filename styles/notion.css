@@ -48,7 +48,7 @@ pre[class*='language-'] {
 }
 
 .notion-bookmark:hover {
-  @apply border-blue-400;
+  @apply border-indigo-400;
 }
 .notion-viewport {
   z-index: -10;
@@ -70,8 +70,14 @@ pre[class*='language-'] {
 .notion-collection-row {
   @apply hidden;
 }
-.notion-link {
-  @apply underline
+a.notion-link {
+  @apply underline dark:text-indigo-200;
+}
+.notion-list li {
+  padding: 0;
+}
+.notion-list > li::marker {
+  @apply text-gray-500 dark:text-gray-400;
 }
 
 
