@@ -67,10 +67,10 @@ const lang = {
   },
   ja: {
     NAV: {
-      INDEX: 'ブログ',
-      RSS: '購読',
+      INDEX: '記事一覧',
+      RSS: 'RSS',
       SEARCH: '検索',
-      ABOUT: 'このサイトについて'
+      ABOUT: '自己紹介'
     },
     PAGINATION: {
       PREV: '前ページ',
