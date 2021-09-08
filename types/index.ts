@@ -41,6 +41,7 @@ export type BlogConfig = {
   showAbout: boolean
   showArchive: boolean
   autoCollapsedNavBar: boolean
+  ogImageGenerateURL: string
   socialLink: string
   seo: {
     keywords: string[]
