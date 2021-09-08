@@ -91,6 +91,31 @@ class MyDocument extends Document {
 
           <link rel="icon" href="/favicon.ico" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml"></link>
+          {BLOG.appearance === 'auto' ? (
+            <>
+              <meta
+                name="theme-color"
+                content={BLOG.lightBackground}
+                // @ts-ignore
+                media="(prefers-color-scheme: light)"
+              />
+              <meta
+                name="theme-color"
+                content={BLOG.darkBackground}
+                // @ts-ignore
+                media="(prefers-color-scheme: dark)"
+              />
+            </>
+          ) : (
+            <meta
+              name="theme-color"
+              content={
+                BLOG.appearance === 'dark'
+                  ? BLOG.darkBackground
+                  : BLOG.lightBackground
+              }
+            />
+          )}
         </Head>
         <body className="bg-day dark:bg-night">
           <Main />
