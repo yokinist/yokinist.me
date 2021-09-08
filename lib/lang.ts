@@ -67,18 +67,18 @@ const lang = {
   },
   ja: {
     NAV: {
-      INDEX: '記事一覧',
+      INDEX: 'Blog',
       RSS: 'RSS',
-      SEARCH: '検索',
-      ABOUT: '自己紹介'
+      SEARCH: 'Search',
+      ABOUT: 'About'
     },
     PAGINATION: {
-      PREV: '前ページ',
-      NEXT: '次ページ'
+      PREV: 'Prev',
+      NEXT: 'Next'
     },
     POST: {
-      BACK: '戻る',
-      TOP: 'トップに戻る'
+      BACK: 'Back',
+      TOP: 'Top'
     }
   },
   es: {
