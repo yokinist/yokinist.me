@@ -29,7 +29,7 @@ export type BlogConfig = {
   email: string
   link: string
   description: string
-  lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP'
+  lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP' | 'es-ES'
   appearance: 'auto' | 'dark' | 'light'
   font: 'sans-serif' | 'serif'
   lightBackground: `#${string}`
