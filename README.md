@@ -70,6 +70,7 @@ Demo: [https://nobelium.vercel.app/](https://nobelium.vercel.app/)
 
 ## Play With Docker
 
+Unofficial, thanks to [@Vaayne](https://github.com/craigary/nobelium/pull/157)'s work!
 ```
 # set env
 export NOTION_PAGE_ID=xxx # your NOTION_PAGE_ID
