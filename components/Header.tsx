@@ -41,13 +41,16 @@ type HeaderProps = {
 const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null)
   const sentinalRef = useRef<HTMLDivElement>(null)
+  const useSticky = !BLOG.autoCollapsedNavBar
   const handler = ([entry]: IntersectionObserverEntry[]) => {
-    if (navRef && navRef.current) {
+    if (navRef && navRef.current && useSticky) {
       if (!entry.isIntersecting && entry !== undefined) {
         navRef.current.classList.add('sticky-nav-full')
       } else {
         navRef.current.classList.remove('sticky-nav-full')
       }
+    } else {
+      navRef?.current?.classList.add('remove-sticky')
     }
   }
   useEffect(() => {
