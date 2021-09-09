@@ -34,7 +34,7 @@ const NavBar: React.VFC = () => {
                 className={classNames(
                   'block ml-4 text-black dark:text-gray-50 nav',
                   {
-                    'border-b-2': link.to === activeNav
+                    'border-b-2 border-indigo-400': link.to === activeNav
                   }
                 )}
               >
