@@ -39,6 +39,12 @@ svg + .notion-page-title-text {
   @apply text-gray-600 dark:text-gray-300;
 }
 
+.notion .notion-code {
+  border-radius: 5px;
+  padding: 16px 12px;
+  line-height: 150% !important;
+}
+
 .notion-code > code {
   @apply text-gray-900;
 }
@@ -84,6 +90,7 @@ a.notion-link {
 /* About ページの特定の画像のみ適応 */
 .notion-block-62c0327d-4996-4498-ad31-88d9c0d169b3 > div > img {
   animation: fluid 24s ease 0s infinite;
+  border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
 }
 
 @keyframes fluid {
