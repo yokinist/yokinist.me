@@ -1,11 +1,13 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
 import classNames from 'classnames'
 
 const NavBar: React.VFC = () => {
   const locale = useLocale()
+  const router = useRouter()
   if (!locale) return null
   const links = [
     { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
@@ -13,6 +15,14 @@ const NavBar: React.VFC = () => {
     { id: 2, name: locale.NAV.RSS, to: '/feed', show: true },
     { id: 3, name: locale.NAV.SEARCH, to: '/search', show: true }
   ]
+  const activeNav = useMemo(() => {
+    if (router.pathname === links[0].to) return links[0].to
+    if (router.asPath === links[1].to) return links[1].to
+    if (router.asPath.includes(links[3].to) || router.asPath.includes('tag'))
+      return links[3].to
+    return null
+  }, [router])
+
   return (
     <div className="flex-shrink-0">
       <ul className="flex flex-row">
@@ -21,7 +31,12 @@ const NavBar: React.VFC = () => {
             link.show && (
               <li
                 key={link.id}
-                className="block ml-4 text-black dark:text-gray-50 nav"
+                className={classNames(
+                  'block ml-4 text-black dark:text-gray-50 nav',
+                  {
+                    'border-b-2': link.to === activeNav
+                  }
+                )}
               >
                 <Link href={link.to}>
                   <a>{link.name}</a>
