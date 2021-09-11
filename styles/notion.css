@@ -93,6 +93,11 @@ a.notion-link {
   border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
 }
 
+.notion-block-187cbc6f-209a-4feb-84d3-75192e98815e > div > img {
+  animation: fluid 24s ease 0s infinite;
+  border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+}
+
 @keyframes fluid {
   0%, 100% {
       border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;

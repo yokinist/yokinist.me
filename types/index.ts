@@ -35,6 +35,7 @@ export type BlogConfig = {
   lightBackground: `#${string}`
   darkBackground: `#${string}`
   path: string
+  profileSlug: string
   since: number
   postsPerPage: number
   sortByDate: boolean

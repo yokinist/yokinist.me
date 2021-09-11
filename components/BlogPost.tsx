@@ -9,7 +9,7 @@ type Props = {
 
 const BlogPost: React.VFC<Props> = ({ post }) => {
   return (
-    <article key={post.id} className="mb-6 md:mb-8">
+    <article key={post.id} className="mb-6 md:mb-8 mt-2">
       <header className="flex flex-col justify-between md:flex-row md:items-baseline">
         <Link href={`${BLOG.path}/${post.slug}`}>
           <a>

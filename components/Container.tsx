@@ -87,10 +87,7 @@ const Container: React.VFC<Props> = ({
           'font-sans': BLOG.font !== 'serif'
         })}
       >
-        <Header
-          navBarTitle={layout === 'blog' ? meta.title : null}
-          fullWidth={fullWidth}
-        />
+        <Header navBarTitle={meta.title} fullWidth={fullWidth} />
         <main
           className={classNames('m-auto flex-grow w-full transition-all', {
             'px-4 md:px-24': fullWidth,

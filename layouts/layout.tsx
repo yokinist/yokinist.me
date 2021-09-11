@@ -23,17 +23,69 @@ type Props = {
   post: Post
   emailHash: string
   fullWidth?: boolean
+  onlyContents?: boolean
 }
 
 const Layout: React.VFC<Props> = ({
   blockMap,
   post,
   emailHash,
-  fullWidth = false
+  fullWidth = false,
+  onlyContents = false
 }) => {
   const locale = useLocale()
   const router = useRouter()
-  return (
+
+  const renderContents = () => (
+    <article>
+      <h1 className="font-bold text-3xl text-black dark:text-white">
+        {post.title}
+      </h1>
+      {post?.type?.[0] !== 'Page' && (
+        <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
+          <div className="flex mb-4">
+            <a href={BLOG.socialLink || '#'} className="flex">
+              <Image
+                alt={BLOG.author}
+                width={24}
+                height={24}
+                src={`https://gravatar.com/avatar/${emailHash}`}
+                className="rounded-full"
+              />
+              <p className="ml-2 md:block">{BLOG.author}</p>
+            </a>
+            <span className="block">&nbsp;/&nbsp;</span>
+          </div>
+          <div className="mr-2 mb-4 md:ml-0">
+            {formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}
+          </div>
+          {post.tags && (
+            <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
+              {post.tags.map(tag => (
+                <TagItem key={tag} tag={tag} />
+              ))}
+            </div>
+          )}
+        </nav>
+      )}
+      {blockMap && (
+        <div className="-mt-4">
+          <NotionRenderer
+            recordMap={blockMap}
+            components={{
+              equation: Equation,
+              code: Code,
+              collectionRow: CollectionRow
+            }}
+            mapPageUrl={mapPageUrl}
+          />
+        </div>
+      )}
+    </article>
+  )
+  return onlyContents ? (
+    renderContents()
+  ) : (
     <Container
       layout="blog"
       title={post.title}
@@ -42,54 +94,7 @@ const Layout: React.VFC<Props> = ({
       type="article"
       fullWidth={fullWidth}
     >
-      <article>
-        <h1 className="font-bold text-3xl text-black dark:text-white">
-          {post.title}
-        </h1>
-        {post?.type?.[0] !== 'Page' && (
-          <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
-            <div className="flex mb-4">
-              <a href={BLOG.socialLink || '#'} className="flex">
-                <Image
-                  alt={BLOG.author}
-                  width={24}
-                  height={24}
-                  src={`https://gravatar.com/avatar/${emailHash}`}
-                  className="rounded-full"
-                />
-                <p className="ml-2 md:block">{BLOG.author}</p>
-              </a>
-              <span className="block">&nbsp;/&nbsp;</span>
-            </div>
-            <div className="mr-2 mb-4 md:ml-0">
-              {formatDate(
-                post?.date?.start_date || post.createdTime,
-                BLOG.lang
-              )}
-            </div>
-            {post.tags && (
-              <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
-                {post.tags.map(tag => (
-                  <TagItem key={tag} tag={tag} />
-                ))}
-              </div>
-            )}
-          </nav>
-        )}
-        {blockMap && (
-          <div className="-mt-4">
-            <NotionRenderer
-              recordMap={blockMap}
-              components={{
-                equation: Equation,
-                code: Code,
-                collectionRow: CollectionRow
-              }}
-              mapPageUrl={mapPageUrl}
-            />
-          </div>
-        )}
-      </article>
+      {renderContents()}
       <div
         className={classNames(
           'flex justify-between font-medium text-gray-500 dark:text-gray-400',
