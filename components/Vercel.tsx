@@ -4,6 +4,7 @@ const Vercel: React.VFC = () => {
       href="https://vercel.com?utm_source=Craigary&utm_campaign=oss"
       target="_blank"
       rel="noreferrer"
+      aria-label="vercel"
     >
       <svg
         width="135"

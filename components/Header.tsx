@@ -89,7 +89,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
         ref={navRef}
       >
         <div className="flex items-center">
-          <Link href="/">
+          <Link href="/" aria-label={BLOG.title}>
             <a>
               <div className="h-6">
                 <svg
@@ -128,7 +128,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
             </p>
           ) : (
             <p className="ml-2 font-medium text-day dark:text-night header-name">
-              {BLOG.title},{' '}
+              {BLOG.title} -
               <span className="font-normal">{BLOG.description}</span>
             </p>
           )}
