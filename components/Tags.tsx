@@ -11,14 +11,14 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
   if (!tags) return null
   return (
     <div className="tag-container">
-      <ul className="flex max-w-full mt-4 overflow-x-auto h-full">
+      <ul className="flex max-w-full mt-4 overflow-x-auto">
         {Object.keys(tags).map(key => {
           const selected = key === currentTag
           return (
             <li
               key={key}
               className={classNames(
-                'mr-3 font-medium border whitespace-nowrap dark:text-gray-300 h-8',
+                'mr-3 font-medium border whitespace-nowrap dark:text-gray-300',
                 {
                   'text-white bg-black border-black dark:bg-gray-600 dark:border-gray-600':
                     selected,
@@ -31,9 +31,7 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
                 href={selected ? '/' : `/tag/${encodeURIComponent(key)}`}
                 scroll={false}
               >
-                <a className="px-2 align-text-top py-2">
-                  {`${key} (${tags[key]})`}
-                </a>
+                <a className="px-4 py-2 block">{`${key} (${tags[key]})`}</a>
               </Link>
             </li>
           )
