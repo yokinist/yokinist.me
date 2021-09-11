@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import BlogPost from '@/components/BlogPost'
 import Tags from '@/components/Tags'
 import { Post, TagObj } from '@/types'
+import { useLocale } from '@/lib/locale'
 
 type Props = {
   posts: Post[]
@@ -11,6 +12,7 @@ type Props = {
 
 const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
   const [searchValue, setSearchValue] = useState('')
+  const locale = useLocale()
 
   const filteredBlogPosts = useMemo(() => {
     if (posts) {
@@ -24,13 +26,17 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
     return []
   }, [posts, searchValue])
 
+  if (!locale) return null
+
   return (
     <>
       <div className="relative">
         <input
           type="text"
           placeholder={
-            currentTag ? `Search in #${currentTag}` : 'Search Articles'
+            currentTag
+              ? `${locale.POST.SEARCHIN} #${currentTag}`
+              : locale.POST.SEARCH
           }
           className="block w-full border px-4 py-2 border-black bg-white text-black dark:bg-night dark:border-white dark:text-white"
           onChange={e => setSearchValue(e.target.value)}
@@ -53,7 +59,9 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
       <Tags tags={tags} currentTag={currentTag} />
       <div className="article-container my-8">
         {!filteredBlogPosts.length && (
-          <p className="text-gray-500 dark:text-gray-300">No posts found.</p>
+          <p className="text-gray-500 dark:text-gray-300">
+            {locale.POST.NOTFOUND}
+          </p>
         )}
         {filteredBlogPosts.slice(0, 20).map(post => (
           <BlogPost key={post.id} post={post} />

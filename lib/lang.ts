@@ -14,7 +14,10 @@ const lang = {
     },
     POST: {
       BACK: 'Back',
-      TOP: 'Top'
+      TOP: 'Top',
+      NOTFOUND: 'No posts found.',
+      SEARCH: 'Search Articles',
+      SEARCHIN: 'Search in'
     }
   },
   'zh-CN': {
@@ -30,7 +33,10 @@ const lang = {
     },
     POST: {
       BACK: '返回',
-      TOP: '回到顶部'
+      TOP: '回到顶部',
+      NOTFOUND: 'No posts found.',
+      SEARCH: 'Search Articles',
+      SEARCHIN: 'Search in'
     }
   },
   'zh-HK': {
@@ -46,7 +52,10 @@ const lang = {
     },
     POST: {
       BACK: '返回',
-      TOP: '回到頂端'
+      TOP: '回到頂端',
+      NOTFOUND: 'No posts found.',
+      SEARCH: 'Search Articles',
+      SEARCHIN: 'Search in'
     }
   },
   'zh-TW': {
@@ -62,7 +71,10 @@ const lang = {
     },
     POST: {
       BACK: '返回',
-      TOP: '回到頂端'
+      TOP: '回到頂端',
+      NOTFOUND: 'No posts found.',
+      SEARCH: 'Search Articles',
+      SEARCHIN: 'Search in'
     }
   },
   ja: {
@@ -78,7 +90,10 @@ const lang = {
     },
     POST: {
       BACK: 'Back',
-      TOP: 'Top'
+      TOP: 'Top',
+      NOTFOUND: '該当する記事はありません...🙇‍♂️',
+      SEARCH: '記事を検索する',
+      SEARCHIN: ''
     }
   },
   es: {
@@ -94,7 +109,10 @@ const lang = {
     },
     POST: {
       BACK: 'Atrás',
-      TOP: 'Arriba'
+      TOP: 'Arriba',
+      NOTFOUND: 'No posts found.',
+      SEARCH: 'Search Articles',
+      SEARCHIN: 'Search in'
     }
   }
 } as const
