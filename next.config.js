@@ -3,7 +3,7 @@
  **/
 const nextConfig = {
   images: {
-    domains: ['gravatar.com']
+    domains: ['gravatar.com', 'pbs.twimg.com']
   },
   eslint: {
     dirs: ['components', 'layouts', 'lib', 'pages']

@@ -11,6 +11,7 @@ import formatDate from '@/lib/formatDate'
 import { useLocale } from '@/lib/locale'
 import Comment from '@/components/Comment'
 import { Post } from '@/types'
+import type { Tweet } from 'react-static-tweets'
 
 const enableCommentArea = BLOG.comment.provider !== ''
 
@@ -24,12 +25,14 @@ type Props = {
   emailHash: string
   fullWidth?: boolean
   onlyContents?: boolean
+  tweet?: typeof Tweet
 }
 
 const Layout: React.VFC<Props> = ({
   blockMap,
   post,
   emailHash,
+  tweet,
   fullWidth = false,
   onlyContents = false
 }) => {
@@ -75,7 +78,8 @@ const Layout: React.VFC<Props> = ({
             components={{
               equation: Equation,
               code: Code,
-              collectionRow: CollectionRow
+              collectionRow: CollectionRow,
+              tweet: tweet
             }}
             mapPageUrl={mapPageUrl}
           />

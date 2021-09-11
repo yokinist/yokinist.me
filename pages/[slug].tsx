@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
+import { Tweet, TwitterContextProvider } from 'react-static-tweets'
 import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
@@ -34,12 +35,23 @@ const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   if (!post) return <DefaultErrorPage statusCode={404} />
   return (
     <>
-      <Layout
-        blockMap={blockMap}
-        post={post}
-        emailHash={emailHash}
-        fullWidth={post?.fullWidth ?? false}
-      />
+      <TwitterContextProvider
+        value={{
+          tweetAstMap: {},
+          swrOptions: {
+            fetcher: (id: number) =>
+              fetch(`/api/get-tweet-ast/${id}`).then(r => r.json())
+          }
+        }}
+      >
+        <Layout
+          blockMap={blockMap}
+          post={post}
+          emailHash={emailHash}
+          fullWidth={post?.fullWidth ?? false}
+          tweet={Tweet}
+        />
+      </TwitterContextProvider>
     </>
   )
 }
