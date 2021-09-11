@@ -89,8 +89,8 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
         ref={navRef}
       >
         <div className="flex items-center">
-          <Link href="/" aria-label={BLOG.title}>
-            <a>
+          <Link href="/">
+            <a aria-label={BLOG.title}>
               <div className="h-6">
                 <svg
                   width="24"
