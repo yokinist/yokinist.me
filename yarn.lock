@@ -4370,10 +4370,10 @@ react-refresh@0.8.3:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react-static-tweets@0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/react-static-tweets/-/react-static-tweets-0.5.3.tgz#c147fc8756caa65bdaf750d460956be72a955ff5"
-  integrity sha512-JDF3NaXUiw2MzETHn3iQSggDVGy0Dph0YfFpKjmO4TvzauIecah47xXYRP10RhTZ3nsXc90hr7FKDHH95Qp05w==
+react-static-tweets@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/react-static-tweets/-/react-static-tweets-0.5.4.tgz#3dc75f9fc50eff033ac65d85dcfec0ad1bd11888"
+  integrity sha512-7k+qq2YCum3buqfGA/jppYM9R59wnHPE4UU7Q35J6DwORnRyRVKs4RhFCSA5EjZa62ZckIzovqxe5KnftS5tbA==
   dependencies:
     classnames "^2.2.6"
     swr "^1.0.0-beta.5"
