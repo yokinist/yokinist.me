@@ -12,7 +12,6 @@ const Profile: React.VFC<Props> = ({ post, blockMap, emailHash }) => {
         fullWidth={false}
         onlyContents
       />
-      <hr className="border-gray-200 dark:border-gray-600 mb-8 w-2/5" />
     </div>
   )
 }
