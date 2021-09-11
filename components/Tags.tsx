@@ -17,7 +17,7 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
           return (
             <Link
               key={key}
-              href={selected ? '/search' : `/tag/${encodeURIComponent(key)}`}
+              href={selected ? '/' : `/tag/${encodeURIComponent(key)}`}
             >
               <a>
                 <li

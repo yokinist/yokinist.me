@@ -3,6 +3,7 @@ import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import { createHash } from 'crypto'
+import DefaultErrorPage from 'next/error'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllPosts({ includedPages: true })
@@ -30,7 +31,7 @@ export const getStaticProps: GetStaticProps = async context => {
 type Props = Omit<React.ComponentProps<typeof Layout>, 'fullWidth'>
 
 const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
-  if (!post) return null
+  if (!post) return <DefaultErrorPage statusCode={404} />
   return (
     <>
       <Layout

@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react'
 import BlogPost from '@/components/BlogPost'
-import Container from '@/components/Container'
 import Tags from '@/components/Tags'
 import { Post, TagObj } from '@/types'
 
@@ -26,7 +25,7 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
   }, [posts, searchValue])
 
   return (
-    <Container>
+    <>
       <div className="relative">
         <input
           type="text"
@@ -60,7 +59,7 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
           <BlogPost key={post.id} post={post} />
         ))}
       </div>
-    </Container>
+    </>
   )
 }
 

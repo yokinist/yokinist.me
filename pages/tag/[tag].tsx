@@ -1,6 +1,11 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
-import { getAllPosts, getAllTags } from '@/lib/notion'
+import { filterPublishedPosts, getAllPosts, getAllTags } from '@/lib/notion'
+import Container from '@/components/Container'
 import SearchLayout from '@/layouts/search'
+import { getProfilePost } from '@/lib/notion/getProfilePost'
+import BLOG from '@/blog.config'
+import { createHash } from 'crypto'
+import Profile from '@/components/Profile'
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const currentTag = params?.tag
@@ -9,7 +14,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       notFound: true
     }
   }
-  const posts = await getAllPosts({ includedPages: false })
+  const allPosts = await getAllPosts({ includedPages: true })
+  const profilePostData = await getProfilePost(allPosts)
+  const emailHash = createHash('md5').update(BLOG.email).digest('hex')
+  const posts = filterPublishedPosts({
+    posts: allPosts,
+    includedPages: false
+  })
   const tags = getAllTags({ posts })
   const filteredPosts = posts.filter(
     post => post && post.tags && post.tags.includes(currentTag)
@@ -18,7 +29,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       tags,
       posts: filteredPosts,
-      currentTag
+      currentTag,
+      post: profilePostData.post,
+      blockMap: profilePostData.blockMap,
+      emailHash
     },
     revalidate: 1
   }
@@ -33,10 +47,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-type Props = React.ComponentProps<typeof SearchLayout>
+type Props = React.ComponentProps<typeof SearchLayout> &
+  Omit<React.ComponentProps<typeof Profile>, 'fullWidth'>
 
-const TagPage: NextPage<Props> = ({ tags, posts, currentTag }) => {
-  return <SearchLayout tags={tags} posts={posts} currentTag={currentTag} />
+const TagPage: NextPage<Props> = ({
+  tags,
+  posts,
+  currentTag,
+  post,
+  blockMap,
+  emailHash
+}) => {
+  return (
+    <Container title={currentTag}>
+      {post && blockMap && (
+        <Profile blockMap={blockMap} post={post} emailHash={emailHash} />
+      )}
+      <SearchLayout tags={tags} posts={posts} currentTag={currentTag} />
+    </Container>
+  )
 }
 
 export default TagPage
