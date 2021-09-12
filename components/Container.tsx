@@ -59,7 +59,9 @@ const Container: React.VFC<Props> = ({
           property="og:image"
           content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
             meta.title
-          )}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fnobelium.vercel.app%2Flogo-for-dark-bg.svg`}
+          )}.png?md=1&fontSize=96px&siteTitle=${BLOG.title}&background=${
+            BLOG.darkBackground
+          }&foreground=${BLOG.lightBackground}&accentColor=#5a67d8`}
         />
         <meta property="og:type" content={meta.type} />
         <meta name="twitter:card" content="summary_large_image" />
