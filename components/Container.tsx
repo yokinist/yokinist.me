@@ -1,8 +1,10 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BLOG from '@/blog.config'
+import colors from 'tailwindcss/colors'
 import Head from 'next/head'
 import classNames from 'classnames'
+import router from 'next/router'
 // import BlogPost from './BlogPost'
 
 type Props = {
@@ -55,34 +57,64 @@ const Container: React.VFC<Props> = ({
           property="og:url"
           content={meta.slug ? `${url}/${meta.slug}` : url}
         />
-        <meta
-          property="og:image"
-          content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-            meta.title
-          )}.png?md=1&fontSize=96px&siteTitle=${encodeURIComponent(
-            BLOG.title
-          )}&background=${encodeURIComponent(
-            BLOG.darkBackground
-          )}&foreground=${encodeURIComponent(
-            BLOG.lightBackground
-          )}&accentColor=${encodeURIComponent('#5a67d8')}`}
-        />
+        {router.pathname === (BLOG.path || '/') ? (
+          <meta
+            property="og:image"
+            content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
+              meta.title
+            )}.png?md=1&fontSize=96px&background=${encodeURIComponent(
+              BLOG.darkBackground
+            )}&foreground=${encodeURIComponent(
+              BLOG.lightBackground
+            )}&accentColor=${encodeURIComponent(colors.cyan[600])}`}
+          />
+        ) : (
+          <meta
+            property="og:image"
+            content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
+              meta.title
+            )}.png?md=1&fontSize=96px&siteTitle=${encodeURIComponent(
+              BLOG.title
+            )}&background=${encodeURIComponent(
+              BLOG.darkBackground
+            )}&foreground=${encodeURIComponent(
+              BLOG.lightBackground
+            )}&accentColor=${encodeURIComponent(colors.cyan[600])}`}
+          />
+        )}
         <meta property="og:type" content={meta.type} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:title" content={meta.title} />
-        <meta
-          name="twitter:image"
-          content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-            meta.title
-          )}.png?md=1&fontSize=96px&siteTitle=${encodeURIComponent(
-            BLOG.title
-          )}&background=${encodeURIComponent(
-            BLOG.darkBackground
-          )}&foreground=${encodeURIComponent(
-            BLOG.lightBackground
-          )}&accentColor=${encodeURIComponent('#5a67d8')}&isTwitter=true`}
-        />
+        {router.pathname === (BLOG.path || '/') ? (
+          <meta
+            property="og:image"
+            content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
+              meta.title
+            )}.png?md=1&fontSize=96px&background=${encodeURIComponent(
+              BLOG.darkBackground
+            )}&foreground=${encodeURIComponent(
+              BLOG.lightBackground
+            )}&accentColor=${encodeURIComponent(
+              colors.cyan[600]
+            )}&isTwitter=true`}
+          />
+        ) : (
+          <meta
+            property="og:image"
+            content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
+              meta.title
+            )}.png?md=1&fontSize=96px&siteTitle=${encodeURIComponent(
+              BLOG.title
+            )}&background=${encodeURIComponent(
+              BLOG.darkBackground
+            )}&foreground=${encodeURIComponent(
+              BLOG.lightBackground
+            )}&accentColor=${encodeURIComponent(
+              colors.cyan[600]
+            )}&isTwitter=true`}
+          />
+        )}
         {meta.type === 'article' && (
           <>
             <meta
