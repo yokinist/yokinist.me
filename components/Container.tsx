@@ -59,9 +59,13 @@ const Container: React.VFC<Props> = ({
           property="og:image"
           content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
             meta.title
-          )}.png?md=1&fontSize=96px&siteTitle=${BLOG.title}&background=${
+          )}.png?md=1&fontSize=96px&siteTitle=${encodeURIComponent(
+            BLOG.title
+          )}&background=${encodeURIComponent(
             BLOG.darkBackground
-          }&foreground=${BLOG.lightBackground}&accentColor=#5a67d8`}
+          )}&foreground=${encodeURIComponent(
+            BLOG.lightBackground
+          )}&accentColor=${encodeURIComponent('#5a67d8')}`}
         />
         <meta property="og:type" content={meta.type} />
         <meta name="twitter:card" content="summary_large_image" />
@@ -71,11 +75,13 @@ const Container: React.VFC<Props> = ({
           name="twitter:image"
           content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
             meta.title
-          )}.png?md=1&fontSize=96px&siteTitle=${BLOG.title}&background=${
+          )}.png?md=1&fontSize=96px&siteTitle=${encodeURIComponent(
+            BLOG.title
+          )}&background=${encodeURIComponent(
             BLOG.darkBackground
-          }&foreground=${
+          )}&foreground=${encodeURIComponent(
             BLOG.lightBackground
-          }&accentColor=#5a67d8&isTwitter=true`}
+          )}&accentColor=${encodeURIComponent('#5a67d8')}`}
         />
         {meta.type === 'article' && (
           <>
