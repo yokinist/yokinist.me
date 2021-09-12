@@ -81,7 +81,7 @@ const Container: React.VFC<Props> = ({
             BLOG.darkBackground
           )}&foreground=${encodeURIComponent(
             BLOG.lightBackground
-          )}&accentColor=${encodeURIComponent('#5a67d8')}`}
+          )}&accentColor=${encodeURIComponent('#5a67d8')}&isTwitter=true`}
         />
         {meta.type === 'article' && (
           <>
