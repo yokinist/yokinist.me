@@ -88,7 +88,7 @@ a.notion-link {
 
 
 /* About ページの特定の画像のみ適応 */
-.notion-block-82c0327d49964498ad3188d9c0d169b3 > div > img {
+.notion-block-62c0327d49964498ad3188d9c0d169b3 > div > img {
   animation: fluid 24s ease 0s infinite;
   border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
 }
