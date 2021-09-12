@@ -1,7 +1,6 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BLOG from '@/blog.config'
-import colors from 'tailwindcss/colors'
 import Head from 'next/head'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
@@ -64,9 +63,7 @@ const Container: React.VFC<Props> = ({
               meta.title
             )}.png?md=1&fontSize=96px&background=${encodeURIComponent(
               BLOG.darkBackground
-            )}&foreground=${encodeURIComponent(
-              BLOG.lightBackground
-            )}&accentColor=${encodeURIComponent(colors.blue[900])}`}
+            )}&foreground=${encodeURIComponent(BLOG.lightBackground)}`}
           />
         ) : (
           <meta
@@ -77,9 +74,7 @@ const Container: React.VFC<Props> = ({
               BLOG.title
             )}&background=${encodeURIComponent(
               BLOG.darkBackground
-            )}&foreground=${encodeURIComponent(
-              BLOG.lightBackground
-            )}&accentColor=${encodeURIComponent(colors.blue[900])}`}
+            )}&foreground=${encodeURIComponent(BLOG.lightBackground)}`}
           />
         )}
         <meta property="og:type" content={meta.type} />
@@ -95,8 +90,6 @@ const Container: React.VFC<Props> = ({
               BLOG.darkBackground
             )}&foreground=${encodeURIComponent(
               BLOG.lightBackground
-            )}&accentColor=${encodeURIComponent(
-              colors.blue[900]
             )}&isTwitter=true`}
           />
         ) : (
@@ -110,8 +103,6 @@ const Container: React.VFC<Props> = ({
               BLOG.darkBackground
             )}&foreground=${encodeURIComponent(
               BLOG.lightBackground
-            )}&accentColor=${encodeURIComponent(
-              colors.blue[900]
             )}&isTwitter=true`}
           />
         )}
