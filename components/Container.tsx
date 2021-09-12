@@ -66,7 +66,7 @@ const Container: React.VFC<Props> = ({
               BLOG.darkBackground
             )}&foreground=${encodeURIComponent(
               BLOG.lightBackground
-            )}&accentColor=${encodeURIComponent(colors.indigo[600])}`}
+            )}&accentColor=${encodeURIComponent(colors.blue[900])}`}
           />
         ) : (
           <meta
@@ -79,7 +79,7 @@ const Container: React.VFC<Props> = ({
               BLOG.darkBackground
             )}&foreground=${encodeURIComponent(
               BLOG.lightBackground
-            )}&accentColor=${encodeURIComponent(colors.indigo[600])}`}
+            )}&accentColor=${encodeURIComponent(colors.blue[900])}`}
           />
         )}
         <meta property="og:type" content={meta.type} />
@@ -96,7 +96,7 @@ const Container: React.VFC<Props> = ({
             )}&foreground=${encodeURIComponent(
               BLOG.lightBackground
             )}&accentColor=${encodeURIComponent(
-              colors.indigo[600]
+              colors.blue[900]
             )}&isTwitter=true`}
           />
         ) : (
@@ -111,7 +111,7 @@ const Container: React.VFC<Props> = ({
             )}&foreground=${encodeURIComponent(
               BLOG.lightBackground
             )}&accentColor=${encodeURIComponent(
-              colors.indigo[600]
+              colors.blue[900]
             )}&isTwitter=true`}
           />
         )}
