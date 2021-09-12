@@ -4,7 +4,7 @@ import BLOG from '@/blog.config'
 import colors from 'tailwindcss/colors'
 import Head from 'next/head'
 import classNames from 'classnames'
-import router from 'next/router'
+import { useRouter } from 'next/router'
 // import BlogPost from './BlogPost'
 
 type Props = {
@@ -23,11 +23,11 @@ const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link
 
 const Container: React.VFC<Props> = ({
   children,
-  layout,
   fullWidth,
   type = 'website',
   ...customMeta
 }) => {
+  const router = useRouter()
   const meta = {
     title: BLOG.title,
     type,
