@@ -36,6 +36,7 @@
     "react-notion-x": "^4.8.7",
     "react-static-tweets": "^0.5.4",
     "static-tweets": "^0.5.3",
+    "tailwindcss": "^2.2.15",
     "use-ackee": "^3.0.0"
   },
   "devDependencies": {
@@ -61,7 +62,6 @@
     "postcss": "^8.2.15",
     "prettier": "^2.3.0",
     "simple-git-hooks": "^2.4.1",
-    "tailwindcss": "^2.2.2",
     "typescript": "^4.3.4"
   },
   "resolutions": {
