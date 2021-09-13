@@ -81,7 +81,6 @@ const Layout: React.VFC<Props> = ({
               collectionRow: CollectionRow,
               tweet: tweet
             }}
-            darkMode={BLOG.appearance === 'dark'}
             mapPageUrl={mapPageUrl}
           />
         </div>
