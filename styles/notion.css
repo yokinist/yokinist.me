@@ -77,7 +77,7 @@ pre[class*='language-'] {
   @apply hidden;
 }
 a.notion-link {
-  @apply dark:text-indigo-200;
+  @apply underline dark:text-indigo-200;
 }
 .notion-list li {
   padding: 0;
