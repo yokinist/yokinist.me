@@ -6,6 +6,8 @@ import BLOG from '@/blog.config'
 import { createHash } from 'crypto'
 import DefaultErrorPage from 'next/error'
 
+const isClient = typeof window !== 'undefined'
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllPosts({ includedPages: true })
   if (!posts) return { paths: [], fallback: false }
@@ -33,8 +35,9 @@ type Props = Omit<React.ComponentProps<typeof Layout>, 'fullWidth'>
 
 const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   if (!post) return <DefaultErrorPage statusCode={404} />
-  if (post?.outer_link) {
+  if (post?.outer_link && isClient) {
     window.location.href = post.outer_link
+    return <DefaultErrorPage statusCode={404} />
   }
   return (
     <>
