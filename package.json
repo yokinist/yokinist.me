@@ -23,6 +23,7 @@
     "pre-push": "yarn tsc"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.4",
     "classnames": "^2.3.1",
     "feed": "^4.2.2",
     "gitalk": "^1.7.2",
