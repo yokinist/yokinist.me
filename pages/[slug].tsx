@@ -20,14 +20,6 @@ export const getStaticProps: GetStaticProps = async context => {
   const slug = context.params?.slug
   const posts = await getAllPosts({ includedPages: true })
   const post = posts.find(t => t.slug === slug)
-  if (post?.outer_link) {
-    return {
-      redirect: {
-        permanent: true,
-        destination: post.outer_link
-      }
-    }
-  }
   if (!post?.id) return { notFound: true }
   const blockMap = await getPostBlocks(post.id)
   const emailHash = createHash('md5').update(BLOG.email).digest('hex')
@@ -41,6 +33,9 @@ type Props = Omit<React.ComponentProps<typeof Layout>, 'fullWidth'>
 
 const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   if (!post) return <DefaultErrorPage statusCode={404} />
+  if (post?.outer_link) {
+    window.location.href = post.outer_link
+  }
   return (
     <>
       <TwitterContextProvider
