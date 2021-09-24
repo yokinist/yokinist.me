@@ -38,7 +38,6 @@ const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   if (!post) return <DefaultErrorPage statusCode={404} />
   if (post?.outer_link && isClient) {
     window.location.href = post.outer_link
-    return <DefaultErrorPage statusCode={404} />
   }
   return (
     <>
