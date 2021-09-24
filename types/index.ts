@@ -12,6 +12,7 @@ export type Post = {
   fullWidth: boolean
   title?: string
   slug?: string
+  outer_link?: string
   summary?: string
   tags?: string[]
   date: {
