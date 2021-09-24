@@ -1,8 +1,9 @@
 import BLOG from '@/blog.config'
+import { getIsClient } from './getIsClient'
 export const GA_TRACKING_ID = BLOG.analytics.gaConfig.measurementId
-export const IS_PROD = BLOG.isProd;
+export const IS_PROD = BLOG.isProd
 
-const isClient = typeof window !== 'undefined'
+const isClient = getIsClient()
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
@@ -14,11 +15,11 @@ export const pageview = (url: string) => {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 type GaEventProps = {
-  action: string;
-  category: string;
-  label: string;
-  value?: number | string;
-};
+  action: string
+  category: string
+  label: string
+  value?: number | string
+}
 export const event = ({ action, category, label, value }: GaEventProps) => {
   if (!IS_PROD || !isClient) return
   window.gtag('event', action, {

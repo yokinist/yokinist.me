@@ -5,8 +5,9 @@ import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import { createHash } from 'crypto'
 import DefaultErrorPage from 'next/error'
+import { getIsClient } from '@/lib/getIsClient'
 
-const isClient = typeof window !== 'undefined'
+const isClient = getIsClient()
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllPosts({ includedPages: true })
