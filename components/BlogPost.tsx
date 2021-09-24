@@ -15,7 +15,7 @@ type RenderBlogPostArg = {
 const BlogPost: React.VFC<Props> = ({ post }) => {
   const renderBlogPost = ({ isOuterLink }: RenderBlogPostArg) => {
     return (
-      <article key={post.id} className="mb-6 md:mb-8 mt-2 hover:opacity-70">
+      <article key={post.id} className="mb-6 md:mb-8 mt-2 hover:opacity-80">
         <header className="flex flex-col justify-between md:flex-row md:items-baseline">
           <div className="flex">
             <h2 className="text-lg md:text-xl font-medium mb-2 cursor-pointer text-black dark:text-gray-100">
