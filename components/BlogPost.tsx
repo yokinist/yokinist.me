@@ -42,7 +42,7 @@ const BlogPost: React.VFC<Props> = ({ post }) => {
     <a
       href={post.outer_link}
       target="_blank"
-      rel="noreferrer"
+      rel="noreferrer noopener"
       aria-label="outer-link"
     >
       {renderBlogPost({ isOuterLink: true })}
