@@ -100,6 +100,10 @@ const Container: React.VFC<Props> = ({
             twitter: true
           })
         })}
+        twitter={{
+          card: 'summary_large_image',
+          site: '@yokinist'
+        }}
       />
       <div
         className={classNames('wrapper', {

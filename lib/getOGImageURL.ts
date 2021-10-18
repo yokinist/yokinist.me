@@ -14,15 +14,11 @@ type OGImageKeys = (keyof OGImageQuery)[]
 
 type GetOGImageUrlArgs = {
   title: string
-  root?: boolean
-  twitter?: boolean
+  root: boolean
+  twitter: boolean
 }
 
-export const getOGImageURL = ({
-  title,
-  root,
-  twitter
-}: GetOGImageUrlArgs): string => {
+export const getOGImageURL = (props: GetOGImageUrlArgs): string => {
   const [query, setQuery] = useState<OGImageQuery>({
     md: '1',
     fontSize: '96px',
@@ -33,13 +29,22 @@ export const getOGImageURL = ({
   })
 
   useEffect(() => {
-    if (twitter) {
-      setQuery(prevQuery => ({ ...prevQuery, isTwitter: 'true' }))
+    if (props.twitter) {
+      if (!props.root) {
+        setQuery(prevQuery => ({ ...prevQuery, isTwitter: 'true' }))
+        return
+      }
+      setQuery(prevQuery => ({
+        ...prevQuery,
+        siteTitle: undefined,
+        isTwitter: 'true'
+      }))
+      return
     }
-    if (root) {
+    if (props.root) {
       setQuery(prevQuery => ({ ...prevQuery, siteTitle: undefined }))
     }
-  }, [twitter, root])
+  }, [props])
 
   const queryString = useMemo(() => {
     return (Object.keys(query) as OGImageKeys)
@@ -49,6 +54,6 @@ export const getOGImageURL = ({
   }, [query])
 
   return `${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-    title
+    props.title
   )}.png?${queryString}`
 }
