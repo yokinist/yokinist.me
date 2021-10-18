@@ -4,7 +4,7 @@ import BLOG from '@/blog.config'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import NextHeadSeo from 'next-head-seo'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { getOGImageURL } from '@/lib/getOGImageURL'
 // import BlogPost from './BlogPost'
 
@@ -57,6 +57,14 @@ const Container: React.VFC<Props> = ({
     ...customMeta
   }
 
+  const root = useMemo(() => {
+    return router.pathname === (BLOG.path || '/')
+  }, [router])
+
+  const siteUrl = useMemo(() => {
+    return meta.slug ? `${url}/${meta.slug}` : url
+  }, [meta])
+
   useEffect(() => {
     if (type !== 'article') return
     setCustomMetaTags(prevCustomMetaTags =>
@@ -71,7 +79,7 @@ const Container: React.VFC<Props> = ({
         }
       )
     )
-  }, [type])
+  }, [type, meta])
 
   return (
     <div>
@@ -79,16 +87,16 @@ const Container: React.VFC<Props> = ({
         title={meta.title}
         description={meta.description}
         robots={'index, follow'}
-        canonical={meta.slug ? `${url}/${meta.slug}` : url}
+        canonical={siteUrl}
         og={{
           title: meta.title,
-          url: meta.slug ? `${url}/${meta.slug}` : url,
+          url: siteUrl,
           // locale: BLog.lang,
           type: meta.type,
           description: meta.description,
           image: getOGImageURL({
             title: meta.title,
-            root: router.pathname === (BLOG.path || '/'),
+            root,
             twitter: false
           })
         }}
@@ -96,7 +104,7 @@ const Container: React.VFC<Props> = ({
           property: 'twitter:image',
           content: getOGImageURL({
             title: meta.title,
-            root: router.pathname === (BLOG.path || '/'),
+            root,
             twitter: true
           })
         })}
