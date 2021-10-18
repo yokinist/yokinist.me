@@ -1,10 +1,14 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BLOG from '@/blog.config'
-import Head from 'next/head'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
+import NextHeadSeo from 'next-head-seo'
+import { useEffect, useState } from 'react'
+import { getOGImageURL } from '@/lib/getOGImageURL'
 // import BlogPost from './BlogPost'
+
+type NextHeadSeoProps = Parameters<typeof NextHeadSeo>[0]
 
 type Props = {
   children: React.ReactNode
@@ -27,95 +31,76 @@ const Container: React.VFC<Props> = ({
   ...customMeta
 }) => {
   const router = useRouter()
+  const [customMetaTags, setCustomMetaTags] = useState<
+    NextHeadSeoProps['customLinkTags']
+  >([
+    {
+      charSet: 'UTF-8'
+    },
+    {
+      property: 'og:locale',
+      content: BLOG.lang
+    },
+    {
+      name: 'google-site-verification',
+      content: BLOG.seo.googleSiteVerification
+    },
+    {
+      name: 'keywords',
+      content: BLOG.seo.keywords.join(', ')
+    }
+  ])
+
   const meta = {
     title: BLOG.title,
     type,
     ...customMeta
   }
+
+  useEffect(() => {
+    if (type !== 'article') return
+    setCustomMetaTags(prevCustomMetaTags =>
+      (prevCustomMetaTags ?? []).concat(
+        {
+          property: 'article:published_time',
+          content: meta?.date || meta?.createdTime || ''
+        },
+        {
+          property: 'article:author',
+          content: BLOG.author
+        }
+      )
+    )
+  }, [type])
+
   return (
     <div>
-      <Head>
-        <title>{meta.title}</title>
-        {/* <meta content={BLOG.darkBackground} name="theme-color" /> */}
-        <meta name="robots" content="follow, index" />
-        <meta charSet="UTF-8" />
-        {BLOG.seo.googleSiteVerification && (
-          <meta
-            name="google-site-verification"
-            content={BLOG.seo.googleSiteVerification}
-          />
-        )}
-        {BLOG.seo.keywords && (
-          <meta name="keywords" content={BLOG.seo.keywords.join(', ')} />
-        )}
-        <meta name="description" content={meta.description} />
-        <meta property="og:locale" content={BLOG.lang} />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:description" content={meta.description} />
-        <meta
-          property="og:url"
-          content={meta.slug ? `${url}/${meta.slug}` : url}
-        />
-        {router.pathname === (BLOG.path || '/') ? (
-          <meta
-            property="og:image"
-            content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-              meta.title
-            )}.png?md=1&fontSize=96px&background=${encodeURIComponent(
-              BLOG.darkBackground
-            )}&foreground=${encodeURIComponent(BLOG.lightBackground)}`}
-          />
-        ) : (
-          <meta
-            property="og:image"
-            content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-              meta.title
-            )}.png?md=1&fontSize=96px&siteTitle=${encodeURIComponent(
-              BLOG.title
-            )}&background=${encodeURIComponent(
-              BLOG.darkBackground
-            )}&foreground=${encodeURIComponent(BLOG.lightBackground)}`}
-          />
-        )}
-        <meta property="og:type" content={meta.type} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:title" content={meta.title} />
-        {router.pathname === (BLOG.path || '/') ? (
-          <meta
-            property="og:image"
-            content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-              meta.title
-            )}.png?md=1&fontSize=96px&background=${encodeURIComponent(
-              BLOG.darkBackground
-            )}&foreground=${encodeURIComponent(
-              BLOG.lightBackground
-            )}&isTwitter=true`}
-          />
-        ) : (
-          <meta
-            property="og:image"
-            content={`${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-              meta.title
-            )}.png?md=1&fontSize=96px&siteTitle=${encodeURIComponent(
-              BLOG.title
-            )}&background=${encodeURIComponent(
-              BLOG.darkBackground
-            )}&foreground=${encodeURIComponent(
-              BLOG.lightBackground
-            )}&isTwitter=true`}
-          />
-        )}
-        {meta.type === 'article' && (
-          <>
-            <meta
-              property="article:published_time"
-              content={meta.date || meta.createdTime}
-            />
-            <meta property="article:author" content={BLOG.author} />
-          </>
-        )}
-      </Head>
+      <NextHeadSeo
+        title={meta.title}
+        description={meta.description}
+        robots={'index, follow'}
+        canonical={meta.slug ? `${url}/${meta.slug}` : url}
+        og={{
+          title: meta.title,
+          url: meta.slug ? `${url}/${meta.slug}` : url,
+          // locale: BLog.lang,
+          type: meta.type,
+          description: meta.description,
+          image: getOGImageURL({
+            title: meta.title,
+            root: router.pathname === (BLOG.path || '/'),
+            twitter: false
+          })
+        }}
+        customMetaTags={(customMetaTags ?? []).concat({
+          property: 'twitter:image',
+          content: getOGImageURL({
+            title: meta.title,
+            root: router.pathname === (BLOG.path || '/'),
+            twitter: true
+          })
+        })}
+      />
       <div
         className={classNames('wrapper', {
           'font-serif': BLOG.font === 'serif',
