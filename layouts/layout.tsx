@@ -94,7 +94,7 @@ const Layout: React.VFC<Props> = ({
       layout="blog"
       title={post.title}
       description={post.summary}
-      // date={new Date(post.publishedAt).toISOString()}
+      date={new Date(post.createdTime).toISOString()}
       type="article"
       fullWidth={fullWidth}
     >

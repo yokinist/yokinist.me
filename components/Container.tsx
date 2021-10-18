@@ -79,7 +79,7 @@ const Container: React.VFC<Props> = ({
         }
       )
     )
-  }, [type, meta])
+  }, [type])
 
   return (
     <div>
