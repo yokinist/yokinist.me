@@ -1,5 +1,4 @@
 import BLOG from '@/blog.config'
-import { useEffect, useMemo, useState } from 'react'
 
 type OGImageQuery = {
   md: string
@@ -18,42 +17,52 @@ type GetOGImageUrlArgs = {
   twitter: boolean
 }
 
+const convertObjToQueryString = (query: OGImageQuery) => {
+  return (Object.keys(query) as OGImageKeys)
+    .filter(key => !!query[key])
+    .map(key => key + '=' + query[key])
+    .join('&')
+}
+
 export const getOGImageURL = (props: GetOGImageUrlArgs): string => {
-  const [query, setQuery] = useState<OGImageQuery>({
+  const defaultParams: OGImageQuery = {
     md: '1',
     fontSize: '96px',
     background: encodeURIComponent(BLOG.darkBackground),
     foreground: encodeURIComponent(BLOG.lightBackground),
     siteTitle: encodeURIComponent(BLOG.title),
     isTwitter: undefined
-  })
-
-  useEffect(() => {
-    if (props.twitter) {
-      if (!props.root) {
-        setQuery(prevQuery => ({ ...prevQuery, isTwitter: 'true' }))
-        return
-      }
-      setQuery(prevQuery => ({
-        ...prevQuery,
+  }
+  const commonParams = `${BLOG.ogImageGenerateURL}/${encodeURIComponent(
+    props.title
+  )}.png?`
+  if (props.twitter) {
+    if (!props.root) {
+      return (
+        commonParams +
+        convertObjToQueryString({
+          ...defaultParams,
+          isTwitter: 'true'
+        })
+      )
+    }
+    return (
+      commonParams +
+      convertObjToQueryString({
+        ...defaultParams,
         siteTitle: undefined,
         isTwitter: 'true'
-      }))
-      return
-    }
-    if (props.root) {
-      setQuery(prevQuery => ({ ...prevQuery, siteTitle: undefined }))
-    }
-  }, [props])
-
-  const queryString = useMemo(() => {
-    return (Object.keys(query) as OGImageKeys)
-      .filter(key => !!query[key])
-      .map(key => key + '=' + query[key])
-      .join('&')
-  }, [query])
-
-  return `${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-    props.title
-  )}.png?${queryString}`
+      })
+    )
+  }
+  if (props.root) {
+    return (
+      commonParams +
+      convertObjToQueryString({
+        ...defaultParams,
+        siteTitle: undefined
+      })
+    )
+  }
+  return commonParams + convertObjToQueryString(defaultParams)
 }
