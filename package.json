@@ -28,6 +28,7 @@
     "feed": "^4.2.2",
     "gitalk": "^1.7.2",
     "next": "^11.1.2",
+    "next-head-seo": "^0.1.2",
     "notion-client": "^4.9.10",
     "notion-types": "^4.8.2",
     "notion-utils": "^4.8.6",
