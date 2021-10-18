@@ -17,14 +17,18 @@ type GetOGImageUrlArgs = {
   twitter: boolean
 }
 
-const convertObjToQueryString = (query: OGImageQuery) => {
+const convertObjToQueryString = (query: OGImageQuery): string => {
   return (Object.keys(query) as OGImageKeys)
     .filter(key => !!query[key])
     .map(key => key + '=' + query[key])
     .join('&')
 }
 
-export const getOGImageURL = (props: GetOGImageUrlArgs): string => {
+export const getOGImageURL = ({
+  title,
+  twitter,
+  root
+}: GetOGImageUrlArgs): string => {
   const defaultParams: OGImageQuery = {
     md: '1',
     fontSize: '96px',
@@ -33,13 +37,13 @@ export const getOGImageURL = (props: GetOGImageUrlArgs): string => {
     siteTitle: encodeURIComponent(BLOG.title),
     isTwitter: undefined
   }
-  const commonParams = `${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-    props.title
+  const baseParams = `${BLOG.ogImageGenerateURL}/${encodeURIComponent(
+    title
   )}.png?`
-  if (props.twitter) {
-    if (!props.root) {
+  if (twitter) {
+    if (!root) {
       return (
-        commonParams +
+        baseParams +
         convertObjToQueryString({
           ...defaultParams,
           isTwitter: 'true'
@@ -47,7 +51,7 @@ export const getOGImageURL = (props: GetOGImageUrlArgs): string => {
       )
     }
     return (
-      commonParams +
+      baseParams +
       convertObjToQueryString({
         ...defaultParams,
         siteTitle: undefined,
@@ -55,14 +59,14 @@ export const getOGImageURL = (props: GetOGImageUrlArgs): string => {
       })
     )
   }
-  if (props.root) {
+  if (root) {
     return (
-      commonParams +
+      baseParams +
       convertObjToQueryString({
         ...defaultParams,
         siteTitle: undefined
       })
     )
   }
-  return commonParams + convertObjToQueryString(defaultParams)
+  return baseParams + convertObjToQueryString(defaultParams)
 }
