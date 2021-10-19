@@ -18,11 +18,11 @@ const BlogPost: React.VFC<Props> = ({ post }) => {
       <article key={post.id} className="mt-2 mb-6 md:mb-8 hover:opacity-80">
         <header className="flex flex-col md:flex-row justify-between md:items-baseline">
           <div className="flex">
-            <h2 className="mb-2 text-lg md:text-xl font-medium text-black dark:text-gray-100 cursor-pointer">
+            <h2 className="mb-2 text-lg md:text-xl font-bold text-black dark:text-white cursor-pointer">
               {post.title}
             </h2>
             {isOuterLink && (
-              <ExternalLinkIcon className="mt-[0.5px] mr-2 sm:mr-0 ml-1 w-5 min-w-[20px] h-5 text-indigo-400 dark:text-indigo-200" />
+              <ExternalLinkIcon className="mt-[0.5px] mr-2 sm:mr-0 ml-1 w-5 min-w-[20px] h-5 text-blue-300 dark:text-blue-300" />
             )}
           </div>
           <time className="flex-shrink-0 text-gray-600 dark:text-gray-400">

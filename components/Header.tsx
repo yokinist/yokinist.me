@@ -29,7 +29,7 @@ const NavBar: React.VFC = () => {
               <li
                 key={link.id}
                 className={classNames('block ml-4 text-black dark:text-gray-50 nav', {
-                  'border-b-2 border-indigo-400': link.to === activeNav,
+                  'border-b-2 border-blue-300': link.to === activeNav,
                 })}
               >
                 <Link href={link.to}>
@@ -78,7 +78,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
           'sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60',
           {
             'px-4 md:px-24': fullWidth,
-            'max-w-3xl px-4': !fullWidth,
+            'max-w-2xl px-4': !fullWidth,
           },
         )}
         id="sticky-nav"
