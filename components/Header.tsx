@@ -51,6 +51,7 @@ type HeaderProps = {
 const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
+  console.debug('hoge');
   const handler = useCallback(([entry]: IntersectionObserverEntry[]) => {
     if (navRef && navRef.current && !BLOG.autoCollapsedNavBar) {
       if (!entry.isIntersecting && entry !== undefined) {
@@ -62,13 +63,13 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
       navRef?.current?.classList.add('remove-sticky');
     }
   }, []);
-
   useEffect(() => {
     const obvserver = new window.IntersectionObserver(handler);
     if (sentinalRef?.current) obvserver.observe(sentinalRef.current);
-    return () => {
-      if (sentinalRef.current) obvserver.unobserve(sentinalRef.current);
-    };
+    // Don't touch this, I have no idea how it works XD
+    // return () => {
+    //   if (sentinalRef.current) obvserver.unobserve(sentinalRef.current);
+    // };
   }, [sentinalRef, handler]);
   return (
     <>
