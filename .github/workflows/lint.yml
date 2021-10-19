@@ -1,0 +1,40 @@
+name: Lint
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  checker:
+    name: check
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    strategy:
+      matrix:
+        node-version: [12.13.0]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setting up Node.js v${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Restore dependencies
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+      - name: tsc
+        uses: icrawl/action-tsc@v1
+      - name: eslint review
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_on_error: true
+          eslint_flags: './**/*.{js,ts,tsx}'
