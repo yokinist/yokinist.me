@@ -5,7 +5,7 @@ import { getOGImageURL } from '@/lib/getOGImageURL';
 import classNames from 'classnames';
 import NextHeadSeo from 'next-head-seo';
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // import BlogPost from './BlogPost'
 
@@ -29,21 +29,13 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
   const router = useRouter();
   const [customMetaTags, setCustomMetaTags] = useState<NextHeadSeoProps['customLinkTags']>([]);
 
-  const meta = useMemo(() => {
-    return {
-      title: BLOG.title,
-      type,
-      ...customMeta,
-    };
-  }, [customMeta, type]);
-
-  const root = useMemo(() => {
-    return router.pathname === (BLOG.path || '/');
-  }, [router]);
-
-  const siteUrl = useMemo(() => {
-    return meta.slug ? `${url}/${meta.slug}` : url;
-  }, [meta]);
+  const siteUrl = customMeta.slug ? `${url}/${customMeta.slug}` : url;
+  const root = router.pathname === (BLOG.path || '/');
+  const meta = {
+    title: BLOG.title,
+    type,
+    ...customMeta,
+  };
 
   useEffect(() => {
     if (type !== 'article' && meta) return;
@@ -59,7 +51,7 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
         },
       ),
     );
-  }, [type, meta]);
+  }, [type]);
 
   return (
     <div>

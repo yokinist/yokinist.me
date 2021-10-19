@@ -47,31 +47,28 @@ type HeaderProps = {
   navBarTitle: string | null;
   fullWidth?: boolean;
 };
+
 const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
-  const useSticky = !BLOG.autoCollapsedNavBar;
-  const handler = useCallback(
-    ([entry]: IntersectionObserverEntry[]) => {
-      if (navRef && navRef.current && useSticky) {
-        if (!entry.isIntersecting && entry !== undefined) {
-          navRef.current.classList.add('sticky-nav-full');
-        } else {
-          navRef.current.classList.remove('sticky-nav-full');
-        }
+  const handler = useCallback(([entry]: IntersectionObserverEntry[]) => {
+    if (navRef && navRef.current && !BLOG.autoCollapsedNavBar) {
+      if (!entry.isIntersecting && entry !== undefined) {
+        navRef.current.classList.add('sticky-nav-full');
       } else {
-        navRef?.current?.classList.add('remove-sticky');
+        navRef.current.classList.remove('sticky-nav-full');
       }
-    },
-    [useSticky],
-  );
+    } else {
+      navRef?.current?.classList.add('remove-sticky');
+    }
+  }, []);
+
   useEffect(() => {
     const obvserver = new window.IntersectionObserver(handler);
     if (sentinalRef?.current) obvserver.observe(sentinalRef.current);
-    // Don't touch this, I have no idea how it works XD
-    // return () => {
-    //   if (sentinalRef.current) obvserver.unobserve(sentinalRef.current)
-    // }
+    return () => {
+      if (sentinalRef.current) obvserver.unobserve(sentinalRef.current);
+    };
   }, [sentinalRef, handler]);
   return (
     <>
