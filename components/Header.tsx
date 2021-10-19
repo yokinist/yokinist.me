@@ -1,25 +1,25 @@
 import BLOG from '@/blog.config';
+import { fetchLocaleLang } from '@/lib/lang';
 import { useLocale } from '@/lib/locale';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
+
+const locale = fetchLocaleLang();
+const links = [
+  { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
+  { id: 1, name: locale.NAV.ABOUT, to: '/about', show: BLOG.showAbout },
+  { id: 2, name: locale.NAV.RSS, to: '/feed', show: true },
+];
 
 const NavBar: React.VFC = () => {
-  const locale = useLocale();
   const router = useRouter();
   const activeNav = useMemo(() => {
     if (router.asPath === links[1].to) return links[1].to;
     if (router.pathname === links[0].to || router.asPath.includes('tag')) return links[0].to;
     return null;
   }, [router]);
-
-  if (!locale) return null;
-  const links = [
-    { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
-    { id: 1, name: locale.NAV.ABOUT, to: '/about', show: BLOG.showAbout },
-    { id: 2, name: locale.NAV.RSS, to: '/feed', show: true },
-  ];
 
   return (
     <div className="flex-shrink-0">
@@ -52,7 +52,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
   const useSticky = !BLOG.autoCollapsedNavBar;
-  const handler = ([entry]: IntersectionObserverEntry[]) => {
+  const handler = useCallback(([entry]: IntersectionObserverEntry[]) => {
     if (navRef && navRef.current && useSticky) {
       if (!entry.isIntersecting && entry !== undefined) {
         navRef.current.classList.add('sticky-nav-full');
@@ -62,7 +62,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
     } else {
       navRef?.current?.classList.add('remove-sticky');
     }
-  };
+  }, []);
   useEffect(() => {
     const obvserver = new window.IntersectionObserver(handler);
     if (sentinalRef?.current) obvserver.observe(sentinalRef.current);
