@@ -1,24 +1,16 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext
-} from 'next/document'
-import BLOG from '@/blog.config'
-import CJK from '@/lib/cjk'
+import BLOG from '@/blog.config';
+import CJK from '@/lib/cjk';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
   }
 
   render() {
     return (
-      <Html
-        lang={BLOG.lang}
-        className={BLOG.appearance === 'dark' ? 'dark' : undefined}
-      >
+      <Html lang={BLOG.lang} className={BLOG.appearance === 'dark' ? 'dark' : undefined}>
         <Head>
           {BLOG.font && BLOG.font === 'serif' ? (
             <>
@@ -56,15 +48,9 @@ class MyDocument extends Document {
             </>
           )}
 
-          {['zh', 'ja', 'ko'].includes(
-            BLOG.lang.slice(0, 2).toLocaleLowerCase()
-          ) && (
+          {['zh', 'ja', 'ko'].includes(BLOG.lang.slice(0, 2).toLocaleLowerCase()) && (
             <>
-              <link
-                rel="preconnect"
-                href="https://fonts.gstatic.com"
-                crossOrigin="anonymous"
-              />
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
               <link
                 rel="preload"
                 as="style"
@@ -90,17 +76,8 @@ class MyDocument extends Document {
           )}
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
           <link rel="icon" href="/favicon.ico" />
-          <link
-            rel="apple-touch-icon"
-            sizes="192x192"
-            href="/apple-touch-icon.png"
-          />
-          <link
-            rel="alternate"
-            type="application/rss+xml"
-            title="RSS 2.0"
-            href="/feed"
-          />
+          <link rel="apple-touch-icon" sizes="192x192" href="/apple-touch-icon.png" />
+          <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed" />
           {BLOG.appearance === 'auto' ? (
             <>
               <meta
@@ -119,11 +96,7 @@ class MyDocument extends Document {
           ) : (
             <meta
               name="theme-color"
-              content={
-                BLOG.appearance === 'dark'
-                  ? BLOG.darkBackground
-                  : BLOG.lightBackground
-              }
+              content={BLOG.appearance === 'dark' ? BLOG.darkBackground : BLOG.lightBackground}
             />
           )}
         </Head>
@@ -132,8 +105,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;

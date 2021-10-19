@@ -1,19 +1,19 @@
-import { GetServerSideProps } from 'next'
-import { getAllPosts } from '@/lib/notion'
-import { generateRss } from '@/lib/rss'
+import { getAllPosts } from '@/lib/notion';
+import { generateRss } from '@/lib/rss';
+import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  res.setHeader('Content-Type', 'text/xml')
-  const posts = await getAllPosts({ includedPages: false })
-  const recentPublishPosts = posts.slice(0, 10)
-  const xmlFeed = generateRss(recentPublishPosts)
-  res.write(xmlFeed)
-  res.end()
+  res.setHeader('Content-Type', 'text/xml');
+  const posts = await getAllPosts({ includedPages: false });
+  const recentPublishPosts = posts.slice(0, 10);
+  const xmlFeed = generateRss(recentPublishPosts);
+  res.write(xmlFeed);
+  res.end();
   return {
-    props: {}
-  }
-}
+    props: {},
+  };
+};
 
-const feed = () => null
+const feed = () => null;
 
-export default feed
+export default feed;

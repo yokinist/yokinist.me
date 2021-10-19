@@ -6,8 +6,7 @@ const BLOG = {
   author: 'yokinist',
   email: 'yokinist@gmail.com',
   link: 'https://yokinist.me',
-  description:
-    '色々なことを雑多に書いていく場所。とりとめもないエッセイやポエム・趣味の話などなど。',
+  description: '色々なことを雑多に書いていく場所。とりとめもないエッセイやポエム・趣味の話などなど。',
   lang: 'ja-JP', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: 'dark', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']
@@ -26,7 +25,7 @@ const BLOG = {
   socialLink: 'https://twitter.com/yokinist',
   seo: {
     keywords: ['yokinist'],
-    googleSiteVerification: '' // Remove the value or replace it with your own google site verification code
+    googleSiteVerification: '', // Remove the value or replace it with your own google site verification code
   },
   notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS！！！
   notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
@@ -35,11 +34,11 @@ const BLOG = {
     ackeeConfig: {
       tracker: '', // e.g 'https://ackee.craigary.net/tracker.js'
       dataAckeeServer: '', // e.g https://ackee.craigary.net , don't end with a slash
-      domainId: '' // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
+      domainId: '', // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
     },
     gaConfig: {
-      measurementId: 'G-PJ2C55Q3CH' // e.g: G-XXXXXXXXXX
-    }
+      measurementId: 'G-PJ2C55Q3CH', // e.g: G-XXXXXXXXXX
+    },
   },
   comment: {
     // support provider: gitalk, utterances, cusdis
@@ -51,18 +50,18 @@ const BLOG = {
       clientSecret: process.env.GITALK_CLIENT_SECRET,
       admin: ['yokinist'],
       id: 'yokinist.me', // Ensure uniqueness and length less than 50
-      distractionFreeMode: false
+      distractionFreeMode: false,
     },
     utterancesConfig: {
-      repo: ''
+      repo: '',
     },
     cusdisConfig: {
       appId: '4c9aa1e3-623a-4773-a9ef-f345f484efe5', // data-app-id'
       host: 'https://cusdis.com', // data-host, change this if you're using self-hosted version
-      scriptSrc: 'https://cusdis.com/js/cusdis.es.js' // change this if you're using self-hosted version
-    }
+      scriptSrc: 'https://cusdis.com/js/cusdis.es.js', // change this if you're using self-hosted version
+    },
   },
-  isProd: process.env.VERCEL_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
-}
+  isProd: process.env.VERCEL_ENV === 'production', // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
+};
 // export default BLOG
-module.exports = BLOG
+module.exports = BLOG;

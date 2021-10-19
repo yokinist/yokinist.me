@@ -86,7 +86,6 @@ a.notion-link {
   @apply text-gray-500 dark:text-gray-400;
 }
 
-
 /* About ページの特定の画像のみ適応 */
 .notion-block-62c0327d49964498ad3188d9c0d169b3 > div > img {
   animation: fluid 24s ease 0s infinite;
@@ -99,25 +98,26 @@ a.notion-link {
 }
 
 @keyframes fluid {
-  0%, 100% {
-      border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+  0%,
+  100% {
+    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
   }
   14% {
-      border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
   }
   28% {
-      border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
   }
   42% {
-      border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
   }
   56% {
-      border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
   }
   70% {
-      border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
   }
   84% {
-      border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
   }
 }

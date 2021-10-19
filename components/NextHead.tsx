@@ -1,8 +1,8 @@
-import NextHeadSeo from 'next-head-seo'
+import NextHeadSeo from 'next-head-seo';
 
 type Props = {
   //
-}
+};
 
 export const NextHead: React.VFC<Props> = () => {
   return (
@@ -12,8 +12,8 @@ export const NextHead: React.VFC<Props> = () => {
       canonical="https://example.com/hello"
       og={{
         title: 'Open graph title',
-        image: 'https://example.com/og.png'
+        image: 'https://example.com/og.png',
       }}
     />
-  )
-}
+  );
+};

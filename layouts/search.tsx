@@ -1,45 +1,40 @@
-import { useState, useMemo } from 'react'
-import BlogPost from '@/components/BlogPost'
-import Tags from '@/components/Tags'
-import { Post, TagObj } from '@/types'
-import { useLocale } from '@/lib/locale'
+import BlogPost from '@/components/BlogPost';
+import Tags from '@/components/Tags';
+import { useLocale } from '@/lib/locale';
+import { Post, TagObj } from '@/types';
+import { useState, useMemo } from 'react';
 
 type Props = {
-  posts: Post[]
-  tags: TagObj
-  currentTag?: string
-}
+  posts: Post[];
+  tags: TagObj;
+  currentTag?: string;
+};
 
 const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
-  const [searchValue, setSearchValue] = useState('')
-  const locale = useLocale()
+  const [searchValue, setSearchValue] = useState('');
+  const locale = useLocale();
 
   const filteredBlogPosts = useMemo(() => {
     if (posts) {
-      return posts.filter(post => {
-        const tagContent = post.tags ? post.tags.join(' ') : ''
-        const searchContent =
-          post?.title ?? '' + post?.summary ?? '' + tagContent
-        return searchContent.toLowerCase().includes(searchValue.toLowerCase())
-      })
+      return posts.filter((post) => {
+        const tagContent = post.tags ? post.tags.join(' ') : '';
+        const searchContent = post?.title ?? '' + post?.summary ?? '' + tagContent;
+        return searchContent.toLowerCase().includes(searchValue.toLowerCase());
+      });
     }
-    return []
-  }, [posts, searchValue])
+    return [];
+  }, [posts, searchValue]);
 
-  if (!locale) return null
+  if (!locale) return null;
 
   return (
     <>
       <div className="relative">
         <input
           type="text"
-          placeholder={
-            currentTag
-              ? `${locale.POST.SEARCHIN} #${currentTag}`
-              : locale.POST.SEARCH
-          }
+          placeholder={currentTag ? `${locale.POST.SEARCHIN} #${currentTag}` : locale.POST.SEARCH}
           className="block w-full rounded-md border px-4 py-2 border-black bg-white text-black dark:bg-night dark:border-white dark:text-white"
-          onChange={e => setSearchValue(e.target.value)}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
         <svg
           className="absolute right-3 top-3 h-5 w-5 text-black dark:text-white"
@@ -58,17 +53,13 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
       </div>
       <Tags tags={tags} currentTag={currentTag} />
       <div className="article-container my-8">
-        {!filteredBlogPosts.length && (
-          <p className="text-gray-500 dark:text-gray-300">
-            {locale.POST.NOTFOUND}
-          </p>
-        )}
-        {filteredBlogPosts.slice(0, 20).map(post => (
+        {!filteredBlogPosts.length && <p className="text-gray-500 dark:text-gray-300">{locale.POST.NOTFOUND}</p>}
+        {filteredBlogPosts.slice(0, 20).map((post) => (
           <BlogPost key={post.id} post={post} />
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SearchLayout
+export default SearchLayout;

@@ -1,33 +1,14 @@
-import BLOG from '@/blog.config'
+import BLOG from '@/blog.config';
 
-const cusdisI18n = [
-  'ca',
-  'en',
-  'es',
-  'fi',
-  'fr',
-  'id',
-  'ja',
-  'oc',
-  'pt-br',
-  'tr',
-  'zh-cn',
-  'zh-tw'
-] as const
+const cusdisI18n = ['ca', 'en', 'es', 'fi', 'fr', 'id', 'ja', 'oc', 'pt-br', 'tr', 'zh-cn', 'zh-tw'] as const;
 
-const loweredLang = BLOG.lang.toLowerCase()
+const loweredLang = BLOG.lang.toLowerCase();
 
 export const fetchCusdisLang = (): null | typeof cusdisI18n[number] => {
-  if (BLOG.comment.provider !== 'cusdis') return null
+  if (BLOG.comment.provider !== 'cusdis') return null;
   if (loweredLang.startsWith('zh')) {
-    return (
-      cusdisI18n.find(i => loweredLang === i.toLocaleLowerCase()) ?? 'zh-cn'
-    )
+    return cusdisI18n.find((i) => loweredLang === i.toLocaleLowerCase()) ?? 'zh-cn';
   } else {
-    return (
-      cusdisI18n.find(i =>
-        BLOG.lang.toLowerCase().startsWith(i.toLowerCase())
-      ) ?? 'en'
-    )
+    return cusdisI18n.find((i) => BLOG.lang.toLowerCase().startsWith(i.toLowerCase())) ?? 'en';
   }
-}
+};

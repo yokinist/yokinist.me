@@ -1,22 +1,17 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { fetchTweetAst } from 'static-tweets'
+import { NextApiRequest, NextApiResponse } from 'next';
+import { fetchTweetAst } from 'static-tweets';
 
-export default async (
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<void> => {
+export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method !== 'GET') {
-    return res.status(405).send({ error: 'method not allowed' })
+    return res.status(405).send({ error: 'method not allowed' });
   }
 
-  const tweetId = req.query.tweetId as string
-  console.debug(tweetId)
+  const tweetId = req.query.tweetId as string;
+  console.debug(tweetId);
 
   if (!tweetId) {
-    return res
-      .status(400)
-      .send({ error: 'missing required parameter "tweetId"' })
+    return res.status(400).send({ error: 'missing required parameter "tweetId"' });
   }
-  const tweetAst = await fetchTweetAst(tweetId)
-  res.status(200).json(tweetAst)
-}
+  const tweetAst = await fetchTweetAst(tweetId);
+  res.status(200).json(tweetAst);
+};

@@ -1,38 +1,38 @@
-import { fetchCusdisLang } from '@/lib/cusdisLang'
-import BLOG from '@/blog.config'
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
-import 'gitalk/dist/gitalk.css'
-import type { ReactCusdis as ReactCusdisType } from 'react-cusdis'
-import { Post } from '@/types'
+import BLOG from '@/blog.config';
+import { fetchCusdisLang } from '@/lib/cusdisLang';
+import { Post } from '@/types';
+import 'gitalk/dist/gitalk.css';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import type { ReactCusdis as ReactCusdisType } from 'react-cusdis';
 
 const GitalkComponent = dynamic(
   () => {
-    return import('@/components/CustomGitalk')
+    return import('@/components/CustomGitalk');
   },
-  { ssr: false }
-)
+  { ssr: false },
+);
 
 const UtterancesComponent = dynamic(
   () => {
-    return import('@/components/Utterances')
+    return import('@/components/Utterances');
   },
-  { ssr: false }
-)
+  { ssr: false },
+);
 
 const CusdisComponent = dynamic(
   () => {
-    return import('react-cusdis').then(m => m.ReactCusdis)
+    return import('react-cusdis').then((m) => m.ReactCusdis);
   },
-  { ssr: false }
-) as typeof ReactCusdisType
+  { ssr: false },
+) as typeof ReactCusdisType;
 
 type Props = {
-  post: Post
-}
+  post: Post;
+};
 
 const Comments: React.VFC<Props> = ({ post }) => {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div>
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
@@ -45,13 +45,11 @@ const Comments: React.VFC<Props> = ({ post }) => {
             repo: BLOG.comment.gitalkConfig.repo,
             owner: BLOG.comment.gitalkConfig.owner,
             admin: BLOG.comment.gitalkConfig.admin,
-            distractionFreeMode: BLOG.comment.gitalkConfig.distractionFreeMode
+            distractionFreeMode: BLOG.comment.gitalkConfig.distractionFreeMode,
           }}
         />
       )}
-      {BLOG.comment && BLOG.comment.provider === 'utterances' && (
-        <UtterancesComponent issueTerm={post.id} />
-      )}
+      {BLOG.comment && BLOG.comment.provider === 'utterances' && <UtterancesComponent issueTerm={post.id} />}
       {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
         <CusdisComponent
           lang={fetchCusdisLang() ?? 'en'}
@@ -61,12 +59,12 @@ const Comments: React.VFC<Props> = ({ post }) => {
             pageId: post.id,
             pageTitle: post.title,
             pageUrl: BLOG.link + router.asPath,
-            theme: BLOG.appearance
+            theme: BLOG.appearance,
           }}
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Comments
+export default Comments;

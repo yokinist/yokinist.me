@@ -1,16 +1,16 @@
-import Link from 'next/link'
-import BLOG from '@/blog.config'
-import formatDate from '@/lib/formatDate'
-import { Post } from '@/types'
-import { ExternalLinkIcon } from '@heroicons/react/outline'
+import BLOG from '@/blog.config';
+import formatDate from '@/lib/formatDate';
+import { Post } from '@/types';
+import Link from 'next/link';
+import { ExternalLinkIcon } from '@heroicons/react/outline';
 
 type Props = {
-  post: Post
-}
+  post: Post;
+};
 
 type RenderBlogPostArg = {
-  isOuterLink: boolean
-}
+  isOuterLink: boolean;
+};
 
 const BlogPost: React.VFC<Props> = ({ post }) => {
   const renderBlogPost = ({ isOuterLink }: RenderBlogPostArg) => {
@@ -30,28 +30,21 @@ const BlogPost: React.VFC<Props> = ({ post }) => {
           </time>
         </header>
         <main>
-          <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300">
-            {post.summary}
-          </p>
+          <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300">{post.summary}</p>
         </main>
       </article>
-    )
-  }
+    );
+  };
 
   return post?.outer_link ? (
-    <a
-      href={post.outer_link}
-      target="_blank"
-      rel="noreferrer noopener"
-      aria-label="outer-link"
-    >
+    <a href={post.outer_link} target="_blank" rel="noreferrer noopener" aria-label="outer-link">
       {renderBlogPost({ isOuterLink: true })}
     </a>
   ) : (
     <Link href={`${BLOG.path}/${post.slug}`}>
       <a>{renderBlogPost({ isOuterLink: false })}</a>
     </Link>
-  )
-}
+  );
+};
 
-export default BlogPost
+export default BlogPost;

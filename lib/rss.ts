@@ -1,9 +1,9 @@
-import { Feed } from 'feed'
-import BLOG from '@/blog.config'
-import { Post } from '@/types'
+import BLOG from '@/blog.config';
+import { Post } from '@/types';
+import { Feed } from 'feed';
 
 export function generateRss(posts: Post[]) {
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
   const feed = new Feed({
     title: BLOG.title,
     description: BLOG.description,
@@ -15,17 +15,17 @@ export function generateRss(posts: Post[]) {
     author: {
       name: BLOG.author,
       email: BLOG.email,
-      link: BLOG.link
-    }
-  })
-  posts.forEach(post => {
+      link: BLOG.link,
+    },
+  });
+  posts.forEach((post) => {
     feed.addItem({
       title: post?.title ?? '',
       id: `${BLOG.link}/${post.slug}`,
       link: `${BLOG.link}/${post.slug}`,
       description: post.summary,
-      date: new Date(post?.date?.start_date || post.createdTime)
-    })
-  })
-  return feed.rss2()
+      date: new Date(post?.date?.start_date || post.createdTime),
+    });
+  });
+  return feed.rss2();
 }

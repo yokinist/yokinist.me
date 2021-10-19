@@ -1,30 +1,28 @@
-import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
-import { filterPublishedPosts, getAllPosts, getAllTags } from '@/lib/notion'
-import Container from '@/components/Container'
-import SearchLayout from '@/layouts/search'
-import { getProfilePost } from '@/lib/notion/getProfilePost'
-import BLOG from '@/blog.config'
-import { createHash } from 'crypto'
-import Profile from '@/components/Profile'
+import BLOG from '@/blog.config';
+import Container from '@/components/Container';
+import Profile from '@/components/Profile';
+import SearchLayout from '@/layouts/search';
+import { filterPublishedPosts, getAllPosts, getAllTags } from '@/lib/notion';
+import { getProfilePost } from '@/lib/notion/getProfilePost';
+import { createHash } from 'crypto';
+import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const currentTag = params?.tag
+  const currentTag = params?.tag;
   if (typeof currentTag !== 'string') {
     return {
-      notFound: true
-    }
+      notFound: true,
+    };
   }
-  const allPosts = await getAllPosts({ includedPages: true })
-  const profilePostData = await getProfilePost(allPosts)
-  const emailHash = createHash('md5').update(BLOG.email).digest('hex')
+  const allPosts = await getAllPosts({ includedPages: true });
+  const profilePostData = await getProfilePost(allPosts);
+  const emailHash = createHash('md5').update(BLOG.email).digest('hex');
   const posts = filterPublishedPosts({
     posts: allPosts,
-    includedPages: false
-  })
-  const tags = getAllTags({ posts })
-  const filteredPosts = posts.filter(
-    post => post && post.tags && post.tags.includes(currentTag)
-  )
+    includedPages: false,
+  });
+  const tags = getAllTags({ posts });
+  const filteredPosts = posts.filter((post) => post && post.tags && post.tags.includes(currentTag));
   return {
     props: {
       tags,
@@ -32,40 +30,30 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       currentTag,
       post: profilePostData.post,
       blockMap: profilePostData.blockMap,
-      emailHash
+      emailHash,
     },
-    revalidate: 1
-  }
-}
+    revalidate: 1,
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts({ includedPages: false })
-  const tags = getAllTags({ posts })
+  const posts = await getAllPosts({ includedPages: false });
+  const tags = getAllTags({ posts });
   return {
-    paths: Object.keys(tags).map(tag => ({ params: { tag } })),
-    fallback: true
-  }
-}
+    paths: Object.keys(tags).map((tag) => ({ params: { tag } })),
+    fallback: true,
+  };
+};
 
-type Props = React.ComponentProps<typeof SearchLayout> &
-  Omit<React.ComponentProps<typeof Profile>, 'fullWidth'>
+type Props = React.ComponentProps<typeof SearchLayout> & Omit<React.ComponentProps<typeof Profile>, 'fullWidth'>;
 
-const TagPage: NextPage<Props> = ({
-  tags,
-  posts,
-  currentTag,
-  post,
-  blockMap,
-  emailHash
-}) => {
+const TagPage: NextPage<Props> = ({ tags, posts, currentTag, post, blockMap, emailHash }) => {
   return (
     <Container title={currentTag}>
-      {post && blockMap && (
-        <Profile blockMap={blockMap} post={post} emailHash={emailHash} />
-      )}
+      {post && blockMap && <Profile blockMap={blockMap} post={post} emailHash={emailHash} />}
       <SearchLayout tags={tags} posts={posts} currentTag={currentTag} />
     </Container>
-  )
-}
+  );
+};
 
-export default TagPage
+export default TagPage;
