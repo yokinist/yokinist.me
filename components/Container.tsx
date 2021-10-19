@@ -25,7 +25,7 @@ type Props = {
 
 const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link;
 
-const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ...customMeta }) => {
+const Container: React.VFC<Props> = ({ children, fullWidth, ...meta }) => {
   const router = useRouter();
   const [customMetaTags, setCustomMetaTags] = useState<NextHeadSeoProps['customLinkTags']>([]);
   const [alreadySet, setAlreadySet] = useState<boolean>(false);
@@ -34,20 +34,16 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
     return router.pathname === (BLOG.path || '/');
   }, [router]);
 
-  const meta = useMemo(() => {
-    return {
-      title: BLOG.title,
-      type,
-      ...customMeta,
-    };
-  }, [customMeta]);
-
   const siteUrl = useMemo(() => {
-    return customMeta.slug ? `${url}/${customMeta.slug}` : url;
-  }, [customMeta]);
+    return meta.slug ? `${url}/${meta.slug}` : url;
+  }, [meta]);
+
+  const siteTitle = useMemo(() => {
+    return meta.title ?? BLOG.title;
+  }, [meta]);
 
   useEffect(() => {
-    if (alreadySet || type !== 'article' || !meta) return;
+    if (alreadySet || meta.type !== 'article' || !meta) return;
     setCustomMetaTags((prevCustomMetaTags) =>
       (prevCustomMetaTags ?? []).concat(
         {
@@ -61,7 +57,7 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
       ),
     );
     setAlreadySet(true);
-  }, [alreadySet, meta, type]);
+  }, [alreadySet, meta]);
 
   return (
     <div>
@@ -74,10 +70,10 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
           title: meta.title,
           url: siteUrl,
           // locale: BLog.lang,
-          type: meta.type,
+          type: meta.type ?? 'website',
           description: meta.description,
           image: getOGImageURL({
-            title: meta.title,
+            title: siteTitle,
             root,
             twitter: false,
           }),
@@ -101,7 +97,7 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
           {
             property: 'twitter:image',
             content: getOGImageURL({
-              title: meta.title,
+              title: siteTitle,
               root,
               twitter: true,
             }),
@@ -118,7 +114,7 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
           'font-sans': BLOG.font !== 'serif',
         })}
       >
-        <Header navBarTitle={meta.title} fullWidth={fullWidth} />
+        <Header navBarTitle={siteTitle} fullWidth={fullWidth} />
         <main
           className={classNames('m-auto flex-grow w-full transition-all', {
             'px-4 md:px-24': fullWidth,
