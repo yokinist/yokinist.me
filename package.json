@@ -12,7 +12,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "eslint": "eslint --fix",
     "eslint:fix": "eslint --fix",
     "eslint:check": "eslint",
     "tsc": "tsc --noEmit -p tsconfig.json",
