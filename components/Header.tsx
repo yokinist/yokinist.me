@@ -51,7 +51,6 @@ type HeaderProps = {
 const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
-  console.debug('hoge');
   const handler = useCallback(([entry]: IntersectionObserverEntry[]) => {
     if (navRef && navRef.current && !BLOG.autoCollapsedNavBar) {
       if (!entry.isIntersecting && entry !== undefined) {
@@ -73,7 +72,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   }, [sentinalRef, handler]);
   return (
     <>
-      <div className="h-4 md:h-12 observer-element" ref={sentinalRef}></div>
+      <div className="h-4 md:h-12" ref={sentinalRef}></div>
       <div
         className={classNames(
           'sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60',
