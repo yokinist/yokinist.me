@@ -7,7 +7,7 @@ type Props = {
 const TagItem: React.VFC<Props> = ({ tag }) => (
   <Link href={`/tag/${encodeURIComponent(tag)}`}>
     <a>
-      <p className="mr-1 rounded-full px-2 py-1 border leading-none text-sm dark:border-gray-600">{tag}</p>
+      <p className="py-1 px-2 mr-1 text-sm leading-none rounded-full border dark:border-gray-600">{tag}</p>
     </a>
   </Link>
 );

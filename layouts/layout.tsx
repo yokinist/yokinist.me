@@ -34,9 +34,9 @@ const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth 
 
   const renderContents = () => (
     <article>
-      <h1 className="font-bold text-3xl text-black dark:text-white">{post.title}</h1>
+      <h1 className="text-3xl font-bold text-black dark:text-white">{post.title}</h1>
       {post?.type?.[0] !== 'Page' && (
-        <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
+        <nav className="flex items-start mt-7 text-gray-500 dark:text-gray-400">
           <div className="flex mb-4">
             <a href={BLOG.socialLink || '#'} className="flex">
               <Image
@@ -46,13 +46,13 @@ const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth 
                 src={`https://gravatar.com/avatar/${emailHash}`}
                 className="rounded-full"
               />
-              <p className="ml-2 md:block">{BLOG.author}</p>
+              <p className="md:block ml-2">{BLOG.author}</p>
             </a>
             <span className="block">&nbsp;/&nbsp;</span>
           </div>
           <div className="mr-2 mb-4 md:ml-0">{formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}</div>
           {post.tags && (
-            <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
+            <div className="flex overflow-x-auto flex-nowrap max-w-full article-tags">
               {post.tags.map((tag) => (
                 <TagItem key={tag} tag={tag} />
               ))}
@@ -95,13 +95,13 @@ const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth 
       >
         <button
           onClick={() => router.push(BLOG.path || '/')}
-          className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
+          className="mt-2 hover:text-black dark:hover:text-gray-100 cursor-pointer"
         >
           ← {locale?.POST.BACK}
         </button>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
+          className="mt-2 hover:text-black dark:hover:text-gray-100 cursor-pointer"
         >
           ↑ {locale?.POST.TOP}
         </button>

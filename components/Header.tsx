@@ -75,7 +75,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   }, [sentinalRef, handler]);
   return (
     <>
-      <div className="observer-element h-4 md:h-12" ref={sentinalRef}></div>
+      <div className="h-4 md:h-12 observer-element" ref={sentinalRef}></div>
       <div
         className={classNames(
           'sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60',
@@ -92,7 +92,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
             <a aria-label={BLOG.title}>
               <div className="h-6">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="24" height="24" className="fill-current text-black dark:text-white" />
+                  <rect width="24" height="24" className="text-black dark:text-white fill-current" />
                   <rect width="24" height="24" fill="url(#paint0_radial)" />
                   <defs>
                     <radialGradient
