@@ -30,7 +30,7 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
   return (
     <>
       <Tags tags={tags} currentTag={currentTag} />
-      <div className="relative">
+      {/* <div className="relative">
         <input
           type="text"
           placeholder={currentTag ? `${locale.POST.SEARCHIN} #${currentTag}` : locale.POST.SEARCH}
@@ -51,8 +51,8 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
           ></path>
         </svg>
-      </div>
-      <div className="my-8 article-container">
+      </div> */}
+      <div className="my-4 article-container">
         {!filteredBlogPosts.length && <p className="text-gray-500 dark:text-gray-300">{locale.POST.NOTFOUND}</p>}
         {filteredBlogPosts.slice(0, 20).map((post) => (
           <BlogPost key={post.id} post={post} />
