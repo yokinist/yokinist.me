@@ -2,11 +2,12 @@
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ['gravatar.com', 'pbs.twimg.com']
+    domains: ['gravatar.com', 'pbs.twimg.com'],
   },
   eslint: {
-    dirs: ['components', 'layouts', 'lib', 'pages']
+    dirs: ['components', 'layouts', 'lib', 'pages'],
   },
   async headers() {
     return [
@@ -15,11 +16,11 @@ const nextConfig = {
         headers: [
           {
             key: 'Permissions-Policy',
-            value: 'interest-cohort=()'
-          }
-        ]
-      }
-    ]
+            value: 'interest-cohort=()',
+          },
+        ],
+      },
+    ];
   },
   webpack: (config, { dev, isServer }) => {
     // Replace React with Preact only in client production build
@@ -27,11 +28,11 @@ const nextConfig = {
       Object.assign(config.resolve.alias, {
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat'
-      })
+        'react-dom': 'preact/compat',
+      });
     }
-    return config
-  }
-}
+    return config;
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
