@@ -10,7 +10,8 @@ type Props = {
 const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
   if (!tags) return null;
   return (
-    <div className="tag-container">
+    <div className="flex items-center tag-container">
+      <span className="block min-w-max font-bold text-gray-200">🔖 ：</span>
       <ul className="flex overflow-x-auto mt-4 max-w-full">
         {Object.keys(tags).map((key) => {
           const selected = key === currentTag;
