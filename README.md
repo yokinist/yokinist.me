@@ -47,8 +47,9 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 - The source code is written in TypeScript
 
 ## Quick Start
+
 - Star this repo 😉
-- Duplicate [this Notion template](https://www.notion.so/68be9021bca34b8e89f0246f27e608df), and share it to the public
+- Duplicate [this Notion template](https://yokinist.notion.site/761c04c4ff6e467188fe67c8a36e20b9?v=0643f1ef640642fbb84032202708336f), and share it to the public
 - [Fork](https://github.com/yokinist/yokinist.me/fork) this project
 - Customize `blog.config.js`
 - _(Optional)_ Replace `favicon.svg`, and `favicon.ico` in `/public` folder with your own
@@ -61,6 +62,7 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 </details>
 
 ## Getting started in developing
+
 - Once you have set the environment variables in the Vercel dashboard, run the following
   - `vercel env pull` (with [Vercel CLI](https://vercel.com/cli))
   - or `vi .env.local` -> `NOTION_PAGE_ID=YOUR_NOTION_PAGE_ID`
@@ -110,6 +112,7 @@ Check out our roadmap [here](https://www.notion.so/craigary/Public-Roadmap-3cfc4
 </tr></table>
 
 [Contributors](https://github.com/craigary/nobelium#contributors)
+
 ## License
 
 The MIT License.
