@@ -1,6 +1,5 @@
 import BLOG from '@/blog.config';
 import { fetchLocaleLang } from '@/lib/lang';
-import { useLocale } from '@/lib/locale';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -52,17 +51,20 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
   const useSticky = !BLOG.autoCollapsedNavBar;
-  const handler = useCallback(([entry]: IntersectionObserverEntry[]) => {
-    if (navRef && navRef.current && useSticky) {
-      if (!entry.isIntersecting && entry !== undefined) {
-        navRef.current.classList.add('sticky-nav-full');
+  const handler = useCallback(
+    ([entry]: IntersectionObserverEntry[]) => {
+      if (navRef && navRef.current && useSticky) {
+        if (!entry.isIntersecting && entry !== undefined) {
+          navRef.current.classList.add('sticky-nav-full');
+        } else {
+          navRef.current.classList.remove('sticky-nav-full');
+        }
       } else {
-        navRef.current.classList.remove('sticky-nav-full');
+        navRef?.current?.classList.add('remove-sticky');
       }
-    } else {
-      navRef?.current?.classList.add('remove-sticky');
-    }
-  }, []);
+    },
+    [useSticky],
+  );
   useEffect(() => {
     const obvserver = new window.IntersectionObserver(handler);
     if (sentinalRef?.current) obvserver.observe(sentinalRef.current);
@@ -70,7 +72,7 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
     // return () => {
     //   if (sentinalRef.current) obvserver.unobserve(sentinalRef.current)
     // }
-  }, [sentinalRef]);
+  }, [sentinalRef, handler]);
   return (
     <>
       <div className="observer-element h-4 md:h-12" ref={sentinalRef}></div>

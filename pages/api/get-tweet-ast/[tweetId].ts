@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { fetchTweetAst } from 'static-tweets';
 
-export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+const getTweet = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method !== 'GET') {
     return res.status(405).send({ error: 'method not allowed' });
   }
@@ -15,3 +15,5 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
   const tweetAst = await fetchTweetAst(tweetId);
   res.status(200).json(tweetAst);
 };
+
+export default getTweet;

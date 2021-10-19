@@ -27,29 +27,15 @@ const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link;
 
 const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ...customMeta }) => {
   const router = useRouter();
-  const [customMetaTags, setCustomMetaTags] = useState<NextHeadSeoProps['customLinkTags']>([
-    {
-      charSet: 'UTF-8',
-    },
-    {
-      property: 'og:locale',
-      content: BLOG.lang,
-    },
-    {
-      name: 'google-site-verification',
-      content: BLOG.seo.googleSiteVerification,
-    },
-    {
-      name: 'keywords',
-      content: BLOG.seo.keywords.join(', '),
-    },
-  ]);
+  const [customMetaTags, setCustomMetaTags] = useState<NextHeadSeoProps['customLinkTags']>([]);
 
-  const meta = {
-    title: BLOG.title,
-    type,
-    ...customMeta,
-  };
+  const meta = useMemo(() => {
+    return {
+      title: BLOG.title,
+      type,
+      ...customMeta,
+    };
+  }, [customMeta, type]);
 
   const root = useMemo(() => {
     return router.pathname === (BLOG.path || '/');
@@ -60,7 +46,7 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
   }, [meta]);
 
   useEffect(() => {
-    if (type !== 'article') return;
+    if (type !== 'article' && meta) return;
     setCustomMetaTags((prevCustomMetaTags) =>
       (prevCustomMetaTags ?? []).concat(
         {
@@ -73,7 +59,7 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
         },
       ),
     );
-  }, [type]);
+  }, [type, meta]);
 
   return (
     <div>
@@ -94,14 +80,31 @@ const Container: React.VFC<Props> = ({ children, fullWidth, type = 'website', ..
             twitter: false,
           }),
         }}
-        customMetaTags={(customMetaTags ?? []).concat({
-          property: 'twitter:image',
-          content: getOGImageURL({
-            title: meta.title,
-            root,
-            twitter: true,
-          }),
-        })}
+        customMetaTags={(customMetaTags ?? []).concat(
+          {
+            charSet: 'UTF-8',
+          },
+          {
+            property: 'og:locale',
+            content: BLOG.lang,
+          },
+          {
+            name: 'google-site-verification',
+            content: BLOG.seo.googleSiteVerification,
+          },
+          {
+            name: 'keywords',
+            content: BLOG.seo.keywords.join(', '),
+          },
+          {
+            property: 'twitter:image',
+            content: getOGImageURL({
+              title: meta.title,
+              root,
+              twitter: true,
+            }),
+          },
+        )}
         twitter={{
           card: 'summary_large_image',
           site: '@yokinist',
