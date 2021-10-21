@@ -10,7 +10,7 @@ import 'gitalk/dist/gitalk.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps';
-import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x';
+import { NotionRenderer, Equation, Code, CollectionRow, Collection } from 'react-notion-x';
 import type { Tweet } from 'react-static-tweets';
 
 const enableCommentArea = BLOG.comment.provider !== '';
@@ -67,6 +67,7 @@ const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth 
             components={{
               equation: Equation,
               code: Code,
+              collection: Collection,
               collectionRow: CollectionRow,
               tweet: tweet,
             }}

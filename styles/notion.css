@@ -74,6 +74,18 @@ pre[class*='language-'] {
 .notion-collection-row {
   @apply hidden;
 }
+.notion-collection {
+  @apply max-w-full;
+}
+.notion-collection > .notion-collection-header {
+  @apply px-0 !important;
+}
+.notion-collection > .notion-table {
+  @apply max-w-full !important;
+}
+.notion-collection > .notion-table > .notion-table-view {
+  @apply px-0 !important;
+}
 a.notion-link {
   @apply underline dark:text-blue-300;
 }
