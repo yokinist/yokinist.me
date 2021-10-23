@@ -22,7 +22,7 @@ export type Post = {
   type?: [PostType];
 };
 
-export type TagObj = { [key: string]: 1 };
+export type TagObj = { [key: string]: number };
 
 export type BlogConfig = {
   title: string;

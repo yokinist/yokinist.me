@@ -1,8 +1,9 @@
 import { getTagDataBySlug, TagSlug } from '@/lib/tags';
 import { TagObj } from '@/types';
 import classNames from 'classnames';
+import { Twemoji } from 'components/Twemoji';
 import Link from 'next/link';
-import { Twemoji } from './Twemoji';
+import { TagTabItem } from './TagTabItem';
 
 type Props = {
   tags: TagObj;
@@ -14,40 +15,9 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
   return (
     <div className="flex items-center tag-container">
       <ul className="flex overflow-x-auto mt-4 max-w-full">
-        <li
-          className={classNames('mr-3 font-bold whitespace-nowrap rounded-lg', {
-            'text-gray-400  border-gray-100 dark:border-gray-700': currentTag,
-            'bg-gray-200 text-gray-700': !currentTag,
-          })}
-        >
-          <Link href={'/'} scroll={false}>
-            <a className="flex items-center py-2 px-4">
-              <Twemoji emoji={'🌴'} size={20} />
-              <span className="ml-3">All</span>
-            </a>
-          </Link>
-        </li>
+        <TagTabItem tagKey="all" selected={!currentTag} root />
         {Object.keys(tags).map((key) => {
-          const castKey = key as TagSlug;
-          const selected = key === currentTag;
-          const emoji = getTagDataBySlug(castKey)?.emoji;
-          const tagName = getTagDataBySlug(castKey)?.name ?? castKey;
-          return (
-            <li
-              key={key}
-              className={classNames('mr-3 font-bold whitespace-nowrap rounded-lg', {
-                'text-gray-400  border-gray-100 dark:border-gray-700': !selected,
-                'bg-gray-200 text-gray-700': selected,
-              })}
-            >
-              <Link href={selected ? '/' : `/tag/${encodeURIComponent(key)}`} scroll={false}>
-                <a className="flex items-center py-2 px-4">
-                  {emoji && <Twemoji emoji={emoji} size={20} />}
-                  <span className="ml-3">{`${tagName} (${tags[castKey]})`}</span>
-                </a>
-              </Link>
-            </li>
-          );
+          return <TagTabItem key={key} tagKey={key} selected={key === currentTag} count={tags[key]} />;
         })}
       </ul>
     </div>

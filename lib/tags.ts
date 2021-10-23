@@ -1,6 +1,7 @@
 import { ValueOf } from 'lib/types';
 
 const TAG_SLUGS = {
+  All: 'all',
   Tech: 'tech',
   Update: 'update',
   Playlist: 'playlist',
@@ -53,6 +54,11 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     name: 'プロダクト開発',
     emoji: '🛠',
     slug: TAG_SLUGS.ProductDev,
+  },
+  [TAG_SLUGS.All]: {
+    name: 'All',
+    emoji: '🌴',
+    slug: TAG_SLUGS.All,
   },
 } as const;
 
