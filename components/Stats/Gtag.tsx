@@ -15,4 +15,5 @@ const Gtag: React.VFC = () => {
   }, [router.events]);
   return null;
 };
+
 export default Gtag;

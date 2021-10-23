@@ -1,5 +1,5 @@
-import BlogPost from '@/components/BlogPost';
-import Tags from '@/components/Tags';
+import { BlogPost } from '@/components';
+import { Tags } from '@/components/Tag';
 import { useLocale } from '@/lib/locale';
 import { getTagDataBySlug, TagSlug } from '@/lib/tags';
 import { Post, TagObj } from '@/types';

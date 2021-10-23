@@ -60,7 +60,7 @@ type HeaderProps = {
   fullWidth?: boolean;
 };
 
-const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
+export const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
   const handler = useCallback(([entry]: IntersectionObserverEntry[]) => {
@@ -133,5 +133,3 @@ const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
     </>
   );
 };
-
-export default Header;

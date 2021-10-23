@@ -12,7 +12,7 @@ type RenderBlogPostArg = {
   isOuterLink: boolean;
 };
 
-const BlogPost: React.VFC<Props> = ({ post }) => {
+export const BlogPost: React.VFC<Props> = ({ post }) => {
   const renderBlogPost = ({ isOuterLink }: RenderBlogPostArg) => {
     return (
       <article key={post.id} className="mt-2 mb-6 md:mb-8 hover:opacity-80">
@@ -46,5 +46,3 @@ const BlogPost: React.VFC<Props> = ({ post }) => {
     </Link>
   );
 };
-
-export default BlogPost;

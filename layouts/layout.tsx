@@ -1,7 +1,7 @@
 import BLOG from '@/blog.config';
-import Comment from '@/components/Comment';
-import Container from '@/components/Container';
-import TagItem from '@/components/TagItem';
+import { Container } from '@/components';
+import { Comments } from '@/components/Comment';
+import { TagItem } from '@/components/Tag';
 import formatDate from '@/lib/formatDate';
 import { useLocale } from '@/lib/locale';
 import { Post } from '@/types';
@@ -110,7 +110,7 @@ const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth 
           ↑ {locale?.POST.TOP}
         </button>
       </div>
-      <Comment post={post} />
+      <Comments post={post} />
     </Container>
   );
 };

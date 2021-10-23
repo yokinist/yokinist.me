@@ -1,7 +1,7 @@
 import BLOG from '@/blog.config';
 import Script from 'next/script';
 
-const Scripts: React.VFC = () => (
+export const Scripts: React.VFC = () => (
   <>
     {BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
       <Script
@@ -25,5 +25,3 @@ const Scripts: React.VFC = () => (
     )}
   </>
 );
-
-export default Scripts;

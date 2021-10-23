@@ -27,5 +27,3 @@ export const TagItem: React.VFC<Props> = ({ tag }) => {
     </Link>
   );
 };
-
-export default TagItem;

@@ -1,7 +1,5 @@
 import BLOG from '@/blog.config';
-import BlogPost from '@/components/BlogPost';
-import Container from '@/components/Container';
-import Pagination from '@/components/Pagination';
+import { Pagination, Container, BlogPost } from '@/components';
 import { getAllPosts } from '@/lib/notion';
 import parseSafeNumber from '@/lib/parseSafeNumber';
 import { Post } from '@/types';

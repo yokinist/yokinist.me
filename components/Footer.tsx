@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 type Props = { fullWidth?: boolean };
 
-const Footer: React.VFC<Props> = ({ fullWidth }) => {
+export const Footer: React.VFC<Props> = ({ fullWidth }) => {
   const d = new Date();
   const y = d.getFullYear();
   const from = +BLOG.since;
@@ -27,5 +27,3 @@ const Footer: React.VFC<Props> = ({ fullWidth }) => {
     </div>
   );
 };
-
-export default Footer;

@@ -6,7 +6,8 @@ type Props = {
   page: number;
   showNext: boolean;
 };
-const Pagination: React.VFC<Props> = ({ page, showNext }) => {
+
+export const Pagination: React.VFC<Props> = ({ page, showNext }) => {
   const locale = useLocale();
   if (!locale) return null;
   const currentPage = +page;
@@ -32,5 +33,3 @@ const Pagination: React.VFC<Props> = ({ page, showNext }) => {
     </div>
   );
 };
-
-export default Pagination;

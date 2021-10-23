@@ -8,14 +8,14 @@ import type { ReactCusdis as ReactCusdisType } from 'react-cusdis';
 
 const GitalkComponent = dynamic(
   () => {
-    return import('@/components/CustomGitalk');
+    return import('@/components/Comment/CustomGitalk');
   },
   { ssr: false },
 );
 
 const UtterancesComponent = dynamic(
   () => {
-    return import('@/components/Utterances');
+    return import('@/components/Comment/Utterances');
   },
   { ssr: false },
 );
@@ -31,7 +31,7 @@ type Props = {
   post: Post;
 };
 
-const Comments: React.VFC<Props> = ({ post }) => {
+export const Comments: React.VFC<Props> = ({ post }) => {
   const router = useRouter();
   return (
     <div>
@@ -66,5 +66,3 @@ const Comments: React.VFC<Props> = ({ post }) => {
     </div>
   );
 };
-
-export default Comments;

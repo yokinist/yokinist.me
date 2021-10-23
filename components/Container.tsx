@@ -1,6 +1,5 @@
 import BLOG from '@/blog.config';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import { Footer, Header } from '@/components';
 import { getOGImageURL } from '@/lib/getOGImageURL';
 import classNames from 'classnames';
 import NextHeadSeo from 'next-head-seo';
@@ -25,7 +24,7 @@ type Props = {
 
 const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link;
 
-const Container: React.VFC<Props> = ({ children, fullWidth, ...meta }) => {
+export const Container: React.VFC<Props> = ({ children, fullWidth, ...meta }) => {
   const router = useRouter();
   const [customMetaTags, setCustomMetaTags] = useState<NextHeadSeoProps['customLinkTags']>([]);
   const [alreadySet, setAlreadySet] = useState<boolean>(false);
@@ -128,5 +127,3 @@ const Container: React.VFC<Props> = ({ children, fullWidth, ...meta }) => {
     </div>
   );
 };
-
-export default Container;

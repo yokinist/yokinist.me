@@ -1,8 +1,4 @@
-import { getTagDataBySlug, TagSlug } from '@/lib/tags';
 import { TagObj } from '@/types';
-import classNames from 'classnames';
-import { Twemoji } from 'components/Twemoji';
-import Link from 'next/link';
 import { TagTabItem } from './TagTabItem';
 
 type Props = {
@@ -10,7 +6,7 @@ type Props = {
   currentTag?: string;
 };
 
-const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
+export const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
   if (!tags) return null;
   return (
     <div className="flex items-center tag-container">
@@ -23,5 +19,3 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
     </div>
   );
 };
-
-export default Tags;
