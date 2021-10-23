@@ -1,5 +1,5 @@
-import BLOG from '@/blog.config';
-import { Post } from '@/types';
+import BLOG from '~/blog.config';
+import { Post } from '~/types';
 import { NotionAPI } from 'notion-client';
 import { BasePageBlock } from 'notion-types/build/esm/block';
 import { Collection } from 'notion-types/build/esm/collection';

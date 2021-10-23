@@ -1,8 +1,8 @@
-import BLOG from '@/blog.config';
-import { Pagination, Container, BlogPost } from '@/components';
-import { getAllPosts } from '@/lib/notion';
-import parseSafeNumber from '@/lib/parseSafeNumber';
-import { Post } from '@/types';
+import BLOG from '~/blog.config';
+import { Pagination, Container, BlogPost } from '~/components';
+import { parseSafeNumber } from '~/lib';
+import { getAllPosts } from '~/lib/notion';
+import { Post } from '~/types';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
 export const getStaticPaths: GetStaticPaths = async () => {

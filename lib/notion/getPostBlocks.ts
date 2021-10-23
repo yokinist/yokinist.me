@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config';
+import BLOG from '~/blog.config';
 import { NotionAPI } from 'notion-client';
 
 export const getPostBlocks = async (id: string) => {

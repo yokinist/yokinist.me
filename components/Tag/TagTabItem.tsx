@@ -1,4 +1,4 @@
-import { getTagDataBySlug, TagSlug } from '@/lib/tags';
+import { getTagDataBySlug, TagSlug } from '~/lib/tags';
 import classNames from 'classnames';
 import { Twemoji } from 'components/Twemoji';
 import Link from 'next/link';

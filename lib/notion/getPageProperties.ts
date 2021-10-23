@@ -1,5 +1,5 @@
-import BLOG from '@/blog.config';
-import { Post } from '@/types';
+import BLOG from '~/blog.config';
+import { Post } from '~/types';
 import { NotionAPI } from 'notion-client';
 import { getTextContent, getDateValue } from 'notion-utils';
 import { ReturnGetAllPostsParams } from './getAllPosts';

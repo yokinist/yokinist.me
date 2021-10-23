@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config';
+import BLOG from '~/blog.config';
 
 const cusdisI18n = ['ca', 'en', 'es', 'fi', 'fr', 'id', 'ja', 'oc', 'pt-br', 'tr', 'zh-cn', 'zh-tw'] as const;
 

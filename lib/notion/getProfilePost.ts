@@ -1,5 +1,5 @@
-import BLOG from '@/blog.config';
-import { Post } from '@/types';
+import BLOG from '~/blog.config';
+import { Post } from '~/types';
 import { getPostBlocks } from './getPostBlocks';
 
 export const getProfilePost = async (allPosts: Post[]) => {

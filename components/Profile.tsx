@@ -1,4 +1,4 @@
-import { Layout } from '@/layouts/layout';
+import { Layout } from '~/layouts/layout';
 
 type Props = Omit<React.ComponentProps<typeof Layout>, 'fullWidth'>;
 

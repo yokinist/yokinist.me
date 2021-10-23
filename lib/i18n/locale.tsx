@@ -1,4 +1,4 @@
-import { fetchLocaleLang } from '@/lib/i18n/lang';
+import { fetchLocaleLang } from '~/lib/i18n/lang';
 import { useContext, createContext } from 'react';
 
 const locale = fetchLocaleLang();

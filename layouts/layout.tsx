@@ -1,10 +1,10 @@
-import BLOG from '@/blog.config';
-import { Container } from '@/components';
-import { Comments } from '@/components/Comment';
-import { TagItem } from '@/components/Tag';
-import formatDate from '@/lib/formatDate';
-import { useLocale } from '@/lib/i18n/locale';
-import { Post } from '@/types';
+import BLOG from '~/blog.config';
+import { Container } from '~/components';
+import { Comments } from '~/components/Comment';
+import { TagItem } from '~/components/Tag';
+import formatDate from '~/lib/formatDate';
+import { useLocale } from '~/lib/i18n/locale';
+import { Post } from '~/types';
 import classNames from 'classnames';
 import 'gitalk/dist/gitalk.css';
 import { useTheme } from 'next-themes';

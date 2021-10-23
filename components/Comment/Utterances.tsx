@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config';
+import BLOG from '~/blog.config';
 import { useEffect } from 'react';
 
 type Props = {

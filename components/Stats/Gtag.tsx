@@ -1,4 +1,4 @@
-import * as gtag from '@/lib/gtag';
+import * as gtag from '~/lib/gtag';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 

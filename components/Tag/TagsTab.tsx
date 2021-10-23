@@ -1,4 +1,4 @@
-import { TagObj } from '@/types';
+import { TagObj } from '~/types';
 import { TagTabItem } from './TagTabItem';
 
 type Props = {

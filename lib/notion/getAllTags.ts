@@ -1,5 +1,5 @@
-import nonNullable from '@/lib/nonNullable';
-import { Post, TagObj } from '@/types';
+import nonNullable from '~/lib/nonNullable';
+import { Post, TagObj } from '~/types';
 
 type Props = {
   posts: Post[];

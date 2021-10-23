@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config';
+import BLOG from '~/blog.config';
 import Script from 'next/script';
 
 export const Scripts: React.VFC = () => (

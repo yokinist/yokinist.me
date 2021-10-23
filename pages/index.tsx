@@ -1,9 +1,9 @@
-import BLOG from '@/blog.config';
-import { Pagination, Container, Profile } from '@/components';
-import { SearchLayout } from '@/layouts';
-import { filterPublishedPosts, getAllPosts, getAllTags } from '@/lib/notion';
-import { getProfilePost } from '@/lib/notion/getProfilePost';
-import { Post } from '@/types';
+import BLOG from '~/blog.config';
+import { Pagination, Container, Profile } from '~/components';
+import { SearchLayout } from '~/layouts';
+import { filterPublishedPosts, getAllPosts, getAllTags } from '~/lib/notion';
+import { getProfilePost } from '~/lib/notion/getProfilePost';
+import { Post } from '~/types';
 import { createHash } from 'crypto';
 import { GetStaticProps, NextPage } from 'next';
 

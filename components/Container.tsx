@@ -1,6 +1,6 @@
-import BLOG from '@/blog.config';
-import { Footer, Header } from '@/components';
-import { getOGImageURL } from '@/lib/getOGImageURL';
+import BLOG from '~/blog.config';
+import { Footer, Header } from '~/components';
+import { getOGImageURL } from '~/lib/getOGImageURL';
 import classNames from 'classnames';
 import NextHeadSeo from 'next-head-seo';
 import { useRouter } from 'next/router';

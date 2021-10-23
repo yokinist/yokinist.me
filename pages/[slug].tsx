@@ -1,6 +1,6 @@
-import BLOG from '@/blog.config';
-import { Layout } from '@/layouts';
-import { getAllPosts, getPostBlocks } from '@/lib/notion';
+import BLOG from '~/blog.config';
+import { Layout } from '~/layouts';
+import { getAllPosts, getPostBlocks } from '~/lib/notion';
 import { createHash } from 'crypto';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import DefaultErrorPage from 'next/error';

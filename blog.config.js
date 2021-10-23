@@ -1,5 +1,5 @@
 /**
- * @type {import('@/types').BlogConfig}
+ * @type {import('~/types').BlogConfig}
  */
 const BLOG = {
   title: 'yokinist.me',
