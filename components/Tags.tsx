@@ -2,6 +2,7 @@ import { getTagDataBySlug, TagSlug } from '@/lib/tags';
 import { TagObj } from '@/types';
 import classNames from 'classnames';
 import Link from 'next/link';
+import { Twemoji } from './Twemoji';
 
 type Props = {
   tags: TagObj;
@@ -21,7 +22,7 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
         >
           <Link href={'/'} scroll={false}>
             <a className="flex items-center py-2 px-4">
-              <span>🌴</span>
+              <Twemoji emoji={'🌴'} size={20} />
               <span className="ml-3">All</span>
             </a>
           </Link>
@@ -41,7 +42,7 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
             >
               <Link href={selected ? '/' : `/tag/${encodeURIComponent(key)}`} scroll={false}>
                 <a className="flex items-center py-2 px-4">
-                  <span>{emoji}</span>
+                  <Twemoji emoji={emoji} size={20} />
                   <span className="ml-3">{`${tagName} (${tags[castKey]})`}</span>
                 </a>
               </Link>
