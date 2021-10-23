@@ -42,7 +42,7 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
             >
               <Link href={selected ? '/' : `/tag/${encodeURIComponent(key)}`} scroll={false}>
                 <a className="flex items-center py-2 px-4">
-                  <Twemoji emoji={emoji} size={20} />
+                  {emoji && <Twemoji emoji={emoji} size={20} />}
                   <span className="ml-3">{`${tagName} (${tags[castKey]})`}</span>
                 </a>
               </Link>
