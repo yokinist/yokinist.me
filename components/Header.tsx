@@ -5,8 +5,8 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { GlobeIcon, SunIcon } from '@heroicons/react/solid';
-import { ChipIcon, MoonIcon } from '@heroicons/react/solid';
+import { SunIcon } from '@heroicons/react/solid';
+import { MoonIcon } from '@heroicons/react/solid';
 import { Twemoji } from './Twemoji';
 
 const locale = fetchLocaleLang();
