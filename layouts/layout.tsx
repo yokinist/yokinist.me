@@ -7,6 +7,7 @@ import { useLocale } from '@/lib/locale';
 import { Post } from '@/types';
 import classNames from 'classnames';
 import 'gitalk/dist/gitalk.css';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps';
@@ -31,6 +32,8 @@ type Props = {
 const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth = false, onlyContents = false }) => {
   const locale = useLocale();
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
+  console.debug(theme);
 
   const renderContents = () => (
     <article>
@@ -72,6 +75,7 @@ const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth 
               tweet: tweet,
             }}
             mapPageUrl={mapPageUrl}
+            darkMode={theme === 'dark'}
           />
         </div>
       )}

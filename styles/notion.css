@@ -25,30 +25,16 @@ svg + .notion-page-title-text {
 }
 
 .notion-bookmark {
-  @apply border border-blue-300 !important;
+  @apply border-blue-700 dark:border-blue-300 !important;
 }
 
 .notion-bookmark .notion-bookmark-title,
 .notion-bookmark .notion-bookmark-link div {
-  @apply text-gray-900 dark:text-gray-200 border-blue-300;
+  @apply text-gray-900 dark:text-gray-100;
 }
 
 .notion-bookmark .notion-bookmark-description {
-  @apply text-gray-600 dark:text-gray-300 border-blue-300;
-}
-
-.notion .notion-code {
-  border-radius: 5px;
-  padding: 12px;
-  line-height: 150% !important;
-}
-
-.notion-code > code {
-  @apply text-gray-900;
-}
-
-pre[class*='language-'] {
-  line-height: inherit;
+  @apply text-gray-700 dark:text-gray-300;
 }
 
 .notion-bookmark:hover {
@@ -80,6 +66,9 @@ pre[class*='language-'] {
 .notion-collection > .notion-collection-header {
   @apply px-0 !important;
 }
+.notion-collection-header > .notion-collection-view-type {
+  @apply hidden;
+}
 .notion-collection > .notion-table {
   @apply max-w-full !important;
 }
@@ -87,13 +76,106 @@ pre[class*='language-'] {
   @apply px-0 !important;
 }
 a.notion-link {
-  @apply underline dark:text-blue-300;
+  @apply text-blue-700 border-blue-700 dark:text-blue-300 dark:border-blue-300;
 }
 .notion-list li {
   padding: 0;
 }
 .notion-list > li::marker {
   @apply text-gray-500 dark:text-gray-400;
+}
+
+.notion-table-of-contents-item > span {
+  @apply text-gray-500 border-gray-500 dark:text-gray-400 dark:border-gray-400
+}
+
+/* code */
+.notion-code {
+  @apply bg-gray-50 dark:border-gray-600 dark:bg-gray-800 border-gray-400 rounded-md p-4 !important;
+}
+.notion code {
+  @apply text-gray-700 dark:text-gray-300 border-none shadow-none bg-none p-0;
+}
+.token.cdata,
+.token.doctype,
+.token.prolog {
+  @apply text-gray-700;
+}
+.token.comment {
+  @apply text-gray-400 dark:text-gray-500;
+}
+.dark-mode .token.cdata,
+.dark-mode .token.doctype,
+.dark-mode .token.prolog {
+  @apply text-gray-300;
+}
+.token.punctuation {
+  @apply text-gray-700;
+}
+.dark-mode .token.punctuation {
+  @apply text-gray-300;
+}
+.token.boolean,
+.token.deleted,
+.token.number,
+.token.property,
+.token.symbol,
+.token.tag {
+  @apply text-green-600 !important;
+}
+.token.attr-name,
+.token.builtin,
+.token.char,
+.token.inserted,
+.token.selector {
+  @apply text-purple-600 !important;
+}
+.token.string,
+.token.entity,
+.token.operator,
+.token.url {
+  @apply dark:text-yellow-600 !important;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  @apply dark:text-purple-400 !important;
+}
+.token.class-name,
+.token.function,
+.token.constant {
+  @apply text-red-600 dark:text-blue-500 !important;
+}
+.token.important,
+.token.regex,
+.token.variable {
+  @apply text-yellow-600;
+}
+code[class*='language-'],
+pre[class*='language-'] {
+  @apply text-gray-700;
+  text-shadow: none !important;
+}
+.dark-mode code[class*='language-'],
+.dark-mode pre[class*='language-'] {
+  @apply text-gray-100;
+}
+pre::-webkit-scrollbar {
+  @apply hidden;
+}
+pre {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable {
+  @apply bg-transparent !important;
+}
+
+pre[class*='language-'] > code {
+  border-left: 0 none !important;
 }
 
 /* About ページの特定の画像のみ適応 */

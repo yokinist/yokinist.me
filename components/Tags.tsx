@@ -18,9 +18,9 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
           return (
             <li
               key={key}
-              className={classNames('mr-3 font-medium border whitespace-nowrap dark:text-white rounded-md', {
-                'text-white bg-black border-gray-100 dark:bg-gray-600 dark:border-gray-700': !selected,
-                'bg-gray-100 border-white text-gray-400 dark:bg-night dark:border-gray-300': selected,
+              className={classNames('mr-3 font-medium whitespace-nowrap dark:text-white rounded-md', {
+                'text-gray-400 bg-gray-100 border-gray-100 dark:bg-gray-600 dark:border-gray-700': !selected,
+                'bg-gray-400 text-white': selected,
               })}
             >
               <Link href={selected ? '/' : `/tag/${encodeURIComponent(key)}`} scroll={false}>
