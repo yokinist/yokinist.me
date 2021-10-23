@@ -1,6 +1,7 @@
 import BLOG from '~/blog.config';
 import { Profile, Container } from '~/components';
 import { SearchLayout } from '~/layouts';
+import { getTagDataBySlug, TagSlug } from '~/lib';
 import { filterPublishedPosts, getAllPosts, getAllTags } from '~/lib/notion';
 import { getProfilePost } from '~/lib/notion/getProfilePost';
 import { createHash } from 'crypto';
@@ -48,7 +49,7 @@ type Props = React.ComponentProps<typeof SearchLayout> & Omit<React.ComponentPro
 
 const TagPage: NextPage<Props> = ({ tags, posts, currentTag, post, blockMap, emailHash }) => {
   return (
-    <Container title={currentTag}>
+    <Container title={getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTag}>
       {post && blockMap && <Profile blockMap={blockMap} post={post} emailHash={emailHash} />}
       <SearchLayout tags={tags} posts={posts} currentTag={currentTag} />
     </Container>
