@@ -1,6 +1,6 @@
 import { BasePageBlock } from 'notion-types/build/esm/block';
 
-export default function getMetadata(rawMetadata: BasePageBlock) {
+export const getMetadata = (rawMetadata: BasePageBlock) => {
   const metadata = {
     locked: rawMetadata?.format?.block_locked,
     page_full_width: rawMetadata?.format?.page_full_width,
@@ -11,4 +11,4 @@ export default function getMetadata(rawMetadata: BasePageBlock) {
     last_edited_time: rawMetadata.last_edited_time,
   };
   return metadata;
-}
+};

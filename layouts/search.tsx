@@ -1,6 +1,6 @@
 import { BlogPost } from '@/components';
 import { Tags } from '@/components/Tag';
-import { useLocale } from '@/lib/locale';
+import { useLocale } from '@/lib/i18n/locale';
 import { getTagDataBySlug, TagSlug } from '@/lib/tags';
 import { Post, TagObj } from '@/types';
 import { useState, useMemo } from 'react';

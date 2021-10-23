@@ -1,5 +1,5 @@
 import BLOG from '@/blog.config';
-import { fetchLocaleLang } from '@/lib/lang';
+import { fetchLocaleLang } from '@/lib/i18n/lang';
 import classNames from 'classnames';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';

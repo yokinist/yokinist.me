@@ -1,6 +1,6 @@
 import BLOG from '@/blog.config';
 import { Scripts } from '@/components';
-import { LocaleProvider } from '@/lib/locale';
+import { LocaleProvider } from '@/lib/i18n/locale';
 import '@/styles/globals.css';
 import '@/styles/notion.css';
 import 'katex/dist/katex.min.css';

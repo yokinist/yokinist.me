@@ -6,11 +6,11 @@ import { ReturnGetAllPostsParams } from './getAllPosts';
 
 const excludeProperties = ['date', 'select', 'multi_select', 'person'];
 
-async function getPageProperties(
+export const getPageProperties = async (
   id: string,
   block: ReturnGetAllPostsParams['block'],
   schema: ReturnGetAllPostsParams['schema'],
-): Promise<Post> {
+): Promise<Post> => {
   const authToken = BLOG.notionAccessToken;
   const api = new NotionAPI({ authToken });
   const rawProperties = Object.entries(block?.[id]?.value?.properties || []);
@@ -67,6 +67,4 @@ async function getPageProperties(
     }
   }
   return properties as Post;
-}
-
-export { getPageProperties as default };
+};

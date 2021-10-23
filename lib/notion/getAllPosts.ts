@@ -5,11 +5,9 @@ import { BasePageBlock } from 'notion-types/build/esm/block';
 import { Collection } from 'notion-types/build/esm/collection';
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps';
 import { idToUuid } from 'notion-utils';
-import { filterPublishedPosts } from './filterPublishedPosts';
-import getAllPageIds from './getAllPageIds';
-import getPageProperties from './getPageProperties';
+import { getPageProperties, getAllPageIds, filterPublishedPosts } from './index';
 
-export async function getAllPosts({ includedPages = false }: { includedPages: boolean }): Promise<Post[]> {
+export const getAllPosts = async ({ includedPages = false }: { includedPages: boolean }): Promise<Post[]> => {
   let id = BLOG.notionPageId;
   const authToken = BLOG.notionAccessToken;
   const api = new NotionAPI({ authToken });
@@ -31,7 +29,7 @@ export async function getAllPosts({ includedPages = false }: { includedPages: bo
     includedPages,
   });
   return result ?? [];
-}
+};
 
 export type ReturnGetAllPostsParams = {
   id: string;

@@ -1,10 +1,10 @@
 import { idToUuid } from 'notion-utils';
 import { ReturnGetAllPostsParams } from './getAllPosts';
 
-export default function getAllPageIds(
+export const getAllPageIds = (
   collectionQuery: ReturnGetAllPostsParams['collectionQuery'],
   viewId?: string,
-): string[] {
+): string[] => {
   const views = Object.values(collectionQuery)?.[0];
   let pageIds = [];
   if (viewId) {
@@ -20,4 +20,4 @@ export default function getAllPageIds(
     return [];
   }
   return pageIds;
-}
+};

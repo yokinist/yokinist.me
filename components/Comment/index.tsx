@@ -1,5 +1,5 @@
 import BLOG from '@/blog.config';
-import { fetchCusdisLang } from '@/lib/cusdisLang';
+import { fetchCusdisLang } from '@/lib/i18n/cusdisLang';
 import { Post } from '@/types';
 import 'gitalk/dist/gitalk.css';
 import dynamic from 'next/dynamic';
