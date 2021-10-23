@@ -54,7 +54,7 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
       </div> */}
       <div className="my-4 article-container">
         {!filteredBlogPosts.length && <p className="text-gray-500 dark:text-gray-300">{locale.POST.NOTFOUND}</p>}
-        {filteredBlogPosts.slice(0, 20).map((post) => (
+        {filteredBlogPosts.map((post) => (
           <BlogPost key={post.id} post={post} />
         ))}
       </div>

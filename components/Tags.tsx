@@ -11,16 +11,25 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
   if (!tags) return null;
   return (
     <div className="flex items-center tag-container">
-      <span className="block min-w-max font-bold text-gray-200">🔖 ：</span>
       <ul className="flex overflow-x-auto mt-4 max-w-full">
+        <li
+          className={classNames('mr-3 font-bold whitespace-nowrap rounded-lg', {
+            'text-gray-400  border-gray-100 dark:border-gray-700': currentTag,
+            'bg-gray-200 text-gray-700': !currentTag,
+          })}
+        >
+          <Link href={'/'} scroll={false}>
+            <a className="block py-2 px-4">🌴 All</a>
+          </Link>
+        </li>
         {Object.keys(tags).map((key) => {
           const selected = key === currentTag;
           return (
             <li
               key={key}
-              className={classNames('mr-3 font-medium whitespace-nowrap dark:text-white rounded-md', {
-                'text-gray-400 bg-gray-100 border-gray-100 dark:bg-gray-600 dark:border-gray-700': !selected,
-                'bg-gray-400 text-white': selected,
+              className={classNames('mr-3 font-bold whitespace-nowrap rounded-lg', {
+                'text-gray-400  border-gray-100 dark:border-gray-700': !selected,
+                'bg-gray-200 text-gray-700': selected,
               })}
             >
               <Link href={selected ? '/' : `/tag/${encodeURIComponent(key)}`} scroll={false}>
