@@ -3,12 +3,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/components/*": ["components/*"],
-      "@/data/*": ["data/*"],
-      "@/layouts/*": ["layouts/*"],
-      "@/lib/*": ["lib/*"],
-      "@/styles/*": ["styles/*"],
-      "@/types": ["types/index.ts"]
     }
   }
 }
