@@ -3,6 +3,7 @@ import Tags from '@/components/Tags';
 import { useLocale } from '@/lib/locale';
 import { Post, TagObj } from '@/types';
 import { useState, useMemo } from 'react';
+import { SearchIcon } from '@heroicons/react/outline';
 
 type Props = {
   posts: Post[];
@@ -30,28 +31,15 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
   return (
     <>
       <Tags tags={tags} currentTag={currentTag} />
-      {/* <div className="relative">
+      <div className="relative mb-6">
         <input
           type="text"
           placeholder={currentTag ? `${locale.POST.SEARCHIN} #${currentTag}` : locale.POST.SEARCH}
-          className="block py-2 px-4 w-full text-black dark:text-white bg-white dark:bg-night rounded-md border border-black dark:border-gray-300"
+          className="block py-2 px-4 w-full text-black dark:text-white bg-gray-50 dark:bg-gray-700 rounded-lg border-2 border-gray-300"
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <svg
-          className="absolute top-3 right-3 w-5 h-5 text-black dark:text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          ></path>
-        </svg>
-      </div> */}
+        <SearchIcon className="absolute top-3 right-3 w-5 h-5 text-gray-500 dark:text-gray-400" />
+      </div>
       <div className="my-4 article-container">
         {!filteredBlogPosts.length && <p className="text-gray-500 dark:text-gray-300">{locale.POST.NOTFOUND}</p>}
         {filteredBlogPosts.map((post) => (
