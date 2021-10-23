@@ -86,7 +86,7 @@ a.notion-link {
 }
 
 .notion-table-of-contents-item > span {
-  @apply text-gray-500 border-gray-500 dark:text-gray-400 dark:border-gray-400
+  @apply text-gray-500 border-gray-500 dark:text-gray-400 dark:border-gray-400;
 }
 
 /* code */

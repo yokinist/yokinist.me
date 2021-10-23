@@ -1,9 +1,12 @@
 import BLOG from '@/blog.config';
 import { fetchLocaleLang } from '@/lib/lang';
 import classNames from 'classnames';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { SunIcon } from '@heroicons/react/outline';
+import { MoonIcon } from '@heroicons/react/solid';
 
 const locale = fetchLocaleLang();
 const links = [
@@ -14,6 +17,7 @@ const links = [
 
 const NavBar: React.VFC = () => {
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
   const activeNav = useMemo(() => {
     if (router.asPath === links[1].to) return links[1].to;
     if (router.pathname === links[0].to || router.asPath.includes('tag')) return links[0].to;
@@ -22,7 +26,7 @@ const NavBar: React.VFC = () => {
 
   return (
     <div className="flex-shrink-0">
-      <ul className="flex flex-row">
+      <ul className="flex flex-row items-center">
         {links.map(
           (link) =>
             link.show && (
@@ -38,6 +42,14 @@ const NavBar: React.VFC = () => {
               </li>
             ),
         )}
+        <li className="ml-4">
+          <button
+            className="block p-1 bg-night dark:bg-day rounded-full transition-all duration-300"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          >
+            {theme === 'dark' ? <SunIcon className="w-5 h-5 text-night" /> : <MoonIcon className="w-5 h-5 text-day" />}
+          </button>
+        </li>
       </ul>
     </div>
   );

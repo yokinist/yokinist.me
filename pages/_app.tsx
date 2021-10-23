@@ -30,7 +30,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <ThemeProvider
             attribute="class"
             defaultTheme={BLOG.appearance === 'auto' ? 'system' : BLOG.appearance}
-            enableSystem={false}
+            themes={['dark', 'light', 'system']}
           >
             <Component {...pageProps} />
           </ThemeProvider>
