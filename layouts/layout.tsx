@@ -32,8 +32,7 @@ type Props = {
 const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth = false, onlyContents = false }) => {
   const locale = useLocale();
   const router = useRouter();
-  const { theme, setTheme } = useTheme();
-  console.debug(theme);
+  const { theme } = useTheme();
 
   const renderContents = () => (
     <article>
