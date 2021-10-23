@@ -1,6 +1,6 @@
 import BLOG from '@/blog.config';
 import { Profile, Container } from '@/components';
-import SearchLayout from '@/layouts/search';
+import { SearchLayout } from '@/layouts';
 import { filterPublishedPosts, getAllPosts, getAllTags } from '@/lib/notion';
 import { getProfilePost } from '@/lib/notion/getProfilePost';
 import { createHash } from 'crypto';

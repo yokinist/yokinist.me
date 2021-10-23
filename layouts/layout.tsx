@@ -29,7 +29,14 @@ type Props = {
   tweet?: typeof Tweet;
 };
 
-const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth = false, onlyContents = false }) => {
+export const Layout: React.VFC<Props> = ({
+  blockMap,
+  post,
+  emailHash,
+  tweet,
+  fullWidth = false,
+  onlyContents = false,
+}) => {
   const locale = useLocale();
   const router = useRouter();
   const { theme } = useTheme();
@@ -114,5 +121,3 @@ const Layout: React.VFC<Props> = ({ blockMap, post, emailHash, tweet, fullWidth 
     </Container>
   );
 };
-
-export default Layout;
