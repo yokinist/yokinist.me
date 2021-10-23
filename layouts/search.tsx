@@ -37,7 +37,7 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
   return (
     <>
       <Tags tags={tags} currentTag={currentTag} />
-      <div className="relative mb-6">
+      <div className="relative mt-3 mb-6">
         <input
           type="text"
           placeholder={currentTag ? `${locale.POST.SEARCHIN} #${currentTagName}` : locale.POST.SEARCH}
