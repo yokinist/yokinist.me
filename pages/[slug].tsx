@@ -1,5 +1,5 @@
 import BLOG from '@/blog.config';
-import Layout from '@/layouts/layout';
+import { Layout } from '@/layouts';
 import { getAllPosts, getPostBlocks } from '@/lib/notion';
 import { createHash } from 'crypto';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
