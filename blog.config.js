@@ -8,7 +8,7 @@ const BLOG = {
   link: 'https://yokinist.me',
   description: '色々なことを雑多に書いていく場所。とりとめもないエッセイやポエム・趣味の話などなど。',
   lang: 'ja-JP', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
-  appearance: 'dark', // ['light', 'dark', 'auto'],
+  appearance: 'dark', // ['light', 'dark'],
   font: 'sans-serif', // ['sans-serif', 'serif']
   lightBackground: '#ffffff', // use hex value, don't forget '#' e.g #fffefc
   darkBackground: '#0C1C33', // use hex value, don't forget '#'

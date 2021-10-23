@@ -27,11 +27,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             />
           )}
           {BLOG.isProd && BLOG.analytics.provider === 'ga' && <Gtag />}
-          <ThemeProvider
-            attribute="class"
-            defaultTheme={BLOG.appearance === 'auto' ? 'system' : BLOG.appearance}
-            themes={['dark', 'light', 'system']}
-          >
+          <ThemeProvider attribute="class" defaultTheme={BLOG.appearance} themes={['dark', 'light']}>
             <Component {...pageProps} />
           </ThemeProvider>
         </>

@@ -31,7 +31,7 @@ export type BlogConfig = {
   link: string;
   description: string;
   lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP' | 'es-ES';
-  appearance: 'auto' | 'dark' | 'light';
+  appearance: 'dark' | 'light';
   font: 'sans-serif' | 'serif';
   lightBackground: `#${string}`;
   darkBackground: `#${string}`;

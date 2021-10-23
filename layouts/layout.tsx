@@ -81,7 +81,7 @@ export const Layout: React.VFC<Props> = ({
               tweet: tweet,
             }}
             mapPageUrl={mapPageUrl}
-            darkMode={theme === 'dark'}
+            darkMode={theme !== 'light'}
           />
         </div>
       )}
