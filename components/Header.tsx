@@ -45,9 +45,9 @@ const NavBar: React.VFC = () => {
         <li className="ml-4">
           <button
             className="block p-1 bg-night dark:bg-day rounded-full transition-all duration-300"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           >
-            {theme === 'dark' ? <SunIcon className="w-5 h-5 text-night" /> : <MoonIcon className="w-5 h-5 text-day" />}
+            {theme === 'light' ? <MoonIcon className="w-5 h-5 text-day" /> : <SunIcon className="w-5 h-5 text-night" />}
           </button>
         </li>
       </ul>
