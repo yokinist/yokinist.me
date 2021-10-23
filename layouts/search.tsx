@@ -1,6 +1,7 @@
 import BlogPost from '@/components/BlogPost';
 import Tags from '@/components/Tags';
 import { useLocale } from '@/lib/locale';
+import { getTagDataBySlug, TagSlug } from '@/lib/tags';
 import { Post, TagObj } from '@/types';
 import { useState, useMemo } from 'react';
 import { SearchIcon } from '@heroicons/react/outline';
@@ -26,6 +27,11 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
     return [];
   }, [posts, searchValue]);
 
+  const currentTagName: string | undefined = useMemo(() => {
+    if (!currentTag) return undefined;
+    return getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTagName;
+  }, [currentTag]);
+
   if (!locale) return null;
 
   return (
@@ -34,7 +40,7 @@ const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
       <div className="relative mb-6">
         <input
           type="text"
-          placeholder={currentTag ? `${locale.POST.SEARCHIN} #${currentTag}` : locale.POST.SEARCH}
+          placeholder={currentTag ? `${locale.POST.SEARCHIN} #${currentTagName}` : locale.POST.SEARCH}
           className="block py-2 px-4 w-full text-black dark:text-white bg-gray-50 dark:bg-gray-700 rounded-lg border-2 border-gray-300"
           onChange={(e) => setSearchValue(e.target.value)}
         />

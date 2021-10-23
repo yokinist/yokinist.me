@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import { TagSlug } from '@/lib/tags';
 import type Gitalk from 'gitalk';
 import type { ReactCusdis } from 'react-cusdis';
 
@@ -22,7 +23,7 @@ export type Post = {
   type?: [PostType];
 };
 
-export type TagObj = { [key: string]: 1 };
+export type TagObj = { [key in TagSlug]: 1 };
 
 export type BlogConfig = {
   title: string;

@@ -1,3 +1,4 @@
+import { getTagDataBySlug, TagSlug } from '@/lib/tags';
 import { TagObj } from '@/types';
 import classNames from 'classnames';
 import Link from 'next/link';
@@ -19,11 +20,17 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
           })}
         >
           <Link href={'/'} scroll={false}>
-            <a className="block py-2 px-4">🌴 All</a>
+            <a className="flex items-center py-2 px-4">
+              <span>🌴</span>
+              <span className="ml-3">All</span>
+            </a>
           </Link>
         </li>
         {Object.keys(tags).map((key) => {
+          const castKey = key as TagSlug;
           const selected = key === currentTag;
+          const emoji = getTagDataBySlug(castKey)?.emoji;
+          const tagName = getTagDataBySlug(castKey)?.name ?? castKey;
           return (
             <li
               key={key}
@@ -33,7 +40,10 @@ const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
               })}
             >
               <Link href={selected ? '/' : `/tag/${encodeURIComponent(key)}`} scroll={false}>
-                <a className="block py-2 px-4">{`${key} (${tags[key]})`}</a>
+                <a className="flex items-center py-2 px-4">
+                  <span>{emoji}</span>
+                  <span className="ml-3">{`${tagName} (${tags[castKey]})`}</span>
+                </a>
               </Link>
             </li>
           );
