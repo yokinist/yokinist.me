@@ -8,12 +8,7 @@ type Props = {
 
 const Utterances: React.VFC<Props> = ({ issueTerm, layout }) => {
   useEffect(() => {
-    const theme =
-      BLOG.appearance === 'auto'
-        ? 'preferred-color-scheme'
-        : BLOG.appearance === 'light'
-        ? 'github-light'
-        : 'github-dark';
+    const theme = BLOG.appearance === 'light' ? 'github-light' : 'github-dark';
     const script = document.createElement('script');
     const anchor = document.getElementById('comments');
     script.setAttribute('src', 'https://utteranc.es/client.js');
