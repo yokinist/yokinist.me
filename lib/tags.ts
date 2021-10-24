@@ -9,6 +9,7 @@ const TAG_SLUGS = {
   Sento: 'sento',
   Link: 'link',
   ProductDev: 'product-dev',
+  Sauna: 'sauna',
 } as const;
 
 export type TagSlug = ValueOf<typeof TAG_SLUGS>;
@@ -44,6 +45,11 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     name: '銭湯',
     emoji: '♨️',
     slug: TAG_SLUGS.Sento,
+  },
+  [TAG_SLUGS.Sauna]: {
+    name: 'サウナ',
+    emoji: '🧖‍♂️',
+    slug: TAG_SLUGS.Sauna,
   },
   [TAG_SLUGS.Link]: {
     name: '外部リンク',
