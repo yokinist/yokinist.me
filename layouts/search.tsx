@@ -36,8 +36,7 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
 
   return (
     <>
-      <Tags tags={tags} currentTag={currentTag} />
-      <div className="relative mt-3 mb-6">
+      <div className="relative my-2">
         <input
           type="text"
           placeholder={currentTag ? `${locale.POST.SEARCHIN} #${currentTagName}` : locale.POST.SEARCH}
@@ -45,6 +44,9 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
           onChange={(e) => setSearchValue(e.target.value)}
         />
         <SearchIcon className="absolute top-3 right-3 w-5 h-5 text-gray-500 dark:text-gray-400" />
+      </div>
+      <div className="sticky top-16 mb-6 bg-day dark:bg-night">
+        <Tags tags={tags} currentTag={currentTag} />
       </div>
       <div className="my-4 article-container">
         {!filteredBlogPosts.length && <p className="text-gray-500 dark:text-gray-300">{locale.POST.NOTFOUND}</p>}
