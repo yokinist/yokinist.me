@@ -180,14 +180,13 @@ pre[class*='language-'] > code {
 }
 
 /* About ページの特定の画像のみ適応 */
-.notion-block-62c0327d49964498ad3188d9c0d169b3 > div > img {
-  animation: fluid 24s ease 0s infinite;
-  border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
-}
-
+.notion-block-62c0327d49964498ad3188d9c0d169b3 > div > img,
 .notion-block-187cbc6f209a4feb84d375192e98815e > div > img {
   animation: fluid 24s ease 0s infinite;
   border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+  width: 192px;
+  height: 192px;
+  @apply bg-gray-100 dark:bg-gray-900 border-2 border-night dark:border-day;
 }
 
 @keyframes fluid {
