@@ -186,7 +186,7 @@ pre[class*='language-'] > code {
   border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
   width: 192px;
   height: 192px;
-  @apply bg-gray-100 dark:bg-gray-900 border-2 border-night dark:border-day;
+  @apply bg-gray-100 dark:bg-gray-900 border-2 border-gray-300 dark:border-day;
 }
 
 @keyframes fluid {
