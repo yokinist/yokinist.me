@@ -15,7 +15,7 @@ jobs:
     if: github.event.pull_request.draft == false
     strategy:
       matrix:
-        node-version: [12.13.0]
+        node-version: [12.22.0]
     steps:
       - uses: actions/checkout@v1
       - name: Setting up Node.js v${{ matrix.node-version }}
