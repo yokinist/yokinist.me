@@ -164,40 +164,7 @@ nav {
   }
 }
 
-.seperator-wrapper {
-  width: 40%;
-  margin: 0 auto;
-}
-
-.seperator {
-  width: 100%;
-  height: 1px;
-  animation: rotate 28s infinite linear;
-  -webkit-animation: rotate 28s infinite linear;
-  margin-bottom: 32px;
-}
-
 .notion-ignore-padding-x > main {
   padding-left: 0 !important;
   padding-right: 0 !important;
-}
-
-@-webkit-keyframes rotate {
-  from {
-    width: 0%;
-    background-position: -3000px;
-  }
-  to {
-    width: 100%;
-    background-position: 0px;
-  }
-}
-
-@keyframes rotate {
-  from {
-    background-position: -3000px;
-  }
-  to {
-    background-position: 0px;
-  }
 }
