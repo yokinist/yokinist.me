@@ -49,7 +49,7 @@ const returnGetAllPosts = async ({
   schema,
 }: ReturnGetAllPostsParams) => {
   if (rawMetadata?.type !== 'collection_view_page' && rawMetadata?.type !== 'collection_view') {
-    console.log(`pageId "${id}" is not a database`);
+    console.error(`pageId "${id}" is not a database`);
     return null;
   } else {
     // Construct Data

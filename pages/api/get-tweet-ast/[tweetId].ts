@@ -7,7 +7,6 @@ const getTweet = async (req: NextApiRequest, res: NextApiResponse): Promise<void
   }
 
   const tweetId = req.query.tweetId as string;
-  console.debug(tweetId);
 
   if (!tweetId) {
     return res.status(400).send({ error: 'missing required parameter "tweetId"' });
