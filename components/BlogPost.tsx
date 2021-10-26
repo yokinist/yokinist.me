@@ -22,7 +22,7 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
               {post.title}
             </h2>
             {isOuterLink && (
-              <ExternalLinkIcon className="mt-[0.5px] mr-2 sm:mr-0 ml-1 w-5 min-w-[20px] h-5 text-blue-700 dark:text-blue-400" />
+              <ExternalLinkIcon className="mt-[0.5px] mr-2 sm:mr-0 ml-1 w-5 min-w-[20px] h-5 text-blue-700 dark:text-blue-200" />
             )}
           </div>
           <time className="flex-shrink-0 text-gray-600 dark:text-gray-400">
