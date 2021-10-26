@@ -1,6 +1,6 @@
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import BLOG from '~/blog.config';
 import CJK from '~/lib/cjk';
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

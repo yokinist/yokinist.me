@@ -1,5 +1,5 @@
-import BLOG from '~/blog.config';
 import Script from 'next/script';
+import BLOG from '~/blog.config';
 
 export const Scripts: React.VFC = () => (
   <>

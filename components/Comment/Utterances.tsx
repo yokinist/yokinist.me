@@ -1,5 +1,5 @@
-import BLOG from '~/blog.config';
 import { useEffect } from 'react';
+import BLOG from '~/blog.config';
 
 type Props = {
   issueTerm?: string;

@@ -1,6 +1,6 @@
-import * as gtag from '~/lib/gtag';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import * as gtag from '~/lib/gtag';
 
 const Gtag: React.VFC = () => {
   const router = useRouter();

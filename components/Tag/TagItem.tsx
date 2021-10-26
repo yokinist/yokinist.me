@@ -1,7 +1,7 @@
-import { getTagDataBySlug, TagSlug } from '~/lib/tags';
 import classNames from 'classnames';
 import { Twemoji } from 'components/Twemoji';
 import Link from 'next/link';
+import { getTagDataBySlug, TagSlug } from '~/lib/tags';
 
 type Props = {
   tag: string;

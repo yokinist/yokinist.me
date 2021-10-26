@@ -1,11 +1,11 @@
+import { createHash } from 'crypto';
+import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import BLOG from '~/blog.config';
 import { Profile, Container } from '~/components';
 import { SearchLayout } from '~/layouts';
 import { getTagDataBySlug, TagSlug } from '~/lib';
 import { filterPublishedPosts, getAllPosts, getAllTags } from '~/lib/notion';
 import { getProfilePost } from '~/lib/notion/getProfilePost';
-import { createHash } from 'crypto';
-import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const currentTag = params?.tag;

@@ -1,6 +1,6 @@
+import { Feed } from 'feed';
 import BLOG from '~/blog.config';
 import { Post } from '~/types';
-import { Feed } from 'feed';
 
 export function generateRss(posts: Post[]) {
   const year = new Date().getFullYear();

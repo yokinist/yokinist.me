@@ -1,8 +1,8 @@
+import Link from 'next/link';
+import { ExternalLinkIcon } from '@heroicons/react/outline';
 import BLOG from '~/blog.config';
 import formatDate from '~/lib/formatDate';
 import { Post } from '~/types';
-import Link from 'next/link';
-import { ExternalLinkIcon } from '@heroicons/react/outline';
 
 type Props = {
   post: Post;

@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import BLOG from '~/blog.config';
 import Vercel from '~/components/Vercel';
-import classNames from 'classnames';
 
 type Props = { fullWidth?: boolean };
 

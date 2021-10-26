@@ -1,5 +1,3 @@
-import BLOG from '~/blog.config';
-import { fetchLocaleLang } from '~/lib/i18n/lang';
 import classNames from 'classnames';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
@@ -7,6 +5,8 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { SunIcon } from '@heroicons/react/solid';
 import { MoonIcon } from '@heroicons/react/solid';
+import BLOG from '~/blog.config';
+import { fetchLocaleLang } from '~/lib/i18n/lang';
 import { Twemoji } from './Twemoji';
 
 const locale = fetchLocaleLang();

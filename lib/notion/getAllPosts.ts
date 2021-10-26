@@ -1,10 +1,10 @@
-import BLOG from '~/blog.config';
-import { Post } from '~/types';
 import { NotionAPI } from 'notion-client';
 import { BasePageBlock } from 'notion-types/build/esm/block';
 import { Collection } from 'notion-types/build/esm/collection';
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps';
 import { idToUuid } from 'notion-utils';
+import BLOG from '~/blog.config';
+import { Post } from '~/types';
 import { getPageProperties, getAllPageIds, filterPublishedPosts } from './index';
 
 export const getAllPosts = async ({ includedPages = false }: { includedPages: boolean }): Promise<Post[]> => {
@@ -58,7 +58,6 @@ const returnGetAllPosts = async ({
     for (let i = 0; i < pageIds.length; i++) {
       const id = pageIds[i];
       const properties = (await getPageProperties(id, block, schema)) || null;
-
       // Add fullwidth, createdtime to properties
       properties.createdTime = new Date(block[id].value?.created_time).toString();
       properties.fullWidth = (block[id].value?.format as BasePageBlock['format'])?.page_full_width ?? false;

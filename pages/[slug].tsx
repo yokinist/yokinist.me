@@ -1,10 +1,10 @@
-import BLOG from '~/blog.config';
-import { Layout } from '~/layouts';
-import { getAllPosts, getPostBlocks } from '~/lib/notion';
 import { createHash } from 'crypto';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import DefaultErrorPage from 'next/error';
 import { Tweet, TwitterContextProvider } from 'react-static-tweets';
+import BLOG from '~/blog.config';
+import { Layout } from '~/layouts';
+import { getAllPosts, getPostBlocks } from '~/lib/notion';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllPosts({ includedPages: true });
@@ -41,6 +41,7 @@ type Props = Omit<React.ComponentProps<typeof Layout>, 'fullWidth'>;
 
 const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   if (!post) return <DefaultErrorPage statusCode={404} />;
+  console.debug({ post });
   return (
     <>
       <TwitterContextProvider

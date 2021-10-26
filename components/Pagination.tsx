@@ -1,6 +1,6 @@
+import Link from 'next/link';
 import BLOG from '~/blog.config';
 import { useLocale } from '~/lib/i18n/locale';
-import Link from 'next/link';
 
 type Props = {
   page: number;

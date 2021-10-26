@@ -1,5 +1,5 @@
-import BLOG from '~/blog.config';
 import { NotionAPI } from 'notion-client';
+import BLOG from '~/blog.config';
 
 export const getPostBlocks = async (id: string) => {
   const authToken = BLOG.notionAccessToken;

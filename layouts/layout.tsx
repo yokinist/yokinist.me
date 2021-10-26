@@ -1,10 +1,3 @@
-import BLOG from '~/blog.config';
-import { Container } from '~/components';
-import { Comments } from '~/components/Comment';
-import { TagItem } from '~/components/Tag';
-import formatDate from '~/lib/formatDate';
-import { useLocale } from '~/lib/i18n/locale';
-import { Post } from '~/types';
 import classNames from 'classnames';
 import 'gitalk/dist/gitalk.css';
 import { useTheme } from 'next-themes';
@@ -13,6 +6,13 @@ import { useRouter } from 'next/router';
 import { ExtendedRecordMap } from 'notion-types/build/esm/maps';
 import { NotionRenderer, Equation, Code, CollectionRow, Collection } from 'react-notion-x';
 import type { Tweet } from 'react-static-tweets';
+import BLOG from '~/blog.config';
+import { Container } from '~/components';
+import { Comments } from '~/components/Comment';
+import { TagItem } from '~/components/Tag';
+import formatDate from '~/lib/formatDate';
+import { useLocale } from '~/lib/i18n/locale';
+import { Post } from '~/types';
 
 const enableCommentArea = BLOG.comment.provider !== '';
 

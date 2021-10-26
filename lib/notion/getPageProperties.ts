@@ -1,7 +1,7 @@
-import BLOG from '~/blog.config';
-import { Post } from '~/types';
 import { NotionAPI } from 'notion-client';
 import { getTextContent, getDateValue } from 'notion-utils';
+import BLOG from '~/blog.config';
+import { Post } from '~/types';
 import { ReturnGetAllPostsParams } from './getAllPosts';
 
 const excludeProperties = ['date', 'select', 'multi_select', 'person'];
