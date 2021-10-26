@@ -47,6 +47,7 @@ const NavBar: React.VFC = () => {
           <button
             className="block p-1 bg-night dark:bg-day rounded-full transition-all duration-300"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            aria-label="toggle Dark Mode"
           >
             {theme === 'light' ? <MoonIcon className="w-5 h-5 text-day" /> : <SunIcon className="w-5 h-5 text-night" />}
           </button>
