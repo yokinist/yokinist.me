@@ -5,6 +5,7 @@ const path = require('path');
  **/
 const nextConfig = {
   swcMinify: true,
+  productionBrowserSourceMaps: true,
   reactStrictMode: true,
   images: {
     domains: ['gravatar.com', 'pbs.twimg.com', 'twemoji.maxcdn.com'],
