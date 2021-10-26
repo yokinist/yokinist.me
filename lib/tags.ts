@@ -10,6 +10,7 @@ const TAG_SLUGS = {
   Link: 'link',
   ProductDev: 'product-dev',
   Sauna: 'sauna',
+  Items: 'items',
 } as const;
 
 export type TagSlug = ValueOf<typeof TAG_SLUGS>;
@@ -60,6 +61,11 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     name: 'プロダクト開発',
     emoji: '🛠',
     slug: TAG_SLUGS.ProductDev,
+  },
+  [TAG_SLUGS.Items]: {
+    name: 'アイテム',
+    emoji: '✨',
+    slug: TAG_SLUGS.Items,
   },
   [TAG_SLUGS.All]: {
     name: 'All',
