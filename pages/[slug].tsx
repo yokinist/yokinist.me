@@ -41,7 +41,6 @@ type Props = Omit<React.ComponentProps<typeof Layout>, 'fullWidth'>;
 
 const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   if (!post) return <DefaultErrorPage statusCode={404} />;
-  console.debug({ post });
   return (
     <>
       <TwitterContextProvider
