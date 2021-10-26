@@ -1,9 +1,10 @@
 const path = require('path');
 
 /**
- * @type {import('next/dist/next-server/server/config').NextConfig}
+ * @type {import('next').NextConfig}
  **/
 const nextConfig = {
+  swcMinify: true,
   reactStrictMode: true,
   images: {
     domains: ['gravatar.com', 'pbs.twimg.com', 'twemoji.maxcdn.com'],
