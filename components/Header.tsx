@@ -34,7 +34,7 @@ const NavBar: React.VFC = () => {
               <li
                 key={link.id}
                 className={classNames('block ml-4 text-black dark:text-gray-50 nav', {
-                  'border-b-2 border-red-700 dark:border-red-400': link.to === activeNav,
+                  'border-b-2 border-blue-700 dark:border-blue-400': link.to === activeNav,
                 })}
               >
                 <Link href={link.to}>
