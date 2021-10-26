@@ -11,6 +11,7 @@ const TAG_SLUGS = {
   ProductDev: 'product-dev',
   Sauna: 'sauna',
   Items: 'items',
+  Notion: 'notion',
 } as const;
 
 export type TagSlug = ValueOf<typeof TAG_SLUGS>;
@@ -66,6 +67,11 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     name: 'アイテム',
     emoji: '✨',
     slug: TAG_SLUGS.Items,
+  },
+  [TAG_SLUGS.Notion]: {
+    name: 'Notion',
+    emoji: '📓',
+    slug: TAG_SLUGS.Notion,
   },
   [TAG_SLUGS.All]: {
     name: 'All',
