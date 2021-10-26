@@ -27,6 +27,7 @@ type Props = {
   fullWidth?: boolean;
   onlyContents?: boolean;
   tweet?: typeof Tweet;
+  slug?: string | null;
 };
 
 export const Layout: React.VFC<Props> = ({
@@ -34,6 +35,7 @@ export const Layout: React.VFC<Props> = ({
   post,
   emailHash,
   tweet,
+  slug,
   fullWidth = false,
   onlyContents = false,
 }) => {
@@ -97,6 +99,7 @@ export const Layout: React.VFC<Props> = ({
       date={new Date(post.createdTime).toISOString()}
       type="article"
       fullWidth={fullWidth}
+      slug={slug}
     >
       {renderContents()}
       <div

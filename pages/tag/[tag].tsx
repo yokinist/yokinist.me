@@ -1,5 +1,6 @@
 import { createHash } from 'crypto';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import BLOG from '~/blog.config';
 import { Profile, Container } from '~/components';
 import { SearchLayout } from '~/layouts';
@@ -48,8 +49,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 type Props = React.ComponentProps<typeof SearchLayout> & Omit<React.ComponentProps<typeof Profile>, 'fullWidth'>;
 
 const TagPage: NextPage<Props> = ({ tags, posts, currentTag, post, blockMap, emailHash }) => {
+  const router = useRouter();
+  const tag = router.query?.tag;
   return (
-    <Container title={getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTag}>
+    <Container
+      title={getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTag}
+      from="tag"
+      slug={typeof tag === 'string' ? tag : undefined}
+    >
       {post && blockMap && <Profile blockMap={blockMap} post={post} emailHash={emailHash} />}
       <SearchLayout tags={tags} posts={posts} currentTag={currentTag} />
     </Container>

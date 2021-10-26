@@ -1,6 +1,7 @@
 import { createHash } from 'crypto';
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import DefaultErrorPage from 'next/error';
+import { useRouter } from 'next/router';
 import { Tweet, TwitterContextProvider } from 'react-static-tweets';
 import BLOG from '~/blog.config';
 import { Layout } from '~/layouts';
@@ -40,7 +41,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 type Props = Omit<React.ComponentProps<typeof Layout>, 'fullWidth'>;
 
 const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
+  const router = useRouter();
   if (!post) return <DefaultErrorPage statusCode={404} />;
+  const slug = router.query?.slug;
   return (
     <>
       <TwitterContextProvider
@@ -57,6 +60,7 @@ const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
           emailHash={emailHash}
           fullWidth={post?.fullWidth ?? false}
           tweet={Tweet}
+          slug={typeof slug === 'string' ? slug : null}
         />
       </TwitterContextProvider>
     </>

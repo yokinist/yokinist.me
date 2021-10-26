@@ -18,8 +18,9 @@ type Props = {
   description?: string;
   fullWidth?: boolean;
   date?: string;
-  slug?: string;
+  slug?: string | null;
   createdTime?: string;
+  from?: 'post' | 'tag';
 };
 
 const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link;
@@ -34,6 +35,9 @@ export const Container: React.VFC<Props> = ({ children, fullWidth, ...meta }) =>
   }, [router]);
 
   const siteUrl = useMemo(() => {
+    if (meta?.from === 'tag') {
+      return meta.slug ? `${url}/tag/${meta.slug}` : url;
+    }
     return meta.slug ? `${url}/${meta.slug}` : url;
   }, [meta]);
 
