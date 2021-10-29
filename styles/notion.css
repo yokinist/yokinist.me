@@ -79,6 +79,11 @@ svg + .notion-page-title-text {
 a.notion-link {
   @apply text-blue-700 border-blue-700 dark:text-blue-200 dark:border-blue-200 !important;
 }
+
+a.notion-page-link {
+  @apply pointer-events-none;
+}
+
 .notion-list li {
   padding: 0;
 }
