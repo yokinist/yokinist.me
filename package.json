@@ -57,6 +57,7 @@
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-tailwindcss": "^1.17.0",
+    "eslint-plugin-unused-imports": "^1.1.5",
     "lint-staged": "^11.0.0",
     "next-sitemap": "^1.6.102",
     "postcss": "^8.2.15",
