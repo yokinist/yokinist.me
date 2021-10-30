@@ -38,7 +38,6 @@ export type BlogConfig = {
   path: string;
   profileSlug: string;
   since: number;
-  postsPerPage: number;
   sortByDate: boolean;
   showAbout: boolean;
   showArchive: boolean;

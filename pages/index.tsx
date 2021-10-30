@@ -1,7 +1,7 @@
 import { createHash } from 'crypto';
 import { GetStaticProps, NextPage } from 'next';
 import BLOG from '~/blog.config';
-import { Pagination, Container, Profile } from '~/components';
+import { Container, Profile } from '~/components';
 import { SearchLayout } from '~/layouts';
 import { filterPublishedPosts, getAllPosts, getAllTags } from '~/lib/notion';
 import { getProfilePost } from '~/lib/notion/getProfilePost';
@@ -18,7 +18,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const tags = getAllTags({ posts });
   return {
     props: {
-      page: 1, // current page is 1
       posts,
       tags,
       post: profilePostData.post,
@@ -29,13 +28,12 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-type Props = React.ComponentProps<typeof Pagination> &
-  Omit<React.ComponentProps<typeof Profile>, 'fullWidth'> &
+type Props = Omit<React.ComponentProps<typeof Profile>, 'fullWidth'> &
   Omit<React.ComponentProps<typeof SearchLayout>, 'currentTag'> & {
     postsToShow: Post[];
   };
 
-const blog: NextPage<Props> = ({ posts, post, blockMap, emailHash, tags }) => {
+const Blog: NextPage<Props> = ({ posts, post, blockMap, emailHash, tags }) => {
   return (
     <Container title={BLOG.title} description={BLOG.description}>
       {post && blockMap && <Profile blockMap={blockMap} post={post} emailHash={emailHash} />}
@@ -44,4 +42,4 @@ const blog: NextPage<Props> = ({ posts, post, blockMap, emailHash, tags }) => {
   );
 };
 
-export default blog;
+export default Blog;

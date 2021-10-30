@@ -15,7 +15,6 @@ const BLOG = {
   path: '', // leave this empty unless you want to deploy Nobelium in a folder
   profileSlug: 'profile',
   since: 2021, // If leave this empty, current year will be used.
-  postsPerPage: 7,
   sortByDate: true,
   showAbout: true,
   showArchive: true,
