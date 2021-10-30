@@ -14,37 +14,13 @@ class MyDocument extends Document {
         <Head>
           {BLOG.font && BLOG.font === 'serif' ? (
             <>
-              <link
-                rel="preload"
-                href="/fonts/SourceSerif.var.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-              />
-              <link
-                rel="preload"
-                href="/fonts/SourceSerif-Italic.var.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-              />
+              <link rel="preload" as="style" href="/fonts/SourceSerif.var.woff2" />
+              <link rel="preload" as="style" href="/fonts/SourceSerif-Italic.var.woff2" />
             </>
           ) : (
             <>
-              <link
-                rel="preload"
-                href="/fonts/IBMPlexSansVar-Roman.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-              />
-              <link
-                rel="preload"
-                href="/fonts/IBMPlexSansVar-Italic.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-              />
+              <link rel="preload" as="style" href="/fonts/IBMPlexSansVar-Roman.woff2" />
+              <link rel="preload" as="style" href="/fonts/IBMPlexSansVar-Italic.woff2" />
             </>
           )}
 
