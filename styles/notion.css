@@ -47,6 +47,9 @@ svg + .notion-page-title-text {
   @apply text-center;
   @apply text-gray-500 dark:text-gray-400;
 }
+.notion-asset-wrapper-image > div > img {
+  @apply bg-gray-100 dark:bg-gray-900 rounded-md drop-shadow-md;
+}
 .notion-full-width {
   @apply px-0;
 }
