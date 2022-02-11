@@ -15,6 +15,7 @@ const lang = {
     POST: {
       BACK: 'Back',
       TOP: 'Top',
+      SHARE: 'Share with Twitter',
       NOTFOUND: 'No posts found.',
       SEARCH: 'Search Articles',
       SEARCHIN: 'Search in',
@@ -34,6 +35,7 @@ const lang = {
     POST: {
       BACK: '返回',
       TOP: '回到顶部',
+      SHARE: 'Share with Twitter',
       NOTFOUND: 'No posts found.',
       SEARCH: 'Search Articles',
       SEARCHIN: 'Search in',
@@ -53,6 +55,7 @@ const lang = {
     POST: {
       BACK: '返回',
       TOP: '回到頂端',
+      SHARE: 'Share with Twitter',
       NOTFOUND: 'No posts found.',
       SEARCH: 'Search Articles',
       SEARCHIN: 'Search in',
@@ -72,6 +75,7 @@ const lang = {
     POST: {
       BACK: '返回',
       TOP: '回到頂端',
+      SHARE: 'Share with Twitter',
       NOTFOUND: 'No posts found.',
       SEARCH: 'Search Articles',
       SEARCHIN: 'Search in',
@@ -91,6 +95,7 @@ const lang = {
     POST: {
       BACK: 'Back',
       TOP: 'Top',
+      SHARE: 'Twitter でシェアする',
       NOTFOUND: '該当する記事はありません...🙇‍♂️',
       SEARCH: '記事を検索する',
       SEARCHIN: '',
@@ -110,6 +115,7 @@ const lang = {
     POST: {
       BACK: 'Atrás',
       TOP: 'Arriba',
+      SHARE: 'Share with Twitter',
       NOTFOUND: 'No posts found.',
       SEARCH: 'Search Articles',
       SEARCHIN: 'Search in',

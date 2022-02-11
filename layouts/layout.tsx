@@ -11,6 +11,7 @@ import { Container } from '~/components';
 import { Comments } from '~/components/Comment';
 import { TagItem } from '~/components/Tag';
 import formatDate from '~/lib/formatDate';
+import { getTwitterShareUrl } from '~/lib/getTwitterShareUrl';
 import { useLocale } from '~/lib/i18n/locale';
 import { Post } from '~/types';
 
@@ -102,6 +103,24 @@ export const Layout: React.VFC<Props> = ({
       slug={slug}
     >
       {renderContents()}
+      <div className="mb-4">
+        <div>---</div>
+        <div className="flex">
+          <a
+            href={getTwitterShareUrl({
+              text: post?.title ?? BLOG.title,
+              url: BLOG.link + '/' + slug,
+              via: BLOG.author,
+            })}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="share with twitter"
+            className="ml-auto text-blue-700 dark:text-blue-200 underline border-blue-700 dark:border-blue-200 cursor-pointer"
+          >
+            {locale?.POST.SHARE}
+          </a>
+        </div>
+      </div>
       <div
         className={classNames('flex justify-between font-medium text-gray-500 dark:text-gray-400', {
           'mb-4': enableCommentArea,
