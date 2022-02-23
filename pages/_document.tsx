@@ -64,14 +64,6 @@ class MyDocument extends Document {
                   BLOG.font === 'serif' ? 'Serif' : 'Sans'
                 }+${CJK()}:wght@400;700&display=swap`}
               />
-              <noscript>
-                <link
-                  rel="stylesheet"
-                  href={`https://fonts.googleapis.com/css2?family=Noto+${
-                    BLOG.font === 'serif' ? 'Serif' : 'Sans'
-                  }+${CJK()}:wght@400;700&display=swap`}
-                />
-              </noscript>
             </>
           )}
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
