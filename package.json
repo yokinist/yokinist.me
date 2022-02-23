@@ -21,6 +21,7 @@
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",
+    "commit-msg": "npx commitlint --edit $1",
     "pre-push": "yarn tsc"
   },
   "dependencies": {
