@@ -45,6 +45,8 @@
     "use-ackee": "^3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^16.2.1",
+    "@commitlint/config-conventional": "^16.2.1",
     "@trivago/prettier-plugin-sort-imports": "^2.0.4",
     "@types/gtag.js": "^0.0.5",
     "@types/node": "^15.12.3",
