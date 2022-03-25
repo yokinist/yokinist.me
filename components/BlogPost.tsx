@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import Link from 'next/link';
 import { ExternalLinkIcon } from '@heroicons/react/outline';
 import BLOG from '~/blog.config';
@@ -39,7 +40,13 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
           />
         )}
         <main>
-          <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300">{post.summary}</p>
+          <p
+            className={classNames('leading-8 text-gray-700 dark:text-gray-300', {
+              'hidden md:block': post?.type?.[0] !== 'Project',
+            })}
+          >
+            {post.summary}
+          </p>
         </main>
         {isProject && post?.repo_url && (
           <a
