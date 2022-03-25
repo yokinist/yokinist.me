@@ -13,6 +13,7 @@ type RenderBlogPostArg = {
 };
 
 export const BlogPost: React.VFC<Props> = ({ post }) => {
+  const isProject = post?.type?.[0] === 'Project';
   const renderBlogPost = ({ isOuterLink }: RenderBlogPostArg) => {
     return (
       <article key={post.id} className="mt-2 mb-6 md:mb-8 hover:opacity-80">
@@ -29,9 +30,27 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
             {formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}
           </time>
         </header>
+        {post?.thumbnail_url && (
+          <img
+            src={post.thumbnail_url}
+            alt={post.title}
+            decoding="async"
+            className="my-3 bg-gray-100 dark:bg-gray-900 rounded-md drop-shadow-md"
+          />
+        )}
         <main>
           <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300">{post.summary}</p>
         </main>
+        {isProject && post?.repo_url && (
+          <a
+            href={post.repo_url}
+            target="_blank"
+            className="text-blue-700 dark:text-blue-200 border-blue-700 dark:border-blue-200"
+            rel="noreferrer"
+          >
+            {post.repo_url}
+          </a>
+        )}
       </article>
     );
   };
