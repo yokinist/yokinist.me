@@ -3,6 +3,7 @@ import { GetStaticProps, NextPage } from 'next';
 import BLOG from '~/blog.config';
 import { Container, Profile } from '~/components';
 import { SearchLayout } from '~/layouts';
+import { fetchLocaleLang } from '~/lib/i18n/lang';
 import { filterPublishedProjects, getAllPosts, getAllProjects, getAllTags } from '~/lib/notion';
 import { getProfilePost } from '~/lib/notion/getProfilePost';
 import { Post } from '~/types';
@@ -33,9 +34,11 @@ type Props = Omit<React.ComponentProps<typeof Profile>, 'fullWidth'> &
     postsToShow: Post[];
   };
 
+const locale = fetchLocaleLang();
+
 const Blog: NextPage<Props> = ({ posts, post, blockMap, emailHash, tags }) => {
   return (
-    <Container title={BLOG.title} description={BLOG.description}>
+    <Container title={locale.NAV.PROJECT} description={BLOG.description}>
       {post && blockMap && <Profile blockMap={blockMap} post={post} emailHash={emailHash} />}
       <SearchLayout tags={tags} posts={posts} postType="project" />
     </Container>
