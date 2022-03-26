@@ -65,7 +65,7 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 
 - Once you have set the environment variables in the Vercel dashboard, run the following
   - `vercel env pull` (with [Vercel CLI](https://vercel.com/cli))
-  - or `vi .env.local` -> `NOTION_PAGE_ID=YOUR_NOTION_PAGE_ID`
+  - or `cp .env.sample .env.local` and `insert YOUR_NOTION_PAGE_ID`
 
 ## Play With Docker
 
