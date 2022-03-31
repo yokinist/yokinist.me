@@ -23,8 +23,8 @@ const NavBar: React.VFC = () => {
   const activeNav = useMemo(() => {
     if (router.asPath === links[0].to) return links[0].to;
     if (router.pathname === links[1].to || router.asPath.includes('projects')) return links[1].to;
-    if (router.pathname === links[0].to || router.asPath.includes('tag')) return links[0].to;
-    return null;
+    if (router.asPath === links[2].to) return links[2].to;
+    return links[0].to;
   }, [router]);
 
   return (
