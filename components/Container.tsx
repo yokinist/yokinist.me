@@ -38,7 +38,7 @@ export const Container: React.VFC<Props> = ({ children, fullWidth, ...meta }) =>
   const siteUrl = useMemo(() => {
     // tag detail page
     if (meta?.isTagPage && meta?.slug) {
-      return meta.from === 'posts' ? `${url}/tags/${meta.slug}` : `${url}/${meta.from}/tags/${meta.slug}`;
+      return meta.from === 'posts' ? `${url}/tag/${meta.slug}` : `${url}/${meta.from}/tag/${meta.slug}`;
     }
     // list page
     if (!meta?.slug && !meta?.isTagPage) {
