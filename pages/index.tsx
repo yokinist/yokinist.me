@@ -35,7 +35,7 @@ type Props = Omit<React.ComponentProps<typeof Profile>, 'fullWidth'> &
 
 const Blog: NextPage<Props> = ({ posts, post, blockMap, emailHash, tags }) => {
   return (
-    <Container title={BLOG.title} description={BLOG.description}>
+    <Container title={BLOG.title} description={BLOG.description} from="posts">
       {post && blockMap && <Profile blockMap={blockMap} post={post} emailHash={emailHash} />}
       <SearchLayout tags={tags} posts={posts} />
     </Container>

@@ -20,7 +20,8 @@ type Props = {
   date?: string;
   slug?: string | null;
   createdTime?: string;
-  from?: 'post' | 'tag' | 'projects';
+  from: 'posts' | 'projects';
+  isTagPage?: boolean;
 };
 
 const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link;
@@ -35,10 +36,19 @@ export const Container: React.VFC<Props> = ({ children, fullWidth, ...meta }) =>
   }, [router]);
 
   const siteUrl = useMemo(() => {
-    if (meta?.from === 'tag' || meta?.from === 'projects') {
-      return meta.slug ? `${url}/${meta.from}/${meta.slug}` : `${url}/${meta.from}`;
+    // tag detail page
+    if (meta?.isTagPage && meta?.slug) {
+      return meta.from === 'posts' ? `${url}/tags/${meta.slug}` : `${url}/${meta.from}/tags/${meta.slug}`;
     }
-    return meta.slug ? `${url}/${meta.slug}` : url;
+    // list page
+    if (!meta?.slug && !meta?.isTagPage) {
+      return meta.from === 'posts' ? url : `${url}/${meta.from}`;
+    }
+    // detail page
+    if (meta?.slug && !meta?.isTagPage) {
+      return meta.from === 'posts' ? `${url}/${meta.slug}` : `${url}/${meta.from}/${meta.slug}`;
+    }
+    return url;
   }, [meta]);
 
   const siteTitle = useMemo(() => {
