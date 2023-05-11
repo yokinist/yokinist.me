@@ -1,5 +1,4 @@
 const path = require('path');
-const BLOG = require('./blog.config');
 
 /**
  * @type {import('next').NextConfig}
@@ -23,15 +22,6 @@ const nextConfig = {
             value: 'interest-cohort=()',
           },
         ],
-      },
-    ];
-  },
-  async redirects() {
-    return [
-      {
-        source: '/link',
-        destination: BLOG.externalHPLink,
-        permanent: true,
       },
     ];
   },
