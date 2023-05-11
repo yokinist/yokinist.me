@@ -20,7 +20,6 @@ type Props = {
   date?: string;
   slug?: string | null;
   createdTime?: string;
-  from: 'posts' | 'projects';
   isTagPage?: boolean;
 };
 
@@ -38,15 +37,15 @@ export const Container: React.VFC<Props> = ({ children, fullWidth, ...meta }) =>
   const siteUrl = useMemo(() => {
     // tag detail page
     if (meta?.isTagPage && meta?.slug) {
-      return meta.from === 'posts' ? `${url}/tag/${meta.slug}` : `${url}/${meta.from}/tag/${meta.slug}`;
+      return `${url}/tag/${meta.slug}`;
     }
     // list page
     if (!meta?.slug && !meta?.isTagPage) {
-      return meta.from === 'posts' ? url : `${url}/${meta.from}`;
+      return url;
     }
     // detail page
     if (meta?.slug && !meta?.isTagPage) {
-      return meta.from === 'posts' ? `${url}/${meta.slug}` : `${url}/${meta.from}/${meta.slug}`;
+      return `${url}/${meta.slug}`;
     }
     return url;
   }, [meta]);

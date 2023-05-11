@@ -54,7 +54,6 @@ const TagPage: NextPage<Props> = ({ tags, posts, currentTag, post, blockMap, ema
   return (
     <Container
       title={getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTag}
-      from="posts"
       isTagPage
       slug={typeof tag === 'string' ? tag : undefined}
     >

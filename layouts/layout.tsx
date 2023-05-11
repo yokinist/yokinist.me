@@ -95,7 +95,6 @@ export const Layout: React.VFC<Props> = ({
   ) : (
     <Container
       layout="blog"
-      from="posts"
       title={post.title}
       description={post.summary}
       date={new Date(post.createdTime).toISOString()}

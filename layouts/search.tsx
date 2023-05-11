@@ -10,10 +10,9 @@ type Props = {
   posts: Post[];
   tags: TagObj;
   currentTag?: string;
-  postType?: 'project' | 'post';
 };
 
-export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag, postType = 'post' }) => {
+export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
   const [searchValue, setSearchValue] = useState('');
   const locale = useLocale();
 
@@ -47,7 +46,7 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag, postTy
         <SearchIcon className="absolute top-3 right-3 w-5 h-5 text-gray-500 dark:text-gray-400" />
       </div>
       <div className="sticky top-16 z-10 bg-day dark:bg-night">
-        <Tags tags={tags} currentTag={currentTag} postType={postType} />
+        <Tags tags={tags} currentTag={currentTag} />
       </div>
       <div className="my-5 article-container">
         {!filteredBlogPosts.length && <p className="text-gray-500 dark:text-gray-300">{locale.POST.NOTFOUND}</p>}

@@ -9,33 +9,23 @@ type Props =
       tagKey: string;
       selected: boolean;
       count: number;
-      postType?: 'post' | 'project';
     }
   | {
       tagKey: string;
       selected: boolean;
       root: boolean;
-      postType?: 'post' | 'project';
     };
 
-export const TagTabItem: React.VFC<Props> = ({ tagKey, selected, postType = 'post', ...rest }) => {
+export const TagTabItem: React.VFC<Props> = ({ tagKey, selected, ...rest }) => {
   const castKey = tagKey as TagSlug;
 
   const linkUrl = useMemo(() => {
-    if (postType === 'project') {
-      if (selected || !('count' in rest)) {
-        return '/projects';
-      } else {
-        return `/projects/tag/${encodeURIComponent(tagKey)}`;
-      }
-    }
-
     if (selected || !('count' in rest)) {
       return '/';
     } else {
       return `/tag/${encodeURIComponent(tagKey)}`;
     }
-  }, [postType, rest, selected, tagKey]);
+  }, [rest, selected, tagKey]);
 
   const tagData = getTagDataBySlug(castKey);
   return (

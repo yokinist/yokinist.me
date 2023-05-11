@@ -12,8 +12,7 @@ import { Twemoji } from './Twemoji';
 const locale = fetchLocaleLang();
 const links = [
   { id: 1, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
-  { id: 2, name: locale.NAV.PROJECT, to: '/projects', show: true },
-  { id: 3, name: locale.NAV.ABOUT, to: '/about', show: BLOG.showAbout },
+  { id: 2, name: locale.NAV.ABOUT, to: '/about', show: BLOG.showAbout },
   // { id: 4, name: locale.NAV.RSS, to: '/feed', show: true },
 ];
 
@@ -22,7 +21,7 @@ const NavBar: React.VFC = () => {
   const { theme, setTheme } = useTheme();
   const activeNav = useMemo(() => {
     if (router.asPath === links[0].to) return links[0].to;
-    if (router.pathname === links[1].to || router.asPath.includes('projects')) return links[1].to;
+    if (router.pathname === links[1].to) return links[1].to;
     if (router.asPath === links[2].to) return links[2].to;
     return links[0].to;
   }, [router]);
