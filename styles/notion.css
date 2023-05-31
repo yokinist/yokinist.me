@@ -198,8 +198,8 @@ pre[class*='language-'] > code {
 .notion-block-688eedf2454e4eed94b4e0c012bd0817 > div > img {
   animation: fluid 24s ease 0s infinite;
   border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
-  max-width: 192px;
-  max-height: 192px;
+  min-width: 100%;
+  min-height: 100%;
   min-width: 100%;
   min-height: 100%;
   @apply bg-gray-100 dark:bg-gray-900 border-2 border-gray-300 dark:border-day;
