@@ -195,12 +195,13 @@ pre[class*='language-'] > code {
 }
 
 /* for profile image block */
-.notion-block-a62e65bc50fd496ea133ccddc3ef2847 > div > img,
-.notion-block-e5dd7df971514832bb6edd440a207775 > div > img {
+.notion-block-688eedf2454e4eed94b4e0c012bd0817 > div > img {
   animation: fluid 24s ease 0s infinite;
   border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
-  width: 192px;
-  height: 192px;
+  max-width: 192px;
+  max-height: 192px;
+  min-width: 100%;
+  min-height: 100%;
   @apply bg-gray-100 dark:bg-gray-900 border-2 border-gray-300 dark:border-day;
 }
 
@@ -227,4 +228,9 @@ pre[class*='language-'] > code {
   84% {
     border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
   }
+}
+
+/* for about embed */
+.notion-block-5550b6d861c44cbd86d2544970284f81 > div {
+  height: 100vh !important;
 }
