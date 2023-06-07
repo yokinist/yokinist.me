@@ -31,7 +31,8 @@ export const TagTabItem: React.VFC<Props> = ({ tagKey, selected, ...rest }) => {
   return (
     <li
       className={classNames('mr-3 font-bold whitespace-nowrap rounded-lg min-w-max block', {
-        'text-gray-400 border-gray-100 dark:text-gray-300 dark:border-gray-700': !selected,
+        'text-gray-400 border-gray-100 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 hover:bg-gray-200':
+          !selected,
         'bg-gray-200 text-gray-700 dark:text-night': selected,
       })}
     >
