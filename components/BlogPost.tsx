@@ -52,7 +52,7 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
           <a
             href={post.repo_url}
             target="_blank"
-            className="text-blue-700 dark:text-blue-400 border-blue-700 dark:border-blue-200"
+            className="text-blue-700 dark:text-blue-400 border-blue-700 dark:border-blue-400"
             rel="noreferrer"
           >
             {post.repo_url}

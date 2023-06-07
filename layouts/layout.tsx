@@ -115,7 +115,7 @@ export const Layout: React.VFC<Props> = ({
             target="_blank"
             rel="noreferrer noopener"
             aria-label="share with twitter"
-            className="ml-auto text-blue-700 dark:text-blue-400 underline border-blue-700 dark:border-blue-200 cursor-pointer"
+            className="ml-auto text-blue-700 dark:text-blue-400 underline border-blue-700 dark:border-blue-400 cursor-pointer"
           >
             {locale?.POST.SHARE}
           </a>
