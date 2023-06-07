@@ -45,11 +45,15 @@ const NavBar: React.VFC = () => {
         )}
         <li className="ml-4">
           <button
-            className="block p-1 bg-night dark:bg-day rounded-full transition-all duration-300"
+            className="group block p-1 bg-night hover:bg-day dark:bg-day dark:hover:bg-night rounded-full transition-all duration-300"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             aria-label="toggle Dark Mode"
           >
-            {theme === 'light' ? <MoonIcon className="w-5 h-5 text-day" /> : <SunIcon className="w-5 h-5 text-night" />}
+            {theme === 'light' ? (
+              <MoonIcon className="w-5 h-5 text-day group-hover:text-night" />
+            ) : (
+              <SunIcon className="w-5 h-5 text-night group-hover:text-day" />
+            )}
           </button>
         </li>
       </ul>
