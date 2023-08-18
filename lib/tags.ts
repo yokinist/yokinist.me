@@ -4,6 +4,7 @@ const TAG_SLUGS = {
   All: 'all',
   Tech: 'tech',
   Update: 'update',
+  Music: 'music',
   Playlist: 'playlist',
   Ikigomi: 'ikigomi',
   Sento: 'sento',
@@ -12,9 +13,6 @@ const TAG_SLUGS = {
   Sauna: 'sauna',
   Items: 'items',
   Notion: 'notion',
-  Solana: 'solana',
-  Polygon: 'polygon',
-  Solidity: 'solidity',
 } as const;
 
 export type TagSlug = ValueOf<typeof TAG_SLUGS>;
@@ -35,6 +33,11 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     name: 'アップデート',
     emoji: '📝',
     slug: TAG_SLUGS.Update,
+  },
+  [TAG_SLUGS.Music]: {
+    name: '音楽',
+    emoji: '🎵',
+    slug: TAG_SLUGS.Music,
   },
   [TAG_SLUGS.Playlist]: {
     name: 'プレイリスト',
@@ -75,21 +78,6 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     name: 'Notion',
     emoji: '📓',
     slug: TAG_SLUGS.Notion,
-  },
-  [TAG_SLUGS.Solidity]: {
-    name: 'Solidity',
-    emoji: '💠',
-    slug: TAG_SLUGS.Solidity,
-  },
-  [TAG_SLUGS.Polygon]: {
-    name: 'Polygon',
-    emoji: '♋️',
-    slug: TAG_SLUGS.Polygon,
-  },
-  [TAG_SLUGS.Solana]: {
-    name: 'Solana',
-    emoji: '👾',
-    slug: TAG_SLUGS.Solana,
   },
   [TAG_SLUGS.All]: {
     name: 'All',
