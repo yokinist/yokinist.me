@@ -106,7 +106,7 @@ export const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
           <Link href="/">
             <a aria-label={BLOG.title}>
               <div className="min-w-max">
-                <Twemoji emoji={'🛸'} size={28} />
+                <Twemoji emoji={'👋'} size={28} />
               </div>
             </a>
           </Link>
