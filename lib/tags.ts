@@ -5,8 +5,14 @@ const TAG_SLUGS = {
   Tech: 'tech',
   Update: 'update',
   Music: 'music',
+  Book: 'book',
   Playlist: 'playlist',
-  Ikigomi: 'ikigomi',
+  CultureBook: 'culture-book',
+  Art: 'art',
+  Food: 'food',
+  Event: 'event',
+  Diary: 'diary',
+  ThinkingFragments: 'thinking-fragments',
   Sento: 'sento',
   Link: 'link',
   ProductDev: 'product-dev',
@@ -44,10 +50,10 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     emoji: '🎧',
     slug: TAG_SLUGS.Playlist,
   },
-  [TAG_SLUGS.Ikigomi]: {
-    name: '意気込み',
-    emoji: '✊',
-    slug: TAG_SLUGS.Ikigomi,
+  [TAG_SLUGS.ThinkingFragments]: {
+    name: '思考の断片',
+    emoji: '💭',
+    slug: TAG_SLUGS.ThinkingFragments,
   },
   [TAG_SLUGS.Sento]: {
     name: '銭湯',
@@ -78,6 +84,36 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     name: 'Notion',
     emoji: '📓',
     slug: TAG_SLUGS.Notion,
+  },
+  [TAG_SLUGS.CultureBook]: {
+    name: 'カルチャーブック',
+    emoji: '📖',
+    slug: TAG_SLUGS.CultureBook,
+  },
+  [TAG_SLUGS.Book]: {
+    name: '本',
+    emoji: '📚',
+    slug: TAG_SLUGS.Book,
+  },
+  [TAG_SLUGS.Art]: {
+    name: '美術・芸術',
+    emoji: '🖼️',
+    slug: TAG_SLUGS.Art,
+  },
+  [TAG_SLUGS.Food]: {
+    name: '食',
+    emoji: '🍙',
+    slug: TAG_SLUGS.Food,
+  },
+  [TAG_SLUGS.Event]: {
+    name: 'イベント',
+    emoji: '🎪',
+    slug: TAG_SLUGS.Event,
+  },
+  [TAG_SLUGS.Diary]: {
+    name: '近況報告',
+    emoji: '📢',
+    slug: TAG_SLUGS.Diary,
   },
   [TAG_SLUGS.All]: {
     name: 'All',
