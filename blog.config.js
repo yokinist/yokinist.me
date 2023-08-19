@@ -7,7 +7,7 @@ const BLOG = {
   email: 'yokinist@gmail.com',
   link: 'https://yokinist.me',
   externalHPLink: 'https://bento.me/yokinist',
-  description: '色々なことを雑多に書いていく場所。とりとめもないエッセイやポエム・趣味の話などなど。',
+  description: '通り過ぎていく日々の解釈。思考の断片、近況報告など。言葉にして置いておく場所。',
   lang: 'ja-JP', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: 'dark', // ['light', 'dark'],
   font: 'sans-serif', // ['sans-serif', 'serif']
