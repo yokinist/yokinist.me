@@ -1,5 +1,4 @@
 import { ExternalLinkIcon } from "@heroicons/react/outline";
-import classNames from "classnames";
 import Link from "next/link";
 import BLOG from "~/blog.config";
 import formatDate from "~/lib/formatDate";
@@ -14,7 +13,6 @@ type RenderBlogPostArg = {
 };
 
 export const BlogPost: React.VFC<Props> = ({ post }) => {
-  const isProject = post?.type?.[0] === "Project";
   const renderBlogPost = ({ isOuterLink }: RenderBlogPostArg) => {
     return (
       <article
@@ -43,27 +41,10 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
           />
         )}
         <main>
-          <p
-            className={classNames(
-              "leading-8 text-gray-700 dark:text-gray-300",
-              {
-                "hidden md:block": post?.type?.[0] !== "Project",
-              },
-            )}
-          >
+          <p className="leading-8 text-gray-700 dark:text-gray-300">
             {post.summary}
           </p>
         </main>
-        {isProject && post?.repo_url && (
-          <a
-            href={post.repo_url}
-            target="_blank"
-            className="text-blue-700 dark:text-blue-400 border-blue-700 dark:border-blue-400"
-            rel="noreferrer"
-          >
-            {post.repo_url}
-          </a>
-        )}
       </article>
     );
   };

@@ -17,19 +17,3 @@ export const getAllTags = ({ posts }: Props): TagObj => {
   }
   return tagObj;
 };
-
-export const getAllProjectTags = ({ posts }: Props): TagObj => {
-  const taggedPosts = (posts ?? []).filter(
-    (post) => post.tags && post?.type?.[0] === "Project",
-  );
-  const tags = [...taggedPosts.flatMap((p) => p?.tags)].filter(nonNullable);
-  const tagObj: TagObj = {};
-  for (const tag of tags) {
-    if (tag in tagObj) {
-      tagObj[tag]++;
-    } else {
-      tagObj[tag] = 1;
-    }
-  }
-  return tagObj;
-};

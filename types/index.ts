@@ -2,7 +2,7 @@
 import type Gitalk from "gitalk";
 import type { ReactCusdis } from "react-cusdis";
 
-export type PostType = "Post" | "Page" | "Project";
+export type PostType = "Post" | "Page";
 
 export type PostStatus = "Idea" | "Published" | "Revise" | "Published";
 
@@ -20,11 +20,6 @@ export type Post = {
   };
   status?: [PostStatus];
   type?: [PostType];
-  repo_url: string;
-  thumbnail_url: string;
-};
-
-export type Project = Post & {
   repo_url: string;
   thumbnail_url: string;
 };
