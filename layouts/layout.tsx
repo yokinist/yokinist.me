@@ -4,17 +4,12 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ExtendedRecordMap } from "notion-types";
-import {
-  Code,
-  Collection,
-  CollectionRow,
-  Equation,
-  NotionRenderer,
-} from "react-notion-x";
+
 import type { Tweet } from "react-static-tweets";
 import BLOG from "~/blog.config";
 import { Container } from "~/components";
 import { Comments } from "~/components/Comment";
+import { NotionRenderer } from "~/components/Notion";
 import { TagItem } from "~/components/Tag";
 import formatDate from "~/lib/formatDate";
 import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
@@ -22,10 +17,6 @@ import { useLocale } from "~/lib/i18n/locale";
 import { Post } from "~/types";
 
 const enableCommentArea = BLOG.comment.provider !== "";
-
-const mapPageUrl = (id: string) => {
-  return `https://www.notion.so/${id.replace(/-/g, "")}`;
-};
 
 type Props = {
   blockMap: ExtendedRecordMap;
@@ -84,19 +75,7 @@ export const Layout: React.VFC<Props> = ({
       )}
       {blockMap && (
         <div className="-mt-4 mb-4 notion-ignore-padding-x">
-          <NotionRenderer
-            // @ts-expect-error no-type, #TODO: upgrade react-notion-x
-            recordMap={blockMap}
-            components={{
-              equation: Equation,
-              code: Code,
-              collection: Collection,
-              collectionRow: CollectionRow,
-              tweet: tweet,
-            }}
-            mapPageUrl={mapPageUrl}
-            darkMode={theme !== "light"}
-          />
+          <NotionRenderer recordMap={blockMap} />
         </div>
       )}
     </article>
