@@ -21,7 +21,7 @@
     "pre-push": "yarn tsc"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.4",
+    "@heroicons/react": "^2.1.1",
     "classnames": "^2.3.1",
     "feed": "^4.2.2",
     "next": "^14.1.0",
@@ -44,7 +44,7 @@
     "@types/prismjs": "^1.26.3",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
-    "@types/tailwindcss": "^2.0.6",
+    "@types/tailwindcss": "^3.1.0",
     "@types/use-ackee": "^2.0.3",
     "autoprefixer": "^10.4.17",
     "lint-staged": "^11.0.0",

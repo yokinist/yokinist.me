@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from "@heroicons/react/solid";
+import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 import classNames from "classnames";
 import { useTheme } from "next-themes";
 import Link from "next/link";
