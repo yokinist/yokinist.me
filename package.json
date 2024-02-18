@@ -38,7 +38,7 @@
     "react-notion-x": "^6.16.0",
     "react-tweet-embed": "^2.0.0",
     "static-tweets": "^0.5.3",
-    "tailwindcss": "^2.2.15",
+    "tailwindcss": "^3.4.1",
     "use-ackee": "^3.0.0"
   },
   "devDependencies": {
@@ -50,10 +50,10 @@
     "@types/react-dom": "^17.0.10",
     "@types/tailwindcss": "^2.0.6",
     "@types/use-ackee": "^2.0.0",
-    "autoprefixer": "^10.2.5",
+    "autoprefixer": "^10.4.17",
     "lint-staged": "^11.0.0",
     "next-sitemap": "^1.6.102",
-    "postcss": "^8.2.15",
+    "postcss": "^8.4.35",
     "simple-git-hooks": "^2.4.1",
     "typescript": "^5.3.3"
   },
