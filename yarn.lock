@@ -346,7 +346,7 @@
   resolved "https://registry.yarnpkg.com/@types/tailwindcss/-/tailwindcss-2.2.4.tgz#c3bca7d265e608ffc50a6d1a4932b5b53be14553"
   integrity sha512-8mIk+0BoReKiaBI4e3hjaz9YDQto+rdZ2eEExHf6AfS38FZcALQ6s8mTd+74N8BtBaLnTzLdNe5GbkzObWlSXw==
 
-"@types/use-ackee@^2.0.0":
+"@types/use-ackee@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/use-ackee/-/use-ackee-2.0.3.tgz#128df5228c16639bb7b812476cbeb43f0c8bee67"
   integrity sha512-Zuo3egKP0orr33SVMWazBTyWp0QTdDVSvOK/y4F+/PS5qgopKVes8GXw705hPkO5hyU3cBuIfN/lyjRjiPG0xA==
@@ -2346,7 +2346,7 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-use-ackee@^3.0.0:
+use-ackee@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/use-ackee/-/use-ackee-3.0.1.tgz#6757c2abea2800369a92eb811ab92d30b67f10d6"
   integrity sha512-c3PJweMI1mpkYXCzCfzz+sUfjH2BhfwhhiqPzBol0giZDzP0h279XpJLg2VtS4XeIaCACIqEW8Z3yJD7iRdcMQ==
