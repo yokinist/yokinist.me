@@ -2,8 +2,8 @@ import { SearchIcon } from "@heroicons/react/outline";
 import { useMemo, useState } from "react";
 import { BlogPost } from "~/components";
 import { Tags } from "~/components/Tag";
+import { getTagDataBySlug, isTagSlug } from "~/lib";
 import { useLocale } from "~/lib/i18n/locale";
-import { TagSlug, getTagDataBySlug } from "~/lib/tags";
 import { Post, TagObj } from "~/types";
 
 type Props = {
@@ -28,10 +28,9 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
     return [];
   }, [posts, searchValue]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  const currentTagName: string | undefined = useMemo(() => {
-    if (!currentTag) return undefined;
-    return getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTagName;
+  const currentTagName = useMemo(() => {
+    if (!currentTag || !isTagSlug(currentTag)) return currentTag;
+    return getTagDataBySlug(currentTag).name;
   }, [currentTag]);
 
   if (!locale) return null;
