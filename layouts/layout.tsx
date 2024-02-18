@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { ExtendedRecordMap } from "notion-types";
 
-import type { Tweet } from "react-static-tweets";
 import BLOG from "~/blog.config";
 import { Container } from "~/components";
 import { Comments } from "~/components/Comment";
@@ -24,7 +23,6 @@ type Props = {
   emailHash: string;
   fullWidth?: boolean;
   onlyContents?: boolean;
-  tweet?: typeof Tweet;
   slug?: string | null;
 };
 
@@ -32,7 +30,6 @@ export const Layout: React.VFC<Props> = ({
   blockMap,
   post,
   emailHash,
-  tweet,
   slug,
   fullWidth = false,
   onlyContents = false,

@@ -4,7 +4,6 @@ import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import "prismjs/themes/prism.css";
 import "react-notion-x/src/styles.css";
-import "react-static-tweets/styles.css";
 import BLOG from "~/blog.config";
 
 import { Scripts } from "~/components";

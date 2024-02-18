@@ -2,7 +2,6 @@ import { createHash } from "crypto";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import DefaultErrorPage from "next/error";
 import { useRouter } from "next/router";
-import { Tweet, TwitterContextProvider } from "react-static-tweets";
 import BLOG from "~/blog.config";
 import { Layout } from "~/layouts";
 import { getAllPosts, getPostBlocks } from "~/lib/notion";
@@ -47,26 +46,13 @@ const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   if (!post) return <DefaultErrorPage statusCode={404} />;
   const slug = router.query?.slug;
   return (
-    <>
-      <TwitterContextProvider
-        value={{
-          tweetAstMap: {},
-          swrOptions: {
-            fetcher: (id: number) =>
-              fetch(`/api/get-tweet-ast/${id}`).then((r) => r.json()),
-          },
-        }}
-      >
-        <Layout
-          blockMap={blockMap}
-          post={post}
-          emailHash={emailHash}
-          fullWidth={post?.fullWidth ?? false}
-          tweet={Tweet}
-          slug={typeof slug === "string" ? slug : null}
-        />
-      </TwitterContextProvider>
-    </>
+    <Layout
+      blockMap={blockMap}
+      post={post}
+      emailHash={emailHash}
+      fullWidth={post?.fullWidth ?? false}
+      slug={typeof slug === "string" ? slug : null}
+    />
   );
 };
 
