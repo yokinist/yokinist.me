@@ -229,8 +229,7 @@ pre[class*='language-'] > code {
 }
 
 /* for profile image block */
-.notion-block-9a3fab186b4a44f8822834ce66a4fc88 > div > img,
-.notion-block-f96cde5fda7a449f8e6084bd12b98bf1 > div > img {
+.notion-block-ff7d6f513c0342fb9209543568484095 > div > img {
     animation: fluid 24s ease 0s infinite;
     border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
     min-width: 192px;
