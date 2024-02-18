@@ -1,236 +1,271 @@
 /* NOTION CSS OVERRIDE */
 
 .notion {
-  @apply text-gray-600 dark:text-gray-200;
-  overflow-wrap: break-word;
+    @apply text-gray-600 dark:text-gray-200;
+    overflow-wrap: break-word;
 }
+
 .notion,
 .notion-text,
 .notion-quote,
 .notion-h-title {
-  @apply leading-8;
-  @apply p-0;
-  @apply my-3;
+    @apply leading-8;
+    @apply p-0;
+    @apply my-3;
 }
+
 .notion-page-link {
-  color: inherit;
+    color: inherit;
 }
 
 svg.notion-page-icon {
-  @apply hidden;
+    @apply hidden;
 }
 
 svg + .notion-page-title-text {
-  @apply border-b-0;
+    @apply border-b-0;
 }
 
 .notion-simple-table {
-  @apply my-3;
+    @apply my-3;
 }
 
 .notion-bookmark {
-  @apply border-blue-700 dark:border-blue-300 !important;
+    @apply border-blue-700 dark:border-blue-300 !important;
 }
 
 .notion-bookmark .notion-bookmark-title,
 .notion-bookmark .notion-bookmark-link div {
-  @apply text-gray-900 dark:text-gray-100;
+    @apply text-gray-900 dark:text-gray-100;
 }
 
 .notion-bookmark .notion-bookmark-description {
-  @apply text-gray-700 dark:text-gray-300;
+    @apply text-gray-700 dark:text-gray-300;
 }
 
 .notion-bookmark:hover {
-  @apply border-blue-400 !important;
+    @apply border-blue-400 !important;
 }
+
 .notion-viewport {
-  z-index: -10;
+    z-index: -10;
 }
+
 .notion-asset-caption {
-  @apply text-center;
-  @apply text-gray-500 dark:text-gray-400;
+    @apply text-center;
+    @apply text-gray-500 dark:text-gray-400;
 }
+
 .notion-asset-wrapper-image > div > img {
-  @apply bg-gray-100 dark:bg-gray-900 rounded-md drop-shadow-md;
+    @apply bg-gray-100 dark:bg-gray-900 rounded-md drop-shadow-md;
 }
+
 .notion-full-width {
-  @apply px-0;
+    @apply px-0;
 }
+
 .notion-page {
-  @apply w-auto;
-  @apply px-0;
+    @apply w-auto;
+    @apply px-0;
 }
+
 .notion-quote {
-  padding: 0.2em 0.9em;
-  @apply text-base !important;
+    padding: 0.2em 0.9em;
+    @apply text-base !important;
 }
+
 .notion-collection-row {
-  @apply hidden;
+    @apply hidden;
 }
+
 .notion-collection {
-  @apply max-w-full;
+    @apply max-w-full;
 }
+
 .notion-collection > .notion-collection-header {
-  @apply px-0 !important;
+    @apply px-0 !important;
 }
+
 .notion-collection-header > .notion-collection-view-type {
-  @apply hidden;
+    @apply hidden;
 }
+
 .notion-collection > .notion-table {
-  @apply max-w-full !important;
+    @apply max-w-full !important;
 }
+
 .notion-collection > .notion-table > .notion-table-view {
-  @apply px-0 !important;
+    @apply px-0 !important;
 }
+
 .notion-table-cell.notion-table-cell-text {
-  @apply flex items-center;
+    @apply flex items-center;
 }
+
 a.notion-link {
-  @apply text-blue-700 border-blue-700 dark:text-blue-400 dark:border-blue-400 !important;
+    @apply text-blue-700 border-blue-700 dark:text-blue-400 dark:border-blue-400 !important;
 }
 
 a.notion-page-link {
-  @apply pointer-events-none;
+    @apply pointer-events-none;
 }
 
 .notion-list li {
-  padding: 0;
+    padding: 0;
 }
+
 .notion-list > li::marker {
-  @apply text-gray-500 dark:text-gray-400;
+    @apply text-gray-500 dark:text-gray-400;
 }
 
 .notion-table-of-contents-item > span {
-  @apply text-gray-500 border-gray-500 dark:text-gray-400 dark:border-gray-400;
+    @apply text-gray-500 border-gray-500 dark:text-gray-400 dark:border-gray-400;
 }
 
 /* code */
 .notion-code {
-  @apply bg-gray-50 dark:border-gray-600 dark:bg-gray-800 border-gray-400 rounded-md p-4 !important;
+    @apply bg-gray-50 dark:border-gray-600 dark:bg-gray-800 border-gray-400 rounded-md p-4 !important;
 }
+
 .notion code {
-  @apply text-gray-700 dark:text-gray-300 border-none shadow-none bg-none p-0;
+    @apply text-gray-700 dark:text-gray-300 border-none shadow-none bg-none p-0;
 }
+
 .token.cdata,
 .token.doctype,
 .token.prolog {
-  @apply text-gray-700;
+    @apply text-gray-700;
 }
+
 .token.comment {
-  @apply text-gray-400 dark:text-gray-500;
+    @apply text-gray-400 dark:text-gray-500;
 }
+
 .dark-mode .token.cdata,
 .dark-mode .token.doctype,
 .dark-mode .token.prolog {
-  @apply text-gray-300;
+    @apply text-gray-300;
 }
+
 .token.punctuation {
-  @apply text-gray-700;
+    @apply text-gray-700;
 }
+
 .dark-mode .token.punctuation {
-  @apply text-gray-300;
+    @apply text-gray-300;
 }
+
 .token.boolean,
 .token.deleted,
 .token.number,
 .token.property,
 .token.symbol,
 .token.tag {
-  @apply text-green-600 !important;
+    @apply text-green-600 !important;
 }
+
 .token.attr-name,
 .token.builtin,
 .token.char,
 .token.inserted,
 .token.selector {
-  @apply text-purple-600 !important;
+    @apply text-purple-600 !important;
 }
+
 .token.string,
 .token.entity,
 .token.operator,
 .token.url {
-  @apply dark:text-yellow-600 !important;
+    @apply dark:text-yellow-600 !important;
 }
+
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  @apply dark:text-purple-400 !important;
+    @apply dark:text-purple-400 !important;
 }
+
 .token.class-name,
 .token.function,
 .token.constant {
-  @apply text-red-600 dark:text-blue-500 !important;
+    @apply text-red-600 dark:text-blue-500 !important;
 }
+
 .token.important,
 .token.regex,
 .token.variable {
-  @apply text-yellow-600;
+    @apply text-yellow-600;
 }
+
 code[class*='language-'],
 pre[class*='language-'] {
-  @apply text-gray-700;
-  text-shadow: none !important;
+    @apply text-gray-700;
+    text-shadow: none !important;
 }
+
 .dark-mode code[class*='language-'],
 .dark-mode pre[class*='language-'] {
-  @apply text-gray-100;
+    @apply text-gray-100;
 }
+
 pre::-webkit-scrollbar {
-  @apply hidden;
+    @apply hidden;
 }
+
 pre {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
 .token.operator,
 .token.entity,
 .token.url,
 .token.variable {
-  @apply bg-transparent !important;
+    @apply bg-transparent !important;
 }
 
 pre[class*='language-'] > code {
-  border-left: 0 none !important;
+    border-left: 0 none !important;
 }
 
 /* for profile image block */
-.notion-block-ff7d6f513c0342fb9209543568484095 > div > img {
-  animation: fluid 24s ease 0s infinite;
-  border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
-  min-width: 192px;
-  min-height: 192px;
-  max-width: 100%;
-  max-height: 100%;
-  @apply bg-gray-100 dark:bg-gray-900 border-2 border-gray-300 dark:border-day;
+.notion-block-9a3fab186b4a44f8822834ce66a4fc88 > div > img,
+.notion-block-f96cde5fda7a449f8e6084bd12b98bf1 > div > img {
+    animation: fluid 24s ease 0s infinite;
+    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+    min-width: 192px;
+    min-height: 192px;
+    max-width: 100%;
+    max-height: 100%;
+    @apply bg-gray-100 dark:bg-gray-900 border-2 border-gray-300 dark:border-day;
 }
 
 @keyframes fluid {
-  0%,
-  100% {
-    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
-  }
-  14% {
-    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
-  }
-  28% {
-    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
-  }
-  42% {
-    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
-  }
-  56% {
-    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
-  }
-  70% {
-    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
-  }
-  84% {
-    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
-  }
+    0%,
+    100% {
+        border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+    }
+    14% {
+        border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+    }
+    28% {
+        border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+    }
+    42% {
+        border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+    }
+    56% {
+        border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+    }
+    70% {
+        border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+    }
+    84% {
+        border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+    }
 }
 
 /* for about embed */
 .notion-block-5550b6d861c44cbd86d2544970284f81 > div {
-  height: 100vh !important;
+    height: 100vh !important;
 }
