@@ -41,27 +41,6 @@ const BLOG = {
       measurementId: "G-PJ2C55Q3CH", // e.g: G-XXXXXXXXXX
     },
   },
-  comment: {
-    // support provider: gitalk, utterances, cusdis
-    provider: "", // leave it empty if you don't need any comment plugin
-    gitalkConfig: {
-      repo: "for-gitalk", // The repository of store comments
-      owner: "yokinist",
-      clientID: "f06077c5603d6099ec37",
-      clientSecret: process.env.GITALK_CLIENT_SECRET,
-      admin: ["yokinist"],
-      id: "yokinist.me", // Ensure uniqueness and length less than 50
-      distractionFreeMode: false,
-    },
-    utterancesConfig: {
-      repo: "",
-    },
-    cusdisConfig: {
-      appId: "4c9aa1e3-623a-4773-a9ef-f345f484efe5", // data-app-id'
-      host: "https://cusdis.com", // data-host, change this if you're using self-hosted version
-      scriptSrc: "https://cusdis.com/js/cusdis.es.js", // change this if you're using self-hosted version
-    },
-  },
   isProd: process.env.VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
 };
 // export default BLOG

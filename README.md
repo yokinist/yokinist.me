@@ -31,7 +31,7 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 
 **🚙 &nbsp;Fully functional**
 
-- Comments, full width page, quick search and tag filter
+- Full width page, quick search and tag filter
 - RSS, analytics, web vital... and much more
 
 **🎨 &nbsp;Easy for customization**
@@ -113,7 +113,6 @@ Check out our roadmap [here](https://www.notion.so/craigary/Public-Roadmap-3cfc4
 - **Generation**: Next.js and Incremental Static Regeneration
 - **Page render**: [react-notion-x](https://github.com/NotionX/react-notion-x)
 - **Style**: Tailwind CSS and `@tailwindcss/jit` compiler
-- **Comments**: Gitalk, Cusdis and more
 
 ## Special Thanks
 
