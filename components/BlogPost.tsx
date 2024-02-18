@@ -79,8 +79,7 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
     </a>
   ) : (
     <Link href={`${BLOG.path}/${post.slug}`}>
-      {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-      <a>{renderBlogPost({ isOuterLink: false })}</a>
+      {renderBlogPost({ isOuterLink: false })}
     </Link>
   );
 };
