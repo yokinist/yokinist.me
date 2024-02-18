@@ -1,4 +1,4 @@
-import { BasePageBlock } from 'notion-types/build/esm/block';
+import { BasePageBlock } from "notion-types/build/esm/block";
 
 export const getMetadata = (rawMetadata: BasePageBlock) => {
   const metadata = {

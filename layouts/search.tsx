@@ -1,10 +1,10 @@
-import { useState, useMemo } from 'react';
-import { SearchIcon } from '@heroicons/react/outline';
-import { BlogPost } from '~/components';
-import { Tags } from '~/components/Tag';
-import { useLocale } from '~/lib/i18n/locale';
-import { getTagDataBySlug, TagSlug } from '~/lib/tags';
-import { Post, TagObj } from '~/types';
+import { SearchIcon } from "@heroicons/react/outline";
+import { useMemo, useState } from "react";
+import { BlogPost } from "~/components";
+import { Tags } from "~/components/Tag";
+import { useLocale } from "~/lib/i18n/locale";
+import { TagSlug, getTagDataBySlug } from "~/lib/tags";
+import { Post, TagObj } from "~/types";
 
 type Props = {
   posts: Post[];
@@ -13,20 +13,22 @@ type Props = {
 };
 
 export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const locale = useLocale();
 
   const filteredBlogPosts = useMemo(() => {
     if (posts) {
       return posts.filter((post) => {
-        const tagContent = post.tags ? post.tags.join(' ') : '';
-        const searchContent = post?.title ?? '' + post?.summary ?? '' + tagContent;
+        const tagContent = post.tags ? post.tags.join(" ") : "";
+        const searchContent =
+          post?.title ?? `${post?.summary}` ?? `${tagContent}`;
         return searchContent.toLowerCase().includes(searchValue.toLowerCase());
       });
     }
     return [];
   }, [posts, searchValue]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const currentTagName: string | undefined = useMemo(() => {
     if (!currentTag) return undefined;
     return getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTagName;
@@ -39,7 +41,11 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
       <div className="relative my-2">
         <input
           type="text"
-          placeholder={currentTag ? `${locale.POST.SEARCHIN} #${currentTagName}` : locale.POST.SEARCH}
+          placeholder={
+            currentTag
+              ? `${locale.POST.SEARCHIN} #${currentTagName}`
+              : locale.POST.SEARCH
+          }
           className="block py-2 px-4 w-full text-black dark:text-white bg-gray-50 dark:bg-gray-700 rounded-lg border-2 border-gray-300"
           onChange={(e) => setSearchValue(e.target.value)}
         />
@@ -49,7 +55,11 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
         <Tags tags={tags} currentTag={currentTag} />
       </div>
       <div className="my-5 article-container">
-        {!filteredBlogPosts.length && <p className="text-gray-500 dark:text-gray-300">{locale.POST.NOTFOUND}</p>}
+        {!filteredBlogPosts.length && (
+          <p className="text-gray-500 dark:text-gray-300">
+            {locale.POST.NOTFOUND}
+          </p>
+        )}
         {filteredBlogPosts.map((post) => (
           <BlogPost key={post.id} post={post} />
         ))}

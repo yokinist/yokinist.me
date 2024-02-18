@@ -1,28 +1,28 @@
-import 'gitalk/dist/gitalk.css';
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import type { ReactCusdis as ReactCusdisType } from 'react-cusdis';
-import BLOG from '~/blog.config';
-import { fetchCusdisLang } from '~/lib/i18n/cusdisLang';
-import { Post } from '~/types';
+import "gitalk/dist/gitalk.css";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import type { ReactCusdis as ReactCusdisType } from "react-cusdis";
+import BLOG from "~/blog.config";
+import { fetchCusdisLang } from "~/lib/i18n/cusdisLang";
+import { Post } from "~/types";
 
 const GitalkComponent = dynamic(
   () => {
-    return import('~/components/Comment/CustomGitalk');
+    return import("~/components/Comment/CustomGitalk");
   },
   { ssr: false },
 );
 
 const UtterancesComponent = dynamic(
   () => {
-    return import('~/components/Comment/Utterances');
+    return import("~/components/Comment/Utterances");
   },
   { ssr: false },
 );
 
 const CusdisComponent = dynamic(
   () => {
-    return import('react-cusdis').then((m) => m.ReactCusdis);
+    return import("react-cusdis").then((m) => m.ReactCusdis);
   },
   { ssr: false },
 ) as typeof ReactCusdisType;
@@ -35,7 +35,7 @@ export const Comments: React.VFC<Props> = ({ post }) => {
   const router = useRouter();
   return (
     <div>
-      {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
+      {BLOG.comment && BLOG.comment.provider === "gitalk" && (
         <GitalkComponent
           options={{
             id: post.id,
@@ -49,10 +49,12 @@ export const Comments: React.VFC<Props> = ({ post }) => {
           }}
         />
       )}
-      {BLOG.comment && BLOG.comment.provider === 'utterances' && <UtterancesComponent issueTerm={post.id} />}
-      {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
+      {BLOG.comment && BLOG.comment.provider === "utterances" && (
+        <UtterancesComponent issueTerm={post.id} />
+      )}
+      {BLOG.comment && BLOG.comment.provider === "cusdis" && (
         <CusdisComponent
-          lang={fetchCusdisLang() ?? 'en'}
+          lang={fetchCusdisLang() ?? "en"}
           attrs={{
             host: BLOG.comment.cusdisConfig.host,
             appId: BLOG.comment.cusdisConfig.appId,

@@ -1,5 +1,5 @@
-import { TagObj } from '~/types';
-import { TagTabItem } from './TagTabItem';
+import { TagObj } from "~/types";
+import { TagTabItem } from "./TagTabItem";
 
 type Props = {
   tags: TagObj;
@@ -13,7 +13,14 @@ export const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
       <ul className="flex overflow-x-auto py-2 max-w-full">
         <TagTabItem tagKey="all" selected={!currentTag} root />
         {Object.keys(tags).map((key) => {
-          return <TagTabItem key={key} tagKey={key} selected={key === currentTag} count={tags[key]} />;
+          return (
+            <TagTabItem
+              key={key}
+              tagKey={key}
+              selected={key === currentTag}
+              count={tags[key]}
+            />
+          );
         })}
       </ul>
     </div>

@@ -1,24 +1,30 @@
-import classNames from 'classnames';
-import 'gitalk/dist/gitalk.css';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { ExtendedRecordMap } from 'notion-types/build/esm/maps';
-import { NotionRenderer, Equation, Code, CollectionRow, Collection } from 'react-notion-x';
-import type { Tweet } from 'react-static-tweets';
-import BLOG from '~/blog.config';
-import { Container } from '~/components';
-import { Comments } from '~/components/Comment';
-import { TagItem } from '~/components/Tag';
-import formatDate from '~/lib/formatDate';
-import { getTwitterShareUrl } from '~/lib/getTwitterShareUrl';
-import { useLocale } from '~/lib/i18n/locale';
-import { Post } from '~/types';
+import classNames from "classnames";
+import "gitalk/dist/gitalk.css";
+import { useTheme } from "next-themes";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { ExtendedRecordMap } from "notion-types/build/esm/maps";
+import {
+  Code,
+  Collection,
+  CollectionRow,
+  Equation,
+  NotionRenderer,
+} from "react-notion-x";
+import type { Tweet } from "react-static-tweets";
+import BLOG from "~/blog.config";
+import { Container } from "~/components";
+import { Comments } from "~/components/Comment";
+import { TagItem } from "~/components/Tag";
+import formatDate from "~/lib/formatDate";
+import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
+import { useLocale } from "~/lib/i18n/locale";
+import { Post } from "~/types";
 
-const enableCommentArea = BLOG.comment.provider !== '';
+const enableCommentArea = BLOG.comment.provider !== "";
 
 const mapPageUrl = (id: string) => {
-  return 'https://www.notion.so/' + id.replace(/-/g, '');
+  return `https://www.notion.so/${id.replace(/-/g, "")}`;
 };
 
 type Props = {
@@ -46,11 +52,13 @@ export const Layout: React.VFC<Props> = ({
 
   const renderContents = () => (
     <article>
-      <h1 className="text-3xl font-bold text-black dark:text-white">{post.title}</h1>
-      {post?.type?.[0] !== 'Page' && (
+      <h1 className="text-3xl font-bold text-black dark:text-white">
+        {post.title}
+      </h1>
+      {post?.type?.[0] !== "Page" && (
         <nav className="flex items-start mt-7 mb-4 text-gray-500 dark:text-gray-300">
           <div className="flex mb-4">
-            <a href={BLOG.socialLink || '#'} className="flex">
+            <a href={BLOG.socialLink || "#"} className="flex">
               <Image
                 alt={BLOG.author}
                 width={24}
@@ -62,7 +70,9 @@ export const Layout: React.VFC<Props> = ({
             </a>
             <span className="block">&nbsp;/&nbsp;</span>
           </div>
-          <div className="mr-2 mb-4 md:ml-0">{formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}</div>
+          <div className="mr-2 mb-4 md:ml-0">
+            {formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}
+          </div>
           {post.tags && (
             <div className="flex overflow-x-auto flex-nowrap max-w-full article-tags">
               {post.tags.map((tag) => (
@@ -84,7 +94,7 @@ export const Layout: React.VFC<Props> = ({
               tweet: tweet,
             }}
             mapPageUrl={mapPageUrl}
-            darkMode={theme !== 'light'}
+            darkMode={theme !== "light"}
           />
         </div>
       )}
@@ -109,7 +119,7 @@ export const Layout: React.VFC<Props> = ({
           <a
             href={getTwitterShareUrl({
               text: post?.title ?? BLOG.title,
-              url: BLOG.link + '/' + slug,
+              url: `${BLOG.link}/${slug}`,
               via: BLOG.author,
             })}
             target="_blank"
@@ -122,19 +132,24 @@ export const Layout: React.VFC<Props> = ({
         </div>
       </div>
       <div
-        className={classNames('flex justify-between font-medium text-gray-500 dark:text-gray-400', {
-          'mb-4': enableCommentArea,
-        })}
+        className={classNames(
+          "flex justify-between font-medium text-gray-500 dark:text-gray-400",
+          {
+            "mb-4": enableCommentArea,
+          },
+        )}
       >
         <button
-          onClick={() => router.push(BLOG.path || '/')}
+          onClick={() => router.push(BLOG.path || "/")}
           className="mt-2 hover:text-black dark:hover:text-gray-100 cursor-pointer"
+          type="button"
         >
           ← {locale?.POST.BACK}
         </button>
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="mt-2 hover:text-black dark:hover:text-gray-100 cursor-pointer"
+          type="button"
         >
           ↑ {locale?.POST.TOP}
         </button>

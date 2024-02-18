@@ -1,4 +1,7 @@
 {
-  "**/*.{js,jsx,ts,tsx}": ["yarn format", "yarn eslint:fix"],
-  "{*.{json,md,css}}": ["yarn format"]
+  "*.{js,ts,tsx,json}": [
+    "biome check --apply --no-errors-on-unmatched",
+    "biome format --write --no-errors-on-unmatched",
+    "biome lint --apply --no-errors-on-unmatched",
+  ]
 }

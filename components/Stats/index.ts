@@ -1,2 +1,2 @@
-export * from './Ackee';
-export * from './Gtag';
+export * from "./Ackee";
+export * from "./Gtag";

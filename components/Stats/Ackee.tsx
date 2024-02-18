@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router';
-import React from 'react';
-import useAckee from 'use-ackee';
+import { useRouter } from "next/router";
+import React from "react";
+import useAckee from "use-ackee";
 
 type Props = {
   ackeeServerUrl: string;

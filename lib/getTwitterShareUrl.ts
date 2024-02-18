@@ -1,4 +1,4 @@
-const BASE_URL = 'https://twitter.com/intent/tweet' as const;
+const BASE_URL = "https://twitter.com/intent/tweet" as const;
 
 type Params = {
   text: string;
@@ -8,5 +8,5 @@ type Params = {
 };
 
 export const getTwitterShareUrl = (params: Params): string => {
-  return BASE_URL + '?' + new URLSearchParams(params);
+  return `${BASE_URL}?${new URLSearchParams(params)}`;
 };
