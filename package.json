@@ -26,16 +26,16 @@
     "classnames": "^2.3.1",
     "feed": "^4.2.2",
     "gitalk": "^1.7.2",
-    "next": "^12.1.0",
+    "next": "^14.1.0",
     "next-head-seo": "^0.1.2",
     "next-themes": "^0.0.15",
     "notion-client": "^6.16.0",
     "notion-types": "^6.16.0",
     "notion-utils": "^6.16.0",
-    "preact": "^10.5.15",
-    "react": "^17.0.2",
+    "preact": "^10.19.5",
+    "react": "^18.2.0",
     "react-cusdis": "^2.0.1",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.2.0",
     "react-notion-x": "^6.16.0",
     "react-static-tweets": "^0.5.4",
     "react-tweet-embed": "^2.0.0",
@@ -59,7 +59,7 @@
     "next-sitemap": "^1.6.102",
     "postcss": "^8.2.15",
     "simple-git-hooks": "^2.4.1",
-    "typescript": "^4.3.4"
+    "typescript": "^5.3.3"
   },
   "resolutions": {
     "axios": ">=0.21.1"
