@@ -13,12 +13,11 @@
     "start": "next start",
     "lint": "next lint",
     "tsc": "tsc --noEmit -p tsconfig.json",
-    "prepare": "simple-git-hooks ",
+    "prepare": "simple-git-hooks",
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",
-    "commit-msg": "npx commitlint --edit $1",
     "pre-push": "yarn tsc"
   },
   "dependencies": {
