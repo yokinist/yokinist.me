@@ -85,6 +85,7 @@ export const Layout: React.VFC<Props> = ({
       {blockMap && (
         <div className="-mt-4 mb-4 notion-ignore-padding-x">
           <NotionRenderer
+            // @ts-expect-error no-type, #TODO: upgrade react-notion-x
             recordMap={blockMap}
             components={{
               equation: Equation,
