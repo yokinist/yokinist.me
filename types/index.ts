@@ -4,7 +4,7 @@ import type { ReactCusdis } from "react-cusdis";
 
 export type PostType = "Post" | "Page";
 
-export type PostStatus = "Idea" | "Published" | "Revise" | "Published";
+export type PostStatus = "Idea" | "Published" | "Revise";
 
 export type Post = {
   id: string;
