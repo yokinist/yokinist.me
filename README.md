@@ -58,6 +58,13 @@ and share it to the public
 - [Fork](https://github.com/yokinist/yokinist.me/fork) this project
 - Customize `blog.config.js`
 - _(Optional)_ You can customize tags in `lib/tags.ts` to match those in your Notion database.
+- _(Optional)_ You can add animation to your profile by specifying the profile image block class in `style/notion.css`
+
+<details><summary>How to check the block class？</summary>
+
+![](https://github.com/yokinist/yokinist.me/assets/19779874/16263594-0bce-4899-a76d-a619fd961ab5)
+</details>
+
 - _(Optional)_ Replace `favicon.svg`, and `favicon.ico` in `/public` folder with your own
 - Deploy on [Vercel](https://vercel.com), set following environment variables：
     - `NOTION_PAGE_ID` (Required): The ID of the Notion page you previously shared to the web, usually has 32 digits
