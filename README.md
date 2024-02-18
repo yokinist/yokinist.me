@@ -1,6 +1,7 @@
 # yokinist.me
 
-A static blog build on top of Notion and Nextjs, deployed on [Vercel](https://vercel.com?utm_source=yokinist&utm_campaign=oss).
+A static blog build on top of Notion and Nextjs, deployed
+on [Vercel](https://vercel.com?utm_source=yokinist&utm_campaign=oss).
 
 This repo is customized based on [craigary/nobelium](https://github.com/craigary/nobelium).
 
@@ -49,12 +50,18 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 ## Quick Start
 
 - Star this repo 😉
-- Duplicate [this Notion template](https://yokinist.notion.site/761c04c4ff6e467188fe67c8a36e20b9?v=0643f1ef640642fbb84032202708336f), and share it to the public
+-
+
+Duplicate [this Notion template](https://yokinist.notion.site/761c04c4ff6e467188fe67c8a36e20b9?v=0643f1ef640642fbb84032202708336f),
+and share it to the public
+
 - [Fork](https://github.com/yokinist/yokinist.me/fork) this project
 - Customize `blog.config.js`
+- _(Optional)_ You can customize tags in `lib/tags.ts` to match those in your Notion database.
 - _(Optional)_ Replace `favicon.svg`, and `favicon.ico` in `/public` folder with your own
 - Deploy on [Vercel](https://vercel.com), set following environment variables：
-  - `NOTION_PAGE_ID` (Required): The ID of the Notion page you previously shared to the web, usually has 32 digits after your workspace address
+    - `NOTION_PAGE_ID` (Required): The ID of the Notion page you previously shared to the web, usually has 32 digits
+      after your workspace address
 - **That's it!** Easy-peasy?
 
 <details><summary>Wait for a sec, what is Page ID？</summary>
@@ -64,8 +71,8 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 ## Getting started in developing
 
 - Once you have set the environment variables in the Vercel dashboard, run the following
-  - `vercel env pull` (with [Vercel CLI](https://vercel.com/cli))
-  - or `cp .env.sample .env.local` and `insert YOUR_NOTION_PAGE_ID`
+    - `vercel env pull` (with [Vercel CLI](https://vercel.com/cli))
+    - or `cp .env.sample .env.local` and `insert YOUR_NOTION_PAGE_ID`
 
 ## Play With Docker
 

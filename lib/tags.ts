@@ -24,9 +24,9 @@ type TagData = {
 
 const TAG_DATA: Record<TagSlug, TagData> = {
   [TAG_SLUGS.News]: {
-    name: "News",
-    emoji: "📰",
-    slug: TAG_SLUGS.News,
+    name: "News", // Display name
+    emoji: "📰", // Emoji
+    slug: TAG_SLUGS.News, // Slug
   },
   [TAG_SLUGS.Cooking]: {
     name: "Cooking",
