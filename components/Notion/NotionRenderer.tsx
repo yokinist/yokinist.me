@@ -1,5 +1,5 @@
+import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
-import { createElement as h } from "react";
 import { NotionRenderer as Renderer } from "react-notion-x";
 
 // Lazy-load some heavy components & override the renderers of some block types
@@ -55,7 +55,13 @@ type RendererProps = React.ComponentProps<typeof Renderer>;
 type Props = Omit<RendererProps, "components" | "mapPageUrl">;
 
 export const NotionRenderer = (props: Props) => {
+  const { theme } = useTheme();
   return (
-    <Renderer components={components} mapPageUrl={mapPageUrl} {...props} />
+    <Renderer
+      components={components}
+      mapPageUrl={mapPageUrl}
+      {...props}
+      darkMode={theme !== "light"}
+    />
   );
 };
