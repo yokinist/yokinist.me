@@ -40,10 +40,7 @@ const NavBar: React.VFC = () => {
                   },
                 )}
               >
-                <Link href={link.to}>
-                  {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-                  <a>{link.name}</a>
-                </Link>
+                <Link href={link.to}>{link.name}</Link>
               </li>
             ),
         )}
@@ -111,13 +108,10 @@ export const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
         ref={navRef}
       >
         <div className="flex items-center">
-          <Link href="/">
-            {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-            <a aria-label={BLOG.title}>
-              <div className="min-w-max">
-                <Twemoji emoji={"👋"} size={28} />
-              </div>
-            </a>
+          <Link href="/" aria-label={BLOG.title}>
+            <div className="min-w-max">
+              <Twemoji emoji={"👋"} size={28} />
+            </div>
           </Link>
           {navBarTitle ? (
             <p className="ml-2 font-medium text-day dark:text-night header-name">
