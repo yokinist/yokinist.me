@@ -51,7 +51,7 @@
     "@types/use-ackee": "^2.0.0",
     "autoprefixer": "^10.4.17",
     "lint-staged": "^11.0.0",
-    "next-sitemap": "^1.6.102",
+    "next-sitemap": "^4.2.3",
     "postcss": "^8.4.35",
     "simple-git-hooks": "^2.4.1",
     "typescript": "^5.3.3"
