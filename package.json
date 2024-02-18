@@ -36,7 +36,6 @@
     "react-cusdis": "^2.0.1",
     "react-dom": "^18.2.0",
     "react-notion-x": "^6.16.0",
-    "react-static-tweets": "^0.5.4",
     "react-tweet-embed": "^2.0.0",
     "static-tweets": "^0.5.3",
     "tailwindcss": "^2.2.15",
