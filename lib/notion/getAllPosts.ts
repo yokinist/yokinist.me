@@ -1,11 +1,14 @@
 import { NotionAPI } from "notion-client";
-import { BasePageBlock } from "notion-types/build/esm/block";
-import { Collection } from "notion-types/build/esm/collection";
-import { ExtendedRecordMap } from "notion-types/build/esm/maps";
 import { idToUuid } from "notion-utils";
 import BLOG from "~/blog.config";
 import { Post } from "~/types";
 
+import {
+  BaseBlock,
+  BlockMap,
+  CollectionPropertySchemaMap,
+  ExtendedRecordMap,
+} from "notion-types";
 import {
   filterPublishedPosts,
   getAllPageIds,
@@ -26,7 +29,8 @@ export const getAllPosts = async ({
   const block = response.block;
   const schema = collection?.schema;
 
-  const rawMetadata = block[id].value as BasePageBlock;
+  const rawMetadata = block[id].value;
+
   const result = await returnGetAllPosts({
     id,
     rawMetadata,
@@ -41,10 +45,10 @@ export const getAllPosts = async ({
 export type ReturnGetAllPostsParams = {
   id: string;
   includedPages: boolean;
-  rawMetadata: BasePageBlock;
+  rawMetadata: BaseBlock;
   collectionQuery: ExtendedRecordMap["collection_query"];
-  block: ExtendedRecordMap["block"];
-  schema: Collection["schema"];
+  block: BlockMap;
+  schema: CollectionPropertySchemaMap;
 };
 
 const returnGetAllPosts = async ({
@@ -71,25 +75,24 @@ const returnGetAllPosts = async ({
     // Add fullwidth, createdtime to properties
     properties.createdTime = new Date(block[id].value?.created_time).toString();
     properties.fullWidth =
-      (block[id].value?.format as BasePageBlock["format"])?.page_full_width ??
+      (block[id].value?.format as BaseBlock["format"])?.page_full_width ??
       false;
-
     data.push(properties);
-
-    // remove all the items doesn't meet requirements
-    const posts = filterPublishedPosts({
-      posts: data,
-      includedPages,
-    });
-
-    // Sort by date
-    if (BLOG.sortByDate) {
-      posts.sort((a, b) => {
-        const dateA = new Date(a?.date?.start_date || a.createdTime);
-        const dateB = new Date(b?.date?.start_date || b.createdTime);
-        return dateB.getTime() - dateA.getTime();
-      });
-    }
-    return posts;
   }
+
+  // remove all the items doesn't meet requirements
+  const posts = filterPublishedPosts({
+    posts: data,
+    includedPages,
+  });
+
+  // Sort by date
+  if (BLOG.sortByDate) {
+    posts.sort((a, b) => {
+      const dateA = new Date(a?.date?.start_date || a.createdTime);
+      const dateB = new Date(b?.date?.start_date || b.createdTime);
+      return dateB.getTime() - dateA.getTime();
+    });
+  }
+  return posts;
 };

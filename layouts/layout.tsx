@@ -3,7 +3,7 @@ import "gitalk/dist/gitalk.css";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ExtendedRecordMap } from "notion-types/build/esm/maps";
+import { ExtendedRecordMap } from "notion-types";
 import {
   Code,
   Collection,

@@ -1,6 +1,6 @@
-import { BasePageBlock } from "notion-types/build/esm/block";
+import { PageBlock } from "notion-types";
 
-export const getMetadata = (rawMetadata: BasePageBlock) => {
+export const getMetadata = (rawMetadata: PageBlock) => {
   const metadata = {
     locked: rawMetadata?.format?.block_locked,
     page_full_width: rawMetadata?.format?.page_full_width,

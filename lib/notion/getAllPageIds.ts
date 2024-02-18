@@ -10,16 +10,14 @@ export const getAllPageIds = (
   if (viewId) {
     const vId = idToUuid(viewId);
     pageIds = views[vId]?.blockIds;
-  } else if (views) {
-    const pageSet = new Set<string>();
-    // biome-ignore lint/complexity/noForEach: <explanation>
-    Object.values(views).forEach((view) => {
-      // biome-ignore lint/complexity/noForEach: <explanation>
-      view?.blockIds?.forEach((id) => pageSet.add(id));
-    });
-    pageIds = Array.from(pageSet);
   } else {
-    return [];
+    const pageSet = new Set<string>();
+    for (const view of Object.values(views)) {
+      for (const id of view?.collection_group_results?.blockIds ?? []) {
+        pageSet.add(id);
+      }
+    }
+    pageIds = Array.from(pageSet);
   }
   return pageIds;
 };
