@@ -38,20 +38,22 @@ export const TagTabItem: React.VFC<Props> = ({ tagKey, selected, ...rest }) => {
         },
       )}
     >
-      <Link href={linkUrl} scroll={false}>
-        {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-        <a className="flex items-center py-2 px-4">
-          {tagData?.emoji && <Twemoji emoji={tagData.emoji} size={20} />}
-          <span
-            className={classNames({
-              "ml-2": !!tagData?.emoji,
-            })}
-          >
-            {"count" in rest
-              ? `${tagData?.name ?? tagKey} (${rest.count})`
-              : `${tagData?.name ?? tagKey}`}
-          </span>
-        </a>
+      <Link
+        href={linkUrl}
+        scroll={false}
+        className="flex items-center py-2 px-4"
+        passHref
+      >
+        {tagData?.emoji && <Twemoji emoji={tagData.emoji} size={20} />}
+        <span
+          className={classNames({
+            "ml-2": !!tagData?.emoji,
+          })}
+        >
+          {"count" in rest
+            ? `${tagData?.name ?? tagKey} (${rest.count})`
+            : `${tagData?.name ?? tagKey}`}
+        </span>
       </Link>
     </li>
   );
