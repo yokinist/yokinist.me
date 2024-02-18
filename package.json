@@ -32,7 +32,6 @@
     "notion-client": "^6.16.0",
     "notion-types": "^6.16.0",
     "notion-utils": "^6.16.0",
-    "preact": "^10.19.5",
     "react": "^18.2.0",
     "react-cusdis": "^2.0.1",
     "react-dom": "^18.2.0",
