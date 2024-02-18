@@ -1,16 +1,18 @@
-import { createHash } from 'crypto';
-import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
-import DefaultErrorPage from 'next/error';
-import { useRouter } from 'next/router';
-import { Tweet, TwitterContextProvider } from 'react-static-tweets';
-import BLOG from '~/blog.config';
-import { Layout } from '~/layouts';
-import { getAllPosts, getPostBlocks } from '~/lib/notion';
+import { createHash } from "crypto";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import DefaultErrorPage from "next/error";
+import { useRouter } from "next/router";
+import { Tweet, TwitterContextProvider } from "react-static-tweets";
+import BLOG from "~/blog.config";
+import { Layout } from "~/layouts";
+import { getAllPosts, getPostBlocks } from "~/lib/notion";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllPosts({ includedPages: true });
   if (!posts) return { paths: [], fallback: false };
-  const publishPosts = posts.filter((post) => post?.status?.[0] === 'Published' && !post?.outer_link);
+  const publishPosts = posts.filter(
+    (post) => post?.status?.[0] === "Published" && !post?.outer_link,
+  );
   return {
     paths: publishPosts.map((row) => `${BLOG.path}/${row.slug}`),
     fallback: true,
@@ -31,14 +33,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
   const blockMap = await getPostBlocks(post.id);
-  const emailHash = createHash('md5').update(BLOG.email).digest('hex');
+  const emailHash = createHash("md5").update(BLOG.email).digest("hex");
   return {
     props: { post, blockMap, emailHash },
     revalidate: 1,
   };
 };
 
-type Props = Omit<React.ComponentProps<typeof Layout>, 'fullWidth'>;
+type Props = Omit<React.ComponentProps<typeof Layout>, "fullWidth">;
 
 const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   const router = useRouter();
@@ -50,7 +52,8 @@ const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
         value={{
           tweetAstMap: {},
           swrOptions: {
-            fetcher: (id: number) => fetch(`/api/get-tweet-ast/${id}`).then((r) => r.json()),
+            fetcher: (id: number) =>
+              fetch(`/api/get-tweet-ast/${id}`).then((r) => r.json()),
           },
         }}
       >
@@ -60,7 +63,7 @@ const BlogPost: NextPage<Props> = ({ post, blockMap, emailHash }) => {
           emailHash={emailHash}
           fullWidth={post?.fullWidth ?? false}
           tweet={Tweet}
-          slug={typeof slug === 'string' ? slug : null}
+          slug={typeof slug === "string" ? slug : null}
         />
       </TwitterContextProvider>
     </>

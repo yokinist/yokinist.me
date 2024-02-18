@@ -1,3 +1,3 @@
-export * from './TagItem';
-export * from './TagTabItem';
-export * from './TagsTab';
+export * from "./TagItem";
+export * from "./TagTabItem";
+export * from "./TagsTab";

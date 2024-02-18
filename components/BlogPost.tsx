@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-import Link from 'next/link';
-import { ExternalLinkIcon } from '@heroicons/react/outline';
-import BLOG from '~/blog.config';
-import formatDate from '~/lib/formatDate';
-import { Post } from '~/types';
+import { ExternalLinkIcon } from "@heroicons/react/outline";
+import classNames from "classnames";
+import Link from "next/link";
+import BLOG from "~/blog.config";
+import formatDate from "~/lib/formatDate";
+import { Post } from "~/types";
 
 type Props = {
   post: Post;
@@ -14,7 +14,7 @@ type RenderBlogPostArg = {
 };
 
 export const BlogPost: React.VFC<Props> = ({ post }) => {
-  const isProject = post?.type?.[0] === 'Project';
+  const isProject = post?.type?.[0] === "Project";
   const renderBlogPost = ({ isOuterLink }: RenderBlogPostArg) => {
     return (
       <article
@@ -44,9 +44,12 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
         )}
         <main>
           <p
-            className={classNames('leading-8 text-gray-700 dark:text-gray-300', {
-              'hidden md:block': post?.type?.[0] !== 'Project',
-            })}
+            className={classNames(
+              "leading-8 text-gray-700 dark:text-gray-300",
+              {
+                "hidden md:block": post?.type?.[0] !== "Project",
+              },
+            )}
           >
             {post.summary}
           </p>
@@ -66,11 +69,17 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
   };
 
   return post?.outer_link ? (
-    <a href={post.outer_link} target="_blank" rel="noreferrer noopener" aria-label="outer-link">
+    <a
+      href={post.outer_link}
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label="outer-link"
+    >
       {renderBlogPost({ isOuterLink: true })}
     </a>
   ) : (
     <Link href={`${BLOG.path}/${post.slug}`}>
+      {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
       <a>{renderBlogPost({ isOuterLink: false })}</a>
     </Link>
   );

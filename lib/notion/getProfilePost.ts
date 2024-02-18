@@ -1,6 +1,6 @@
-import BLOG from '~/blog.config';
-import { Post } from '~/types';
-import { getPostBlocks } from './getPostBlocks';
+import BLOG from "~/blog.config";
+import { Post } from "~/types";
+import { getPostBlocks } from "./getPostBlocks";
 
 export const getProfilePost = async (allPosts: Post[]) => {
   const post = allPosts.find((t) => t.slug === BLOG.profileSlug);

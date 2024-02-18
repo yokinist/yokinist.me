@@ -1,6 +1,12 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
-import BLOG from '~/blog.config';
-import CJK from '~/lib/cjk';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from "next/document";
+import BLOG from "~/blog.config";
+import CJK from "~/lib/cjk";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -10,9 +16,12 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang={BLOG.lang} className={BLOG.appearance === 'dark' ? 'dark' : undefined}>
+      <Html
+        lang={BLOG.lang}
+        className={BLOG.appearance === "dark" ? "dark" : undefined}
+      >
         <Head>
-          {BLOG.font && BLOG.font === 'serif' ? (
+          {BLOG.font && BLOG.font === "serif" ? (
             <>
               <link
                 rel="preload"
@@ -48,27 +57,42 @@ class MyDocument extends Document {
             </>
           )}
 
-          {['zh', 'ja', 'ko'].includes(BLOG.lang.slice(0, 2).toLocaleLowerCase()) && (
+          {["zh", "ja", "ko"].includes(
+            BLOG.lang.slice(0, 2).toLocaleLowerCase(),
+          ) && (
             <>
-              <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+              <link
+                rel="preconnect"
+                href="https://fonts.gstatic.com"
+                crossOrigin="anonymous"
+              />
               <link
                 rel="preload"
                 as="style"
                 href={`https://fonts.googleapis.com/css2?family=Noto+${
-                  BLOG.font === 'serif' ? 'Serif' : 'Sans'
+                  BLOG.font === "serif" ? "Serif" : "Sans"
                 }+${CJK()}:wght@400;700&display=swap`}
               />
               <link
                 rel="stylesheet"
                 href={`https://fonts.googleapis.com/css2?family=Noto+${
-                  BLOG.font === 'serif' ? 'Serif' : 'Sans'
+                  BLOG.font === "serif" ? "Serif" : "Sans"
                 }+${CJK()}:wght@400;700&display=swap`}
               />
             </>
           )}
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-          <link rel="apple-touch-icon" sizes="192x192" href="/apple-touch-icon.png" />
-          <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed" />
+          <link
+            rel="apple-touch-icon"
+            sizes="192x192"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="RSS 2.0"
+            href="/feed"
+          />
         </Head>
         <body className="bg-day dark:bg-night">
           <Main />

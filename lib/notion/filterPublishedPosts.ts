@@ -1,4 +1,4 @@
-import { Post } from '~/types';
+import { Post } from "~/types";
 
 const current = new Date();
 const tomorrow = new Date(current);
@@ -13,11 +13,18 @@ export const filterPublishedPosts = ({ posts, includedPages }: Props) => {
   if (!posts || !posts.length) return [];
   const publishedPosts = posts
     .filter((post) =>
-      includedPages ? post?.type?.[0] === 'Post' || post?.type?.[0] === 'Page' : post?.type?.[0] === 'Post',
+      includedPages
+        ? post?.type?.[0] === "Post" || post?.type?.[0] === "Page"
+        : post?.type?.[0] === "Post",
     )
     .filter((post) => {
       const postDate = new Date(post?.date?.start_date || post.createdTime);
-      return post.title && post.slug && post?.status?.[0] === 'Published' && postDate < tomorrow;
+      return (
+        post.title &&
+        post.slug &&
+        post?.status?.[0] === "Published" &&
+        postDate < tomorrow
+      );
     });
   return publishedPosts;
 };

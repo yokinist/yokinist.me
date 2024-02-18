@@ -1,8 +1,8 @@
-import { idToUuid } from 'notion-utils';
-import { ReturnGetAllPostsParams } from './getAllPosts';
+import { idToUuid } from "notion-utils";
+import { ReturnGetAllPostsParams } from "./getAllPosts";
 
 export const getAllPageIds = (
-  collectionQuery: ReturnGetAllPostsParams['collectionQuery'],
+  collectionQuery: ReturnGetAllPostsParams["collectionQuery"],
   viewId?: string,
 ): string[] => {
   const views = Object.values(collectionQuery)?.[0];
@@ -12,7 +12,9 @@ export const getAllPageIds = (
     pageIds = views[vId]?.blockIds;
   } else if (views) {
     const pageSet = new Set<string>();
+    // biome-ignore lint/complexity/noForEach: <explanation>
     Object.values(views).forEach((view) => {
+      // biome-ignore lint/complexity/noForEach: <explanation>
       view?.blockIds?.forEach((id) => pageSet.add(id));
     });
     pageIds = Array.from(pageSet);

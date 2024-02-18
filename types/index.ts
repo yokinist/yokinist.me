@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
-import type Gitalk from 'gitalk';
-import type { ReactCusdis } from 'react-cusdis';
+import type Gitalk from "gitalk";
+import type { ReactCusdis } from "react-cusdis";
 
-export type PostType = 'Post' | 'Page' | 'Project';
+export type PostType = "Post" | "Page" | "Project";
 
-export type PostStatus = 'Idea' | 'Published' | 'Revise' | 'Published';
+export type PostStatus = "Idea" | "Published" | "Revise" | "Published";
 
 export type Post = {
   id: string;
@@ -38,9 +38,9 @@ export type BlogConfig = {
   link: string;
   externalHPLink: string;
   description: string;
-  lang: 'en-US' | 'zh-CN' | 'zh-HK' | 'zh-TW' | 'ja-JP' | 'es-ES';
-  appearance: 'dark' | 'light';
-  font: 'sans-serif' | 'serif';
+  lang: "en-US" | "zh-CN" | "zh-HK" | "zh-TW" | "ja-JP" | "es-ES";
+  appearance: "dark" | "light";
+  font: "sans-serif" | "serif";
   lightBackground: `#${string}`;
   darkBackground: `#${string}`;
   path: string;
@@ -59,7 +59,7 @@ export type BlogConfig = {
   notionPageId: string;
   notionAccessToken: string;
   analytics: {
-    provider: 'ga' | 'ackee';
+    provider: "ga" | "ackee";
     ackeeConfig: {
       tracker: string;
       dataAckeeServer: string;
@@ -70,14 +70,14 @@ export type BlogConfig = {
     };
   };
   comment: {
-    provider: 'gitalk' | 'utterances' | 'cusdis' | '';
+    provider: "gitalk" | "utterances" | "cusdis" | "";
     gitalkConfig: Gitalk.GitalkOptions;
     utterancesConfig: {
       repo: string;
     };
-    cusdisConfig: Parameters<typeof ReactCusdis>[0]['attrs'] & {
+    cusdisConfig: Parameters<typeof ReactCusdis>[0]["attrs"] & {
       scriptSrc: string;
     };
   };
-  isProd: 'development' | 'preview' | 'production';
+  isProd: "development" | "preview" | "production";
 };

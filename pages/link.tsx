@@ -1,5 +1,5 @@
-import { GetServerSideProps } from 'next';
-import BLOG from '~/blog.config';
+import { GetServerSideProps } from "next";
+import BLOG from "~/blog.config";
 
 const LinkPage = () => null;
 
