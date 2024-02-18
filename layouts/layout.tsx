@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import "gitalk/dist/gitalk.css";
 import { useTheme } from "next-themes";
 import Image from "next/image";
@@ -7,15 +6,12 @@ import { ExtendedRecordMap } from "notion-types";
 
 import BLOG from "~/blog.config";
 import { Container } from "~/components";
-import { Comments } from "~/components/Comment";
 import { NotionRenderer } from "~/components/Notion";
 import { TagItem } from "~/components/Tag";
 import formatDate from "~/lib/formatDate";
 import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
 import { useLocale } from "~/lib/i18n/locale";
 import { Post } from "~/types";
-
-const enableCommentArea = BLOG.comment.provider !== "";
 
 type Props = {
   blockMap: ExtendedRecordMap;
@@ -108,14 +104,7 @@ export const Layout: React.VFC<Props> = ({
           </a>
         </div>
       </div>
-      <div
-        className={classNames(
-          "flex justify-between font-medium text-gray-500 dark:text-gray-400",
-          {
-            "mb-4": enableCommentArea,
-          },
-        )}
-      >
+      <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
         <button
           onClick={() => router.push(BLOG.path || "/")}
           className="mt-2 hover:text-black dark:hover:text-gray-100 cursor-pointer"
@@ -131,7 +120,6 @@ export const Layout: React.VFC<Props> = ({
           ↑ {locale?.POST.TOP}
         </button>
       </div>
-      <Comments post={post} />
     </Container>
   );
 };

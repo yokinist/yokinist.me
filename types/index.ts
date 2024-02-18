@@ -1,7 +1,3 @@
-/* eslint-disable camelcase */
-import type Gitalk from "gitalk";
-import type { ReactCusdis } from "react-cusdis";
-
 export type PostType = "Post" | "Page";
 
 export type PostStatus = "Idea" | "Published" | "Revise";
@@ -62,16 +58,6 @@ export type BlogConfig = {
     };
     gaConfig: {
       measurementId: `G-${string}`;
-    };
-  };
-  comment: {
-    provider: "gitalk" | "utterances" | "cusdis" | "";
-    gitalkConfig: Gitalk.GitalkOptions;
-    utterancesConfig: {
-      repo: string;
-    };
-    cusdisConfig: Parameters<typeof ReactCusdis>[0]["attrs"] & {
-      scriptSrc: string;
     };
   };
   isProd: "development" | "preview" | "production";
