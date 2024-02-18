@@ -1,4 +1,3 @@
-import "gitalk/dist/gitalk.css";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/router";
