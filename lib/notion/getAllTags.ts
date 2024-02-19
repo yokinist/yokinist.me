@@ -15,5 +15,10 @@ export const getAllTags = ({ posts }: Props): TagObj => {
       tagObj[tag] = 1;
     }
   }
-  return tagObj;
+  return sortByValueDescending(tagObj);
+};
+
+const sortByValueDescending = (tags: TagObj): TagObj => {
+  const sortedEntries = Object.entries(tags).sort(([, a], [, b]) => b - a);
+  return Object.fromEntries(sortedEntries);
 };
