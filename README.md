@@ -51,7 +51,6 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 
 - Star this repo 😉
 -
-
 Duplicate [this Notion template](https://yokinist.notion.site/761c04c4ff6e467188fe67c8a36e20b9?v=0643f1ef640642fbb84032202708336f),
 and share it to the public
 
@@ -66,6 +65,7 @@ and share it to the public
 </details>
 
 - _(Optional)_ Replace `favicon.svg`, and `favicon.ico` in `/public` folder with your own
+- _(Optional)_ You can set redirect custom link to `/link` page in `blog.config.js`
 - Deploy on [Vercel](https://vercel.com), set following environment variables：
     - `NOTION_PAGE_ID` (Required): The ID of the Notion page you previously shared to the web, usually has 32 digits
       after your workspace address
