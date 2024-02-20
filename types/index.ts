@@ -27,7 +27,7 @@ export type BlogConfig = {
   author: string;
   email: string;
   link: string;
-  externalHPLink: string;
+  externalLink: string;
   description: string;
   lang: "en-US" | "zh-CN" | "zh-HK" | "zh-TW" | "ja-JP" | "es-ES";
   appearance: "dark" | "light";

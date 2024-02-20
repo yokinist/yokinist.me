@@ -2,14 +2,14 @@
  * @type {import('~/types').BlogConfig}
  */
 const BLOG = {
-  title: "yokinist.me",
+  title: "yokinist.me template",
   author: "yokinist",
-  email: "yokinist@gmail.com",
+  email: "info@yokinist.me",
   link: "https://yokinist.me",
-  externalHPLink: "https://bento.me/yokinist",
+  externalLink: "https://bento.me/yokinist", // make redirect link to /link page
   description:
-    "通り過ぎていく日々の解釈。思考の断片、近況報告など。言葉にして置いておく場所。",
-  lang: "ja-JP", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
+    "This is a template for yokinist.me, created by yokinist. You can use it to create your own blog.",
+  lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: "dark", // ['light', 'dark'],
   font: "sans-serif", // ['sans-serif', 'serif']
   lightBackground: "#ffffff", // use hex value, don't forget '#' e.g #fffefc
@@ -38,7 +38,7 @@ const BLOG = {
       domainId: "", // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
     },
     gaConfig: {
-      measurementId: "G-PJ2C55Q3CH", // e.g: G-XXXXXXXXXX
+      measurementId: "", // e.g: G-XXXXXXXXXX
     },
   },
   isProd: process.env.VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)

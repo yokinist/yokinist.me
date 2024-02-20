@@ -6,8 +6,7 @@ const LinkPage = () => null;
 export const getServerSideProps: GetServerSideProps = async () => {
   return {
     redirect: {
-      // destination: BLOG.externalHPLink,
-      destination: BLOG.link,
+      destination: BLOG.externalLink,
       permanent: true,
     },
   };
