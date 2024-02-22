@@ -1,4 +1,3 @@
-import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ExtendedRecordMap } from "notion-types";
@@ -31,7 +30,6 @@ export const Layout: React.VFC<Props> = ({
 }) => {
   const locale = useLocale();
   const router = useRouter();
-  const { theme } = useTheme();
 
   const renderContents = () => (
     <article>
