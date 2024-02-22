@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import BLOG from "~/blog.config";
-import Vercel from "~/components/Vercel";
 
 type Props = { fullWidth?: boolean };
 
@@ -19,7 +18,6 @@ export const Footer: React.VFC<Props> = ({ fullWidth }) => {
       <div className="my-4 text-sm leading-6">
         <div className="flex flex-wrap justify-between align-baseline">
           <p>© {BLOG.author}</p>
-          <Vercel />
         </div>
       </div>
     </div>
