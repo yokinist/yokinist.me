@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { Twemoji } from "components/Twemoji";
 import Link from "next/link";
 import { useMemo } from "react";
-import { TagSlug, getTagDataBySlug } from "~/lib/tags";
+import { getTagDataBySlug, isTagSlug } from "~/lib/tags";
 
 type Props =
   | {
@@ -17,16 +17,17 @@ type Props =
     };
 
 export const TagTabItem: React.VFC<Props> = ({ tagKey, selected, ...rest }) => {
-  const castKey = tagKey as TagSlug;
+  const tagSlug = isTagSlug(tagKey) ? tagKey : undefined;
+  if (!tagSlug) return null;
 
   const linkUrl = useMemo(() => {
     if (selected || !("count" in rest)) {
       return "/";
     }
-    return `/tag/${encodeURIComponent(tagKey)}`;
-  }, [rest, selected, tagKey]);
+    return `/tag/${encodeURIComponent(tagSlug)}`;
+  }, [rest, selected, tagSlug]);
 
-  const tagData = getTagDataBySlug(castKey);
+  const tagData = getTagDataBySlug(tagSlug);
   return (
     <li
       className={classNames(
