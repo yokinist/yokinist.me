@@ -37,8 +37,8 @@ export const Layout: React.VFC<Props> = ({
         {post.title}
       </h1>
       {post?.type?.[0] !== "Page" && (
-        <nav className="flex items-start mt-7 mb-4 text-gray-500 dark:text-gray-300">
-          <div className="flex mb-4">
+        <nav className="flex items-center mt-7 mb-4 text-gray-500 dark:text-gray-300">
+          <div className="flex">
             <a href={BLOG.socialLink || "#"} className="flex">
               <Image
                 alt={BLOG.author}
@@ -51,7 +51,7 @@ export const Layout: React.VFC<Props> = ({
             </a>
             <span className="block">&nbsp;/&nbsp;</span>
           </div>
-          <div className="mr-2 mb-4 md:ml-0">
+          <div className="mr-2 md:ml-0">
             {formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}
           </div>
           {post.tags && (
