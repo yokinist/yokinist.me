@@ -109,13 +109,6 @@ export const Layout: React.VFC<Props> = ({
         >
           ← {locale?.POST.BACK}
         </button>
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="mt-2 hover:text-black dark:hover:text-gray-100 cursor-pointer"
-          type="button"
-        >
-          ↑ {locale?.POST.TOP}
-        </button>
       </div>
     </Container>
   );
