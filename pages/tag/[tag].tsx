@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 import BLOG from "~/blog.config";
 import { Container, Profile } from "~/components";
 import { SearchLayout } from "~/layouts";
-import { TagSlug, getTagDataBySlug } from "~/lib";
+import { TagSlug, getTagDataBySlug, isTagSlug } from "~/lib";
 import { filterPublishedPosts, getAllPosts, getAllTags } from "~/lib/notion";
 import { getProfilePost } from "~/lib/notion/getProfilePost";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const currentTag = params?.tag;
-  if (typeof currentTag !== "string") {
+  const currentTag = typeof params?.tag === "string" ? params.tag : "";
+  if (!isTagSlug(currentTag)) {
     return {
       notFound: true,
     };
