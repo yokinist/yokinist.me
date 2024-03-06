@@ -8,12 +8,12 @@ import { getProfilePost } from "~/lib/notion/getProfilePost";
 import { Post } from "~/types";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPosts = await getAllPosts({ includedPages: true });
+  const allPosts = await getAllPosts();
   const profilePostData = await getProfilePost(allPosts);
   const emailHash = createHash("md5").update(BLOG.email).digest("hex");
   const posts = filterPublishedPosts({
     posts: allPosts,
-    includedPages: false,
+    filterPostTypeBy: "post",
   });
   const tags = getAllTags({ posts });
   return {
