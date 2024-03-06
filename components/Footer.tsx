@@ -22,7 +22,7 @@ export const Footer: React.VFC<Props> = ({ fullWidth }) => {
             href={BLOG.repository}
             target="_blank"
             rel="noreferrer"
-            className="underline"
+            className="underline hover:text-black dark:hover:text-gray-100"
           >
             Source
           </a>
