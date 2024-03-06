@@ -7,6 +7,7 @@ const BLOG = {
   email: "info@yokinist.me",
   link: "https://yokinist.me",
   externalHPLink: "https://bento.me/yokinist",
+  repository: "https://github.com/yokinist/yokinist.me",
   description:
     "通り過ぎていく日々の解釈。思考の断片、近況報告など。言葉にして置いておく場所。",
   lang: "ja-JP", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
@@ -38,7 +39,7 @@ const BLOG = {
       domainId: "", // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
     },
     gaConfig: {
-      measurementId: "G-PJ2C55Q3CH", // e.g: G-XXXXXXXXXX
+      measurementId: "", // e.g: G-XXXXXXXXXX
     },
   },
   isProd: process.env.VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
