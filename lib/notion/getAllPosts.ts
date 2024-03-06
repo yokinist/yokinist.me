@@ -15,9 +15,13 @@ import {
   getPageProperties,
 } from "./index";
 
-export const getAllPosts = async ({
-  includedPages = false,
-}: { includedPages: boolean }): Promise<Post[]> => {
+type GetAllPostsParams = {
+  filterPostTypeBy?: "page" | "post" | undefined;
+};
+
+export const getAllPosts = async (
+  props?: GetAllPostsParams,
+): Promise<Post[]> => {
   let id = BLOG.notionPageId;
   const authToken = BLOG.notionAccessToken;
   const api = new NotionAPI({ authToken });
@@ -31,29 +35,29 @@ export const getAllPosts = async ({
 
   const rawMetadata = block[id].value;
 
-  const result = await returnGetAllPosts({
+  const result = await returnGetPosts({
     id,
     rawMetadata,
     collectionQuery,
     block,
     schema,
-    includedPages,
+    filterPostTypeBy: props?.filterPostTypeBy,
   });
   return result ?? [];
 };
 
 export type ReturnGetAllPostsParams = {
   id: string;
-  includedPages: boolean;
+  filterPostTypeBy: "page" | "post" | undefined;
   rawMetadata: BaseBlock;
   collectionQuery: ExtendedRecordMap["collection_query"];
   block: BlockMap;
   schema: CollectionPropertySchemaMap;
 };
 
-const returnGetAllPosts = async ({
+const returnGetPosts = async ({
   id,
-  includedPages,
+  filterPostTypeBy,
   rawMetadata,
   collectionQuery,
   block,
@@ -83,7 +87,7 @@ const returnGetAllPosts = async ({
   // remove all the items doesn't meet requirements
   const posts = filterPublishedPosts({
     posts: data,
-    includedPages,
+    filterPostTypeBy,
   });
 
   // Sort by date

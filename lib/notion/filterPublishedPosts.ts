@@ -7,16 +7,17 @@ tomorrow.setHours(0, 0, 0, 0);
 
 type Props = {
   posts: Post[] | null;
-  includedPages: boolean;
+  filterPostTypeBy: "page" | "post" | undefined;
 };
-export const filterPublishedPosts = ({ posts, includedPages }: Props) => {
+export const filterPublishedPosts = ({ posts, filterPostTypeBy }: Props) => {
   if (!posts || !posts.length) return [];
   const publishedPosts = posts
-    .filter((post) =>
-      includedPages
-        ? post?.type?.[0] === "Post" || post?.type?.[0] === "Page"
-        : post?.type?.[0] === "Post",
-    )
+    .filter((post) => {
+      const postType = post?.type?.[0];
+      if (filterPostTypeBy === "page") return postType === "Page";
+      if (filterPostTypeBy === "post") return postType === "Post";
+      return postType === "Page" || postType === "Post";
+    })
     .filter((post) => {
       const postDate = new Date(post?.date?.start_date || post.createdTime);
       return (

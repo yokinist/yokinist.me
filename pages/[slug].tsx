@@ -7,7 +7,7 @@ import { Layout } from "~/layouts";
 import { getAllPosts, getPostBlocks } from "~/lib/notion";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts({ includedPages: true });
+  const posts = await getAllPosts();
   if (!posts) return { paths: [], fallback: false };
   const publishPosts = posts.filter(
     (post) => post?.status?.[0] === "Published" && !post?.outer_link,
@@ -20,7 +20,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug;
-  const posts = await getAllPosts({ includedPages: true });
+  const posts = await getAllPosts();
   const post = posts.find((t) => t.slug === slug);
   if (!post?.id) return { notFound: true };
   if (post?.outer_link) {

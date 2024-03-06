@@ -15,12 +15,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       notFound: true,
     };
   }
-  const allPosts = await getAllPosts({ includedPages: true });
+  const allPosts = await getAllPosts();
   const profilePostData = await getProfilePost(allPosts);
   const emailHash = createHash("md5").update(BLOG.email).digest("hex");
   const posts = filterPublishedPosts({
     posts: allPosts,
-    includedPages: false,
+    filterPostTypeBy: "post",
   });
   const tags = getAllTags({ posts });
   const filteredPosts = posts.filter((post) =>
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts({ includedPages: false });
+  const posts = await getAllPosts({ filterPostTypeBy: "post" });
   const tags = getAllTags({ posts });
   return {
     paths: Object.keys(tags).map((tag) => ({ params: { tag } })),
