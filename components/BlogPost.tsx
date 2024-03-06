@@ -41,7 +41,7 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
           />
         )}
         <main>
-          <p className="leading-8 text-gray-700 dark:text-gray-300 line-clamp-2 md:text-base text-sm">
+          <p className="leading-8 text-gray-700 dark:text-gray-300 line-clamp-1 text-base">
             {post.summary}
           </p>
         </main>
