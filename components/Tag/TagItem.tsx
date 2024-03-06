@@ -12,7 +12,7 @@ export const TagItem: React.VFC<Props> = ({ tag }) => {
   if (!tagSlug) return null;
   const tagData = getTagDataBySlug(tagSlug);
   return (
-    <Link href={`/tag/${encodeURIComponent(tag)}`}>
+    <Link href={`/tags/${encodeURIComponent(tag)}`}>
       <div className="flex items-center py-1 px-2 mr-1 text-sm leading-none rounded-full border dark:border-gray-600">
         {tagData?.emoji && <Twemoji emoji={tagData.emoji} size={16} />}
         <p

@@ -43,7 +43,7 @@ export const Container: React.VFC<Props> = ({
   const siteUrl = useMemo(() => {
     // tag detail page
     if (meta?.isTagPage && meta?.slug) {
-      return `${url}/tag/${meta.slug}`;
+      return `${url}/tags/${meta.slug}`;
     }
     // list page
     if (!meta?.slug && !meta?.isTagPage) {

@@ -24,7 +24,7 @@ export const TagTabItem: React.VFC<Props> = ({ tagKey, selected, ...rest }) => {
     if (selected || !("count" in rest)) {
       return "/";
     }
-    return `/tag/${encodeURIComponent(tagSlug)}`;
+    return `/tags/${encodeURIComponent(tagSlug)}`;
   }, [rest, selected, tagSlug]);
 
   const tagData = getTagDataBySlug(tagSlug);
