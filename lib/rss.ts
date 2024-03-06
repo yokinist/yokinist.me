@@ -21,8 +21,8 @@ export function generateRss(posts: Post[]) {
   for (const post of posts) {
     feed.addItem({
       title: post?.title ?? "",
-      id: `${BLOG.link}/${post.slug}`,
-      link: `${BLOG.link}/${post.slug}`,
+      id: `${BLOG.link}/posts/${post.slug}`,
+      link: `${BLOG.link}/posts/${post.slug}`,
       description: post.summary,
       date: new Date(post?.date?.start_date || post.createdTime),
     });

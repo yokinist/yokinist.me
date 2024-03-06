@@ -89,7 +89,7 @@ export const Layout: React.VFC<Props> = ({
           <a
             href={getTwitterShareUrl({
               text: post?.title ?? BLOG.title,
-              url: `${BLOG.link}/${slug}`,
+              url: `${BLOG.link}/posts/${slug}`,
               via: BLOG.author,
             })}
             target="_blank"

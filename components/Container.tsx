@@ -23,8 +23,6 @@ type Props = {
   isTagPage?: boolean;
 };
 
-const url = BLOG.path.length ? `${BLOG.link}/${BLOG.path}` : BLOG.link;
-
 export const Container: React.VFC<Props> = ({
   children,
   fullWidth,
@@ -39,22 +37,6 @@ export const Container: React.VFC<Props> = ({
   const root = useMemo(() => {
     return router.pathname === (BLOG.path || "/");
   }, [router]);
-
-  const siteUrl = useMemo(() => {
-    // tag detail page
-    if (meta?.isTagPage && meta?.slug) {
-      return `${url}/tags/${meta.slug}`;
-    }
-    // list page
-    if (!meta?.slug && !meta?.isTagPage) {
-      return url;
-    }
-    // detail page
-    if (meta?.slug && !meta?.isTagPage) {
-      return `${url}/${meta.slug}`;
-    }
-    return url;
-  }, [meta]);
 
   const siteTitle = useMemo(() => {
     return meta.title ?? BLOG.title;
@@ -83,11 +65,11 @@ export const Container: React.VFC<Props> = ({
         title={meta.title}
         description={meta.description}
         robots={"index, follow"}
-        canonical={siteUrl}
+        canonical={router.asPath}
         og={{
           title: meta.title,
-          url: siteUrl,
-          // locale: BLog.lang,
+          url: router.asPath,
+          // locale: BLOG.lang,
           type: meta.type ?? "website",
           description: meta.description,
           image: getOGImageURL({
