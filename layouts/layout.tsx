@@ -32,8 +32,8 @@ export const Layout: React.VFC<Props> = ({
   const router = useRouter();
 
   const renderContents = () => (
-    <article>
-      <h1 className="text-3xl font-bold text-black dark:text-white">
+    <article className="mt-4 mb-8 md:mt-0">
+      <h1 className="md:text-3xl text-2xl font-bold text-black dark:text-white">
         {post.title}
       </h1>
       {post?.type?.[0] !== "Page" && (
@@ -89,7 +89,7 @@ export const Layout: React.VFC<Props> = ({
           <a
             href={getTwitterShareUrl({
               text: post?.title ?? BLOG.title,
-              url: `${BLOG.link}/${slug}`,
+              url: `${BLOG.link}/posts/${slug}`,
               via: BLOG.author,
             })}
             target="_blank"
