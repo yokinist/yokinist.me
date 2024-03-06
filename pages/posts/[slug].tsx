@@ -7,28 +7,22 @@ import { Layout } from "~/layouts";
 import { getAllPosts, getPostBlocks } from "~/lib/notion";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts({ filterPostTypeBy: "page" });
+  const posts = await getAllPosts({ filterPostTypeBy: "post" });
   if (!posts) return { paths: [], fallback: false };
   const publishPosts = posts.filter(
     (post) => post?.status?.[0] === "Published" && !post?.outer_link,
   );
   return {
-    paths: publishPosts.map((row) => `${BLOG.path}/${row.slug}`),
+    paths: publishPosts.map((row) => `${BLOG.path}/posts/${row.slug}`),
     fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug;
-  const posts = await getAllPosts({ filterPostTypeBy: "page" });
+  const posts = await getAllPosts({ filterPostTypeBy: "post" });
   const post = posts.find((t) => t.slug === slug);
-  if (!post?.id)
-    return {
-      redirect: {
-        destination: `${BLOG.path}/posts/${slug}`,
-        permanent: true,
-      },
-    };
+  if (!post?.id) return { notFound: true };
   if (post?.outer_link) {
     return {
       redirect: {
@@ -47,7 +41,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 type Props = Omit<React.ComponentProps<typeof Layout>, "fullWidth">;
 
-const Page: NextPage<Props> = ({ post, blockMap, emailHash }) => {
+const Post: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   const router = useRouter();
   if (!post) return <DefaultErrorPage statusCode={404} />;
   const slug = router.query?.slug;
@@ -62,4 +56,4 @@ const Page: NextPage<Props> = ({ post, blockMap, emailHash }) => {
   );
 };
 
-export default Page;
+export default Post;

@@ -59,7 +59,7 @@ export const BlogPost: React.VFC<Props> = ({ post }) => {
       {renderBlogPost({ isOuterLink: true })}
     </a>
   ) : (
-    <Link href={`${BLOG.path}/${post.slug}`}>
+    <Link href={`${BLOG.path}/posts/${post.slug}`}>
       {renderBlogPost({ isOuterLink: false })}
     </Link>
   );
