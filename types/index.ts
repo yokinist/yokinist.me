@@ -28,6 +28,7 @@ export type BlogConfig = {
   email: string;
   link: string;
   externalLink: string;
+  repository: string;
   description: string;
   lang: "en-US" | "zh-CN" | "zh-HK" | "zh-TW" | "ja-JP" | "es-ES";
   appearance: "dark" | "light";

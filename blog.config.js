@@ -7,6 +7,7 @@ const BLOG = {
   email: "info@yokinist.me",
   link: "https://yokinist.me",
   externalLink: "https://bento.me/yokinist", // make redirect link to /link page
+  repository: "https://github.com/yokinist/yokinist.me",
   description:
     "This is a template for yokinist.me, created by yokinist. You can use it to create your own blog.",
   lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']

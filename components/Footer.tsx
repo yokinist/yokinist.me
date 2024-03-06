@@ -18,6 +18,14 @@ export const Footer: React.VFC<Props> = ({ fullWidth }) => {
       <div className="my-4 text-sm leading-6">
         <div className="flex flex-wrap justify-between align-baseline">
           <p>© {BLOG.author}</p>
+          <a
+            href={BLOG.repository}
+            target="_blank"
+            rel="noreferrer"
+            className="underline"
+          >
+            Source
+          </a>
         </div>
       </div>
     </div>
