@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { ExtendedRecordMap } from "notion-types";
 
 import BLOG from "~/blog.config";
@@ -7,7 +6,6 @@ import { Container } from "~/components";
 import { NotionRenderer } from "~/components/Notion";
 import { TagItem } from "~/components/Tag";
 import formatDate from "~/lib/formatDate";
-import { useLocale } from "~/lib/i18n/locale";
 import { Post } from "~/types";
 
 type Props = {
@@ -27,9 +25,6 @@ export const Layout: React.VFC<Props> = ({
   fullWidth = false,
   onlyContents = false,
 }) => {
-  const locale = useLocale();
-  const router = useRouter();
-
   const renderContents = () => (
     <article className="mt-4 mb-8 md:mt-0">
       <h1 className="md:text-3xl text-2xl font-bold text-black dark:text-white">
