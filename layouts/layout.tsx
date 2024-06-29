@@ -33,7 +33,7 @@ export const Layout: React.VFC<Props> = ({
       {post?.type?.[0] !== "Page" && (
         <nav className="flex items-center mt-5 mb-4 text-gray-500 dark:text-gray-300">
           <div className="flex mt-2">
-            <a href={BLOG.socialLink || "#"} className="flex">
+            <a href={BLOG.link || "#"} className="flex">
               <Image
                 alt={BLOG.author}
                 width={24}
