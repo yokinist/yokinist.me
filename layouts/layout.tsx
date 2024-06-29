@@ -7,7 +7,6 @@ import { Container } from "~/components";
 import { NotionRenderer } from "~/components/Notion";
 import { TagItem } from "~/components/Tag";
 import formatDate from "~/lib/formatDate";
-import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
 import { useLocale } from "~/lib/i18n/locale";
 import { Post } from "~/types";
 
@@ -86,33 +85,6 @@ export const Layout: React.VFC<Props> = ({
       slug={slug}
     >
       {renderContents()}
-      <div className="mb-4">
-        <div>---</div>
-        <div className="flex">
-          <a
-            href={getTwitterShareUrl({
-              text: post?.title ?? BLOG.title,
-              url: `${BLOG.link}/posts/${slug}`,
-              via: BLOG.author,
-            })}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label="share with twitter"
-            className="ml-auto text-blue-700 dark:text-blue-400 underline border-blue-700 dark:border-blue-400 cursor-pointer"
-          >
-            {locale?.POST.SHARE}
-          </a>
-        </div>
-      </div>
-      <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
-        <button
-          onClick={() => router.push(BLOG.path || "/")}
-          className="mt-2 hover:text-black dark:hover:text-gray-100 cursor-pointer"
-          type="button"
-        >
-          ← {locale?.POST.BACK}
-        </button>
-      </div>
     </Container>
   );
 };
