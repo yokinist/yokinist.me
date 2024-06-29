@@ -24,7 +24,7 @@ export const Footer: React.VFC<Props> = ({ fullWidth }) => {
             rel="noreferrer"
             className="underline hover:text-black dark:hover:text-gray-100"
           >
-            Source
+            Source Code
           </a>
         </div>
       </div>
