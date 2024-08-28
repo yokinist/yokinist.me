@@ -36,7 +36,7 @@ const TAG_DATA: Record<TagSlug, TagData> = {
   }, */
   [TAG_SLUGS.AI]: {
     name: "AI",
-    // emoji: "🍳",
+    emoji: "✨",
     slug: TAG_SLUGS.AI,
   },
   [TAG_SLUGS.Music]: {
