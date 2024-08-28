@@ -12,7 +12,7 @@ const BLOG = {
     "不知周之梦为胡蝶与，胡蝶之梦为周与？",
   lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: "dark", // ['light', 'dark'],
-  font: "sans-serif", // ['sans-serif', 'serif']
+  font: "serif", // ['sans-serif', 'serif']
   lightBackground: "#ffffff", // use hex value, don't forget '#' e.g #fffefc
   darkBackground: "#040808", // use hex value, don't forget '#'
   path: "", // leave this empty unless you want to deploy Nobelium in a folder
