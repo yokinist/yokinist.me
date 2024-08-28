@@ -3,7 +3,8 @@ import { ValueOf } from "lib/types";
 // NOTE: you can customize tags to match the tags in your Notion database
 const TAG_SLUGS = {
   All: "all",
-  Cooking: "cooking",
+  // Cooking: "cooking",
+  AI: "ai",
   Art: "art",
   Music: "music",
   Design: "design",
@@ -28,10 +29,15 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     emoji: "📰", // Emoji
     slug: TAG_SLUGS.News, // Slug
   },
-  [TAG_SLUGS.Cooking]: {
+  /* [TAG_SLUGS.Cooking]: {
     name: "Cooking",
     emoji: "🍳",
     slug: TAG_SLUGS.Cooking,
+  }, */
+  [TAG_SLUGS.AI]: {
+    name: "AI",
+    // emoji: "🍳",
+    slug: TAG_SLUGS.AI,
   },
   [TAG_SLUGS.Music]: {
     name: "Music",
