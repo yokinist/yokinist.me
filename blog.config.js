@@ -2,14 +2,14 @@
  * @type {import('~/types').BlogConfig}
  */
 const BLOG = {
-  title: "yokinist.me template",
-  author: "yokinist",
-  email: "info@yokinist.me",
-  link: "https://yokinist.me",
-  externalLink: "https://bento.me/yokinist", // make redirect link to /link page
-  repository: "https://github.com/yokinist/yokinist.me",
+  title: "庄周",
+  author: "庄周",
+  email: "boyzhuangzi@qq.com",
+  link: "https://zhuangzhou.vercel.app",
+  externalLink: " ", // make redirect link to /link page
+  repository: "https://github.com/jingzhangxxx",
   description:
-    "This is a template for yokinist.me, created by yokinist. You can use it to create your own blog.",
+    "不知周之梦为胡蝶与，胡蝶之梦为周与？",
   lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: "dark", // ['light', 'dark'],
   font: "sans-serif", // ['sans-serif', 'serif']
@@ -17,16 +17,16 @@ const BLOG = {
   darkBackground: "#040808", // use hex value, don't forget '#'
   path: "", // leave this empty unless you want to deploy Nobelium in a folder
   profileSlug: "profile",
-  since: 2021, // If leave this empty, current year will be used.
+  since: 2024, // If leave this empty, current year will be used.
   sortByDate: true,
   showAbout: true,
   showArchive: true,
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: "https://simple-og-image.vercel.app", // The link to generate OG image, don't end with a slash
   // detail: https://github.com/yokinist/og-image/blob/main/api/_lib/types.ts#L2-L12
-  socialLink: "https://twitter.com/yokinist",
+  socialLink: " ",
   seo: {
-    keywords: ["yokinist"],
+    keywords: ["zhuangzhou"],
     googleSiteVerification: "", // Remove the value or replace it with your own google site verification code
   },
   notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS！！！
