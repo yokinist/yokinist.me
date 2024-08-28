@@ -24,7 +24,7 @@ const BLOG = {
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: "https://simple-og-image.vercel.app", // The link to generate OG image, don't end with a slash
   // detail: https://github.com/yokinist/og-image/blob/main/api/_lib/types.ts#L2-L12
-  socialLink: " ",
+  socialLink: "https://x.com/imjingzhang",
   seo: {
     keywords: ["zhuangzhou"],
     googleSiteVerification: "", // Remove the value or replace it with your own google site verification code
