@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 @font-face {
+  font-family: 'SourceHanSerif';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: 'Regular';
+  src: url('/fonts/SourceHanSerifSC-VF.otf.woff2') format('woff2');
+} //思源宋体
+@font-face {
   font-family: 'IBM Plex Sans';
   font-weight: 100 900;
   font-display: swap;
