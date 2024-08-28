@@ -42,6 +42,15 @@ const BLOG = {
       measurementId: "", // e.g: G-XXXXXXXXXX
     },
   },
+    comment: {
+    // support provider: gitalk, utterances, cusdis
+    provider: 'cusdis', // leave it empty if you don't need any comment plugin
+    cusdisConfig: {
+      appId: 'e91d6b99-1ef7-4ebb-be6d-7adb26faa934', // data-app-id
+      host: 'https://cusdis.com', // data-host, change this if you're using self-hosted version
+      scriptSrc: 'https://cusdis.com/js/cusdis.es.js' // change this if you're using self-hosted version
+    }
+  },
   isProd: process.env.VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
 };
 // export default BLOG
