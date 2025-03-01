@@ -33,17 +33,6 @@ export const Layout: React.VFC<Props> = ({
       {post?.type?.[0] !== "Page" && (
         <nav className="flex items-center mt-5 mb-4 text-gray-500 dark:text-gray-300">
           <div className="flex mt-2">
-            <a href={BLOG.link || "#"} className="flex">
-              <Image
-                alt={BLOG.author}
-                width={24}
-                height={24}
-                src={`https://gravatar.com/avatar/${emailHash}`}
-                className="rounded-full"
-              />
-              <p className="md:block ml-2">{BLOG.author}</p>
-            </a>
-            <span className="block">&nbsp;/&nbsp;</span>
             <div className="mr-2 md:ml-0">
               {formatDate(
                 post?.date?.start_date || post.createdTime,
