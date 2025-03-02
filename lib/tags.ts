@@ -43,8 +43,8 @@ const TAG_DATA: Record<TagSlug, TagData> = {
     slug: TAG_SLUGS.Food,
   },
   [TAG_SLUGS.Diary]: {
-    name: "近況報告",
-    emoji: "📢",
+    name: "日記",
+    emoji: "📝",
     slug: TAG_SLUGS.Diary,
   },
   [TAG_SLUGS.Boyaki]: {
