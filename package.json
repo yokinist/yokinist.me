@@ -24,7 +24,7 @@
     "@heroicons/react": "^2.1.1",
     "classnames": "^2.3.1",
     "feed": "^4.2.2",
-    "next": "^14.1.0",
+    "next": "14.2.35",
     "next-head-seo": "^0.1.2",
     "next-themes": "^0.0.15",
     "notion-client": "^6.16.0",
