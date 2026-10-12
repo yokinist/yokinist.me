@@ -1,3 +1,4 @@
+import { ArrowUpOnSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import type { ExtendedRecordMap } from "notion-types";
 
@@ -87,10 +88,9 @@ export const Layout: React.FC<Props> = ({
     >
       <div className="reading-progress" aria-hidden />
       {renderContents()}
-      {BLOG.showPostFooter && (
-        <div className="mb-4">
-          <div>---</div>
-          <div className="flex">
+      <footer className="mt-16 space-y-6">
+        {BLOG.showPostFooter && (
+          <div className="flex justify-end">
             <a
               href={getTwitterShareUrl({
                 text: post.title,
@@ -101,15 +101,15 @@ export const Layout: React.FC<Props> = ({
               })}
               target="_blank"
               rel="noreferrer noopener"
-              aria-label="share with twitter"
-              className="ml-auto text-blue-700 dark:text-blue-400 underline border-blue-700 dark:border-blue-400 cursor-pointer"
+              className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full border border-zinc-300 text-xs text-zinc-600 hover:text-zinc-900 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:border-zinc-500 transition-colors"
             >
+              <ArrowUpOnSquareIcon aria-hidden className="w-4 h-4" />
               {locale.POST.SHARE}
             </a>
           </div>
-        </div>
-      )}
-      {byType("Post")(post) && <PostNav prev={prev} next={next} />}
+        )}
+        {byType("Post")(post) && <PostNav prev={prev} next={next} />}
+      </footer>
     </Container>
   );
 };
