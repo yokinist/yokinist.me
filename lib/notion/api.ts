@@ -1,7 +1,7 @@
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import { NotionAPI } from "notion-client";
 import BLOG from "~/blog.config";
-import { Post } from "~/types";
+import type { Post } from "~/types";
 import { toPosts } from "./toPosts";
 
 const api = new NotionAPI({ authToken: BLOG.notionAccessToken });

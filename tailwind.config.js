@@ -1,5 +1,4 @@
 const BLOG = require("./blog.config");
-const { fontFamily } = require("tailwindcss/defaultTheme");
 const CJK = require("./lib/cjk");
 const fontSansCJK = !CJK()
   ? []
@@ -12,12 +11,6 @@ const fontSerifCJK = !CJK()
  * @type {import('tailwindcss').Config}
  */
 const tailwindConfig = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./layouts/**/*.{js,ts,jsx,tsx}",
-  ],
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -29,8 +22,27 @@ const tailwindConfig = {
         },
       },
       fontFamily: {
-        sans: ['"IBM Plex Sans"', ...fontFamily.sans, ...fontSansCJK],
-        serif: ['"Source Serif"', ...fontFamily.serif, ...fontSerifCJK],
+        sans: [
+          '"IBM Plex Sans"',
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+          ...fontSansCJK,
+        ],
+        serif: [
+          '"Source Serif"',
+          "ui-serif",
+          "Georgia",
+          "Cambria",
+          '"Times New Roman"',
+          "Times",
+          "serif",
+          ...fontSerifCJK,
+        ],
       },
     },
   },

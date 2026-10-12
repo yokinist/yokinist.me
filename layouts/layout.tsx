@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ExtendedRecordMap } from "notion-types";
+import type { ExtendedRecordMap } from "notion-types";
 
 import BLOG from "~/blog.config";
 import { Container } from "~/components";
@@ -10,7 +10,7 @@ import formatDate from "~/lib/formatDate";
 import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
 import { useLocale } from "~/lib/i18n/locale";
 import { byType } from "~/lib/notion/toPosts";
-import { Post } from "~/types";
+import type { Post } from "~/types";
 
 type Props = {
   blockMap: ExtendedRecordMap;
@@ -19,7 +19,7 @@ type Props = {
   onlyContents?: boolean;
 };
 
-export const Layout: React.VFC<Props> = ({
+export const Layout: React.FC<Props> = ({
   blockMap,
   post,
   emailHash,

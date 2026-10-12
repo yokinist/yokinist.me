@@ -7,7 +7,7 @@ type Props = {
   tag: string;
 };
 
-export const TagItem: React.VFC<Props> = ({ tag }) => {
+export const TagItem: React.FC<Props> = ({ tag }) => {
   const tagData = getTagData(tag);
   return (
     <Link href={`/tags/${encodeURIComponent(tag)}`}>

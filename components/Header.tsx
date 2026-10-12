@@ -1,8 +1,8 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 import classNames from "classnames";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import BLOG from "~/blog.config";
 import { fetchLocaleLang } from "~/lib/i18n/lang";
@@ -14,7 +14,7 @@ const links = [
   { id: 2, name: locale.NAV.ABOUT, to: "/about", show: BLOG.showAbout },
 ];
 
-const NavBar: React.VFC = () => {
+const NavBar: React.FC = () => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const activeNav = useMemo(() => {
@@ -24,7 +24,7 @@ const NavBar: React.VFC = () => {
   }, [router]);
 
   return (
-    <div className="flex-shrink-0">
+    <div className="shrink-0">
       <ul className="flex flex-row items-center">
         {links.map(
           (link) =>
@@ -67,7 +67,7 @@ type HeaderProps = {
   fullWidth?: boolean;
 };
 
-export const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
+export const Header: React.FC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
 
@@ -96,7 +96,7 @@ export const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
       <div className="h-4 md:h-12" ref={sentinalRef} />
       <div
         className={classNames(
-          "sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60",
+          "sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8",
           {
             "px-4 md:px-24": fullWidth,
             "max-w-2xl px-4": !fullWidth,

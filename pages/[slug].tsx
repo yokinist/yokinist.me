@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 import { Layout } from "~/layouts";
 import { getPostPaths, getPostProps } from "~/lib/postPage";
 

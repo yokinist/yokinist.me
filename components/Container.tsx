@@ -1,6 +1,6 @@
 import classNames from "classnames";
-import NextHeadSeo from "next-head-seo";
 import { useRouter } from "next/router";
+import NextHeadSeo from "next-head-seo";
 import BLOG from "~/blog.config";
 import { Footer, Header } from "~/components";
 import { getOGImageURL } from "~/lib/getOGImageURL";
@@ -14,7 +14,7 @@ type Props = {
   date?: string;
 };
 
-export const Container: React.VFC<Props> = ({
+export const Container: React.FC<Props> = ({
   children,
   fullWidth,
   ...meta
@@ -92,7 +92,7 @@ export const Container: React.VFC<Props> = ({
       >
         <Header navBarTitle={siteTitle} fullWidth={fullWidth} />
         <main
-          className={classNames("m-auto flex-grow w-full transition-all", {
+          className={classNames("m-auto grow w-full transition-all", {
             "px-4 md:px-24": fullWidth,
             "max-w-2xl px-4": !fullWidth,
           })}

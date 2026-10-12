@@ -4,7 +4,7 @@ import { BlogPost } from "~/components";
 import { Tags } from "~/components/Tag";
 import { getTagData } from "~/lib";
 import { useLocale } from "~/lib/i18n/locale";
-import { Post, TagObj } from "~/types";
+import type { Post, TagObj } from "~/types";
 
 type Props = {
   posts: Post[];
@@ -12,7 +12,7 @@ type Props = {
   currentTag?: string;
 };
 
-export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
+export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
   const [searchValue, setSearchValue] = useState("");
   const locale = useLocale();
 

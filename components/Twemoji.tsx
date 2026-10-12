@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import type React from "react";
 
 const TWEMOJI_CDN_BASE_URL = "https://cdn.jsdelivr.net/npm/@twemoji/svg";
 
@@ -8,7 +8,7 @@ type Props = {
   size?: number;
 };
 
-export const Twemoji: React.VFC<Props> = ({ emoji, size = 24 }) => {
+export const Twemoji: React.FC<Props> = ({ emoji, size = 24 }) => {
   const emojiString = emoji.codePointAt(0)?.toString(16);
   if (!emojiString) return null;
   return (

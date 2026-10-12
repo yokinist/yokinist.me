@@ -1,5 +1,7 @@
 /* NOTION CSS OVERRIDE */
 
+@reference "./globals.css";
+
 .notion {
     @apply text-gray-600 dark:text-gray-200;
     overflow-wrap: break-word;
@@ -31,7 +33,7 @@ svg + .notion-page-title-text {
 }
 
 .notion-bookmark {
-    @apply border-blue-700 dark:border-blue-300 !important;
+    @apply border-blue-700! dark:border-blue-300!;
 }
 
 .notion-bookmark .notion-bookmark-title,
@@ -44,7 +46,7 @@ svg + .notion-page-title-text {
 }
 
 .notion-bookmark:hover {
-    @apply border-blue-400 !important;
+    @apply border-blue-400!;
 }
 
 .notion-viewport {
@@ -71,7 +73,7 @@ svg + .notion-page-title-text {
 
 .notion-quote {
     padding: 0.2em 0.9em;
-    @apply text-base !important;
+    @apply text-base!;
 }
 
 .notion-collection-row {
@@ -83,7 +85,7 @@ svg + .notion-page-title-text {
 }
 
 .notion-collection > .notion-collection-header {
-    @apply px-0 !important;
+    @apply px-0!;
 }
 
 .notion-collection-header > .notion-collection-view-type {
@@ -91,11 +93,11 @@ svg + .notion-page-title-text {
 }
 
 .notion-collection > .notion-table {
-    @apply max-w-full !important;
+    @apply max-w-full!;
 }
 
 .notion-collection > .notion-table > .notion-table-view {
-    @apply px-0 !important;
+    @apply px-0!;
 }
 
 .notion-table-cell.notion-table-cell-text {
@@ -103,7 +105,7 @@ svg + .notion-page-title-text {
 }
 
 a.notion-link {
-    @apply text-blue-700 border-blue-700 dark:text-blue-200 dark:border-blue-200 !important;
+    @apply text-blue-700! border-blue-700! dark:text-blue-200! dark:border-blue-200!;
 }
 
 a.notion-page-link {
@@ -124,7 +126,7 @@ a.notion-page-link {
 
 /* code */
 .notion-code {
-    @apply bg-gray-50 dark:border-gray-600 dark:bg-gray-800 border-gray-400 rounded-md p-4 !important;
+    @apply bg-gray-50! dark:border-gray-600! dark:bg-gray-800! border-gray-400! rounded-md! p-4!;
 }
 
 .notion code {
@@ -161,7 +163,7 @@ a.notion-page-link {
 .token.property,
 .token.symbol,
 .token.tag {
-    @apply text-green-600 !important;
+    @apply text-green-600!;
 }
 
 .token.attr-name,
@@ -169,26 +171,26 @@ a.notion-page-link {
 .token.char,
 .token.inserted,
 .token.selector {
-    @apply text-purple-600 !important;
+    @apply text-purple-600!;
 }
 
 .token.string,
 .token.entity,
 .token.operator,
 .token.url {
-    @apply dark:text-yellow-600 !important;
+    @apply dark:text-yellow-600!;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-    @apply dark:text-purple-400 !important;
+    @apply dark:text-purple-400!;
 }
 
 .token.class-name,
 .token.function,
 .token.constant {
-    @apply text-red-600 dark:text-blue-500 !important;
+    @apply text-red-600! dark:text-blue-500!;
 }
 
 .token.important,
@@ -221,7 +223,7 @@ pre {
 .token.entity,
 .token.url,
 .token.variable {
-    @apply bg-transparent !important;
+    @apply bg-transparent!;
 }
 
 pre[class*='language-'] > code {

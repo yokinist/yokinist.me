@@ -15,7 +15,7 @@ type Props =
       root: boolean;
     };
 
-export const TagTabItem: React.VFC<Props> = ({ tagKey, selected, ...rest }) => {
+export const TagTabItem: React.FC<Props> = ({ tagKey, selected, ...rest }) => {
   const linkUrl =
     selected || !("count" in rest)
       ? "/"
