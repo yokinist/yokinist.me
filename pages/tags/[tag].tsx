@@ -1,6 +1,5 @@
 import { createHash } from "crypto";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
 import BLOG from "~/blog.config";
 import { Container, Profile } from "~/components";
 import { SearchLayout } from "~/layouts";
@@ -59,13 +58,9 @@ const TagPage: NextPage<Props> = ({
   blockMap,
   emailHash,
 }) => {
-  const router = useRouter();
-  const tag = router.query?.tag;
   return (
     <Container
       title={getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTag}
-      isTagPage
-      slug={typeof tag === "string" ? tag : undefined}
     >
       {post && blockMap && (
         <Profile blockMap={blockMap} post={post} emailHash={emailHash} />

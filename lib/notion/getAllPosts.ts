@@ -35,6 +35,7 @@ export const getAllPosts = async (
   props?: GetAllPostsParams,
 ): Promise<Post[]> => {
   let id = BLOG.notionPageId;
+  if (!id) throw new Error("NOTION_PAGE_ID is not set");
   const response = await fetchDatabase(id);
 
   id = idToUuid(id);

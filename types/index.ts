@@ -44,8 +44,8 @@ export type BlogConfig = {
     keywords: string[];
     googleSiteVerification: string;
   };
-  notionPageId: string;
-  notionAccessToken: string;
+  notionPageId: string | undefined;
+  notionAccessToken: string | undefined;
   gaMeasurementId: "" | `G-${string}`;
-  isProd: "development" | "preview" | "production";
+  isProd: boolean;
 };

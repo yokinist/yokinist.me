@@ -60,13 +60,11 @@ export const Layout: React.VFC<Props> = ({
     renderContents()
   ) : (
     <Container
-      layout="blog"
       title={post.title}
       description={post.summary}
-      date={new Date(post.createdTime).toISOString()}
+      date={new Date(post.date?.start_date || post.createdTime).toISOString()}
       type="article"
       fullWidth={fullWidth}
-      slug={slug}
     >
       {renderContents()}
     </Container>
