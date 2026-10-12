@@ -19,10 +19,10 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
   const filteredBlogPosts = useMemo(() => {
     if (posts) {
       return posts.filter((post) => {
-        const tagContent = post.tags ? post.tags.join(" ") : "";
-        const searchContent =
-          post?.title ?? `${post?.summary}` ?? `${tagContent}`;
-        return searchContent.toLowerCase().includes(searchValue.toLowerCase());
+        const searchContent = [post.title, post.summary, ...(post.tags ?? [])]
+          .join(" ")
+          .toLowerCase();
+        return searchContent.includes(searchValue.toLowerCase());
       });
     }
     return [];

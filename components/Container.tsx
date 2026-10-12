@@ -1,24 +1,17 @@
 import classNames from "classnames";
 import NextHeadSeo from "next-head-seo";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
 import BLOG from "~/blog.config";
 import { Footer, Header } from "~/components";
 import { getOGImageURL } from "~/lib/getOGImageURL";
 
-type NextHeadSeoProps = Parameters<typeof NextHeadSeo>[0];
-
 type Props = {
   children: React.ReactNode;
-  layout?: "blog";
   type?: "article" | "website";
   title?: string;
   description?: string;
   fullWidth?: boolean;
   date?: string;
-  slug?: string | null;
-  createdTime?: string;
-  isTagPage?: boolean;
 };
 
 export const Container: React.VFC<Props> = ({
@@ -27,35 +20,16 @@ export const Container: React.VFC<Props> = ({
   ...meta
 }) => {
   const router = useRouter();
-  const [customMetaTags, setCustomMetaTags] = useState<
-    NextHeadSeoProps["customLinkTags"]
-  >([]);
-  const [alreadySet, setAlreadySet] = useState<boolean>(false);
-
-  const root = useMemo(() => {
-    return router.pathname === "/";
-  }, [router]);
-
-  const siteTitle = useMemo(() => {
-    return meta.title ?? BLOG.title;
-  }, [meta]);
-
-  useEffect(() => {
-    if (alreadySet || meta.type !== "article" || !meta) return;
-    setCustomMetaTags((prevCustomMetaTags) =>
-      (prevCustomMetaTags ?? []).concat(
-        {
-          property: "article:published_time",
-          content: meta?.date || meta?.createdTime || "",
-        },
-        {
-          property: "article:author",
-          content: BLOG.author,
-        },
-      ),
-    );
-    setAlreadySet(true);
-  }, [alreadySet, meta]);
+  const root = router.pathname === "/";
+  const siteTitle = meta.title ?? BLOG.title;
+  const url = `${BLOG.link}${router.asPath.split("?")[0]}`;
+  const articleMetaTags =
+    meta.type === "article"
+      ? [
+          { property: "article:published_time", content: meta.date ?? "" },
+          { property: "article:author", content: BLOG.author },
+        ]
+      : [];
 
   return (
     <div>
@@ -63,10 +37,10 @@ export const Container: React.VFC<Props> = ({
         title={meta.title}
         description={meta.description}
         robots={"index, follow"}
-        canonical={router.asPath}
+        canonical={url}
         og={{
           title: meta.title,
-          url: router.asPath,
+          url,
           type: meta.type ?? "website",
           description: meta.description,
           image: getOGImageURL({
@@ -75,7 +49,8 @@ export const Container: React.VFC<Props> = ({
             twitter: false,
           }),
         }}
-        customMetaTags={(customMetaTags ?? []).concat(
+        customMetaTags={[
+          ...articleMetaTags,
           {
             charSet: "UTF-8",
           },
@@ -83,10 +58,14 @@ export const Container: React.VFC<Props> = ({
             property: "og:locale",
             content: BLOG.lang,
           },
-          {
-            name: "google-site-verification",
-            content: BLOG.seo.googleSiteVerification,
-          },
+          ...(BLOG.seo.googleSiteVerification
+            ? [
+                {
+                  name: "google-site-verification",
+                  content: BLOG.seo.googleSiteVerification,
+                },
+              ]
+            : []),
           {
             name: "keywords",
             content: BLOG.seo.keywords.join(", "),
@@ -99,7 +78,7 @@ export const Container: React.VFC<Props> = ({
               twitter: true,
             }),
           },
-        )}
+        ]}
         twitter={{
           card: "summary_large_image",
           site: "@yokinist",

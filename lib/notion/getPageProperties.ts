@@ -1,6 +1,4 @@
-import { NotionAPI } from "notion-client";
 import { getBlockValue, getDateValue, getTextContent } from "notion-utils";
-import BLOG from "~/blog.config";
 import { Post } from "~/types";
 import { ReturnGetAllPostsParams } from "./getAllPosts";
 
@@ -11,8 +9,6 @@ export const getPageProperties = async (
   block: ReturnGetAllPostsParams["block"],
   schema: ReturnGetAllPostsParams["schema"],
 ): Promise<Post> => {
-  const authToken = BLOG.notionAccessToken;
-  const api = new NotionAPI({ authToken });
   const rawProperties = Object.entries(
     getBlockValue(block?.[id])?.properties || [],
   );
@@ -51,27 +47,6 @@ export const getPageProperties = async (
           if (selects[0]?.length && currentPostKey) {
             properties[currentPostKey] = selects.split(",");
           }
-          break;
-        }
-        // NOTE: Not using it?
-        case "person": {
-          const rawUsers = (val as string[][]).flat();
-          const users = [];
-          for (let i = 0; i < rawUsers.length; i++) {
-            if (rawUsers[i][0][1]) {
-              const userId = rawUsers[i][0];
-              const res = await api.getUsers([userId]);
-              const resValue = res?.results?.[0];
-              const user = {
-                id: resValue?.id,
-                first_name: resValue?.given_name,
-                last_name: resValue?.family_name,
-                profile_photo: resValue?.profile_photo,
-              };
-              users.push(user);
-            }
-          }
-          // properties[schema[key].name] = users
           break;
         }
         default:
