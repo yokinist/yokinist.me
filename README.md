@@ -30,12 +30,17 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 
 ## Quick Start
 
-1. Duplicate [this Notion template](https://yokinist.notion.site/761c04c4ff6e467188fe67c8a36e20b9?v=0643f1ef640642fbb84032202708336f) and share it to the web
-2. [Fork](https://github.com/yokinist/yokinist.me/fork) this repository
-3. Edit `blog.config.js` (title, author, language, colors, which parts of a post to show, ...)
-4. Deploy on [Vercel](https://vercel.com) with these environment variables:
-   - `NOTION_PAGE_ID` (required): the ID of the Notion database page you shared, the 32 characters after your workspace address
-   - `NOTION_ACCESS_TOKEN` (optional): only needed if the database is not public
+1. Duplicate [this Notion template](https://yokinist.notion.site/761c04c4ff6e467188fe67c8a36e20b9?v=0643f1ef640642fbb84032202708336f) into your workspace
+2. Create an internal integration at [notion.so/profile/integrations](https://www.notion.so/profile/integrations) and copy its secret
+3. Open the database page, choose **⋯ → Connections**, and add the integration so it can read the database
+4. [Fork](https://github.com/yokinist/yokinist.me/fork) this repository
+5. Edit `blog.config.js` (title, author, language, colors, which parts of a post to show, ...)
+6. Deploy on [Vercel](https://vercel.com) with these environment variables:
+   - `NOTION_TOKEN`: the integration secret from step 2
+   - `NOTION_PAGE_ID`: the database ID, the 32 characters after your workspace name in its URL
+7. For CI, add the same `NOTION_TOKEN` as a GitHub Actions secret
+
+The database needs the properties `title`, `slug`, `type` (`Post` or `Page`), `status` (`Published` to publish), `date`, `tags`, `summary` and `outer_link`; the template already has them.
 
 <details><summary>Where is the page ID?</summary>
   <img src="https://github.com/yokinist/yokinist.me/blob/main/pageid.png?raw=true">
@@ -58,7 +63,7 @@ yarn install
 yarn dev        # http://localhost:8080
 ```
 
-`.env.local` points `NOTION_PAGE_ID` to the demo database; replace it with yours (or run `vercel env pull`).
+Copy `.env.example` to `.env.local` and fill in `NOTION_TOKEN` and `NOTION_PAGE_ID` (or run `vercel env pull`). `.env.local` is ignored by git, so the token stays on your machine.
 
 | Command | What it does |
 | --- | --- |
@@ -72,7 +77,8 @@ CI runs all of these on every push to `template` and `main`.
 ## Tech stack
 
 - [Next.js](https://nextjs.org) 16 (App Router, ISR) and React 19
-- [react-notion-x](https://github.com/NotionX/react-notion-x) to fetch and render Notion pages
+- The official [Notion API](https://developers.notion.com) (`@notionhq/client`), with blocks rendered by server components; code is highlighted by [Shiki](https://shiki.style) and tweets by [react-tweet](https://react-tweet.vercel.app) at build time
+- Files uploaded to Notion are served through `/api/notion/file/[id]`, which redirects to a fresh signed URL (they expire after an hour), so no image optimization quota is used
 - [Tailwind CSS](https://tailwindcss.com) 4
 - TypeScript and [Biome](https://biomejs.dev)
 
