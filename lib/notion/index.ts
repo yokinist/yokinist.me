@@ -1,3 +1,3 @@
 export * from "./api";
 export * from "./getAllTags";
-export { byType } from "./toPosts";
+export { byType, getNeighbors } from "./toPosts";

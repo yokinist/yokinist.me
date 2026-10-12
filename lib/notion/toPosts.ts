@@ -9,12 +9,26 @@ import {
   getTextContent,
   idToUuid,
 } from "notion-utils";
-import type { Post, PostType } from "../../types";
+import type { Post, PostLink, PostType } from "../../types";
 
 type Decorations = Parameters<typeof getDateValue>[0];
 
 export const byType = (type: PostType) => (post: Post) =>
   post.type?.[0] === type;
+
+const toLink = (post?: Post): PostLink | null =>
+  post ? { title: post.title, slug: post.slug } : null;
+
+// The older (prev) and newer (next) post around `id` in a newest-first list.
+// Outer links leave the site, so they are skipped.
+export const getNeighbors = (posts: Post[], id: string) => {
+  const linkable = posts.filter((post) => !post.outer_link);
+  const index = linkable.findIndex((post) => post.id === id);
+  return {
+    prev: toLink(linkable[index + 1]),
+    next: index > 0 ? toLink(linkable[index - 1]) : null,
+  };
+};
 
 const publishedAt = (post: Post) =>
   new Date(post.date?.start_date || post.createdTime);

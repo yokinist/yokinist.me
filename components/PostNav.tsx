@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import BLOG from "~/blog.config";
-import { useLocale } from "~/lib/i18n/locale";
+import { locale } from "~/lib/i18n/lang";
 import type { PostLink } from "~/types";
 
 type Props = {
@@ -19,7 +19,6 @@ const isTyping = (target: EventTarget | null) =>
 // Links to the older (prev) and newer (next) post, or home at either end.
 // ← / → and Esc do the same from the keyboard.
 export const PostNav: React.FC<Props> = ({ prev, next }) => {
-  const locale = useLocale();
   const router = useRouter();
   const prevHref = prev ? `/posts/${prev.slug}` : "/";
   const nextHref = next ? `/posts/${next.slug}` : "/";
@@ -57,10 +56,10 @@ export const PostNav: React.FC<Props> = ({ prev, next }) => {
         <span className="min-w-0">
           <span className="block text-xs text-zinc-500 dark:text-zinc-400">
             {!link
-              ? locale?.POST.HOME
+              ? locale.POST.HOME
               : isNext
-                ? locale?.POST.NEXT
-                : locale?.POST.PREV}
+                ? locale.POST.NEXT
+                : locale.POST.PREV}
           </span>
           <span className="block mt-1 text-sm leading-relaxed line-clamp-2 text-zinc-800 group-hover:text-black dark:text-zinc-200 dark:group-hover:text-white transition-colors">
             {link?.title ?? BLOG.title}
@@ -84,12 +83,12 @@ export const PostNav: React.FC<Props> = ({ prev, next }) => {
           <Kbd>←</Kbd>
           <Kbd>→</Kbd>
           <span className="ml-1">
-            {locale?.POST.PREV} / {locale?.POST.NEXT}
+            {locale.POST.PREV} / {locale.POST.NEXT}
           </span>
         </span>
         <span className="flex items-center gap-1">
           <Kbd>esc</Kbd>
-          <span className="ml-1">{locale?.POST.HOME}</span>
+          <span className="ml-1">{locale.POST.HOME}</span>
         </span>
       </p>
     </nav>

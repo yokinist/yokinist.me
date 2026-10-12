@@ -5,10 +5,9 @@ import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import BLOG from "~/blog.config";
-import { fetchLocaleLang } from "~/lib/i18n/lang";
+import { locale } from "~/lib/i18n/lang";
 import { Twemoji } from "./Twemoji";
 
-const locale = fetchLocaleLang();
 const links = [
   { id: 1, name: locale.NAV.INDEX, to: "/", show: true },
   { id: 2, name: locale.NAV.ABOUT, to: "/about", show: BLOG.showAbout },

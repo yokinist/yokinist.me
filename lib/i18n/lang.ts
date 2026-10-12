@@ -105,7 +105,7 @@ const lang = {
   },
 } as const;
 
-export const fetchLocaleLang = () => {
+const fetchLocaleLang = () => {
   const s = BLOG.lang.toLowerCase();
   if (s === "zh-cn" || s === "zh-sg") {
     return lang["zh-CN"];
@@ -124,3 +124,6 @@ export const fetchLocaleLang = () => {
   }
   return lang.en;
 };
+
+// UI strings for BLOG.lang; the language is fixed at build time
+export const locale = fetchLocaleLang();

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { BlogPost, Twemoji } from "~/components";
 import { Tags } from "~/components/Tag";
 import { getTagData } from "~/lib";
-import { useLocale } from "~/lib/i18n/locale";
+import { locale } from "~/lib/i18n/lang";
 import type { Post, TagObj } from "~/types";
 
 type Props = {
@@ -15,7 +15,6 @@ type Props = {
 
 export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
   const [searchValue, setSearchValue] = useState("");
-  const locale = useLocale();
   const router = useRouter();
 
   const filteredBlogPosts = useMemo(() => {
@@ -51,8 +50,6 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
       readablePosts[Math.floor(Math.random() * readablePosts.length)];
     router.push(`/posts/${post.slug}`);
   };
-
-  if (!locale) return null;
 
   return (
     <>
