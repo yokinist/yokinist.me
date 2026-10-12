@@ -56,7 +56,7 @@ and share it to the public
 
 - [Fork](https://github.com/yokinist/yokinist.me/fork) this project
 - Customize `blog.config.js`
-- _(Optional)_ You can customize tags in `lib/tags.ts` to match those in your Notion database.
+- _(Optional)_ Set a display name and emoji for your Notion tags in `tags` of `blog.config.js`. Tags not listed there are shown by their name as-is
 - _(Optional)_ Add a page with the slug `profile` (or set `profileSlug` in `blog.config.js`). It is shown above the post list, and its first image gets an animated frame
 
 - _(Optional)_ Replace `favicon.svg`, and `favicon.ico` in `/public` folder with your own
