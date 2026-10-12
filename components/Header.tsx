@@ -1,5 +1,5 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
-import classNames from "classnames";
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
@@ -31,7 +31,7 @@ const NavBar: React.FC = () => {
               <li key={link.id} className="block ml-5 text-sm">
                 <Link
                   href={link.to}
-                  className={classNames("transition-colors", {
+                  className={clsx("transition-colors", {
                     "text-zinc-900 dark:text-zinc-100": link.to === activeNav,
                     "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100":
                       link.to !== activeNav,
@@ -95,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
     <>
       <div className="h-4 md:h-12" ref={sentinalRef} />
       <div
-        className={classNames(
+        className={clsx(
           "sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8",
           {
             "px-4 md:px-24": fullWidth,

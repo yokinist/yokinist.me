@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import { Twemoji } from "components/Twemoji";
 import Link from "next/link";
 import { getTagData } from "~/lib/tags";
@@ -27,7 +27,7 @@ export const TagTabItem: React.FC<Props> = ({ tagKey, selected, ...rest }) => {
         href={linkUrl}
         scroll={false}
         aria-current={selected ? "page" : undefined}
-        className={classNames(
+        className={clsx(
           "flex items-center gap-1.5 py-1 px-3 rounded-full text-sm transition-colors",
           {
             "bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900":

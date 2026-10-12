@@ -1,5 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import classNames from "classnames";
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -45,7 +45,7 @@ export const PostNav: React.FC<Props> = ({ prev, next }) => {
     return (
       <Link
         href={link ? `/posts/${link.slug}` : "/"}
-        className={classNames("group flex items-center gap-3 py-6", {
+        className={clsx("group flex items-center gap-3 py-6", {
           "justify-end pl-4 text-right": isNext,
           "pr-4": !isNext,
         })}

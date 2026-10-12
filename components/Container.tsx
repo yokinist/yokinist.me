@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import { useRouter } from "next/router";
 import NextHeadSeo from "next-head-seo";
 import BLOG from "~/blog.config";
@@ -86,14 +86,14 @@ export const Container: React.FC<Props> = ({
         }}
       />
       <div
-        className={classNames("wrapper", {
+        className={clsx("wrapper", {
           "font-serif": BLOG.font === "serif",
           "font-sans": BLOG.font !== "serif",
         })}
       >
         <Header navBarTitle={siteTitle} fullWidth={fullWidth} />
         <main
-          className={classNames("m-auto grow w-full transition-all", {
+          className={clsx("m-auto grow w-full transition-all", {
             "px-4 md:px-24": fullWidth,
             "max-w-2xl px-4": !fullWidth,
           })}
