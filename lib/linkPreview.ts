@@ -31,7 +31,7 @@ const meta = (html: string, names: string[]) => {
 // gives the URL, so read the page's own metadata (cached for a day).
 export const getLinkPreview = async (
   url: string,
-): Promise<{ title?: string; description?: string }> => {
+): Promise<{ title?: string; description?: string; image?: string }> => {
   try {
     const response = await fetch(url, {
       // Builds fetch many previews at once, so allow slow responses
@@ -50,6 +50,7 @@ export const getLinkPreview = async (
         "twitter:description",
         "description",
       ]),
+      image: meta(html, ["og:image", "twitter:image"]),
     };
   } catch {
     return {};
