@@ -49,7 +49,7 @@ const tailwindConfig = {
       },
       fontFamily: {
         sans: [
-          '"IBM Plex Sans"',
+          "var(--font-latin-sans)",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
@@ -60,7 +60,7 @@ const tailwindConfig = {
           ...fontSansCJK,
         ],
         serif: [
-          '"Source Serif"',
+          "var(--font-latin-serif)",
           "ui-serif",
           "Georgia",
           "Cambria",

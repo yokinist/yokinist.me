@@ -1,11 +1,13 @@
+"use client";
+
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useTheme } from "next-themes";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef } from "react";
 import BLOG from "~/blog.config";
 import { locale } from "~/lib/i18n/lang";
+import { toggleTheme } from "~/lib/theme";
 import { Twemoji } from "./Twemoji";
 
 const links = [
@@ -14,13 +16,8 @@ const links = [
 ];
 
 const NavBar: React.FC = () => {
-  const router = useRouter();
-  const { resolvedTheme, setTheme } = useTheme();
-  const activeNav = useMemo(() => {
-    if (router.asPath === links[0].to) return links[0].to;
-    if (router.asPath === links[1].to) return links[1].to;
-    return links[0].to;
-  }, [router]);
+  const pathname = usePathname();
+  const activeNav = pathname === links[1].to ? links[1].to : links[0].to;
 
   return (
     <div className="shrink-0">
@@ -45,14 +42,12 @@ const NavBar: React.FC = () => {
         <li className="ml-3">
           <button
             className="block p-1.5 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-            onClick={() =>
-              setTheme(resolvedTheme === "light" ? "dark" : "light")
-            }
+            onClick={toggleTheme}
             aria-label={locale.NAV.THEME}
             title={locale.NAV.THEME}
             type="button"
           >
-            {/* Picked by the dark class next-themes sets before paint */}
+            {/* Picked by the dark class on <html> */}
             <MoonIcon aria-hidden className="w-5 h-5 dark:hidden" />
             <SunIcon aria-hidden className="w-5 h-5 hidden dark:block" />
           </button>

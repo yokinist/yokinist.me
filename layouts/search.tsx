@@ -1,5 +1,7 @@
+"use client";
+
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { BlogPost, Twemoji } from "~/components";
 import { Tags } from "~/components/Tag";

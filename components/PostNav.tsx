@@ -1,7 +1,9 @@
+"use client";
+
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import BLOG from "~/blog.config";
 import { locale } from "~/lib/i18n/lang";

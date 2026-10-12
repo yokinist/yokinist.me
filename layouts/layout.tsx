@@ -1,22 +1,24 @@
+import { createHash } from "node:crypto";
 import { ArrowUpOnSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import type { ExtendedRecordMap } from "notion-types";
+import { preload } from "react-dom";
 
 import BLOG from "~/blog.config";
-import { Container } from "~/components";
+import { Container } from "~/components/Container";
 import { NotionRenderer } from "~/components/Notion";
 import { PostNav } from "~/components/PostNav";
 import { TagItem } from "~/components/Tag";
 import formatDate from "~/lib/formatDate";
 import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
 import { locale } from "~/lib/i18n/lang";
+import { getLeadImageUrl } from "~/lib/notion/getLeadImageUrl";
 import { byType } from "~/lib/notion/toPosts";
 import type { Post, PostLink } from "~/types";
 
 type Props = {
   blockMap: ExtendedRecordMap;
   post: Post;
-  emailHash?: string;
   onlyContents?: boolean;
   prev?: PostLink | null;
   next?: PostLink | null;
@@ -25,11 +27,15 @@ type Props = {
 export const Layout: React.FC<Props> = ({
   blockMap,
   post,
-  emailHash,
   onlyContents = false,
   prev = null,
   next = null,
 }) => {
+  const leadImageUrl = getLeadImageUrl(blockMap);
+  if (leadImageUrl)
+    preload(leadImageUrl, { as: "image", fetchPriority: "high" });
+  const emailHash = createHash("md5").update(BLOG.email).digest("hex");
+
   const renderContents = () => (
     <article className="mt-4 mb-8 md:mt-0">
       <h1 className="md:text-3xl text-2xl font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
@@ -79,13 +85,7 @@ export const Layout: React.FC<Props> = ({
   return onlyContents ? (
     renderContents()
   ) : (
-    <Container
-      title={post.title}
-      description={post.summary}
-      date={new Date(post.date?.start_date || post.createdTime).toISOString()}
-      type="article"
-      fullWidth={post.fullWidth}
-    >
+    <Container title={post.title} fullWidth={post.fullWidth}>
       <div className="reading-progress" aria-hidden />
       {renderContents()}
       <footer className="mt-16 space-y-6">

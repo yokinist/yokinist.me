@@ -1,5 +1,6 @@
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import { NotionAPI } from "notion-client";
+import { cache } from "react";
 import BLOG from "~/blog.config";
 import type { Post } from "~/types";
 import { toPosts } from "./toPosts";
@@ -18,11 +19,12 @@ export const getPage = (id: string) => {
   return page;
 };
 
-export const getAllPosts = async (): Promise<Post[]> => {
+// cache(): generateMetadata and the page share one fetch per request
+export const getAllPosts = cache(async (): Promise<Post[]> => {
   const id = BLOG.notionPageId;
   if (!id) throw new Error("NOTION_PAGE_ID is not set");
   return toPosts(await getPage(id), id, { sortByDate: BLOG.sortByDate });
-};
+});
 
 export const getProfilePost = async (posts: Post[]) => {
   const post = posts.find((t) => t.slug === BLOG.profileSlug);

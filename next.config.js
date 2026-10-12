@@ -1,3 +1,5 @@
+const BLOG = require("./blog.config");
+
 /**
  * @type {import('next').NextConfig}
  **/
@@ -9,6 +11,11 @@ const nextConfig = {
     remotePatterns: [{ protocol: "https", hostname: "gravatar.com" }],
   },
   poweredByHeader: false,
+  async redirects() {
+    return [
+      { source: "/link", destination: BLOG.externalLink, permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
