@@ -7,7 +7,7 @@ export const Footer: React.FC<Props> = ({ fullWidth }) => {
   return (
     <div
       className={classNames(
-        "mt-16 shrink-0 m-auto w-full text-zinc-500 transition-all",
+        "mt-16 shrink-0 m-auto w-full text-zinc-500 dark:text-zinc-400 transition-all",
         {
           "px-4 md:px-24": fullWidth,
           "max-w-2xl px-4": !fullWidth,

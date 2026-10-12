@@ -1,11 +1,37 @@
 const BLOG = require("./blog.config");
 const CJK = require("./lib/cjk");
+// CJK fonts installed on each OS, so no web font has to be downloaded
+const systemSansCJK = {
+  JP: [
+    '"Hiragino Kaku Gothic ProN"',
+    '"Hiragino Sans"',
+    '"Yu Gothic UI"',
+    "Meiryo",
+  ],
+  SC: ['"PingFang SC"', '"Microsoft YaHei"'],
+  TC: ['"PingFang TC"', '"Microsoft JhengHei"'],
+  KR: ['"Apple SD Gothic Neo"', '"Malgun Gothic"'],
+};
+const systemSerifCJK = {
+  JP: ['"Hiragino Mincho ProN"', '"Yu Mincho"'],
+  SC: ['"Songti SC"', "SimSun"],
+  TC: ['"Songti TC"', "PMingLiU"],
+  KR: ['"AppleMyungjo"', "Batang"],
+};
 const fontSansCJK = !CJK()
   ? []
-  : [`"Noto Sans CJK ${CJK()}"`, `"Noto Sans ${CJK()}"`];
+  : [
+      ...systemSansCJK[CJK()],
+      `"Noto Sans CJK ${CJK()}"`,
+      `"Noto Sans ${CJK()}"`,
+    ];
 const fontSerifCJK = !CJK()
   ? []
-  : [`"Noto Serif CJK ${CJK()}"`, `"Noto Serif ${CJK()}"`];
+  : [
+      ...systemSerifCJK[CJK()],
+      `"Noto Serif CJK ${CJK()}"`,
+      `"Noto Serif ${CJK()}"`,
+    ];
 
 /**
  * @type {import('tailwindcss').Config}

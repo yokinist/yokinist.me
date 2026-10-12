@@ -3,6 +3,7 @@ import BLOG from "~/blog.config";
 const lang = {
   en: {
     NAV: {
+      THEME: "Toggle dark mode",
       INDEX: "Blog",
       ABOUT: "About",
     },
@@ -19,6 +20,7 @@ const lang = {
   },
   "zh-CN": {
     NAV: {
+      THEME: "切换深色模式",
       INDEX: "博客",
       ABOUT: "关于",
     },
@@ -35,6 +37,7 @@ const lang = {
   },
   "zh-HK": {
     NAV: {
+      THEME: "切換深色模式",
       INDEX: "網誌",
       ABOUT: "關於",
     },
@@ -51,6 +54,7 @@ const lang = {
   },
   "zh-TW": {
     NAV: {
+      THEME: "切換深色模式",
       INDEX: "部落格",
       ABOUT: "關於",
     },
@@ -67,6 +71,7 @@ const lang = {
   },
   ja: {
     NAV: {
+      THEME: "ダークモードを切り替える",
       INDEX: "Blog",
       ABOUT: "About",
     },
@@ -83,6 +88,7 @@ const lang = {
   },
   es: {
     NAV: {
+      THEME: "Cambiar modo oscuro",
       INDEX: "Blog",
       ABOUT: "Acerca de mí",
     },
@@ -99,7 +105,7 @@ const lang = {
   },
 } as const;
 
-export const fetchLocaleLang = () => {
+const fetchLocaleLang = () => {
   const s = BLOG.lang.toLowerCase();
   if (s === "zh-cn" || s === "zh-sg") {
     return lang["zh-CN"];
@@ -118,3 +124,6 @@ export const fetchLocaleLang = () => {
   }
   return lang.en;
 };
+
+// UI strings for BLOG.lang; the language is fixed at build time
+export const locale = fetchLocaleLang();

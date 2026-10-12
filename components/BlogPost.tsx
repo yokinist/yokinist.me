@@ -25,7 +25,7 @@ export const BlogPost: React.FC<Props> = ({ post }) => {
       </span>
       <time
         dateTime={post.date?.start_date}
-        className="shrink-0 text-xs tabular-nums text-zinc-500"
+        className="shrink-0 text-xs tabular-nums text-zinc-500 dark:text-zinc-400"
       >
         {formatDate(date, BLOG.lang, { month: "short", day: "numeric" })}
       </time>

@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { ExtendedRecordMap } from "notion-types";
-import { toPosts } from "./toPosts.ts";
+import type { Post } from "../../types";
+import { getNeighbors, toPosts } from "./toPosts.ts";
 
 const DB_ID = "11111111111111111111111111111111";
 const DB_UUID = "11111111-1111-1111-1111-111111111111";
@@ -117,4 +118,28 @@ test("drops drafts, scheduled posts, posts without a slug and unknown types", ()
 
 test("throws when the page is not a database", () => {
   assert.throws(() => toPosts(recordMap([], "page"), DB_ID), /not a database/);
+});
+
+test("finds the older and newer post, skipping outer links", () => {
+  const post = (id: string, outer_link?: string) =>
+    ({ id, title: id, slug: id, outer_link }) as Post;
+  const posts = [
+    post("newest"),
+    post("outer", "https://example.com"),
+    post("middle"),
+    post("oldest"),
+  ];
+  const link = (id: string) => ({ title: id, slug: id });
+  assert.deepEqual(getNeighbors(posts, "middle"), {
+    prev: link("oldest"),
+    next: link("newest"),
+  });
+  assert.deepEqual(getNeighbors(posts, "newest"), {
+    prev: link("middle"),
+    next: null,
+  });
+  assert.deepEqual(getNeighbors(posts, "oldest"), {
+    prev: null,
+    next: link("middle"),
+  });
 });

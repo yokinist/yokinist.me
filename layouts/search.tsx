@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { BlogPost, Twemoji } from "~/components";
 import { Tags } from "~/components/Tag";
 import { getTagData } from "~/lib";
-import { useLocale } from "~/lib/i18n/locale";
+import { locale } from "~/lib/i18n/lang";
 import type { Post, TagObj } from "~/types";
 
 type Props = {
@@ -15,7 +15,6 @@ type Props = {
 
 export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
   const [searchValue, setSearchValue] = useState("");
-  const locale = useLocale();
   const router = useRouter();
 
   const filteredBlogPosts = useMemo(() => {
@@ -52,20 +51,19 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
     router.push(`/posts/${post.slug}`);
   };
 
-  if (!locale) return null;
-
   return (
     <>
       <div className="flex gap-2 my-2">
         <div className="relative grow">
           <input
-            type="text"
+            type="search"
+            aria-label={locale.POST.SEARCH}
             placeholder={
               currentTag
                 ? `${locale.POST.SEARCHIN} #${getTagData(currentTag).name}`
                 : locale.POST.SEARCH
             }
-            className="block py-2 pl-4 pr-10 w-full text-sm text-zinc-900 dark:text-zinc-100 bg-transparent rounded-lg border border-zinc-300 dark:border-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors"
+            className="block py-2 pl-4 pr-10 w-full text-sm text-zinc-900 dark:text-zinc-100 bg-transparent rounded-lg border border-zinc-300 dark:border-zinc-700 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:border-zinc-500 transition-colors"
             onChange={(e) => setSearchValue(e.target.value)}
           />
           <MagnifyingGlassIcon className="absolute top-2.5 right-3 w-4 h-4 text-zinc-400 dark:text-zinc-500" />

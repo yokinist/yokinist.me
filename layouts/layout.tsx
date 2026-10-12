@@ -8,7 +8,7 @@ import { PostNav } from "~/components/PostNav";
 import { TagItem } from "~/components/Tag";
 import formatDate from "~/lib/formatDate";
 import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
-import { useLocale } from "~/lib/i18n/locale";
+import { locale } from "~/lib/i18n/lang";
 import { byType } from "~/lib/notion/toPosts";
 import type { Post, PostLink } from "~/types";
 
@@ -29,15 +29,13 @@ export const Layout: React.FC<Props> = ({
   prev = null,
   next = null,
 }) => {
-  const locale = useLocale();
-
   const renderContents = () => (
     <article className="mt-4 mb-8 md:mt-0">
       <h1 className="md:text-3xl text-2xl font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
         {post.title}
       </h1>
       {post?.type?.[0] !== "Page" && (
-        <nav className="flex items-center gap-x-3 mt-4 mb-4 text-sm text-zinc-500">
+        <nav className="flex items-center gap-x-3 mt-4 mb-4 text-sm text-zinc-500 dark:text-zinc-400">
           <div className="flex mt-2">
             {BLOG.showPostAuthor && (
               <>
@@ -106,7 +104,7 @@ export const Layout: React.FC<Props> = ({
               aria-label="share with twitter"
               className="ml-auto text-blue-700 dark:text-blue-400 underline border-blue-700 dark:border-blue-400 cursor-pointer"
             >
-              {locale?.POST.SHARE}
+              {locale.POST.SHARE}
             </a>
           </div>
         </div>
