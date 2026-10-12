@@ -24,6 +24,19 @@ const BLOG = {
   ogImageGenerateURL: "https://simple-og-image.vercel.app", // The link to generate OG image, don't end with a slash
   // detail: https://github.com/yokinist/og-image/blob/main/api/_lib/types.ts#L2-L12
   socialLink: "https://twitter.com/yokinist",
+  // Display name and emoji for each tag slug used in your Notion database
+  tags: {
+    all: { name: "All", emoji: "🌴" },
+    news: { name: "News", emoji: "📰" },
+    cooking: { name: "Cooking", emoji: "🍳" },
+    music: { name: "Music", emoji: "🎵" },
+    design: { name: "Design", emoji: "🎨" },
+    link: { name: "Link", emoji: "🔗" },
+    book: { name: "Book", emoji: "📚" },
+    art: { name: "Art", emoji: "🖼" },
+    food: { name: "Food", emoji: "🍙" },
+    tech: { name: "Tech", emoji: "💻" },
+  },
   seo: {
     keywords: ["yokinist"],
     googleSiteVerification: "", // Remove the value or replace it with your own google site verification code
