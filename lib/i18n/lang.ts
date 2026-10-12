@@ -7,6 +7,7 @@ const lang = {
       ABOUT: "About",
     },
     POST: {
+      RANDOM: "Random post",
       PREV: "Previous",
       NEXT: "Next",
       HOME: "Home",
@@ -22,6 +23,7 @@ const lang = {
       ABOUT: "关于",
     },
     POST: {
+      RANDOM: "随机文章",
       PREV: "上一篇",
       NEXT: "下一篇",
       HOME: "首页",
@@ -37,6 +39,7 @@ const lang = {
       ABOUT: "關於",
     },
     POST: {
+      RANDOM: "隨機文章",
       PREV: "上一篇",
       NEXT: "下一篇",
       HOME: "首頁",
@@ -52,6 +55,7 @@ const lang = {
       ABOUT: "關於",
     },
     POST: {
+      RANDOM: "隨機文章",
       PREV: "上一篇",
       NEXT: "下一篇",
       HOME: "首頁",
@@ -67,6 +71,7 @@ const lang = {
       ABOUT: "About",
     },
     POST: {
+      RANDOM: "ランダムに読む",
       PREV: "前の記事",
       NEXT: "次の記事",
       HOME: "ホーム",
@@ -82,6 +87,7 @@ const lang = {
       ABOUT: "Acerca de mí",
     },
     POST: {
+      RANDOM: "Artículo al azar",
       PREV: "Anterior",
       NEXT: "Siguiente",
       HOME: "Inicio",
