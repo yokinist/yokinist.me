@@ -1,5 +1,5 @@
 import { NotionAPI } from "notion-client";
-import { getDateValue, getTextContent } from "notion-utils";
+import { getBlockValue, getDateValue, getTextContent } from "notion-utils";
 import BLOG from "~/blog.config";
 import { Post } from "~/types";
 import { ReturnGetAllPostsParams } from "./getAllPosts";
@@ -13,7 +13,9 @@ export const getPageProperties = async (
 ): Promise<Post> => {
   const authToken = BLOG.notionAccessToken;
   const api = new NotionAPI({ authToken });
-  const rawProperties = Object.entries(block?.[id]?.value?.properties || []);
+  const rawProperties = Object.entries(
+    getBlockValue(block?.[id])?.properties || [],
+  );
   const properties: Record<string, Post[keyof Post]> = {};
   for (let i = 0; i < rawProperties.length; i++) {
     const [key, val] = rawProperties[i];
