@@ -65,13 +65,13 @@ yarn dev        # http://localhost:8080
 | `yarn lint` | Biome (lint and format check) |
 | `yarn tsc` | Type check |
 | `yarn test` | Unit tests (`node --test`) |
-| `yarn build` | Production build, then sitemap generation |
+| `yarn build` | Production build |
 
 CI runs all of these on every push to `template` and `main`.
 
 ## Tech stack
 
-- [Next.js](https://nextjs.org) 16 (Pages Router, ISR) and React 19
+- [Next.js](https://nextjs.org) 16 (App Router, ISR) and React 19
 - [react-notion-x](https://github.com/NotionX/react-notion-x) to fetch and render Notion pages
 - [Tailwind CSS](https://tailwindcss.com) 4
 - TypeScript and [Biome](https://biomejs.dev)

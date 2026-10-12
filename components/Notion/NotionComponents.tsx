@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from "next/dynamic";
 import type { NotionComponents as NotionComponentType } from "react-notion-x";
 

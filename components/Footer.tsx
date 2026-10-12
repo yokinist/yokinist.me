@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import BLOG from "~/blog.config";
 
 type Props = { fullWidth?: boolean };
@@ -6,7 +6,7 @@ type Props = { fullWidth?: boolean };
 export const Footer: React.FC<Props> = ({ fullWidth }) => {
   return (
     <div
-      className={classNames(
+      className={clsx(
         "mt-16 shrink-0 m-auto w-full text-zinc-500 dark:text-zinc-400 transition-all",
         {
           "px-4 md:px-24": fullWidth,
