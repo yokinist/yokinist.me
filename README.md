@@ -57,12 +57,7 @@ and share it to the public
 - [Fork](https://github.com/yokinist/yokinist.me/fork) this project
 - Customize `blog.config.js`
 - _(Optional)_ You can customize tags in `lib/tags.ts` to match those in your Notion database.
-- _(Optional)_ You can add animation to your profile by specifying the profile image block class in `style/notion.css`
-
-<details><summary>How to check the block class？</summary>
-
-![](https://github.com/yokinist/yokinist.me/assets/19779874/16263594-0bce-4899-a76d-a619fd961ab5)
-</details>
+- _(Optional)_ Add a page with the slug `profile` (or set `profileSlug` in `blog.config.js`). It is shown above the post list, and its first image gets an animated frame
 
 - _(Optional)_ Replace `favicon.svg`, and `favicon.ico` in `/public` folder with your own
 - _(Optional)_ You can set redirect custom link to `/link` page in `blog.config.js`

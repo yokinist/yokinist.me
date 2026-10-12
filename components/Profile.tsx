@@ -4,7 +4,7 @@ type Props = Omit<React.ComponentProps<typeof Layout>, "fullWidth">;
 
 export const Profile: React.VFC<Props> = ({ post, blockMap, emailHash }) => {
   return (
-    <div>
+    <div className="profile">
       <Layout
         blockMap={blockMap}
         post={post}
