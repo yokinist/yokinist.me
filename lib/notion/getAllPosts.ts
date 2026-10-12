@@ -1,3 +1,4 @@
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import { NotionAPI } from "notion-client";
 import { getBlockValue, idToUuid } from "notion-utils";
 import BLOG from "~/blog.config";
@@ -19,13 +20,22 @@ type GetAllPostsParams = {
   filterPostTypeBy?: "page" | "post" | undefined;
 };
 
+// During `next build` every page fetches the same database, which trips
+// Notion's rate limit. Share one request per build worker; ISR stays fresh.
+let databaseOnBuild: ReturnType<NotionAPI["getPage"]> | undefined;
+
+const fetchDatabase = (id: string) => {
+  const api = new NotionAPI({ authToken: BLOG.notionAccessToken });
+  if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD) return api.getPage(id);
+  databaseOnBuild ??= api.getPage(id);
+  return databaseOnBuild;
+};
+
 export const getAllPosts = async (
   props?: GetAllPostsParams,
 ): Promise<Post[]> => {
   let id = BLOG.notionPageId;
-  const authToken = BLOG.notionAccessToken;
-  const api = new NotionAPI({ authToken });
-  const response = await api.getPage(id);
+  const response = await fetchDatabase(id);
 
   id = idToUuid(id);
   const collection = getBlockValue(Object.values(response.collection)[0]);
