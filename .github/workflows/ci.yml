@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [template, main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      # Public demo database, so the build is checked against real Notion data
+      NOTION_PAGE_ID: 761c04c4ff6e467188fe67c8a36e20b9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn biome ci .
+      - run: yarn tsc
+      - run: yarn build
