@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { Twemoji } from "components/Twemoji";
 import Link from "next/link";
+import { Twemoji } from "~/components/Twemoji";
 import { getTagData } from "~/lib/tags";
 
 type Props = {

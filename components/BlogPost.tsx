@@ -10,7 +10,7 @@ type Props = {
 
 // One row of the post list: title on the left, month and day on the right
 export const BlogPost: React.FC<Props> = ({ post }) => {
-  const date = post.date?.start_date || post.createdTime;
+  const date = post.date || post.createdTime;
   const className = "group flex items-baseline justify-between gap-4 py-3";
   const content = (
     <>
@@ -24,7 +24,7 @@ export const BlogPost: React.FC<Props> = ({ post }) => {
         )}
       </span>
       <time
-        dateTime={post.date?.start_date}
+        dateTime={post.date}
         className="shrink-0 text-xs tabular-nums text-zinc-500 dark:text-zinc-400"
       >
         {formatDate(date, BLOG.lang, { month: "short", day: "numeric" })}

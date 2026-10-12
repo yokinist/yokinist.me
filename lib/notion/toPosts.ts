@@ -1,20 +1,75 @@
-import type {
-  BaseBlock,
-  CollectionPropertySchemaMap,
-  ExtendedRecordMap,
-} from "notion-types";
-import {
-  getBlockValue,
-  getDateValue,
-  getTextContent,
-  idToUuid,
-} from "notion-utils";
+import type { PageObjectResponse } from "@notionhq/client";
 import type { Post, PostLink, PostType } from "../../types";
 
-type Decorations = Parameters<typeof getDateValue>[0];
+type Property = PageObjectResponse["properties"][string];
 
-export const byType = (type: PostType) => (post: Post) =>
-  post.type?.[0] === type;
+const plainText = (property?: Property): string | undefined => {
+  switch (property?.type) {
+    case "title":
+      return property.title.map((t) => t.plain_text).join("") || undefined;
+    case "rich_text":
+      return property.rich_text.map((t) => t.plain_text).join("") || undefined;
+    case "url":
+      return property.url ?? undefined;
+    case "select":
+      return property.select?.name;
+    case "status":
+      return property.status?.name;
+    default:
+      return undefined;
+  }
+};
+
+// Maps a database row by property name (title, slug, type, status, ...)
+export const pageToPost = (page: PageObjectResponse): Post => {
+  const props = page.properties;
+  const title = Object.values(props).find((p) => p.type === "title");
+  return {
+    id: page.id,
+    createdTime: page.created_time,
+    title: plainText(title) ?? "",
+    slug: plainText(props.slug) ?? "",
+    type: plainText(props.type),
+    status: plainText(props.status),
+    date: props.date?.type === "date" ? props.date.date?.start : undefined,
+    tags:
+      props.tags?.type === "multi_select"
+        ? props.tags.multi_select.map((tag) => tag.name)
+        : undefined,
+    summary: plainText(props.summary),
+    outer_link: plainText(props.outer_link),
+  };
+};
+
+export const byType = (type: PostType) => (post: Post) => post.type === type;
+
+export const publishedAt = (post: Post) =>
+  new Date(post.date || post.createdTime);
+
+// Published posts and pages, newest first unless sortByDate is false
+export const publishedPosts = (
+  posts: Post[],
+  { now = new Date(), sortByDate = true } = {},
+): Post[] => {
+  // Posts dated today are published; later ones are scheduled
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+  const published = posts.filter(
+    (post) =>
+      post.title &&
+      post.slug &&
+      post.status === "Published" &&
+      (byType("Post")(post) || byType("Page")(post)) &&
+      publishedAt(post) < tomorrow,
+  );
+  if (sortByDate) {
+    published.sort(
+      (a, b) => publishedAt(b).getTime() - publishedAt(a).getTime(),
+    );
+  }
+  return published;
+};
 
 const toLink = (post?: Post): PostLink | null =>
   post ? { title: post.title, slug: post.slug } : null;
@@ -28,89 +83,4 @@ export const getNeighbors = (posts: Post[], id: string) => {
     prev: toLink(linkable[index + 1]),
     next: index > 0 ? toLink(linkable[index - 1]) : null,
   };
-};
-
-const publishedAt = (post: Post) =>
-  new Date(post.date?.start_date || post.createdTime);
-
-// Turns the Notion database page into its published posts and pages
-export const toPosts = (
-  recordMap: ExtendedRecordMap,
-  databaseId: string,
-  { now = new Date(), sortByDate = true } = {},
-): Post[] => {
-  const database = getBlockValue(recordMap.block[idToUuid(databaseId)]);
-  if (
-    database?.type !== "collection_view_page" &&
-    database?.type !== "collection_view"
-  ) {
-    throw new Error(`pageId "${databaseId}" is not a database`);
-  }
-  const schema =
-    getBlockValue(Object.values(recordMap.collection)[0])?.schema ?? {};
-  const views = Object.values(recordMap.collection_query)[0] ?? {};
-  const pageIds = new Set(
-    Object.values(views).flatMap(
-      (view) => view?.collection_group_results?.blockIds ?? [],
-    ),
-  );
-
-  // Posts dated today are published; later ones are scheduled
-  const tomorrow = new Date(now);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0, 0, 0, 0);
-
-  const posts = Array.from(pageIds)
-    .map((id) => toPost(id, recordMap, schema))
-    .filter(
-      (post) =>
-        post.title &&
-        post.slug &&
-        post.status?.[0] === "Published" &&
-        (byType("Post")(post) || byType("Page")(post)) &&
-        publishedAt(post) < tomorrow,
-    );
-  if (sortByDate) {
-    posts.sort((a, b) => publishedAt(b).getTime() - publishedAt(a).getTime());
-  }
-  return posts;
-};
-
-const toPost = (
-  id: string,
-  recordMap: ExtendedRecordMap,
-  schema: CollectionPropertySchemaMap,
-): Post => {
-  const block = getBlockValue(recordMap.block[id]);
-  const post: Record<string, unknown> = {
-    id,
-    createdTime: new Date(block?.created_time ?? Number.NaN).toString(),
-    fullWidth: (block?.format as BaseBlock["format"])?.page_full_width ?? false,
-  };
-  for (const [key, value] of Object.entries(block?.properties ?? {})) {
-    const { name, type } = schema[key] ?? {};
-    if (!name) continue;
-    const decorations = value as Decorations;
-    switch (type) {
-      case "date": {
-        const date = getDateValue(decorations);
-        if (date) {
-          const { type: _, ...rest } = date;
-          post[name] = rest;
-        }
-        break;
-      }
-      case "select":
-      case "multi_select": {
-        const text = getTextContent(decorations);
-        if (text) post[name] = text.split(",");
-        break;
-      }
-      case "person":
-        break;
-      default:
-        post[name] = getTextContent(decorations);
-    }
-  }
-  return post as Post;
 };

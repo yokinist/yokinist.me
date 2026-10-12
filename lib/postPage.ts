@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { buildMetadata } from "~/lib/metadata";
-import { byType, getAllPosts, getNeighbors, getPage } from "~/lib/notion";
+import { byType, getAllPosts, getBlocks, getNeighbors } from "~/lib/notion";
 import type { PostType } from "~/types";
 
 // Shared by /posts/[slug] (posts) and /[slug] (pages)
@@ -31,7 +31,7 @@ export const getPostMetadata = async (
     path: `${basePath(type)}/${post.slug}`,
     publishedTime:
       type === "Post"
-        ? new Date(post.date?.start_date || post.createdTime).toISOString()
+        ? new Date(post.date || post.createdTime).toISOString()
         : undefined,
   });
 };
@@ -47,5 +47,5 @@ export const getPostPageData = async (
   if (post.outer_link) permanentRedirect(post.outer_link);
   const { prev, next } =
     type === "Post" ? getNeighbors(posts, post.id) : { prev: null, next: null };
-  return { post, blockMap: await getPage(post.id), prev, next };
+  return { post, blocks: await getBlocks(post.id), prev, next };
 };

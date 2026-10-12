@@ -43,8 +43,7 @@ const BLOG = {
     keywords: ["yokinist"],
     googleSiteVerification: "", // Remove the value or replace it with your own google site verification code
   },
-  notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS！！！
-  notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
+  notionPageId: process.env.NOTION_PAGE_ID, // The database ID (set in the environment)
   gaMeasurementId: "", // Google Analytics, e.g. G-XXXXXXXXXX. Leave empty to disable it.
   isProd: process.env.VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
 };

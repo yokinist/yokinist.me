@@ -1,8 +1,5 @@
 import "katex/dist/katex.min.css";
-import "prismjs/themes/prism.css";
-import "react-notion-x/src/styles.css";
 import "~/styles/globals.css";
-import "~/styles/notion.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import BLOG from "~/blog.config";
@@ -10,10 +7,8 @@ import { Scripts } from "~/components/Scripts";
 import { themeScript } from "~/lib/themeScript";
 
 const sans = localFont({
-  src: [
-    { path: "../styles/fonts/IBMPlexSansVar-Roman.woff2", style: "normal" },
-    { path: "../styles/fonts/IBMPlexSansVar-Italic.woff2", style: "italic" },
-  ],
+  // Italics are rare, so the italic file is not loaded (the browser slants)
+  src: "../styles/fonts/IBMPlexSansVar-Roman.woff2",
   weight: "100 900",
   variable: "--font-latin-sans",
 });

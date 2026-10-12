@@ -3,10 +3,11 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { BlogPost, Twemoji } from "~/components";
-import { Tags } from "~/components/Tag";
-import { getTagData } from "~/lib";
+import { BlogPost } from "~/components/BlogPost";
+import { Tags } from "~/components/Tag/TagsTab";
+import { Twemoji } from "~/components/Twemoji";
 import { locale } from "~/lib/i18n/lang";
+import { getTagData } from "~/lib/tags";
 import type { Post, TagObj } from "~/types";
 
 type Props = {
@@ -35,9 +36,7 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
   const postsByYear = useMemo(() => {
     const groups: { year: number; posts: Post[] }[] = [];
     for (const post of filteredBlogPosts) {
-      const year = new Date(
-        post.date?.start_date || post.createdTime,
-      ).getFullYear();
+      const year = new Date(post.date || post.createdTime).getFullYear();
       const last = groups[groups.length - 1];
       if (last?.year === year) last.posts.push(post);
       else groups.push({ year, posts: [post] });

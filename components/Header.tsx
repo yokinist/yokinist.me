@@ -59,10 +59,9 @@ const NavBar: React.FC = () => {
 
 type HeaderProps = {
   navBarTitle: string | null;
-  fullWidth?: boolean;
 };
 
-export const Header: React.FC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
+export const Header: React.FC<HeaderProps> = ({ navBarTitle }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
 
@@ -90,13 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
     <>
       <div className="h-4 md:h-12" ref={sentinalRef} />
       <div
-        className={clsx(
-          "sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8",
-          {
-            "px-4 md:px-24": fullWidth,
-            "max-w-2xl px-4": !fullWidth,
-          },
-        )}
+        className="sticky-nav m-auto w-full max-w-2xl h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 px-4"
         id="sticky-nav"
         ref={navRef}
       >

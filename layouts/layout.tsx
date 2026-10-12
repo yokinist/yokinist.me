@@ -1,23 +1,21 @@
 import { createHash } from "node:crypto";
 import { ArrowUpOnSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import type { ExtendedRecordMap } from "notion-types";
-import { preload } from "react-dom";
 
 import BLOG from "~/blog.config";
 import { Container } from "~/components/Container";
-import { NotionRenderer } from "~/components/Notion";
+import { NotionContent } from "~/components/Notion/NotionContent";
 import { PostNav } from "~/components/PostNav";
-import { TagItem } from "~/components/Tag";
+import { TagItem } from "~/components/Tag/TagItem";
 import formatDate from "~/lib/formatDate";
 import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
 import { locale } from "~/lib/i18n/lang";
-import { getLeadImageUrl } from "~/lib/notion/getLeadImageUrl";
+import type { NotionBlock } from "~/lib/notion/api";
 import { byType } from "~/lib/notion/toPosts";
 import type { Post, PostLink } from "~/types";
 
 type Props = {
-  blockMap: ExtendedRecordMap;
+  blocks: NotionBlock[];
   post: Post;
   onlyContents?: boolean;
   prev?: PostLink | null;
@@ -25,15 +23,12 @@ type Props = {
 };
 
 export const Layout: React.FC<Props> = ({
-  blockMap,
+  blocks,
   post,
   onlyContents = false,
   prev = null,
   next = null,
 }) => {
-  const leadImageUrl = getLeadImageUrl(blockMap);
-  if (leadImageUrl)
-    preload(leadImageUrl, { as: "image", fetchPriority: "high" });
   const emailHash = createHash("md5").update(BLOG.email).digest("hex");
 
   const renderContents = () => (
@@ -41,7 +36,7 @@ export const Layout: React.FC<Props> = ({
       <h1 className="md:text-3xl text-2xl font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
         {post.title}
       </h1>
-      {post?.type?.[0] !== "Page" && (
+      {post.type !== "Page" && (
         <nav className="flex items-center gap-x-3 mt-4 mb-4 text-sm text-zinc-500 dark:text-zinc-400">
           <div className="flex mt-2">
             {BLOG.showPostAuthor && (
@@ -60,10 +55,7 @@ export const Layout: React.FC<Props> = ({
               </>
             )}
             <div className="mr-2 md:ml-0">
-              {formatDate(
-                post?.date?.start_date || post.createdTime,
-                BLOG.lang,
-              )}
+              {formatDate(post.date || post.createdTime, BLOG.lang)}
             </div>
           </div>
           {post.tags && (
@@ -75,17 +67,15 @@ export const Layout: React.FC<Props> = ({
           )}
         </nav>
       )}
-      {blockMap && (
-        <div className="-mt-4 mb-4 notion-ignore-padding-x">
-          <NotionRenderer recordMap={blockMap} />
-        </div>
-      )}
+      <div className="mt-8">
+        <NotionContent blocks={blocks} />
+      </div>
     </article>
   );
   return onlyContents ? (
     renderContents()
   ) : (
-    <Container title={post.title} fullWidth={post.fullWidth}>
+    <Container title={post.title}>
       <div className="reading-progress" aria-hidden />
       {renderContents()}
       <footer className="mt-16 space-y-6">
