@@ -7,8 +7,8 @@ export function generateRss(posts: Post[]) {
   const feed = new Feed({
     title: BLOG.title,
     description: BLOG.description,
-    id: `${BLOG.link}/${BLOG.path}`,
-    link: `${BLOG.link}/${BLOG.path}`,
+    id: BLOG.link,
+    link: BLOG.link,
     language: BLOG.lang,
     favicon: `${BLOG.link}/favicon.svg`,
     copyright: `All rights reserved ${year}, ${BLOG.author}`,

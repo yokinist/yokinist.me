@@ -9,7 +9,7 @@ const fontSerifCJK = !CJK()
   : [`"Noto Serif CJK ${CJK()}"`, `"Noto Serif ${CJK()}"`];
 
 /**
- * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
+ * @type {import('tailwindcss').Config}
  */
 const tailwindConfig = {
   content: [
@@ -17,7 +17,6 @@ const tailwindConfig = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./layouts/**/*.{js,ts,jsx,tsx}",
   ],
-  mode: "jit",
   darkMode: "class",
   theme: {
     extend: {
@@ -32,19 +31,8 @@ const tailwindConfig = {
       fontFamily: {
         sans: ['"IBM Plex Sans"', ...fontFamily.sans, ...fontSansCJK],
         serif: ['"Source Serif"', ...fontFamily.serif, ...fontSerifCJK],
-        noEmoji: [
-          '"IBM Plex Sans"',
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "sans-serif",
-        ],
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };

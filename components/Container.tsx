@@ -6,8 +6,6 @@ import BLOG from "~/blog.config";
 import { Footer, Header } from "~/components";
 import { getOGImageURL } from "~/lib/getOGImageURL";
 
-// import BlogPost from './BlogPost'
-
 type NextHeadSeoProps = Parameters<typeof NextHeadSeo>[0];
 
 type Props = {
@@ -35,7 +33,7 @@ export const Container: React.VFC<Props> = ({
   const [alreadySet, setAlreadySet] = useState<boolean>(false);
 
   const root = useMemo(() => {
-    return router.pathname === (BLOG.path || "/");
+    return router.pathname === "/";
   }, [router]);
 
   const siteTitle = useMemo(() => {
@@ -69,7 +67,6 @@ export const Container: React.VFC<Props> = ({
         og={{
           title: meta.title,
           url: router.asPath,
-          // locale: BLOG.lang,
           type: meta.type ?? "website",
           description: meta.description,
           image: getOGImageURL({

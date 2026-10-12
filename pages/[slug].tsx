@@ -13,7 +13,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     (post) => post?.status?.[0] === "Published" && !post?.outer_link,
   );
   return {
-    paths: publishPosts.map((row) => `${BLOG.path}/${row.slug}`),
+    paths: publishPosts.map((row) => `/${row.slug}`),
     fallback: true,
   };
 };
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   if (!post?.id)
     return {
       redirect: {
-        destination: `${BLOG.path}/posts/${slug}`,
+        destination: `/posts/${slug}`,
         permanent: true,
       },
     };

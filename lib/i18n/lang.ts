@@ -4,17 +4,10 @@ const lang = {
   en: {
     NAV: {
       INDEX: "Blog",
-      RSS: "RSS",
-      SEARCH: "Search",
       ABOUT: "About",
-    },
-    PAGINATION: {
-      PREV: "Prev",
-      NEXT: "Next",
     },
     POST: {
       BACK: "Back",
-      TOP: "Top",
       SHARE: "Share with Twitter",
       NOTFOUND: "No posts found.",
       SEARCH: "Search Articles",
@@ -24,17 +17,10 @@ const lang = {
   "zh-CN": {
     NAV: {
       INDEX: "博客",
-      RSS: "订阅",
-      SEARCH: "搜索",
       ABOUT: "关于",
-    },
-    PAGINATION: {
-      PREV: "上一页",
-      NEXT: "下一页",
     },
     POST: {
       BACK: "返回",
-      TOP: "回到顶部",
       SHARE: "Share with Twitter",
       NOTFOUND: "No posts found.",
       SEARCH: "Search Articles",
@@ -44,17 +30,10 @@ const lang = {
   "zh-HK": {
     NAV: {
       INDEX: "網誌",
-      RSS: "訂閱",
-      SEARCH: "搜尋",
       ABOUT: "關於",
-    },
-    PAGINATION: {
-      PREV: "上一頁",
-      NEXT: "下一頁",
     },
     POST: {
       BACK: "返回",
-      TOP: "回到頂端",
       SHARE: "Share with Twitter",
       NOTFOUND: "No posts found.",
       SEARCH: "Search Articles",
@@ -64,17 +43,10 @@ const lang = {
   "zh-TW": {
     NAV: {
       INDEX: "部落格",
-      RSS: "訂閱",
-      SEARCH: "搜尋",
       ABOUT: "關於",
-    },
-    PAGINATION: {
-      PREV: "上一頁",
-      NEXT: "下一頁",
     },
     POST: {
       BACK: "返回",
-      TOP: "回到頂端",
       SHARE: "Share with Twitter",
       NOTFOUND: "No posts found.",
       SEARCH: "Search Articles",
@@ -84,17 +56,10 @@ const lang = {
   ja: {
     NAV: {
       INDEX: "Blog",
-      RSS: "RSS",
-      SEARCH: "Search",
       ABOUT: "About",
-    },
-    PAGINATION: {
-      PREV: "Prev",
-      NEXT: "Next",
     },
     POST: {
       BACK: "Back",
-      TOP: "Top",
       SHARE: "Twitter でシェアする",
       NOTFOUND: "該当する記事はありません...🙇",
       SEARCH: "記事を検索する",
@@ -104,17 +69,10 @@ const lang = {
   es: {
     NAV: {
       INDEX: "Blog",
-      RSS: "RSS",
-      SEARCH: "Buscar",
       ABOUT: "Acerca de mí",
-    },
-    PAGINATION: {
-      PREV: "Anterior",
-      NEXT: "Siguiente",
     },
     POST: {
       BACK: "Atrás",
-      TOP: "Arriba",
       SHARE: "Share with Twitter",
       NOTFOUND: "No posts found.",
       SEARCH: "Search Articles",
