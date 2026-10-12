@@ -1,6 +1,5 @@
 import Script from "next/script";
 import BLOG from "~/blog.config";
-import CJK from "~/lib/cjk";
 
 export const Scripts: React.FC = () => (
   <>
@@ -19,13 +18,5 @@ export const Scripts: React.FC = () => (
         </Script>
       </>
     )}
-    <noscript>
-      <link
-        rel="stylesheet"
-        href={`https://fonts.googleapis.com/css2?family=Noto+${
-          BLOG.font === "serif" ? "Serif" : "Sans"
-        }+${CJK()}:wght@400;700&display=swap`}
-      />
-    </noscript>
   </>
 );
