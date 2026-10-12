@@ -63,7 +63,7 @@ export const PostNav: React.FC<Props> = ({ prev, next }) => {
                 ? locale.POST.NEXT
                 : locale.POST.PREV}
           </span>
-          <span className="block mt-1 text-sm leading-relaxed line-clamp-2 text-zinc-800 group-hover:text-black dark:text-zinc-200 dark:group-hover:text-white transition-colors">
+          <span className="mt-1 text-sm leading-relaxed line-clamp-2 text-zinc-800 group-hover:text-black dark:text-zinc-200 dark:group-hover:text-white transition-colors">
             {link?.title ?? BLOG.title}
           </span>
         </span>
