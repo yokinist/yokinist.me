@@ -1,7 +1,5 @@
 import BLOG from "~/blog.config";
 
-export type TagSlug = string;
-
-export const isTagSlug = (slug: string): slug is TagSlug => slug in BLOG.tags;
-
-export const getTagDataBySlug = (slug: TagSlug) => BLOG.tags[slug];
+// Tags missing from blog.config.js are shown by their slug
+export const getTagData = (slug: string): { name: string; emoji?: string } =>
+  BLOG.tags[slug] ?? { name: slug };

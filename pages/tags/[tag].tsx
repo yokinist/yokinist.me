@@ -3,17 +3,12 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import BLOG from "~/blog.config";
 import { Container, Profile } from "~/components";
 import { SearchLayout } from "~/layouts";
-import { TagSlug, getTagDataBySlug, isTagSlug } from "~/lib";
+import { getTagData } from "~/lib";
 import { filterPublishedPosts, getAllPosts, getAllTags } from "~/lib/notion";
 import { getProfilePost } from "~/lib/notion/getProfilePost";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const currentTag = typeof params?.tag === "string" ? params.tag : "";
-  if (!isTagSlug(currentTag)) {
-    return {
-      notFound: true,
-    };
-  }
   const allPosts = await getAllPosts();
   const profilePostData = await getProfilePost(allPosts);
   const emailHash = createHash("md5").update(BLOG.email).digest("hex");
@@ -25,6 +20,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const filteredPosts = posts.filter((post) =>
     post?.tags?.includes(currentTag),
   );
+  if (!filteredPosts.length) return { notFound: true, revalidate: 1 };
   return {
     props: {
       tags,
@@ -59,9 +55,7 @@ const TagPage: NextPage<Props> = ({
   emailHash,
 }) => {
   return (
-    <Container
-      title={getTagDataBySlug(currentTag as TagSlug)?.name ?? currentTag}
-    >
+    <Container title={currentTag && getTagData(currentTag).name}>
       {post && blockMap && (
         <Profile blockMap={blockMap} post={post} emailHash={emailHash} />
       )}

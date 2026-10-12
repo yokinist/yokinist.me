@@ -2,14 +2,14 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useMemo, useState } from "react";
 import { BlogPost } from "~/components";
 import { Tags } from "~/components/Tag";
-import { TagSlug, getTagDataBySlug, isTagSlug } from "~/lib";
+import { getTagData } from "~/lib";
 import { useLocale } from "~/lib/i18n/locale";
 import { Post, TagObj } from "~/types";
 
 type Props = {
   posts: Post[];
   tags: TagObj;
-  currentTag?: TagSlug;
+  currentTag?: string;
 };
 
 export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
@@ -28,11 +28,6 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
     return [];
   }, [posts, searchValue]);
 
-  const currentTagName = useMemo(() => {
-    if (!currentTag || !isTagSlug(currentTag)) return currentTag;
-    return getTagDataBySlug(currentTag).name;
-  }, [currentTag]);
-
   if (!locale) return null;
 
   return (
@@ -42,7 +37,7 @@ export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
           type="text"
           placeholder={
             currentTag
-              ? `${locale.POST.SEARCHIN} #${currentTagName}`
+              ? `${locale.POST.SEARCHIN} #${getTagData(currentTag).name}`
               : locale.POST.SEARCH
           }
           className="block py-2 px-4 w-full text-black dark:text-white bg-gray-50 dark:bg-gray-700 rounded-lg border-2 border-gray-300"
