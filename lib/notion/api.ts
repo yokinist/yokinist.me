@@ -1,4 +1,5 @@
 import {
+  APIResponseError,
   type BlockObjectResponse,
   collectPaginatedAPI,
   isFullBlock,
@@ -25,28 +26,46 @@ const onBuild = <T>(key: string, fetch: () => Promise<T>): Promise<T> => {
   return shared;
 };
 
-// Notion allows about 3 requests per second. Pages fetch nested blocks in
-// parallel, so cap concurrent requests per process; the client retries 429s
-// but not timeouts, so retry those here.
-const MAX_CONCURRENT = 3;
+// Notion allows about 3 requests per second per integration, and CI and
+// Vercel may build at the same time. Pages fetch nested blocks in parallel,
+// so cap concurrent requests per process and keep retrying rate limits and
+// timeouts (the client gives up after a few retries).
+const MAX_CONCURRENT = 2;
+const MAX_RETRIES = 10;
 let active = 0;
 const waiting: (() => void)[] = [];
-const request = async <T>(send: () => Promise<T>, retries = 2): Promise<T> => {
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const retryDelay = (error: unknown, attempt: number) => {
+  if (error instanceof RequestTimeoutError) return 1000;
+  if (APIResponseError.isAPIResponseError(error) && error.status === 429) {
+    const seconds = Number(
+      (error.additional_data as { retry_after?: string } | undefined)
+        ?.retry_after,
+    );
+    return (Number.isFinite(seconds) ? seconds : 2 ** attempt) * 1000;
+  }
+  return undefined;
+};
+
+const request = async <T>(send: () => Promise<T>): Promise<T> => {
   for (let attempt = 0; ; attempt++) {
     if (active >= MAX_CONCURRENT) {
       await new Promise<void>((resolve) => waiting.push(resolve));
     }
     active++;
+    let delay: number | undefined;
     try {
       return await send();
     } catch (error) {
-      // Give the slot back (finally) before trying again
-      if (attempt < retries && error instanceof RequestTimeoutError) continue;
-      throw error;
+      delay = attempt < MAX_RETRIES ? retryDelay(error, attempt) : undefined;
+      if (delay === undefined) throw error;
     } finally {
       active--;
       waiting.shift()?.();
     }
+    // Wait without holding a slot
+    await sleep(delay);
   }
 };
 
