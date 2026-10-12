@@ -6,6 +6,8 @@ const path = require("path");
 const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
+  // notion-client waits 60-75s on a 429 before retrying
+  staticPageGenerationTimeout: 300,
   images: {
     domains: ["gravatar.com", "pbs.twimg.com", "twemoji.maxcdn.com"],
   },
