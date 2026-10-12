@@ -22,7 +22,8 @@ export const Container: React.FC<Props> = ({
   const router = useRouter();
   const root = router.pathname === "/";
   const siteTitle = meta.title ?? BLOG.title;
-  const url = `${BLOG.link}${router.asPath.split("?")[0]}`;
+  // asPath of the statically generated home page is "/index"
+  const url = root ? BLOG.link : `${BLOG.link}${router.asPath.split("?")[0]}`;
   const articleMetaTags =
     meta.type === "article"
       ? [
