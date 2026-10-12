@@ -20,4 +20,5 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn biome ci .
       - run: yarn tsc
+      - run: yarn test
       - run: yarn build
