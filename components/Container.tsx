@@ -92,7 +92,7 @@ export const Container: React.FC<Props> = ({
       >
         <Header navBarTitle={siteTitle} fullWidth={fullWidth} />
         <main
-          className={classNames("m-auto flex-grow w-full transition-all", {
+          className={classNames("m-auto grow w-full transition-all", {
             "px-4 md:px-24": fullWidth,
             "max-w-2xl px-4": !fullWidth,
           })}

@@ -24,7 +24,7 @@ const NavBar: React.FC = () => {
   }, [router]);
 
   return (
-    <div className="flex-shrink-0">
+    <div className="shrink-0">
       <ul className="flex flex-row items-center">
         {links.map(
           (link) =>
@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
       <div className="h-4 md:h-12" ref={sentinalRef} />
       <div
         className={classNames(
-          "sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60",
+          "sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8",
           {
             "px-4 md:px-24": fullWidth,
             "max-w-2xl px-4": !fullWidth,
