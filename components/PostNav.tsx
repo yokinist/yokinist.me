@@ -73,7 +73,7 @@ export const PostNav: React.FC<Props> = ({ prev, next }) => {
   };
 
   return (
-    <nav className="mt-16">
+    <nav>
       <div className="grid grid-cols-2 border-y border-zinc-200 divide-x divide-zinc-200 dark:border-zinc-800 dark:divide-zinc-800">
         {item(prev, "prev")}
         {item(next, "next")}

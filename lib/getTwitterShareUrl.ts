@@ -1,4 +1,4 @@
-const BASE_URL = "https://twitter.com/intent/tweet" as const;
+const BASE_URL = "https://x.com/intent/tweet" as const;
 
 type Params = {
   text: string;
