@@ -1,26 +1,21 @@
-import { createHash } from "crypto";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import BLOG from "~/blog.config";
 import { Container, Profile } from "~/components";
 import { SearchLayout } from "~/layouts";
 import { getTagData } from "~/lib";
-import { filterPublishedPosts, getAllPosts, getAllTags } from "~/lib/notion";
-import { getProfilePost } from "~/lib/notion/getProfilePost";
+import { byType, getAllPosts, getAllTags, getProfilePost } from "~/lib/notion";
+import { REVALIDATE } from "~/lib/postPage";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const currentTag = typeof params?.tag === "string" ? params.tag : "";
   const allPosts = await getAllPosts();
   const profilePostData = await getProfilePost(allPosts);
-  const emailHash = createHash("md5").update(BLOG.email).digest("hex");
-  const posts = filterPublishedPosts({
-    posts: allPosts,
-    filterPostTypeBy: "post",
-  });
+  const posts = allPosts.filter(byType("Post"));
   const tags = getAllTags({ posts });
   const filteredPosts = posts.filter((post) =>
     post?.tags?.includes(currentTag),
   );
-  if (!filteredPosts.length) return { notFound: true, revalidate: 1 };
+  if (!filteredPosts.length) return { notFound: true, revalidate: REVALIDATE };
   return {
     props: {
       tags,
@@ -28,18 +23,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       currentTag,
       post: profilePostData.post,
       blockMap: profilePostData.blockMap,
-      emailHash,
     },
-    revalidate: 1,
+    revalidate: REVALIDATE,
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts({ filterPostTypeBy: "post" });
+  const posts = (await getAllPosts()).filter(byType("Post"));
   const tags = getAllTags({ posts });
   return {
     paths: Object.keys(tags).map((tag) => ({ params: { tag } })),
-    fallback: true,
+    fallback: "blocking",
   };
 };
 
@@ -52,13 +46,10 @@ const TagPage: NextPage<Props> = ({
   currentTag,
   post,
   blockMap,
-  emailHash,
 }) => {
   return (
     <Container title={currentTag && getTagData(currentTag).name}>
-      {post && blockMap && (
-        <Profile blockMap={blockMap} post={post} emailHash={emailHash} />
-      )}
+      {post && blockMap && <Profile blockMap={blockMap} post={post} />}
       <SearchLayout tags={tags} posts={posts} currentTag={currentTag} />
     </Container>
   );

@@ -1,17 +1,11 @@
 import { Layout } from "~/layouts/layout";
 
-type Props = Omit<React.ComponentProps<typeof Layout>, "fullWidth">;
+type Props = Pick<React.ComponentProps<typeof Layout>, "post" | "blockMap">;
 
-export const Profile: React.VFC<Props> = ({ post, blockMap, emailHash }) => {
+export const Profile: React.VFC<Props> = ({ post, blockMap }) => {
   return (
     <div className="profile">
-      <Layout
-        blockMap={blockMap}
-        post={post}
-        emailHash={emailHash}
-        fullWidth={false}
-        onlyContents
-      />
+      <Layout blockMap={blockMap} post={post} onlyContents />
     </div>
   );
 };

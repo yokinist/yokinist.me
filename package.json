@@ -14,7 +14,8 @@
     "lint": "next lint",
     "tsc": "tsc --noEmit -p tsconfig.json",
     "prepare": "simple-git-hooks",
-    "postbuild": "next-sitemap --config next-sitemap.config.js"
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "test": "node --test \"lib/**/*.test.ts\""
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",

@@ -6,8 +6,8 @@ export type Post = {
   id: string;
   createdTime: string;
   fullWidth: boolean;
-  title?: string;
-  slug?: string;
+  title: string;
+  slug: string;
   outer_link?: string;
   summary?: string;
   tags?: string[];

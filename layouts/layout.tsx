@@ -9,23 +9,20 @@ import { TagItem } from "~/components/Tag";
 import formatDate from "~/lib/formatDate";
 import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
 import { useLocale } from "~/lib/i18n/locale";
+import { byType } from "~/lib/notion/toPosts";
 import { Post } from "~/types";
 
 type Props = {
   blockMap: ExtendedRecordMap;
   post: Post;
-  emailHash: string;
-  fullWidth?: boolean;
+  emailHash?: string;
   onlyContents?: boolean;
-  slug?: string | null;
 };
 
 export const Layout: React.VFC<Props> = ({
   blockMap,
   post,
   emailHash,
-  slug,
-  fullWidth = false,
   onlyContents = false,
 }) => {
   const locale = useLocale();
@@ -85,7 +82,7 @@ export const Layout: React.VFC<Props> = ({
       description={post.summary}
       date={new Date(post.date?.start_date || post.createdTime).toISOString()}
       type="article"
-      fullWidth={fullWidth}
+      fullWidth={post.fullWidth}
     >
       {renderContents()}
       {BLOG.showPostFooter && (
@@ -95,8 +92,10 @@ export const Layout: React.VFC<Props> = ({
             <div className="flex">
               <a
                 href={getTwitterShareUrl({
-                  text: post?.title ?? BLOG.title,
-                  url: `${BLOG.link}/posts/${slug}`,
+                  text: post.title,
+                  url: `${BLOG.link}${byType("Page")(post) ? "" : "/posts"}/${
+                    post.slug
+                  }`,
                   ...(BLOG.twitterUsername && { via: BLOG.twitterUsername }),
                 })}
                 target="_blank"
