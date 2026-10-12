@@ -24,6 +24,7 @@ const BLOG = {
   ogImageGenerateURL: "https://simple-og-image.vercel.app", // The link to generate OG image, don't end with a slash
   // detail: https://github.com/yokinist/og-image/blob/main/api/_lib/types.ts#L2-L12
   socialLink: "https://twitter.com/yokinist",
+  twitterUsername: "yokinist", // Without "@". Used for Twitter cards and share links
   // Display name and emoji for each tag slug used in your Notion database
   tags: {
     all: { name: "All", emoji: "🌴" },

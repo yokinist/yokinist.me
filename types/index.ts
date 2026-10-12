@@ -42,6 +42,7 @@ export type BlogConfig = {
   autoCollapsedNavBar: boolean;
   ogImageGenerateURL: string;
   socialLink: string;
+  twitterUsername: string;
   tags: Record<string, { name: string; emoji?: string }>;
   seo: {
     keywords: string[];

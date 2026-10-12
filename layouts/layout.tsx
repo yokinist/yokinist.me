@@ -97,7 +97,7 @@ export const Layout: React.VFC<Props> = ({
                 href={getTwitterShareUrl({
                   text: post?.title ?? BLOG.title,
                   url: `${BLOG.link}/posts/${slug}`,
-                  via: BLOG.author,
+                  ...(BLOG.twitterUsername && { via: BLOG.twitterUsername }),
                 })}
                 target="_blank"
                 rel="noreferrer noopener"
