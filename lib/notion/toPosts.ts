@@ -1,24 +1,10 @@
 import type { PageObjectResponse } from "@notionhq/client";
+import {
+  getPropertyDate,
+  getPropertyNames,
+  getPropertyText,
+} from "@yokinist/notion-fetch";
 import type { Post, PostLink, PostType } from "../../types";
-
-type Property = PageObjectResponse["properties"][string];
-
-const plainText = (property?: Property): string | undefined => {
-  switch (property?.type) {
-    case "title":
-      return property.title.map((t) => t.plain_text).join("") || undefined;
-    case "rich_text":
-      return property.rich_text.map((t) => t.plain_text).join("") || undefined;
-    case "url":
-      return property.url ?? undefined;
-    case "select":
-      return property.select?.name;
-    case "status":
-      return property.status?.name;
-    default:
-      return undefined;
-  }
-};
 
 // Maps a database row by property name (title, slug, type, status, ...)
 export const pageToPost = (page: PageObjectResponse): Post => {
@@ -27,17 +13,14 @@ export const pageToPost = (page: PageObjectResponse): Post => {
   return {
     id: page.id,
     createdTime: page.created_time,
-    title: plainText(title) ?? "",
-    slug: plainText(props.slug) ?? "",
-    type: plainText(props.type),
-    status: plainText(props.status),
-    date: props.date?.type === "date" ? props.date.date?.start : undefined,
-    tags:
-      props.tags?.type === "multi_select"
-        ? props.tags.multi_select.map((tag) => tag.name)
-        : undefined,
-    summary: plainText(props.summary),
-    outer_link: plainText(props.outer_link),
+    title: getPropertyText(title) ?? "",
+    slug: getPropertyText(props.slug) ?? "",
+    type: getPropertyText(props.type),
+    status: getPropertyText(props.status),
+    date: getPropertyDate(props.date),
+    tags: getPropertyNames(props.tags),
+    summary: getPropertyText(props.summary),
+    outer_link: getPropertyText(props.outer_link),
   };
 };
 

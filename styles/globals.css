@@ -180,18 +180,6 @@ nav {
   }
 }
 
-/* Code highlighted by Shiki with both themes; pick one by the dark class */
-.shiki,
-.shiki span {
-  color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
-}
-.dark .shiki,
-.dark .shiki span {
-  color: var(--shiki-dark);
-  background-color: var(--shiki-dark-bg);
-}
-
 /* First image of the profile page, in a slowly changing blob shape */
 .profile figure:first-of-type img {
   width: min(18rem, 100%);
