@@ -19,7 +19,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+    border-color: var(--color-zinc-200, currentcolor);
   }
 }
 
@@ -104,17 +104,13 @@ body::-webkit-scrollbar-thumb {
 }
 
 .sticky-nav-full {
-  @apply border-b border-gray-200/50 dark:border-gray-600/50;
+  @apply border-b border-zinc-200/50 dark:border-zinc-600/50;
 }
 
 .header-name {
   display: none;
   opacity: 0;
   overflow: hidden;
-}
-
-.sticky-nav-full .nav {
-  @apply text-gray-600 dark:text-gray-300;
 }
 
 nav {
@@ -142,7 +138,7 @@ nav {
 
 @media (min-width: 768px) {
   .sticky-nav-full {
-    @apply max-w-full border-b border-gray-200/50 dark:border-gray-600/50;
+    @apply max-w-full border-b border-zinc-200/50 dark:border-zinc-600/50;
   }
   .header-name {
     display: block;
@@ -151,7 +147,7 @@ nav {
   }
   .sticky-nav-full .header-name {
     opacity: 1;
-    @apply dark:text-gray-300 text-gray-600;
+    @apply dark:text-zinc-300 text-zinc-600;
   }
 }
 

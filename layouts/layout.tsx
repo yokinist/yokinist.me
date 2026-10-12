@@ -33,11 +33,11 @@ export const Layout: React.FC<Props> = ({
 
   const renderContents = () => (
     <article className="mt-4 mb-8 md:mt-0">
-      <h1 className="md:text-3xl text-2xl font-bold text-black dark:text-white">
+      <h1 className="md:text-3xl text-2xl font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
         {post.title}
       </h1>
       {post?.type?.[0] !== "Page" && (
-        <nav className="flex items-center mt-5 mb-4 text-gray-500 dark:text-gray-300">
+        <nav className="flex items-center gap-x-3 mt-4 mb-4 text-sm text-zinc-500">
           <div className="flex mt-2">
             {BLOG.showPostAuthor && (
               <>

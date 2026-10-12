@@ -22,30 +22,26 @@ export const TagTabItem: React.FC<Props> = ({ tagKey, selected, ...rest }) => {
       : `/tags/${encodeURIComponent(tagKey)}`;
   const tagData = getTagData(tagKey);
   return (
-    <li
-      className={classNames(
-        "mr-3 font-bold whitespace-nowrap rounded-lg min-w-max block",
-        {
-          "text-gray-400 border-gray-100 dark:text-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 hover:bg-gray-100":
-            !selected,
-          "bg-gray-200 text-gray-700 dark:text-night": selected,
-        },
-      )}
-    >
+    <li className="block min-w-max whitespace-nowrap">
       <Link
         href={linkUrl}
         scroll={false}
-        className="flex items-center py-2 px-4"
-        passHref
+        aria-current={selected ? "page" : undefined}
+        className={classNames(
+          "flex items-center gap-1.5 py-1 px-3 rounded-full text-sm transition-colors",
+          {
+            "bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900":
+              selected,
+            "text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800":
+              !selected,
+          },
+        )}
       >
-        {tagData.emoji && <Twemoji emoji={tagData.emoji} size={20} />}
-        <span
-          className={classNames({
-            "ml-2": !!tagData.emoji,
-          })}
-        >
-          {"count" in rest ? `${tagData.name} (${rest.count})` : tagData.name}
-        </span>
+        {tagData.emoji && <Twemoji emoji={tagData.emoji} size={16} />}
+        <span>{tagData.name}</span>
+        {"count" in rest && (
+          <span className="text-xs tabular-nums opacity-60">{rest.count}</span>
+        )}
       </Link>
     </li>
   );

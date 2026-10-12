@@ -1,3 +1,5 @@
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -38,30 +40,64 @@ export const PostNav: React.FC<Props> = ({ prev, next }) => {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [router, prevHref, nextHref]);
 
-  const item = (link: PostLink | null, label: string, align: string) => (
-    <Link
-      href={link ? `/posts/${link.slug}` : "/"}
-      className={`group block ${align}`}
-    >
-      <span className="block text-xs text-gray-500 dark:text-gray-400">
-        {link ? label : locale?.POST.HOME}
-      </span>
-      <span className="block mt-1 font-medium text-black dark:text-gray-100 group-hover:underline">
-        {link?.title ?? BLOG.title}
-      </span>
-    </Link>
-  );
+  const item = (link: PostLink | null, direction: "prev" | "next") => {
+    const isNext = direction === "next";
+    const Icon = isNext ? ChevronRightIcon : ChevronLeftIcon;
+    return (
+      <Link
+        href={link ? `/posts/${link.slug}` : "/"}
+        className={classNames("group flex items-center gap-3 py-6", {
+          "justify-end pl-4 text-right": isNext,
+          "pr-4": !isNext,
+        })}
+      >
+        {!isNext && (
+          <Icon className="w-4 h-4 shrink-0 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition group-hover:-translate-x-0.5" />
+        )}
+        <span className="min-w-0">
+          <span className="block text-xs text-zinc-500">
+            {!link
+              ? locale?.POST.HOME
+              : isNext
+                ? locale?.POST.NEXT
+                : locale?.POST.PREV}
+          </span>
+          <span className="block mt-1 text-sm leading-relaxed line-clamp-2 text-zinc-800 group-hover:text-black dark:text-zinc-200 dark:group-hover:text-white transition-colors">
+            {link?.title ?? BLOG.title}
+          </span>
+        </span>
+        {isNext && (
+          <Icon className="w-4 h-4 shrink-0 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition group-hover:translate-x-0.5" />
+        )}
+      </Link>
+    );
+  };
 
   return (
-    <nav className="mt-12 mb-4 pt-6 border-t border-gray-200 dark:border-gray-700">
-      <div className="grid grid-cols-2 gap-6">
-        {item(prev, `‹ ${locale?.POST.PREV}`, "text-left")}
-        {item(next, `${locale?.POST.NEXT} ›`, "text-right")}
+    <nav className="mt-16">
+      <div className="grid grid-cols-2 border-y border-zinc-200 divide-x divide-zinc-200 dark:border-zinc-800 dark:divide-zinc-800">
+        {item(prev, "prev")}
+        {item(next, "next")}
       </div>
-      <p className="hidden md:block mt-6 text-xs text-gray-400 dark:text-gray-500">
-        <kbd>←</kbd> <kbd>→</kbd> {locale?.POST.PREV} / {locale?.POST.NEXT}
-        &nbsp;&nbsp;<kbd>esc</kbd> {locale?.POST.HOME}
+      <p className="hidden md:flex justify-end items-center gap-4 mt-3 text-xs text-zinc-500">
+        <span className="flex items-center gap-1">
+          <Kbd>←</Kbd>
+          <Kbd>→</Kbd>
+          <span className="ml-1">
+            {locale?.POST.PREV} / {locale?.POST.NEXT}
+          </span>
+        </span>
+        <span className="flex items-center gap-1">
+          <Kbd>esc</Kbd>
+          <span className="ml-1">{locale?.POST.HOME}</span>
+        </span>
       </p>
     </nav>
   );
 };
+
+const Kbd: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <kbd className="inline-flex justify-center items-center min-w-5 h-5 px-1 rounded border border-zinc-300 dark:border-zinc-700 font-sans text-[10px] leading-none">
+    {children}
+  </kbd>
+);

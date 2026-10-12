@@ -3,7 +3,7 @@
 @reference "./globals.css";
 
 .notion {
-    @apply text-gray-600 dark:text-gray-200;
+    @apply text-zinc-600 dark:text-zinc-200;
     overflow-wrap: break-word;
 }
 
@@ -33,20 +33,20 @@ svg + .notion-page-title-text {
 }
 
 .notion-bookmark {
-    @apply border-blue-700! dark:border-blue-300!;
+    @apply rounded-lg! border-zinc-200! dark:border-zinc-800! transition-colors;
 }
 
 .notion-bookmark .notion-bookmark-title,
 .notion-bookmark .notion-bookmark-link div {
-    @apply text-gray-900 dark:text-gray-100;
+    @apply text-zinc-900 dark:text-zinc-100;
 }
 
 .notion-bookmark .notion-bookmark-description {
-    @apply text-gray-700 dark:text-gray-300;
+    @apply text-zinc-700 dark:text-zinc-300;
 }
 
 .notion-bookmark:hover {
-    @apply border-blue-400!;
+    @apply border-zinc-400! dark:border-zinc-600!;
 }
 
 .notion-viewport {
@@ -55,11 +55,11 @@ svg + .notion-page-title-text {
 
 .notion-asset-caption {
     @apply text-center;
-    @apply text-gray-500 dark:text-gray-400;
+    @apply text-zinc-500 dark:text-zinc-400;
 }
 
 .notion-asset-wrapper-image > div > img {
-    @apply bg-gray-100 dark:bg-gray-900 rounded-md drop-shadow-md;
+    @apply bg-zinc-100 dark:bg-zinc-900 rounded-md drop-shadow-md;
 }
 
 .notion-full-width {
@@ -117,44 +117,44 @@ a.notion-page-link {
 }
 
 .notion-list > li::marker {
-    @apply text-gray-500 dark:text-gray-400;
+    @apply text-zinc-500 dark:text-zinc-400;
 }
 
 .notion-table-of-contents-item > span {
-    @apply text-gray-500 border-gray-500 dark:text-gray-400 dark:border-gray-400;
+    @apply text-zinc-500 border-zinc-500 dark:text-zinc-400 dark:border-zinc-400;
 }
 
 /* code */
 .notion-code {
-    @apply bg-gray-50! dark:border-gray-600! dark:bg-gray-800! border-gray-400! rounded-md! p-4!;
+    @apply bg-zinc-50! dark:border-zinc-600! dark:bg-zinc-800! border-zinc-400! rounded-md! p-4!;
 }
 
 .notion code {
-    @apply text-gray-700 dark:text-gray-300 border-none shadow-none bg-none p-0;
+    @apply text-zinc-700 dark:text-zinc-300 border-none shadow-none bg-none p-0;
 }
 
 .token.cdata,
 .token.doctype,
 .token.prolog {
-    @apply text-gray-700;
+    @apply text-zinc-700;
 }
 
 .token.comment {
-    @apply text-gray-400 dark:text-gray-500;
+    @apply text-zinc-400 dark:text-zinc-500;
 }
 
 .dark-mode .token.cdata,
 .dark-mode .token.doctype,
 .dark-mode .token.prolog {
-    @apply text-gray-300;
+    @apply text-zinc-300;
 }
 
 .token.punctuation {
-    @apply text-gray-700;
+    @apply text-zinc-700;
 }
 
 .dark-mode .token.punctuation {
-    @apply text-gray-300;
+    @apply text-zinc-300;
 }
 
 .token.boolean,
@@ -201,13 +201,13 @@ a.notion-page-link {
 
 code[class*='language-'],
 pre[class*='language-'] {
-    @apply text-gray-700;
+    @apply text-zinc-700;
     text-shadow: none !important;
 }
 
 .dark-mode code[class*='language-'],
 .dark-mode pre[class*='language-'] {
-    @apply text-gray-100;
+    @apply text-zinc-100;
 }
 
 pre::-webkit-scrollbar {
@@ -238,7 +238,7 @@ pre[class*='language-'] > code {
     min-height: 192px;
     max-width: 100%;
     max-height: 100%;
-    @apply bg-gray-100 dark:bg-gray-900 border-2 border-gray-300 dark:border-day;
+    @apply bg-zinc-100 dark:bg-zinc-900 border-2 border-zinc-300 dark:border-day;
 }
 
 @keyframes fluid {

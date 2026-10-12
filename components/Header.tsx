@@ -29,31 +29,31 @@ const NavBar: React.FC = () => {
         {links.map(
           (link) =>
             link.show && (
-              <li
-                key={link.id}
-                className={classNames(
-                  "block ml-4 text-black dark:text-gray-50 nav",
-                  {
-                    "border-b-2 border-blue-700 dark:border-blue-400":
-                      link.to === activeNav,
-                  },
-                )}
-              >
-                <Link href={link.to}>{link.name}</Link>
+              <li key={link.id} className="block ml-5 text-sm">
+                <Link
+                  href={link.to}
+                  className={classNames("transition-colors", {
+                    "text-zinc-900 dark:text-zinc-100": link.to === activeNav,
+                    "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100":
+                      link.to !== activeNav,
+                  })}
+                >
+                  {link.name}
+                </Link>
               </li>
             ),
         )}
-        <li className="ml-4">
+        <li className="ml-3">
           <button
-            className="group block p-1 bg-night hover:bg-day dark:bg-day dark:hover:bg-night rounded-full transition-all duration-300"
+            className="block p-1.5 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             aria-label="toggle Dark Mode"
             type="button"
           >
             {theme === "light" ? (
-              <MoonIcon className="w-5 h-5 text-day group-hover:text-night" />
+              <MoonIcon className="w-5 h-5" />
             ) : (
-              <SunIcon className="w-5 h-5 text-night group-hover:text-day" />
+              <SunIcon className="w-5 h-5" />
             )}
           </button>
         </li>
