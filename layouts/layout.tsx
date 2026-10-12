@@ -87,6 +87,7 @@ export const Layout: React.FC<Props> = ({
       type="article"
       fullWidth={post.fullWidth}
     >
+      <div className="reading-progress" aria-hidden />
       {renderContents()}
       {BLOG.showPostFooter && (
         <div className="mb-4">
