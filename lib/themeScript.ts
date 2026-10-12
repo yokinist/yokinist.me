@@ -4,7 +4,9 @@ export const STORAGE_KEY = "theme";
 export const themeScript = `(() => {
   try {
     const theme = localStorage.getItem("${STORAGE_KEY}");
-    if (theme === "dark" || theme === "light")
+    if (theme === "dark" || theme === "light") {
       document.documentElement.classList.toggle("dark", theme === "dark");
+      document.documentElement.classList.toggle("light", theme === "light");
+    }
   } catch {}
 })();`;

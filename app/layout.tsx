@@ -1,4 +1,4 @@
-import "katex/dist/katex.min.css";
+import "@yokinist/notion-rsc/styles.css";
 import "~/styles/globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html
     lang={BLOG.lang}
-    className={`${sans.variable} ${serif.variable} ${BLOG.appearance === "dark" ? "dark" : ""}`}
+    className={`${sans.variable} ${serif.variable} ${BLOG.appearance === "dark" ? "dark" : "light"}`}
     // themeScript may swap the dark class before hydration
     suppressHydrationWarning
   >
