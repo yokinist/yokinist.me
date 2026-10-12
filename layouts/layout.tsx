@@ -37,7 +37,7 @@ export const Layout: React.FC<Props> = ({
         {post.title}
       </h1>
       {post?.type?.[0] !== "Page" && (
-        <nav className="flex items-center gap-x-3 mt-4 mb-4 text-sm text-zinc-500">
+        <nav className="flex items-center gap-x-3 mt-4 mb-4 text-sm text-zinc-500 dark:text-zinc-400">
           <div className="flex mt-2">
             {BLOG.showPostAuthor && (
               <>

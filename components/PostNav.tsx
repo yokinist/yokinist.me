@@ -55,7 +55,7 @@ export const PostNav: React.FC<Props> = ({ prev, next }) => {
           <Icon className="w-4 h-4 shrink-0 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition group-hover:-translate-x-0.5" />
         )}
         <span className="min-w-0">
-          <span className="block text-xs text-zinc-500">
+          <span className="block text-xs text-zinc-500 dark:text-zinc-400">
             {!link
               ? locale?.POST.HOME
               : isNext
@@ -79,7 +79,7 @@ export const PostNav: React.FC<Props> = ({ prev, next }) => {
         {item(prev, "prev")}
         {item(next, "next")}
       </div>
-      <p className="hidden md:flex justify-end items-center gap-4 mt-3 text-xs text-zinc-500">
+      <p className="hidden md:flex justify-end items-center gap-4 mt-3 text-xs text-zinc-500 dark:text-zinc-400">
         <span className="flex items-center gap-1">
           <Kbd>←</Kbd>
           <Kbd>→</Kbd>

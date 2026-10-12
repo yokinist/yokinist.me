@@ -40,7 +40,7 @@ export const TagTabItem: React.FC<Props> = ({ tagKey, selected, ...rest }) => {
         {tagData.emoji && <Twemoji emoji={tagData.emoji} size={16} />}
         <span>{tagData.name}</span>
         {"count" in rest && (
-          <span className="text-xs tabular-nums opacity-60">{rest.count}</span>
+          <span className="text-xs tabular-nums">{rest.count}</span>
         )}
       </Link>
     </li>

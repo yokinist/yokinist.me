@@ -16,7 +16,7 @@ const links = [
 
 const NavBar: React.FC = () => {
   const router = useRouter();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const activeNav = useMemo(() => {
     if (router.asPath === links[0].to) return links[0].to;
     if (router.asPath === links[1].to) return links[1].to;
@@ -46,15 +46,16 @@ const NavBar: React.FC = () => {
         <li className="ml-3">
           <button
             className="block p-1.5 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            aria-label="toggle Dark Mode"
+            onClick={() =>
+              setTheme(resolvedTheme === "light" ? "dark" : "light")
+            }
+            aria-label={locale.NAV.THEME}
+            title={locale.NAV.THEME}
             type="button"
           >
-            {theme === "light" ? (
-              <MoonIcon className="w-5 h-5" />
-            ) : (
-              <SunIcon className="w-5 h-5" />
-            )}
+            {/* Picked by the dark class next-themes sets before paint */}
+            <MoonIcon aria-hidden className="w-5 h-5 dark:hidden" />
+            <SunIcon aria-hidden className="w-5 h-5 hidden dark:block" />
           </button>
         </li>
       </ul>
