@@ -77,9 +77,11 @@ CI runs all of these on every push to `template` and `main`.
 ## Tech stack
 
 - [Next.js](https://nextjs.org) 16 (App Router, ISR) and React 19
-- The official [Notion API](https://developers.notion.com) (`@notionhq/client`), with blocks rendered by server components; code is highlighted by [Shiki](https://shiki.style) and tweets by [react-tweet](https://react-tweet.vercel.app) at build time
+- The official [Notion API](https://developers.notion.com) (`@notionhq/client`) through [notion-kit](https://github.com/yokinist/notion-kit) ([docs](https://notion-kit-docs.vercel.app)):
+  - [`@yokinist/notion-fetch`](https://www.npmjs.com/package/@yokinist/notion-fetch) fetches the database and pages within Notion's rate limit
+  - [`@yokinist/notion-rsc`](https://www.npmjs.com/package/@yokinist/notion-rsc) renders blocks with server components, with code highlighted by Shiki, math by KaTeX and posts on X by react-tweet
 - Spotify, SoundCloud, YouTube and Instagram players load only when played, so visitors get no third-party cookies until then
-- Files uploaded to Notion are served through `/api/notion/file/[id]`, which redirects to a fresh signed URL (they expire after an hour), so no image optimization quota is used
+- Files uploaded to Notion are served through `/api/notion/file/[id]` (notion-fetch's `createFileHandler`), which redirects to a fresh signed URL (they expire after an hour), so no image optimization quota is used
 - [Tailwind CSS](https://tailwindcss.com) 4
 - TypeScript and [Biome](https://biomejs.dev)
 

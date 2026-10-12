@@ -1,5 +1,6 @@
 import { NotionBlocks } from "@yokinist/notion-rsc";
 import Link from "next/link";
+import { locale } from "~/lib/i18n/lang";
 import type { NotionBlock } from "~/lib/notion/api";
 import { getAllPosts } from "~/lib/notion/api";
 
@@ -20,6 +21,7 @@ export const NotionContent = async ({ blocks }: { blocks: NotionBlock[] }) => {
         fileUrl={(id) => `/api/notion/file/${id}`}
         // Link previews and oEmbed rarely change: refetch daily
         fetchInit={{ next: { revalidate: 86400 } }}
+        labels={{ play: locale.POST.PLAY }}
         components={{ Link }}
       />
     </div>
