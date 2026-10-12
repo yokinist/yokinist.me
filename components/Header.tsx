@@ -1,8 +1,8 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 import classNames from "classnames";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import BLOG from "~/blog.config";
 import { fetchLocaleLang } from "~/lib/i18n/lang";

@@ -1,10 +1,10 @@
-import { GetStaticProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import BLOG from "~/blog.config";
 import { Container, Profile } from "~/components";
 import { SearchLayout } from "~/layouts";
 import { byType, getAllPosts, getAllTags, getProfilePost } from "~/lib/notion";
 import { REVALIDATE } from "~/lib/postPage";
-import { Post } from "~/types";
+import type { Post } from "~/types";
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPosts = await getAllPosts();

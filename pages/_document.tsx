@@ -1,9 +1,9 @@
 import Document, {
-  Html,
+  type DocumentContext,
   Head,
+  Html,
   Main,
   NextScript,
-  DocumentContext,
 } from "next/document";
 import BLOG from "~/blog.config";
 import CJK from "~/lib/cjk";

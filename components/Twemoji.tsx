@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import type React from "react";
 
 const TWEMOJI_CDN_BASE_URL = "https://cdn.jsdelivr.net/npm/@twemoji/svg";
 

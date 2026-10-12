@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import { byType, getAllPosts } from "~/lib/notion";
 import { generateRss } from "~/lib/rss";
 

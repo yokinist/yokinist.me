@@ -1,5 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import BLOG from "~/blog.config";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Container, Profile } from "~/components";
 import { SearchLayout } from "~/layouts";
 import { getTagData } from "~/lib";

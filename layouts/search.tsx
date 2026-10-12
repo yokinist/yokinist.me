@@ -4,7 +4,7 @@ import { BlogPost } from "~/components";
 import { Tags } from "~/components/Tag";
 import { getTagData } from "~/lib";
 import { useLocale } from "~/lib/i18n/locale";
-import { Post, TagObj } from "~/types";
+import type { Post, TagObj } from "~/types";
 
 type Props = {
   posts: Post[];

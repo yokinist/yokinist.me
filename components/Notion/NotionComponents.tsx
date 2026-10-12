@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { NotionComponents as NotionComponentType } from "react-notion-x";
+import type { NotionComponents as NotionComponentType } from "react-notion-x";
 
 // Lazy-load some heavy components & override the renderers of some block types
 export const NotionComponents: Partial<NotionComponentType> = {

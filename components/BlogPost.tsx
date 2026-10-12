@@ -2,7 +2,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import BLOG from "~/blog.config";
 import formatDate from "~/lib/formatDate";
-import { Post } from "~/types";
+import type { Post } from "~/types";
 
 type Props = {
   post: Post;
@@ -33,6 +33,7 @@ export const BlogPost: React.FC<Props> = ({ post }) => {
           </div>
         </header>
         {post?.thumbnail_url && (
+          // biome-ignore lint/performance/noImgElement: thumbnails come from arbitrary hosts, which next/image would need listed
           <img
             src={post.thumbnail_url}
             alt={post.title}

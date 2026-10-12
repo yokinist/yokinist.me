@@ -1,8 +1,8 @@
-import { createHash } from "crypto";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { createHash } from "node:crypto";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import BLOG from "~/blog.config";
 import { byType, getAllPosts, getPage } from "~/lib/notion";
-import { PostType } from "~/types";
+import type { PostType } from "~/types";
 
 // How often (in seconds) ISR refetches a page from Notion
 export const REVALIDATE = 60;
