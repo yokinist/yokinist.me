@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html
     lang={BLOG.lang}
-    className={`${sans.variable} ${serif.variable} ${BLOG.appearance === "dark" ? "dark" : ""}`}
+    className={`${sans.variable} ${serif.variable} ${BLOG.appearance === "dark" ? "dark" : "light"}`}
     // themeScript may swap the dark class before hydration
     suppressHydrationWarning
   >
