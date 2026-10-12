@@ -37,6 +37,7 @@ export type BlogConfig = {
   profileSlug: string;
   sortByDate: boolean;
   showAbout: boolean;
+  showPostAuthor: boolean;
   autoCollapsedNavBar: boolean;
   ogImageGenerateURL: string;
   socialLink: string;

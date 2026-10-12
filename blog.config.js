@@ -18,6 +18,7 @@ const BLOG = {
   profileSlug: "profile",
   sortByDate: true,
   showAbout: true,
+  showPostAuthor: true, // Show the author avatar and name above each post
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: "https://simple-og-image.vercel.app", // The link to generate OG image, don't end with a slash
   // detail: https://github.com/yokinist/og-image/blob/main/api/_lib/types.ts#L2-L12
