@@ -16,7 +16,6 @@ export type Post = {
   };
   status?: [PostStatus];
   type?: [PostType];
-  thumbnail_url: string;
 };
 
 export type PostLink = Pick<Post, "title" | "slug">;
