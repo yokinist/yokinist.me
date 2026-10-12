@@ -17,7 +17,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     ...pages.map((page) => ({ url: `${BLOG.link}/${page.slug}` })),
     ...posts.map((post) => ({
       url: `${BLOG.link}/posts/${post.slug}`,
-      lastModified: post.date?.start_date || undefined,
+      lastModified: post.date,
     })),
     ...Object.keys(getAllTags({ posts })).map((tag) => ({
       url: `${BLOG.link}/tags/${encodeURIComponent(tag)}`,

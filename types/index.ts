@@ -1,21 +1,17 @@
 export type PostType = "Post" | "Page";
 
-export type PostStatus = "Idea" | "Published" | "Revise";
-
+// A row of the Notion database, mapped by property name
 export type Post = {
   id: string;
   createdTime: string;
-  fullWidth: boolean;
   title: string;
   slug: string;
-  outer_link?: string;
-  summary?: string;
+  type?: string;
+  status?: string;
+  date?: string;
   tags?: string[];
-  date: {
-    start_date?: string;
-  };
-  status?: [PostStatus];
-  type?: [PostType];
+  summary?: string;
+  outer_link?: string;
 };
 
 export type PostLink = Pick<Post, "title" | "slug">;
@@ -50,7 +46,6 @@ export type BlogConfig = {
     googleSiteVerification: string;
   };
   notionPageId: string | undefined;
-  notionAccessToken: string | undefined;
   gaMeasurementId: "" | `G-${string}`;
   isProd: boolean;
 };

@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import { Container } from "~/components/Container";
 import { Profile } from "~/components/Profile";
 import { SearchLayout } from "~/layouts/search";
-import { getTagData } from "~/lib";
 import { buildMetadata } from "~/lib/metadata";
 import { byType, getAllPosts, getAllTags, getProfilePost } from "~/lib/notion";
+import { getTagData } from "~/lib/tags";
 
 type Props = { params: Promise<{ tag: string }> };
 
@@ -26,10 +26,10 @@ const TagPage = async ({ params }: Props) => {
   const posts = allPosts.filter(byType("Post"));
   const tagged = posts.filter((post) => post.tags?.includes(tag));
   if (!tagged.length) notFound();
-  const { post, blockMap } = await getProfilePost(allPosts);
+  const { post, blocks } = await getProfilePost(allPosts);
   return (
     <Container title={getTagData(tag).name}>
-      {post && blockMap && <Profile post={post} blockMap={blockMap} />}
+      {post && blocks && <Profile post={post} blocks={blocks} />}
       <SearchLayout
         posts={tagged}
         tags={getAllTags({ posts })}

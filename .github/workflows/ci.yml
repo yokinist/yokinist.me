@@ -9,8 +9,9 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
-      # Public demo database, so the build is checked against real Notion data
+      # The demo database, so the build is checked against real Notion data
       NOTION_PAGE_ID: 761c04c4ff6e467188fe67c8a36e20b9
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

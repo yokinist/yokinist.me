@@ -1,135 +1,92 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { ExtendedRecordMap } from "notion-types";
+import type { PageObjectResponse } from "@notionhq/client";
 import type { Post } from "../../types";
-import { getNeighbors, toPosts } from "./toPosts.ts";
+import { getNeighbors, pageToPost, publishedPosts } from "./toPosts.ts";
 
-const DB_ID = "11111111111111111111111111111111";
-const DB_UUID = "11111111-1111-1111-1111-111111111111";
+const text = (content: string) => [{ plain_text: content }];
 
-// notion-client v8 wraps record values twice
-const box = (value: object) => ({
-  role: "reader",
-  value: { role: "reader", value },
+const page = (props: Record<string, unknown>) =>
+  ({
+    id: "page-id",
+    created_time: "2024-01-01T00:00:00.000Z",
+    properties: {
+      Name: { type: "title", title: text("Hello") },
+      slug: { type: "rich_text", rich_text: text("hello") },
+      type: { type: "select", select: { name: "Post" } },
+      status: { type: "select", select: { name: "Published" } },
+      tags: {
+        type: "multi_select",
+        multi_select: [{ name: "tech" }, { name: "music" }],
+      },
+      date: { type: "date", date: { start: "2024-03-01" } },
+      summary: { type: "rich_text", rich_text: text("A summary") },
+      outer_link: { type: "url", url: null },
+      ...props,
+    },
+  }) as unknown as PageObjectResponse;
+
+test("maps database properties by name", () => {
+  assert.deepEqual(pageToPost(page({})), {
+    id: "page-id",
+    createdTime: "2024-01-01T00:00:00.000Z",
+    title: "Hello",
+    slug: "hello",
+    type: "Post",
+    status: "Published",
+    date: "2024-03-01",
+    tags: ["tech", "music"],
+    summary: "A summary",
+    outer_link: undefined,
+  });
+  assert.equal(
+    pageToPost(page({ status: { type: "status", status: { name: "Idea" } } }))
+      .status,
+    "Idea",
+  );
 });
 
-const page = (id: string, props: Record<string, unknown>) => [
-  id,
-  box({
-    id,
-    type: "page",
-    created_time: Date.UTC(2024, 0, 1),
-    properties: props,
-  }),
-];
-
-const props = (overrides: Record<string, unknown> = {}) => ({
-  title: [["Hello"]],
-  slug: [["hello"]],
-  status: [["Published"]],
-  type: [["Post"]],
-  tags: [["tech,music"]],
-  date: [["‣", [["d", { type: "date", start_date: "2024-03-01" }]]]],
+const post = (overrides: Partial<Post>): Post => ({
+  id: overrides.slug ?? "id",
+  createdTime: "2024-01-01T00:00:00.000Z",
+  title: "Title",
+  slug: "slug",
+  type: "Post",
+  status: "Published",
+  date: "2024-03-01",
   ...overrides,
 });
 
-const recordMap = (pages: unknown[][], databaseType = "collection_view_page") =>
-  ({
-    block: Object.fromEntries([
-      [DB_UUID, box({ id: DB_UUID, type: databaseType })],
-      ...pages,
-    ]),
-    collection: {
-      c: box({
-        id: "c",
-        schema: {
-          title: { name: "title", type: "title" },
-          slug: { name: "slug", type: "text" },
-          status: { name: "status", type: "select" },
-          type: { name: "type", type: "select" },
-          tags: { name: "tags", type: "multi_select" },
-          date: { name: "date", type: "date" },
-        },
-      }),
-    },
-    collection_query: {
-      c: {
-        view: {
-          collection_group_results: { blockIds: pages.map(([id]) => id) },
-        },
-      },
-    },
-  }) as unknown as ExtendedRecordMap;
-
 const now = new Date("2024-06-01T12:00:00");
 
-test("maps properties of published posts, newest first", () => {
-  const posts = toPosts(
-    recordMap([
-      page("a", props()),
-      page(
-        "b",
-        props({
-          slug: [["newer"]],
-          date: [["‣", [["d", { start_date: "2024-05-01" }]]]],
-        }),
-      ),
-    ]),
-    DB_ID,
+test("keeps published posts and pages, newest first", () => {
+  const posts = publishedPosts(
+    [
+      post({ slug: "older", date: "2024-03-01" }),
+      post({ slug: "newer", date: "2024-05-01" }),
+      post({ slug: "today", date: "2024-06-01" }),
+      post({ slug: "about", type: "Page" }),
+      post({ slug: "draft", status: "Idea" }),
+      post({ slug: "scheduled", date: "2024-06-02" }),
+      post({ slug: "" }),
+      post({ slug: "other", type: "Other" }),
+    ],
     { now },
   );
   assert.deepEqual(
-    posts.map((post) => post.slug),
-    ["newer", "hello"],
+    posts.map((p) => p.slug),
+    ["today", "newer", "older", "about"],
   );
-  assert.equal(posts[1].title, "Hello");
-  assert.deepEqual(posts[1].tags, ["tech", "music"]);
-  assert.deepEqual(posts[1].date, { start_date: "2024-03-01" });
-  assert.deepEqual(posts[1].type, ["Post"]);
-});
-
-test("drops drafts, scheduled posts, posts without a slug and unknown types", () => {
-  const posts = toPosts(
-    recordMap([
-      page("draft", props({ status: [["Idea"]] })),
-      page(
-        "scheduled",
-        props({ date: [["‣", [["d", { start_date: "2024-06-02" }]]]] }),
-      ),
-      page(
-        "today",
-        props({
-          slug: [["today"]],
-          date: [["‣", [["d", { start_date: "2024-06-01" }]]]],
-        }),
-      ),
-      page("no-slug", props({ slug: [[""]] })),
-      page("other", props({ type: [["Other"]] })),
-      page("page", props({ slug: [["about"]], type: [["Page"]] })),
-    ]),
-    DB_ID,
-    { now },
-  );
-  assert.deepEqual(
-    posts.map((post) => post.slug),
-    ["today", "about"],
-  );
-});
-
-test("throws when the page is not a database", () => {
-  assert.throws(() => toPosts(recordMap([], "page"), DB_ID), /not a database/);
 });
 
 test("finds the older and newer post, skipping outer links", () => {
-  const post = (id: string, outer_link?: string) =>
-    ({ id, title: id, slug: id, outer_link }) as Post;
   const posts = [
-    post("newest"),
-    post("outer", "https://example.com"),
-    post("middle"),
-    post("oldest"),
+    post({ slug: "newest" }),
+    post({ slug: "outer", outer_link: "https://example.com" }),
+    post({ slug: "middle" }),
+    post({ slug: "oldest" }),
   ];
-  const link = (id: string) => ({ title: id, slug: id });
+  const link = (slug: string) => ({ title: "Title", slug });
   assert.deepEqual(getNeighbors(posts, "middle"), {
     prev: link("oldest"),
     next: link("newest"),

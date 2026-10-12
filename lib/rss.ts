@@ -24,7 +24,7 @@ export function generateRss(posts: Post[]) {
       id: `${BLOG.link}/posts/${post.slug}`,
       link: `${BLOG.link}/posts/${post.slug}`,
       description: post.summary,
-      date: new Date(post?.date?.start_date || post.createdTime),
+      date: new Date(post.date || post.createdTime),
     });
   }
   return feed.rss2();

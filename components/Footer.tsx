@@ -1,19 +1,8 @@
-import clsx from "clsx";
 import BLOG from "~/blog.config";
 
-type Props = { fullWidth?: boolean };
-
-export const Footer: React.FC<Props> = ({ fullWidth }) => {
+export const Footer: React.FC = () => {
   return (
-    <div
-      className={clsx(
-        "mt-16 shrink-0 m-auto w-full text-zinc-500 dark:text-zinc-400 transition-all",
-        {
-          "px-4 md:px-24": fullWidth,
-          "max-w-2xl px-4": !fullWidth,
-        },
-      )}
-    >
+    <div className="mt-16 shrink-0 m-auto w-full max-w-2xl px-4 text-zinc-500 dark:text-zinc-400">
       <hr className="border-zinc-200 dark:border-zinc-800" />
       <div className="flex flex-wrap justify-between gap-4 my-6 text-xs">
         <p>© {BLOG.author}</p>

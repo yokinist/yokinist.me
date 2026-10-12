@@ -11,11 +11,11 @@ export const metadata = buildMetadata({ path: "" });
 
 const HomePage = async () => {
   const allPosts = await getAllPosts();
-  const { post, blockMap } = await getProfilePost(allPosts);
+  const { post, blocks } = await getProfilePost(allPosts);
   const posts = allPosts.filter(byType("Post"));
   return (
     <Container>
-      {post && blockMap && <Profile post={post} blockMap={blockMap} />}
+      {post && blocks && <Profile post={post} blocks={blocks} />}
       <SearchLayout posts={posts} tags={getAllTags({ posts })} />
     </Container>
   );
