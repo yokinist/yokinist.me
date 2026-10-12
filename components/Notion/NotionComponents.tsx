@@ -14,12 +14,17 @@ export const NotionComponents: Partial<NotionComponentType> = {
       },
     );
   }),
-  // Database block
-  Collection: dynamic(() => {
-    return import("react-notion-x/build/third-party/collection").then(
-      (module) => module.Collection,
-    );
-  }),
+  // Database block, also used for the properties of database pages. Client
+  // only: the server-rendered markup did not match the first client render
+  // (React hydration error #418) because the chunk was not loaded yet.
+  Collection: dynamic(
+    () => {
+      return import("react-notion-x/build/third-party/collection").then(
+        (module) => module.Collection,
+      );
+    },
+    { ssr: false },
+  ),
   // Equation block & inline variant
   Equation: dynamic(() => {
     return import("react-notion-x/build/third-party/equation").then(
