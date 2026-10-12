@@ -15,12 +15,9 @@ const BLOG = {
   font: "sans-serif", // ['sans-serif', 'serif']
   lightBackground: "#ffffff", // use hex value, don't forget '#' e.g #fffefc
   darkBackground: "#040808", // use hex value, don't forget '#'
-  path: "", // leave this empty unless you want to deploy Nobelium in a folder
   profileSlug: "profile",
-  since: 2021, // If leave this empty, current year will be used.
   sortByDate: true,
   showAbout: true,
-  showArchive: true,
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: "https://simple-og-image.vercel.app", // The link to generate OG image, don't end with a slash
   // detail: https://github.com/yokinist/og-image/blob/main/api/_lib/types.ts#L2-L12
@@ -31,17 +28,7 @@ const BLOG = {
   },
   notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS！！！
   notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
-  analytics: {
-    provider: "ga", // Currently we support Google Analytics and Ackee, please fill with 'ga' or 'ackee', leave it empty to disable it.
-    ackeeConfig: {
-      tracker: "", // e.g 'https://ackee.craigary.net/tracker.js'
-      dataAckeeServer: "", // e.g https://ackee.craigary.net , don't end with a slash
-      domainId: "", // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
-    },
-    gaConfig: {
-      measurementId: "", // e.g: G-XXXXXXXXXX
-    },
-  },
+  gaMeasurementId: "", // Google Analytics, e.g. G-XXXXXXXXXX. Leave empty to disable it.
   isProd: process.env.VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
 };
 // export default BLOG

@@ -10,9 +10,8 @@ import { Twemoji } from "./Twemoji";
 
 const locale = fetchLocaleLang();
 const links = [
-  { id: 1, name: locale.NAV.INDEX, to: BLOG.path || "/", show: true },
+  { id: 1, name: locale.NAV.INDEX, to: "/", show: true },
   { id: 2, name: locale.NAV.ABOUT, to: "/about", show: BLOG.showAbout },
-  // { id: 4, name: locale.NAV.RSS, to: '/feed', show: true },
 ];
 
 const NavBar: React.VFC = () => {
@@ -87,7 +86,6 @@ export const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   useEffect(() => {
     const obvserver = new window.IntersectionObserver(handler);
     if (sentinalRef?.current) obvserver.observe(sentinalRef.current);
-    // Don't touch this, I have no idea how it works XD
     return () => {
       if (sentinalRef?.current) obvserver.unobserve(sentinalRef.current);
     };

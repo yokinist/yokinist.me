@@ -4,12 +4,11 @@ const path = require("path");
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  swcMinify: true,
   reactStrictMode: true,
   // notion-client waits 60-75s on a 429 before retrying
   staticPageGenerationTimeout: 300,
   images: {
-    domains: ["gravatar.com", "pbs.twimg.com", "twemoji.maxcdn.com"],
+    remotePatterns: [{ protocol: "https", hostname: "gravatar.com" }],
   },
   async headers() {
     return [

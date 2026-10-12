@@ -13,7 +13,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     (post) => post?.status?.[0] === "Published" && !post?.outer_link,
   );
   return {
-    paths: publishPosts.map((row) => `${BLOG.path}/posts/${row.slug}`),
+    paths: publishPosts.map((row) => `/posts/${row.slug}`),
     fallback: true,
   };
 };

@@ -16,7 +16,6 @@ export type Post = {
   };
   status?: [PostStatus];
   type?: [PostType];
-  repo_url: string;
   thumbnail_url: string;
 };
 
@@ -35,12 +34,9 @@ export type BlogConfig = {
   font: "sans-serif" | "serif";
   lightBackground: `#${string}`;
   darkBackground: `#${string}`;
-  path: string;
   profileSlug: string;
-  since: number;
   sortByDate: boolean;
   showAbout: boolean;
-  showArchive: boolean;
   autoCollapsedNavBar: boolean;
   ogImageGenerateURL: string;
   socialLink: string;
@@ -50,16 +46,6 @@ export type BlogConfig = {
   };
   notionPageId: string;
   notionAccessToken: string;
-  analytics: {
-    provider: "ga" | "ackee";
-    ackeeConfig: {
-      tracker: string;
-      dataAckeeServer: string;
-      domainId: string;
-    };
-    gaConfig: {
-      measurementId: `G-${string}`;
-    };
-  };
+  gaMeasurementId: "" | `G-${string}`;
   isProd: "development" | "preview" | "production";
 };
