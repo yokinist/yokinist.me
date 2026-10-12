@@ -8,60 +8,46 @@ type Props = {
   post: Post;
 };
 
-type RenderBlogPostArg = {
-  isOuterLink: boolean;
-};
-
+// One row of the post list: title on the left, month and day on the right
 export const BlogPost: React.FC<Props> = ({ post }) => {
-  const renderBlogPost = ({ isOuterLink }: RenderBlogPostArg) => {
-    return (
-      <article
-        key={post.id}
-        className="mt-2 mb-6 md:mb-8 hover:opacity-90 transition-transform ease-out hover:scale-105"
-      >
-        <header>
-          <time className="text-gray-600 dark:text-gray-400 text-sm mb-2 inline-block">
-            {formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}
-          </time>
-          <div className="flex">
-            <h2 className="mb-2 text-lg md:text-xl font-bold text-black dark:text-white cursor-pointer">
-              {post.title}
-            </h2>
-            {isOuterLink && (
-              <ArrowTopRightOnSquareIcon className="mt-[0.5px] mr-2 sm:mr-0 ml-1 w-5 min-w-[20px] h-5 text-blue-700 dark:text-blue-400" />
-            )}
-          </div>
-        </header>
-        {post?.thumbnail_url && (
-          // biome-ignore lint/performance/noImgElement: thumbnails come from arbitrary hosts, which next/image would need listed
-          <img
-            src={post.thumbnail_url}
-            alt={post.title}
-            decoding="async"
-            className="my-3 bg-gray-100 dark:bg-gray-900 rounded-md drop-shadow-md"
+  const date = post.date?.start_date || post.createdTime;
+  const className = "group flex items-baseline justify-between gap-4 py-3";
+  const content = (
+    <>
+      <span className="font-medium text-black dark:text-gray-100 group-hover:underline">
+        {post.title}
+        {post.outer_link && (
+          <ArrowTopRightOnSquareIcon
+            aria-hidden
+            className="inline ml-1 w-4 h-4 align-[-2px] text-blue-700 dark:text-blue-400"
           />
         )}
-        <main>
-          <p className="leading-8 text-gray-700 dark:text-gray-300 line-clamp-1 text-base">
-            {post.summary}
-          </p>
-        </main>
-      </article>
-    );
-  };
+      </span>
+      <time
+        dateTime={post.date?.start_date}
+        className="shrink-0 text-sm tabular-nums text-gray-500 dark:text-gray-400"
+      >
+        {formatDate(date, BLOG.lang, { month: "short", day: "numeric" })}
+      </time>
+    </>
+  );
 
-  return post?.outer_link ? (
-    <a
-      href={post.outer_link}
-      target="_blank"
-      rel="noreferrer noopener"
-      aria-label="outer-link"
-    >
-      {renderBlogPost({ isOuterLink: true })}
-    </a>
-  ) : (
-    <Link href={`/posts/${post.slug}`}>
-      {renderBlogPost({ isOuterLink: false })}
-    </Link>
+  return (
+    <li className="border-b border-gray-200 dark:border-gray-800">
+      {post.outer_link ? (
+        <a
+          href={post.outer_link}
+          target="_blank"
+          rel="noreferrer noopener"
+          className={className}
+        >
+          {content}
+        </a>
+      ) : (
+        <Link href={`/posts/${post.slug}`} className={className}>
+          {content}
+        </Link>
+      )}
+    </li>
   );
 };

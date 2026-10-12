@@ -30,6 +30,20 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
     return [];
   }, [posts, searchValue]);
 
+  // Consecutive posts of the same year share a heading
+  const postsByYear = useMemo(() => {
+    const groups: { year: number; posts: Post[] }[] = [];
+    for (const post of filteredBlogPosts) {
+      const year = new Date(
+        post.date?.start_date || post.createdTime,
+      ).getFullYear();
+      const last = groups[groups.length - 1];
+      if (last?.year === year) last.posts.push(post);
+      else groups.push({ year, posts: [post] });
+    }
+    return groups;
+  }, [filteredBlogPosts]);
+
   // Pick from what is listed now (tag or search results), skipping outer links
   const readablePosts = filteredBlogPosts.filter((post) => !post.outer_link);
   const openRandomPost = () => {
@@ -70,14 +84,23 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
       <div className="sticky top-16 z-10 bg-day dark:bg-night">
         <Tags tags={tags} currentTag={currentTag} />
       </div>
-      <div className="my-5 article-container">
+      <div className="my-5">
         {!filteredBlogPosts.length && (
           <p className="text-gray-500 dark:text-gray-300">
             {locale.POST.NOTFOUND}
           </p>
         )}
-        {filteredBlogPosts.map((post) => (
-          <BlogPost key={post.id} post={post} />
+        {postsByYear.map(({ year, posts }) => (
+          <section key={posts[0].id} className="mb-8">
+            <h2 className="text-xs font-semibold tracking-widest text-gray-500 dark:text-gray-400">
+              {year}
+            </h2>
+            <ul>
+              {posts.map((post) => (
+                <BlogPost key={post.id} post={post} />
+              ))}
+            </ul>
+          </section>
         ))}
       </div>
     </>
