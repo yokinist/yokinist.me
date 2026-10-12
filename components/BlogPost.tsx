@@ -14,7 +14,7 @@ export const BlogPost: React.FC<Props> = ({ post }) => {
   const className = "group flex items-baseline justify-between gap-4 py-3";
   const content = (
     <>
-      <span className="font-medium text-black dark:text-gray-100 group-hover:underline">
+      <span className="text-[15px] text-zinc-800 group-hover:text-black dark:text-zinc-200 dark:group-hover:text-white transition-colors">
         {post.title}
         {post.outer_link && (
           <ArrowTopRightOnSquareIcon
@@ -25,7 +25,7 @@ export const BlogPost: React.FC<Props> = ({ post }) => {
       </span>
       <time
         dateTime={post.date?.start_date}
-        className="shrink-0 text-sm tabular-nums text-gray-500 dark:text-gray-400"
+        className="shrink-0 text-xs tabular-nums text-zinc-500"
       >
         {formatDate(date, BLOG.lang, { month: "short", day: "numeric" })}
       </time>
@@ -33,7 +33,7 @@ export const BlogPost: React.FC<Props> = ({ post }) => {
   );
 
   return (
-    <li className="border-b border-gray-200 dark:border-gray-800">
+    <li className="border-b border-zinc-100 dark:border-zinc-800/70">
       {post.outer_link ? (
         <a
           href={post.outer_link}

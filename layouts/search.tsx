@@ -65,10 +65,10 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
                 ? `${locale.POST.SEARCHIN} #${getTagData(currentTag).name}`
                 : locale.POST.SEARCH
             }
-            className="block py-2 px-4 w-full text-black dark:text-white bg-gray-50 dark:bg-gray-700 rounded-lg border-2 border-gray-300"
+            className="block py-2 pl-4 pr-10 w-full text-sm text-zinc-900 dark:text-zinc-100 bg-transparent rounded-lg border border-zinc-300 dark:border-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors"
             onChange={(e) => setSearchValue(e.target.value)}
           />
-          <MagnifyingGlassIcon className="absolute top-3 right-3 w-5 h-5 text-gray-500 dark:text-gray-400" />
+          <MagnifyingGlassIcon className="absolute top-2.5 right-3 w-4 h-4 text-zinc-400 dark:text-zinc-500" />
         </div>
         <button
           type="button"
@@ -76,9 +76,9 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
           disabled={!readablePosts.length}
           title={locale.POST.RANDOM}
           aria-label={locale.POST.RANDOM}
-          className="shrink-0 px-3 rounded-lg border-2 border-gray-300 bg-gray-50 dark:bg-gray-700 hover:opacity-80 disabled:opacity-40 cursor-pointer disabled:cursor-default"
+          className="shrink-0 px-2.5 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors disabled:opacity-40 cursor-pointer disabled:cursor-default"
         >
-          <Twemoji emoji="🎲" size={20} />
+          <Twemoji emoji="🎲" size={18} />
         </button>
       </div>
       <div className="sticky top-16 z-10 bg-day dark:bg-night">
@@ -86,14 +86,14 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
       </div>
       <div className="my-5">
         {!filteredBlogPosts.length && (
-          <p className="text-gray-500 dark:text-gray-300">
+          <p className="text-zinc-500 dark:text-zinc-300">
             {locale.POST.NOTFOUND}
           </p>
         )}
         {postsByYear.map(({ year, posts }) => (
           <section key={posts[0].id} className="mb-8">
-            {/* Sticks below the header (64px) and the tag bar (56px) */}
-            <h2 className="sticky top-30 py-2 bg-day dark:bg-night text-xs font-semibold tracking-widest text-gray-500 dark:text-gray-400">
+            {/* Sticks below the header (64px) and the tag bar (52px) */}
+            <h2 className="sticky top-29 py-2 bg-day dark:bg-night text-xs font-semibold tracking-widest text-zinc-500 dark:text-zinc-400">
               {year}
             </h2>
             <ul>
