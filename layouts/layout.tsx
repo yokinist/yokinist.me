@@ -1,22 +1,24 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
 import type { ExtendedRecordMap } from "notion-types";
 
 import BLOG from "~/blog.config";
 import { Container } from "~/components";
 import { NotionRenderer } from "~/components/Notion";
+import { PostNav } from "~/components/PostNav";
 import { TagItem } from "~/components/Tag";
 import formatDate from "~/lib/formatDate";
 import { getTwitterShareUrl } from "~/lib/getTwitterShareUrl";
 import { useLocale } from "~/lib/i18n/locale";
 import { byType } from "~/lib/notion/toPosts";
-import type { Post } from "~/types";
+import type { Post, PostLink } from "~/types";
 
 type Props = {
   blockMap: ExtendedRecordMap;
   post: Post;
   emailHash?: string;
   onlyContents?: boolean;
+  prev?: PostLink | null;
+  next?: PostLink | null;
 };
 
 export const Layout: React.FC<Props> = ({
@@ -24,9 +26,10 @@ export const Layout: React.FC<Props> = ({
   post,
   emailHash,
   onlyContents = false,
+  prev = null,
+  next = null,
 }) => {
   const locale = useLocale();
-  const router = useRouter();
 
   const renderContents = () => (
     <article className="mt-4 mb-8 md:mt-0">
@@ -86,38 +89,28 @@ export const Layout: React.FC<Props> = ({
     >
       {renderContents()}
       {BLOG.showPostFooter && (
-        <>
-          <div className="mb-4">
-            <div>---</div>
-            <div className="flex">
-              <a
-                href={getTwitterShareUrl({
-                  text: post.title,
-                  url: `${BLOG.link}${byType("Page")(post) ? "" : "/posts"}/${
-                    post.slug
-                  }`,
-                  ...(BLOG.twitterUsername && { via: BLOG.twitterUsername }),
-                })}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="share with twitter"
-                className="ml-auto text-blue-700 dark:text-blue-400 underline border-blue-700 dark:border-blue-400 cursor-pointer"
-              >
-                {locale?.POST.SHARE}
-              </a>
-            </div>
-          </div>
-          <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
-            <button
-              onClick={() => router.push("/")}
-              className="mt-2 hover:text-black dark:hover:text-gray-100 cursor-pointer"
-              type="button"
+        <div className="mb-4">
+          <div>---</div>
+          <div className="flex">
+            <a
+              href={getTwitterShareUrl({
+                text: post.title,
+                url: `${BLOG.link}${byType("Page")(post) ? "" : "/posts"}/${
+                  post.slug
+                }`,
+                ...(BLOG.twitterUsername && { via: BLOG.twitterUsername }),
+              })}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="share with twitter"
+              className="ml-auto text-blue-700 dark:text-blue-400 underline border-blue-700 dark:border-blue-400 cursor-pointer"
             >
-              ← {locale?.POST.BACK}
-            </button>
+              {locale?.POST.SHARE}
+            </a>
           </div>
-        </>
+        </div>
       )}
+      {byType("Post")(post) && <PostNav prev={prev} next={next} />}
     </Container>
   );
 };
