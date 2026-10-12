@@ -17,81 +17,60 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
   </a>
 </p>
 
-## Highlights ✨
+## Features
 
-**🚀 &nbsp;Fast and responsive**
-
-- Fast page render and responsive design
-- Fast static generation with efficient compiler
-
-**🤖 &nbsp;Deploy instantly**
-
-- Deploy on Vercel in minutes
-- Incremental regeneration and no need to redeploy after update the content in notion
-
-**🚙 &nbsp;Fully functional**
-
-- Full width page, quick search and tag filter
-- RSS, analytics, web vital... and much more
-
-**🎨 &nbsp;Easy for customization**
-
-- Rich config options, support English & Chinese interface
-- Built with Tailwind CSS, easy for customization
-
-**🕸 &nbsp;Pretty URLs and SEO friendly**
-
-- The sitemap will be updated every your build
-
-**💚 &nbsp;Type Safety**
-
-- The source code is written in TypeScript
+- Write in Notion, publish with Next.js: pages are statically generated and refreshed from Notion every 60 seconds (ISR), so there is no need to redeploy after editing
+- Search, tag filter, profile section, dark mode, RSS (`/feed`), sitemap and Open Graph images
+- Interface in English, Chinese (Simplified / Traditional), Japanese and Spanish
+- Configured from a single file, `blog.config.js`
 
 ## Quick Start
 
-- Star this repo 😉
--
-Duplicate [this Notion template](https://yokinist.notion.site/761c04c4ff6e467188fe67c8a36e20b9?v=0643f1ef640642fbb84032202708336f),
-and share it to the public
+1. Duplicate [this Notion template](https://yokinist.notion.site/761c04c4ff6e467188fe67c8a36e20b9?v=0643f1ef640642fbb84032202708336f) and share it to the web
+2. [Fork](https://github.com/yokinist/yokinist.me/fork) this repository
+3. Edit `blog.config.js` (title, author, language, colors, which parts of a post to show, ...)
+4. Deploy on [Vercel](https://vercel.com) with these environment variables:
+   - `NOTION_PAGE_ID` (required): the ID of the Notion database page you shared, the 32 characters after your workspace address
+   - `NOTION_ACCESS_TOKEN` (optional): only needed if the database is not public
 
-- [Fork](https://github.com/yokinist/yokinist.me/fork) this project
-- Customize `blog.config.js`
-- _(Optional)_ Set a display name and emoji for your Notion tags in `tags` of `blog.config.js`. Tags not listed there are shown by their name as-is
-- _(Optional)_ Add a page with the slug `profile` (or set `profileSlug` in `blog.config.js`). It is shown above the post list, and its first image gets an animated frame
-
-- _(Optional)_ Replace `favicon.svg`, and `favicon.ico` in `/public` folder with your own
-- _(Optional)_ You can set redirect custom link to `/link` page in `blog.config.js`
-- Deploy on [Vercel](https://vercel.com), set following environment variables：
-    - `NOTION_PAGE_ID` (Required): The ID of the Notion page you previously shared to the web, usually has 32 digits
-      after your workspace address
-- **That's it!** Easy-peasy?
-
-<details><summary>Wait for a sec, what is Page ID？</summary>
+<details><summary>Where is the page ID?</summary>
   <img src="https://github.com/yokinist/yokinist.me/blob/main/pageid.png?raw=true">
 </details>
 
-## Getting started in developing
+### Optional customization
 
-- Once you have set the environment variables in the Vercel dashboard, run the following
-    - `vercel env pull` (with [Vercel CLI](https://vercel.com/cli))
-    - or `cp .env.sample .env.local` and `insert YOUR_NOTION_PAGE_ID`
+- **Tags**: set a display name and emoji per tag in `tags` of `blog.config.js`. Tags not listed there are shown by their name as-is
+- **Profile**: add a page with the slug `profile` (or set `profileSlug`). It is shown above the post list, and its first image gets an animated frame
+- **`/link`**: redirects to `externalLink`
+- **Analytics**: set `gaMeasurementId` to enable Google Analytics in production
+- **Icons**: replace `favicon.svg` and `apple-touch-icon.png` in `public/`
 
-## Roadmap
+## Development
 
-Check out our roadmap [here](https://www.notion.so/craigary/Public-Roadmap-3cfc4d0f0ca642ef8f652673c37add22)
+Requires Node.js 20.9 or later (CI uses 24) and Yarn 1.
 
-- [x] Better SEO
-- [x] Dark mode
-- [x] Open Graph support
-- [x] Switch to react-notion-x
-- [x] Sitemap
-- [ ] ...
+```bash
+yarn install
+yarn dev        # http://localhost:8080
+```
 
-## Technical details
+`.env.local` points `NOTION_PAGE_ID` to the demo database; replace it with yours (or run `vercel env pull`).
 
-- **Generation**: Next.js and Incremental Static Regeneration
-- **Page render**: [react-notion-x](https://github.com/NotionX/react-notion-x)
-- **Style**: Tailwind CSS and `@tailwindcss/jit` compiler
+| Command | What it does |
+| --- | --- |
+| `yarn lint` | Biome (lint and format check) |
+| `yarn tsc` | Type check |
+| `yarn test` | Unit tests (`node --test`) |
+| `yarn build` | Production build, then sitemap generation |
+
+CI runs all of these on every push to `template` and `main`.
+
+## Tech stack
+
+- [Next.js](https://nextjs.org) 16 (Pages Router, ISR) and React 19
+- [react-notion-x](https://github.com/NotionX/react-notion-x) to fetch and render Notion pages
+- [Tailwind CSS](https://tailwindcss.com) 4
+- TypeScript and [Biome](https://biomejs.dev)
 
 ## Special Thanks
 
