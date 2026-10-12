@@ -3,18 +3,14 @@ import { GetStaticProps, NextPage } from "next";
 import BLOG from "~/blog.config";
 import { Container, Profile } from "~/components";
 import { SearchLayout } from "~/layouts";
-import { filterPublishedPosts, getAllPosts, getAllTags } from "~/lib/notion";
-import { getProfilePost } from "~/lib/notion/getProfilePost";
+import { byType, getAllPosts, getAllTags, getProfilePost } from "~/lib/notion";
 import { Post } from "~/types";
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPosts = await getAllPosts();
   const profilePostData = await getProfilePost(allPosts);
   const emailHash = createHash("md5").update(BLOG.email).digest("hex");
-  const posts = filterPublishedPosts({
-    posts: allPosts,
-    filterPostTypeBy: "post",
-  });
+  const posts = allPosts.filter(byType("Post"));
   const tags = getAllTags({ posts });
   return {
     props: {

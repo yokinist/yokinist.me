@@ -4,14 +4,11 @@ import DefaultErrorPage from "next/error";
 import { useRouter } from "next/router";
 import BLOG from "~/blog.config";
 import { Layout } from "~/layouts";
-import { getAllPosts, getPostBlocks } from "~/lib/notion";
+import { byType, getAllPosts, getPage } from "~/lib/notion";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts({ filterPostTypeBy: "page" });
-  if (!posts) return { paths: [], fallback: false };
-  const publishPosts = posts.filter(
-    (post) => post?.status?.[0] === "Published" && !post?.outer_link,
-  );
+  const posts = (await getAllPosts()).filter(byType("Page"));
+  const publishPosts = posts.filter((post) => !post.outer_link);
   return {
     paths: publishPosts.map((row) => `/${row.slug}`),
     fallback: true,
@@ -20,7 +17,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug;
-  const posts = await getAllPosts({ filterPostTypeBy: "page" });
+  const posts = (await getAllPosts()).filter(byType("Page"));
   const post = posts.find((t) => t.slug === slug);
   if (!post?.id)
     return {
@@ -37,7 +34,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     };
   }
-  const blockMap = await getPostBlocks(post.id);
+  const blockMap = await getPage(post.id);
   const emailHash = createHash("md5").update(BLOG.email).digest("hex");
   return {
     props: { post, blockMap, emailHash },
