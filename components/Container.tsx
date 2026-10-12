@@ -81,7 +81,7 @@ export const Container: React.VFC<Props> = ({
         ]}
         twitter={{
           card: "summary_large_image",
-          site: "@yokinist",
+          site: BLOG.twitterUsername ? `@${BLOG.twitterUsername}` : undefined,
         }}
       />
       <div

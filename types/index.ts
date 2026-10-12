@@ -37,9 +37,13 @@ export type BlogConfig = {
   profileSlug: string;
   sortByDate: boolean;
   showAbout: boolean;
+  showPostAuthor: boolean;
+  showPostFooter: boolean;
   autoCollapsedNavBar: boolean;
   ogImageGenerateURL: string;
   socialLink: string;
+  twitterUsername: string;
+  tags: Record<string, { name: string; emoji?: string }>;
   seo: {
     keywords: string[];
     googleSiteVerification: string;
