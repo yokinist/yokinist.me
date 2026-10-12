@@ -2,7 +2,7 @@ import Script from "next/script";
 import BLOG from "~/blog.config";
 import CJK from "~/lib/cjk";
 
-export const Scripts: React.VFC = () => (
+export const Scripts: React.FC = () => (
   <>
     {BLOG.isProd && BLOG.gaMeasurementId && (
       <>

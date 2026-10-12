@@ -14,7 +14,7 @@ const links = [
   { id: 2, name: locale.NAV.ABOUT, to: "/about", show: BLOG.showAbout },
 ];
 
-const NavBar: React.VFC = () => {
+const NavBar: React.FC = () => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const activeNav = useMemo(() => {
@@ -67,7 +67,7 @@ type HeaderProps = {
   fullWidth?: boolean;
 };
 
-export const Header: React.VFC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
+export const Header: React.FC<HeaderProps> = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const sentinalRef = useRef<HTMLDivElement>(null);
 

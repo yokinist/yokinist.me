@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "~/lib/gtag";
 
-const Gtag: React.VFC = () => {
+const Gtag: React.FC = () => {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url: string, options: { shallow?: boolean }) => {

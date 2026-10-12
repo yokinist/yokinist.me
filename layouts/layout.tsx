@@ -19,7 +19,7 @@ type Props = {
   onlyContents?: boolean;
 };
 
-export const Layout: React.VFC<Props> = ({
+export const Layout: React.FC<Props> = ({
   blockMap,
   post,
   emailHash,

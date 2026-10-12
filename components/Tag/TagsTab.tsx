@@ -6,7 +6,7 @@ type Props = {
   currentTag?: string;
 };
 
-export const Tags: React.VFC<Props> = ({ tags, currentTag }: Props) => {
+export const Tags: React.FC<Props> = ({ tags, currentTag }: Props) => {
   if (!tags) return null;
   return (
     <div className="flex items-center tag-container">

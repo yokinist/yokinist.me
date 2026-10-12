@@ -12,7 +12,7 @@ type Props = {
   currentTag?: string;
 };
 
-export const SearchLayout: React.VFC<Props> = ({ tags, posts, currentTag }) => {
+export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
   const [searchValue, setSearchValue] = useState("");
   const locale = useLocale();
 

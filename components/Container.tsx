@@ -14,7 +14,7 @@ type Props = {
   date?: string;
 };
 
-export const Container: React.VFC<Props> = ({
+export const Container: React.FC<Props> = ({
   children,
   fullWidth,
   ...meta

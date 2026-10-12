@@ -8,7 +8,7 @@ type Props = {
   size?: number;
 };
 
-export const Twemoji: React.VFC<Props> = ({ emoji, size = 24 }) => {
+export const Twemoji: React.FC<Props> = ({ emoji, size = 24 }) => {
   const emojiString = emoji.codePointAt(0)?.toString(16);
   if (!emojiString) return null;
   return (
