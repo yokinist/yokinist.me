@@ -92,7 +92,8 @@ export const SearchLayout: React.FC<Props> = ({ tags, posts, currentTag }) => {
         )}
         {postsByYear.map(({ year, posts }) => (
           <section key={posts[0].id} className="mb-8">
-            <h2 className="text-xs font-semibold tracking-widest text-gray-500 dark:text-gray-400">
+            {/* Sticks below the header (64px) and the tag bar (56px) */}
+            <h2 className="sticky top-30 py-2 bg-day dark:bg-night text-xs font-semibold tracking-widest text-gray-500 dark:text-gray-400">
               {year}
             </h2>
             <ul>
