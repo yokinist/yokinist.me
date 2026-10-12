@@ -19,6 +19,8 @@ export type Post = {
   thumbnail_url: string;
 };
 
+export type PostLink = Pick<Post, "title" | "slug">;
+
 export type TagObj = { [key: string]: number };
 
 export type BlogConfig = {

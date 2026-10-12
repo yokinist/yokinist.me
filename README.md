@@ -21,6 +21,9 @@ This repo is customized based on [craigary/nobelium](https://github.com/craigary
 
 - Write in Notion, publish with Next.js: pages are statically generated and refreshed from Notion every 60 seconds (ISR), so there is no need to redeploy after editing
 - Search, tag filter, profile section, dark mode, RSS (`/feed`), sitemap and Open Graph images
+- Previous / next post links at the end of each post, also on the ← / → keys (Esc goes home)
+- A reading progress bar on posts
+- A 🎲 button next to search that opens a random post from the current list
 - Interface in English, Chinese (Simplified / Traditional), Japanese and Spanish
 - Configured from a single file, `blog.config.js`
 
