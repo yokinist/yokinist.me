@@ -1,5 +1,6 @@
-import "@yokinist/notion-rsc/styles.css";
 import "~/styles/globals.css";
+// After globals.css, whose Tailwind import sets the cascade layer order
+import "@yokinist/notion-rsc/styles.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import BLOG from "~/blog.config";
