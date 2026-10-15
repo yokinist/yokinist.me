@@ -38,6 +38,7 @@ export type BlogConfig = {
   showPostFooter: boolean;
   autoCollapsedNavBar: boolean;
   ogImageGenerateURL: string;
+  ogImageLogo: string;
   socialLink: string;
   twitterUsername: string;
   tags: Record<string, { name: string; emoji?: string }>;

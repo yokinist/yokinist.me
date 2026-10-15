@@ -54,6 +54,24 @@ The database needs the properties `title`, `slug`, `type` (`Post` or `Page`), `s
 - **Analytics**: set `gaMeasurementId` to enable Google Analytics in production
 - **Icons**: replace `favicon.svg` and `apple-touch-icon.png` in `public/`
 
+### OG images
+
+Each page gets an Open Graph image drawn by [og-image](https://github.com/yokinist/og-image), a small service on Vercel. `lib/getOGImageURL.ts` builds its URL from the page title and `blog.config.js`:
+
+- `ogImageGenerateURL`: the service. The default, `https://simple-og-image.vercel.app`, is free to use; deploy your own from the og-image repository to change the design
+- `darkBackground` and `lightBackground`: the card's background and text colors
+- `title`: shown as the site title, except on the home page
+- `ogImageLogo`: an `https` image next to the site title, such as `https://github.com/<you>.png`. Leave it empty for none
+- Posts also show their date, formatted for `lang`
+
+For example, a post's image:
+
+```
+https://simple-og-image.vercel.app/Hello%20world.png?background=%23040808&foreground=%23ffffff&siteTitle=yokinist.me&date=Oct+15%2C+2026
+```
+
+The service takes more parameters, such as `layout`, `accent` and `description`; see [its README](https://github.com/yokinist/og-image#parameters). Images are cached for a year, so an image changes only when its URL does.
+
 ## Development
 
 Requires Node.js 20.9 or later (CI uses 24) and Yarn 1.

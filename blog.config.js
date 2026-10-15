@@ -22,8 +22,8 @@ const BLOG = {
   showPostAuthor: true, // Show the author avatar and name above each post
   showPostFooter: true, // Show the share link below each post
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
-  ogImageGenerateURL: "https://simple-og-image.vercel.app", // The link to generate OG image, don't end with a slash
-  // detail: https://github.com/yokinist/og-image/blob/main/api/_lib/types.ts#L2-L12
+  ogImageGenerateURL: "https://simple-og-image.vercel.app", // The service that draws OG images, without a trailing slash. See README
+  ogImageLogo: "", // An https image shown on OG images, e.g. "https://github.com/<you>.png". Leave empty for none
   socialLink: "https://twitter.com/yokinist",
   twitterUsername: "yokinist", // Without "@". Used for Twitter cards and share links
   // Display name and emoji for each tag slug used in your Notion database
