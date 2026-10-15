@@ -577,10 +577,10 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.4.0.tgz#5e2e1374c0a30b5a42e8b083523a225c6945f88a"
   integrity sha512-1mEZtMKPM09vDmQt5y7YvmN2+DFTP7Tg0EWXdic8/C6VRnpb33e4ghisCIE3WZjsE2N8mf+QV1Zqh7ZFYLWInQ==
 
-"@yokinist/notion-fetch@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@yokinist/notion-fetch/-/notion-fetch-0.1.1.tgz#32bedea520987ffefd08346088d4340a70bf29af"
-  integrity sha512-GLS1EHth6m9RaVmZ2t95ik732bdHtLol9eeptaHQvSCcdLGVINKF8UdRey9FZ+iKwmF0zsHh//H9S4y70k9Vxw==
+"@yokinist/notion-fetch@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@yokinist/notion-fetch/-/notion-fetch-0.1.2.tgz#771e9dbe381ee979e2f66996b0b394c7ed4bf27c"
+  integrity sha512-9qVOAIImSj5M+Bm8CSL6Xik28YlBYp8qxPcOp5TDQC7pOknxDpHjzsHEE82Z/UPwapjAUgSVRz26qH4rRAL7Tg==
 
 "@yokinist/notion-rsc@^0.2.0":
   version "0.2.0"

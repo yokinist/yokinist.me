@@ -25,7 +25,7 @@
     "@notionhq/client": "^5.27.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
-    "@yokinist/notion-fetch": "^0.1.1",
+    "@yokinist/notion-fetch": "^0.1.2",
     "@yokinist/notion-rsc": "^0.2.0",
     "clsx": "^2",
     "feed": "^6",
