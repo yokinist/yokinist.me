@@ -18,6 +18,7 @@ export const buildMetadata = ({
 }: Params): Metadata => {
   const pageTitle = title ?? BLOG.title;
   const root = path === "";
+  const image = getOGImageURL({ title: pageTitle, root, date: publishedTime });
   return {
     title: pageTitle,
     description: description || BLOG.description,
@@ -32,7 +33,7 @@ export const buildMetadata = ({
       description: description || BLOG.description,
       url: `${BLOG.link}${path}`,
       locale: BLOG.lang,
-      images: getOGImageURL({ title: pageTitle, root, twitter: false }),
+      images: image,
       ...(publishedTime
         ? { type: "article", publishedTime, authors: [BLOG.author] }
         : { type: "website" }),
@@ -40,7 +41,7 @@ export const buildMetadata = ({
     twitter: {
       card: "summary_large_image",
       site: BLOG.twitterUsername ? `@${BLOG.twitterUsername}` : undefined,
-      images: getOGImageURL({ title: pageTitle, root, twitter: true }),
+      images: image,
     },
     ...(BLOG.seo.googleSiteVerification && {
       verification: { google: BLOG.seo.googleSiteVerification },

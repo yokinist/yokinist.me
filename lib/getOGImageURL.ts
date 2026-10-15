@@ -1,72 +1,22 @@
 import BLOG from "~/blog.config";
-
-type OGImageQuery = {
-  md: string;
-  fontSize: string;
-  background: string;
-  foreground: string;
-  siteTitle: string | undefined;
-  isTwitter: string | undefined;
-};
-
-type OGImageKeys = (keyof OGImageQuery)[];
+import formatDate from "~/lib/formatDate";
 
 type GetOGImageUrlArgs = {
   title: string;
+  // The home page leaves out the site title, which is its title already
   root: boolean;
-  twitter: boolean;
+  // ISO date of a post, shown at the bottom of the card
+  date?: string;
 };
 
-const convertObjToQueryString = (query: OGImageQuery): string => {
-  return (Object.keys(query) as OGImageKeys)
-    .filter((key) => !!query[key])
-    .map((key) => `${key}=${query[key]}`)
-    .join("&");
-};
-
-export const getOGImageURL = ({
-  title,
-  twitter,
-  root,
-}: GetOGImageUrlArgs): string => {
-  const defaultParams: OGImageQuery = {
-    md: "1",
-    fontSize: "96px",
-    background: encodeURIComponent(BLOG.darkBackground),
-    foreground: encodeURIComponent(BLOG.lightBackground),
-    siteTitle: encodeURIComponent(BLOG.title),
-    isTwitter: undefined,
-  };
-  const baseParams = `${BLOG.ogImageGenerateURL}/${encodeURIComponent(
-    title,
-  )}.png?`;
-  if (twitter) {
-    if (!root) {
-      return (
-        baseParams +
-        convertObjToQueryString({
-          ...defaultParams,
-          isTwitter: "true",
-        })
-      );
-    }
-    return (
-      baseParams +
-      convertObjToQueryString({
-        ...defaultParams,
-        siteTitle: undefined,
-        isTwitter: "true",
-      })
-    );
-  }
-  if (root) {
-    return (
-      baseParams +
-      convertObjToQueryString({
-        ...defaultParams,
-        siteTitle: undefined,
-      })
-    );
-  }
-  return baseParams + convertObjToQueryString(defaultParams);
+// Parameters: https://github.com/yokinist/og-image#parameters
+export const getOGImageURL = ({ title, root, date }: GetOGImageUrlArgs) => {
+  const params = new URLSearchParams({
+    background: BLOG.darkBackground,
+    foreground: BLOG.lightBackground,
+  });
+  if (!root) params.set("siteTitle", BLOG.title);
+  if (BLOG.ogImageLogo) params.set("logo", BLOG.ogImageLogo);
+  if (date) params.set("date", formatDate(date, BLOG.lang));
+  return `${BLOG.ogImageGenerateURL}/${encodeURIComponent(title)}.png?${params}`;
 };
