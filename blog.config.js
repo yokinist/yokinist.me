@@ -23,7 +23,7 @@ const BLOG = {
   showPostFooter: false, // Show the share link below each post
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: "https://simple-og-image.vercel.app", // The service that draws OG images, without a trailing slash. See README
-  ogImageLogo: "", // An https image shown on OG images, e.g. "https://github.com/<you>.png". Leave empty for none
+  ogImageLogo: "https://github.com/yokinist.png", // An https image shown on OG images. Leave empty for none
   socialLink: "https://twitter.com/yokinist",
   twitterUsername: "yokinist", // Without "@". Used for Twitter cards and share links
   // Display name and emoji for each tag slug used in your Notion database
