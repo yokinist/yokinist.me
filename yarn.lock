@@ -582,10 +582,10 @@
   resolved "https://registry.yarnpkg.com/@yokinist/notion-fetch/-/notion-fetch-0.1.1.tgz#32bedea520987ffefd08346088d4340a70bf29af"
   integrity sha512-GLS1EHth6m9RaVmZ2t95ik732bdHtLol9eeptaHQvSCcdLGVINKF8UdRey9FZ+iKwmF0zsHh//H9S4y70k9Vxw==
 
-"@yokinist/notion-rsc@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@yokinist/notion-rsc/-/notion-rsc-0.2.0.tgz#57996aacdb44aa5bd4e97a023c9ae77d786613c4"
-  integrity sha512-x5Dt5nPpRcmwRuwAg1/XBlsWUT1hmt6hZdZOtHE4ES3lwqP3q/D2zn02iHeSlOFUKzDzVsIi/v720O/i8rorrA==
+"@yokinist/notion-rsc@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@yokinist/notion-rsc/-/notion-rsc-0.2.1.tgz#b06bc48e12d291858d944cd07500185b3decc7af"
+  integrity sha512-NZt3PM0eyyUMQ9SzSpSYFeexbqNIoXjkz6MneHbai4l1EXpyVQdkcjfEPYnvQo2UXogOh1ZAdy4tzJ0LVb6BPw==
   dependencies:
     katex "^0.19.0"
     react-tweet "^3.3.1"
